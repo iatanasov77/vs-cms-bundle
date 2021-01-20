@@ -1,0 +1,58 @@
+{% extends "@IACms/layout.html.twig" %}
+
+{% block title %}{{ parent() }} :: Edit Page{% endblock %}
+
+{% block pageTitle %}<i class="icon_genius"></i> Edit Page{% endblock %}
+
+{% block content %}
+    <div class="container-fluid  dashboard-content">
+    	<!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">{% if(item.getId()) %}Edit:	{{ item.getTitle() }}{% else %}Create New Static Page{% endif %}</h2>
+                    <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                    <div class="page-breadcrumb">
+                    	<nav aria-label="breadcrumb">
+                            {{ knp_menu_render( 'breadcrumbs', {'template': 'layout/concept-master/menu/breadcrumb.html.twig'} ) }}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        
+    	<div class="row">
+            <!-- ============================================================== -->
+            <!-- basic tabs  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                	<h5 class="card-header">Page details</h5>
+                	<div class="card-body">
+						{% if form_errors(form) is not empty %}
+			                <div class="alert alert-block alert-danger fade in">
+			                    <button type="button" class="close close-sm" data-dismiss="alert">
+			                        <i class="icon-remove"></i>
+			                    </button>
+			                    <strong>Error!</strong> {{ form_errors(form) }}
+			                </div>
+			            {% endif %}
+			            <section class="panel">                                          
+			                <div class="panel-body bio-graph-info">
+			                	{{ form_start(form, { 'attr': {'class': 'form-horizontal '} }) }}
+			                        {{ form_widget(form) }}
+			                    {{ form_end(form, {'render_rest': false}) }}
+			                </div>
+			            </section>  
+	        		</div>
+				</div>
+			</div>
+        </div>
+    </div>   
+{% endblock content %}

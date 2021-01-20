@@ -1,0 +1,60 @@
+{% extends "layout.html.twig" %}
+
+{# Override Blocs #}
+{% block title %}{{ parent() }} :: Blog Posts{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> Blog Posts{% endblock %}
+{% block content %}
+    <div class="container-fluid  dashboard-content">
+    	<!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Blog Posts</h2>
+                    <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            {{ knp_menu_render('breadcrumbs', {'template': 'menu/breadcrumb.html.twig'}) }}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+                
+                {% if items|length > 0 %}
+                    <table class="table table-striped table-advance table-hover" id="tblCategories">
+                    	<thead>
+	                        <tr>
+	                            <th>Category</th>
+	                            <th>Actions</th>
+	                        </tr>
+	                    </thead>
+						<tbody>
+	                        {% for item in items %}
+	                            {% include '@VSCms/Page_Categories/partial/category_index_row.html.twig' with {'parentId': 0} %}
+	                            
+	                        {% endfor %}
+	                    </tbody>
+                    </table>
+                {% else %}
+                    {{ alerts.info('sylius.ui.there_are_no_mappers_to_display'|trans) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{#
+{% block body_scripts %}
+    {{ parent() }}
+    
+    {{ encore_entry_script_tags( 'post_categories' ) }}
+{% endblock %}
+#}

@@ -1,0 +1,30 @@
+{
+	"name" : "vankosoft/cms-bundle",
+	"type" : "symfony-bundle",
+	"description" : "Symfony CMS Bundle",
+	"keywords" : [
+		"CMS, HTML Editor"
+	],
+	"homepage" : "https://github.com/iatanasov77/vs-cms-bundle",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Ivan I. Atanasov",
+			"email" : "i.atanasov77@gmail.com"
+		}
+	],
+	"require" : {
+		"php" : "^5.5.9 || ^7.0",
+		"friendsofsymfony/ckeditor-bundle" : "^2.0",
+		"gedmo/doctrine-extensions" : "*"
+	},
+	"conflict" : {
+		"doctrine/doctrine-bundle" : "<1.3",
+		"symfony/doctrine-bridge" : "<2.7"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"VS\\CmsBundle\\" : "lib/"
+		}
+	},
+	"minimum-stability" : "dev"
+}

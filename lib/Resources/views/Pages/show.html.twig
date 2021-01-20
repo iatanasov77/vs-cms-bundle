@@ -1,0 +1,8 @@
+{% extends "@IACms/layout.html.twig" %}
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block pageTitle %}<i class="icon_genius"></i> {{ pages.title }}{% endblock %}
+
+{% block content %}
+    {{ pages.text|raw }}
+{% endblock %}

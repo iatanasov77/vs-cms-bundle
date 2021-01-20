@@ -1,0 +1,18 @@
+vs_cms_pages:
+    resource: |
+        alias: vs_cms.pages
+        path: /pages
+        templates: "@VSCms/Pages"
+    type: sylius.resource
+
+vs_cms_page_categories:
+    resource: |
+        alias: vs_cms.page_categories
+        path: /page_categories
+        templates: "@VSCms/Page_Categories"
+    type: sylius.resource
+
+vs_cms_pages_tree:
+    path: /json/pages-tree
+    controller: VS\CmsBundle\Controller\PagesExtController::tree
+    

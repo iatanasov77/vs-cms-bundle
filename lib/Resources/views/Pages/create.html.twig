@@ -1,0 +1,32 @@
+{% extends "@IACms/layout.html.twig" %}
+
+{% block title %}{{ parent() }} :: Edit Page{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+
+            {% if form_errors(form) is not empty %}
+                <div class="alert alert-block alert-danger fade in">
+                    <button type="button" class="close close-sm" data-dismiss="alert">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <strong>Error!</strong> {{ form_errors(form) }}
+                </div>
+            {% endif %}
+            <section class="panel">                                          
+                <div class="panel-body bio-graph-info">
+                    
+                    {% block profile_row %}
+                        
+                    {% endblock profile_row %}
+
+
+                    {{ form_start(form, { 'attr': {'class': 'form-horizontal '} }) }}
+                        {{ form_widget(form) }}
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
