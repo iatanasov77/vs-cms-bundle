@@ -1,7 +1,10 @@
 <?php namespace VS\CmsBundle\Model;
 
-use Doctrine\ORM\Mapping as ORM;
-use Sylius\Component\Taxonomy\Model\TaxonInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+use VS\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use VS\ApplicationBundle\Model\Taxon;
 
 /**
  * Page Category Model
@@ -11,14 +14,23 @@ class PageCategory implements PageCategoryInterface
     /** @var mixed */
     protected $id;
     
-    /** @var PageInterface */
-    protected $page;
+    /** @var PageCategoryInterface */
+    protected $parent;
+    
+    /** @var Collection|PageCategory[] */
+    protected $children;
+    
+    /** @var Collection|PageCategoryRelation[] */
+    protected $relations;
     
     /** @var TaxonInterface */
     protected $taxon;
     
-    /** @var int */
-    //protected $position;
+    public function __construct()
+    {
+        $this->children     = new ArrayCollection();
+        $this->relations    = new ArrayCollection();
+    }
     
     /**
      * {@inheritdoc}
@@ -31,17 +43,47 @@ class PageCategory implements PageCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getPage(): ?PageInterface
+    public function getParent(): ?PageCategoryInterface
     {
-        return $this->page;
+        return $this->parent;
     }
     
     /**
      * {@inheritdoc}
      */
-    public function setPage(?PageInterface $page): void
+    public function setParent(?PageCategoryInterface $parent) : self
     {
-        $this->page = $page;
+        $this->parent = $parent;
+        
+        return $this;
+    }
+    
+    public function getChildren() : Collection
+    {
+        return $this->children;
+    }
+    
+    /**
+     * @return Collection|PageCategoryRelation[]
+     */
+    public function getRelations(): Collection
+    {
+        return $this->relations;
+    }
+    
+    /**
+     * @return Collection|PageCategory[]
+     */
+    public function getPages()
+    {
+        $pages = [];
+        foreach( $this->getRelations() as $relation ){
+            if( ! isset( $pages[$relation->getPage()->getId()] ) ) {
+                $pages[$relation->getPage()->getId()]    = $relation->getPage(); //Ensure uniqueness
+            }
+        }
+        
+        return $pages;
     }
     
     /**
@@ -59,23 +101,23 @@ class PageCategory implements PageCategoryInterface
     {
         $this->taxon = $taxon;
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-//     public function getPosition(): ?int
-//     {
-//         return $this->position;
-//     }
-    
-    /**
-     * {@inheritdoc}
-     */
-//     public function setPosition(?int $position): void
-//     {
-//         $this->position = $position;
-//     }
 
+    public function getName()
+    {
+        return $this->taxon ? $this->taxon->getName() : '';
+    }
+    
+    public function setName( string $name ) : self
+    {
+        if ( ! $this->taxon ) {
+            // Create new taxon into the controller and set the properties passed from form
+            return $this;
+        }
+        $this->taxon->setName( $name );
+        
+        return $this;
+    }
+    
     public function __toString()
     {
         return $this->taxon ? $this->taxon->getName() : '';

@@ -1,13 +1,16 @@
 <?php namespace VS\CmsBundle\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Taxonomy\Model\TaxonInterface;
+use Doctrine\Common\Collections\Collection;
+use VS\ApplicationBundle\Model\Interfaces\TaxonInterface;
 
 interface PageCategoryInterface extends ResourceInterface
 {
-    public function getPage(): ?PageInterface;
+    public function getPages();
     
-    public function setPage( ?PageInterface $page ): void;
+    //public function addPage( Page $page ) : self;
+    
+    //public function removePage( Page $page ) : self;
     
     public function getTaxon(): ?TaxonInterface;
     

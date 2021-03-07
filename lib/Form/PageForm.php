@@ -10,10 +10,12 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
+
+use VS\CmsBundle\Model\PageInterface;
 
 class PageForm extends AbstractResourceType
 {
@@ -28,10 +30,6 @@ class PageForm extends AbstractResourceType
 
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
-        if ( ! isset( $options['classCategory'] ) ) {
-            throw new \Exception( 'PagesForm: option classCategory not passed !!!' );
-        }
-        
         $builder
             ->add( 'locale', ChoiceType::class, [
                 'label'     => 'Locale',
@@ -65,11 +63,10 @@ class PageForm extends AbstractResourceType
         parent::configureOptions( $resolver );
         
         $resolver
-            ->setDefaults([
-                'classCategory' => '',
-                //'data_class' => Page::class
+            ->setDefined([
+                'page',
             ])
-            ->setAllowedTypes( 'classCategory', 'string' )
+            ->setAllowedTypes( 'page', PageInterface::class )
         ;
     }
 }

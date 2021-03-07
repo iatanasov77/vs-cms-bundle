@@ -1,20 +1,19 @@
 <?php namespace VS\CmsBundle\Model;
 
-use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Resource\Model\TranslationInterface;
+
+use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
-use Sylius\Component\Resource\Model\SlugAwareInterface;
+use Sylius\Component\Resource\Model\TranslatableTrait;
 
-use VS\ApplicationBundle\Model\Interfaces\TaxonInterface;
-use VS\ApplicationBundle\Model\Interfaces\PageInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
-/**
- * Page Model
- * 
- * @ORM\MappedSuperclass
- */
-class Page implements PageInterface, SlugAwareInterface
+class Page implements PageInterface
 {
+    use TimestampableTrait;
     use ToggleableTrait;    // About enabled field - $enabled (published)
+    use TranslatableTrait;
     
     /** @var integer */
     protected $id;
@@ -28,22 +27,74 @@ class Page implements PageInterface, SlugAwareInterface
     /** @var string */
     protected $text;
     
-    /** @var PageCategoryInterface */
-    protected $category;
+    /** @var Collection|PageCategory[] */
+    //protected $categories;
+    
+    /** @var Collection|PageCategoryRelation[] */
+    protected $relations;
     
     /** @var string */
     protected $locale;
     
-    public function setTranslatableLocale($locale)
+    public function __construct()
     {
-        $this->locale = $locale;
-        
-        return $this;
+        //$this->categories = new ArrayCollection();
+        $this->relations    = new ArrayCollection();
     }
     
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * @return Collection|PageCategoryRelation[]
+     */
+    public function getRelations(): Collection
+    {
+        return $this->relations;
+    }
+    
+    /**
+     * @return Collection|PageCategory[]
+     */
+    public function getCategories()
+    {
+        //return $this->categories;
+        
+        $categories = [];
+        foreach( $this->getRelations() as $relation ){
+            if( ! isset( $categories[$relation->getCategory()->getId()] ) ) {
+                $categories[$relation->getCategory()->getId()]    = $relation->getCategory(); //Ensure uniqueness
+            }
+        }
+        
+        return $categories;
+    }
+    
+//     public function addCategory( PageCategory $category ) : self
+//     {
+//         if ( ! $this->categories->contains( $category ) ) {
+//             $this->categories[] = $category;
+//             $category->addPage( $this );
+//         }
+//         return $this;
+//     }
+    
+//     public function removeCategory( PageCategory $category ) : self
+//     {
+//         if ( ! $this->categories->contains( $category ) ) {
+//             $this->categories->removeElement( $category );
+//             $category->removePage( $this );
+//         }
+//         return $this;
+//     }
+    
+    public function setTranslatableLocale($locale) : self
+    {
+        $this->locale = $locale;
+        
+        return $this;
     }
 
     public function getSlug() : ?string
@@ -51,20 +102,14 @@ class Page implements PageInterface, SlugAwareInterface
         return $this->slug;
     }
 
-    public function getTitle()
+    public function getTitle() : ?string
     {
         return $this->title;
     }
 
-    public function getText()
+    public function getText() : ?string
     {
         return $this->text;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
     }
 
     public function setSlug($slug=null) : void
@@ -84,16 +129,23 @@ class Page implements PageInterface, SlugAwareInterface
         $this->text = $text;
         return $this;
     }
-
-    public function getCategory(): ?PageCategoryInterface
+    
+    public function getPublished() : ?bool
     {
-        return $this->category;
+        return $this->enabled;
     }
     
-    public function setCategory(?PageCategoryInterface $category): self
+    public function setPublished( ?bool $published ) : self
     {
-        $this->category = $category;
-        
+        $this->enabled = (bool) $published;
         return $this;
+    }
+    
+    /*
+     * @NOTE: Decalared abstract in TranslatableTrait
+     */
+    protected function createTranslation() : TranslationInterface
+    {
+        
     }
 }

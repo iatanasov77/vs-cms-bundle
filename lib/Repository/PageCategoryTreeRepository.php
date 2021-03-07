@@ -7,7 +7,7 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as ResourceReposi
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Gedmo\Tree\Entity\Repository\AbstractTreeRepository;
 
-class PageCategoryRepository extends NestedTreeRepository implements RepositoryInterface
+class PageCategoryTreeRepository extends NestedTreeRepository implements RepositoryInterface
 {
     protected $resourceRepository;
     

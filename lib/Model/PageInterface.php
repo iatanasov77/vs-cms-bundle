@@ -6,6 +6,7 @@ use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
+use Doctrine\Common\Collections\Collection;
 
 interface PageInterface extends
     ResourceInterface,
@@ -14,14 +15,21 @@ interface PageInterface extends
     ToggleableInterface,
     TranslatableInterface
 {
-    public function getName(): ?string;
+    public function setTranslatableLocale( $locale ) : self;
     
-    public function setName(?string $name): void;
+    public function getCategories();
     
-    public function getDescription(): ?string;
+    //public function addCategory( PageCategory $category ) : self;
     
-    public function setDescription(?string $description): void;
+    //public function removeCategory( PageCategory $category ) : self;
     
+    public function getSlug() : ?string;
+    
+    public function getTitle() : ?string;
+    
+    public function getText() : ?string;
+    
+    /*
     public function getMetaKeywords(): ?string;
     
     public function setMetaKeywords(?string $metaKeywords): void;
@@ -29,9 +37,7 @@ interface PageInterface extends
     public function getMetaDescription(): ?string;
     
     public function setMetaDescription(?string $metaDescription): void;
+    */
     
-    /**
-     * @return ProductTranslationInterface
-     */
-    public function getTranslation(?string $locale = null): TranslationInterface;
+    public function getPublished() : ?bool;
 }

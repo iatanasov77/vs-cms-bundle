@@ -1,3 +1,18 @@
+0.2.0	|	Release date: **07.03.2021**
+============================================
+* Iprovements, Refactoring and Fixes:
+  - Update composer.json
+  - Fix PageCategory create with parent
+  - Fix PageCategoryForm to use method PUT for update action.
+  - Fix PageCategoryForm to show/edit parent combo.
+  - Create PageCategoryRelation model.
+  - Fix PagesExtController to show category tree from taxonomy.
+  - Fix template includes namespaces.
+  - Fix to changes of AbstractCrudController.
+  - Fix of PagesCategoryController to use taxonomy.
+  - Pages Controller to extend VsApplication AbstractCrudController.
+
+
 0.1.0	|	Release date: **20.01.2021**
 ============================================
 * First Release.

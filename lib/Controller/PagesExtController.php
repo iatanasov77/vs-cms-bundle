@@ -2,47 +2,26 @@
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use VS\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
 
 class PagesExtController extends Controller
 {
-    private $cr;
+    use TaxonomyTreeDataTrait;
     
-    public function tree( Request $request ) : JsonResponse
+    public function treeCombo( Request $request ): Response
     {
-        $this->cr   = $this->getPageCategoryRepository();
-        $data       = [];
+        $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
         
-        $this->treeViewData( $this->cr->childrenHierarchy(), $data );
-        
-        return new JsonResponse( $data );
+        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId ) );
     }
     
-    protected function treeViewData( $tree, &$data )
+    public function treeTable( Request $request ): Response
     {
-        foreach( $tree as $k => $node ) {
-            $data[$k]   = [
-                'id'    => $node['id'],
-                'text' => $node['name'],
-                'children' => []
-            ];
-            
-            if ( ! empty( $node['__children'] ) ) {
-                $this->treeViewData( $node['__children'], $data[$k]['children'] );
-            } else {
-                foreach( $this->cr->find( $node['id'] )->getPages() as $page ) {
-                    $data[$k]['children'][] = [
-                        'id'    => $page->getId(),
-                        'text'  => $page->getTitle(),
-                        //'children' => []
-                    ];
-                }
-            }
-        }
-    }
-    
-    protected function getPageCategoryRepository()
-    {
-        return $this->get( 'vs_cms.repository.page_categories' );
+        $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
+        $parentId   = (int)$request->query->get( 'parentTaxonId' );
+        
+        return new JsonResponse( $this->gtreeTableData( $taxonomyId, $parentId ) );
     }
 }
