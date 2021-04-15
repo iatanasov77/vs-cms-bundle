@@ -1,3 +1,9 @@
+0.2.1	|	Release date: **15.04.2021**
+============================================
+* Dependencies:
+  - Add LiipImagineBundle as composer requirements.
+
+
 0.2.0	|	Release date: **07.03.2021**
 ============================================
 * Iprovements, Refactoring and Fixes:

@@ -2,7 +2,7 @@
 	"name": "vankosoft/cms-bundle",
 	"type": "symfony-bundle",
 	"description": "Symfony CMS Bundle",
-	"keywords": ["CMS", "HTML", "Editor"],
+	"keywords": ["CMS", "HTML", "Editor", "Image Manipulation"],
 	"homepage": "https://github.com/iatanasov77/vs-cms-bundle",
 	"license": "MIT",
 	"authors": [
@@ -13,7 +13,8 @@
 	],
 	"require": {
 		"php": "^5.5.9 || ^7.0",
-		"friendsofsymfony/ckeditor-bundle": "^2.0"
+		"friendsofsymfony/ckeditor-bundle": "^2.0",
+        "liip/imagine-bundle": "^2.6"
 	},
 	"conflict": {
 		"doctrine/doctrine-bundle" : "<1.3",
