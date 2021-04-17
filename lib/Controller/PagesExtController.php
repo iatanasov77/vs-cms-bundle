@@ -10,18 +10,15 @@ class PagesExtController extends Controller
 {
     use TaxonomyTreeDataTrait;
     
-    public function treeCombo( Request $request ): Response
+    public function gtreeTableSource( $taxonomyId, Request $request ): Response
     {
-        $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
-        
-        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId ) );
-    }
-    
-    public function treeTable( Request $request ): Response
-    {
-        $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
-        $parentId   = (int)$request->query->get( 'parentTaxonId' );
+        $parentId       = (int)$request->query->get( 'parentTaxonId' );
         
         return new JsonResponse( $this->gtreeTableData( $taxonomyId, $parentId ) );
+    }
+    
+    public function easyuiComboTreeSource( $taxonomyId, Request $request ): Response
+    {
+        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId ) );
     }
 }

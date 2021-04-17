@@ -1,3 +1,9 @@
+0.2.3	|	Release date: **17.04.2021**
+============================================
+* Bug-Fixes:
+  - Fix Page Categories Callbacks
+
+
 0.2.2	|	Release date: **15.04.2021**
 ============================================
 * New Features:

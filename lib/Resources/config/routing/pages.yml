@@ -12,11 +12,12 @@ vs_cms_page_categories:
         templates: "@VSCms/Page_Categories"
     type: sylius.resource
 
+# Page Categories Callbacks
 vs_cms_pages_tree_combo:
-    path: /json/pages-tree
-    controller: VS\CmsBundle\Controller\PagesExtController::treeCombo
+    path: /json/pages-categories-{taxonomyId}/easyui-combotree
+    controller: VS\CmsBundle\Controller\PagesExtController::easyuiComboTreeSource
     
 vs_cms_pages_tree_table:
-    path: /json/pages-tree
-    controller: VS\CmsBundle\Controller\PagesExtController::treeTable
+    path: /json/pages-categories-{taxonomyId}/gtreetable
+    controller: VS\CmsBundle\Controller\PagesExtController::gtreeTableSource
     
