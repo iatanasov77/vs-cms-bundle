@@ -22,6 +22,9 @@ vs_cms_pages_tree_table:
     controller: VS\CmsBundle\Controller\PagesExtController::gtreeTableSource
 
 # Custom Routes
+vs_cms_pages_categories_update_by_taxon:
+    path: /json/update-pages-category-by-taxon/{taxonId}
+    controller: VS\CmsBundle\Controller\PagesExtController::updateCategory_ByTaxonId
 vs_cms_pages_categories_delete_by_taxon:
     path: /json/delete-pages-category-by-taxon/{taxonId}
     controller: VS\CmsBundle\Controller\PagesExtController::deleteCategory_ByTaxonId

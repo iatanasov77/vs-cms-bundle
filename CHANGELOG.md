@@ -1,3 +1,9 @@
+0.3.1	|	Release date: **18.04.2021**
+============================================
+* New Features:
+  - Add Custom route that can update PageCategory name by TaxonId.
+
+
 0.3.0	|	Release date: **18.04.2021**
 ============================================
 * New Features:
