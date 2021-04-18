@@ -1,3 +1,9 @@
+0.3.0	|	Release date: **18.04.2021**
+============================================
+* New Features:
+  - Add Custom route that can delete PageCategory by TaxonId.
+
+
 0.2.3	|	Release date: **17.04.2021**
 ============================================
 * Bug-Fixes:

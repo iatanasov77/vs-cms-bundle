@@ -20,4 +20,9 @@ vs_cms_pages_tree_combo:
 vs_cms_pages_tree_table:
     path: /json/pages-categories-{taxonomyId}/gtreetable
     controller: VS\CmsBundle\Controller\PagesExtController::gtreeTableSource
-    
+
+# Custom Routes
+vs_cms_pages_categories_delete_by_taxon:
+    path: /json/delete-pages-category-by-taxon/{taxonId}
+    controller: VS\CmsBundle\Controller\PagesExtController::deleteCategory_ByTaxonId
+

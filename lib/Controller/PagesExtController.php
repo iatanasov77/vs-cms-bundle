@@ -21,4 +21,28 @@ class PagesExtController extends Controller
     {
         return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId ) );
     }
+    
+    public function deleteCategory_ByTaxonId( $taxonId, Request $request )
+    {
+        $em         = $this->getDoctrine()->getManager();
+        $pcr        = $this->getPageCategoryRepository();
+        $category   = $pcr->findOneBy(['taxon' => $taxonId]);
+        
+        $em->remove( $category );
+        $em->flush();
+        
+        return new JsonResponse([
+            'status'   => 'SUCCESS'
+        ]);
+    }
+    
+    protected function getPageCategoryRepository()
+    {
+        return $this->get( 'vs_cms.repository.page_categories' );
+    }
+    
+    protected function getTaxonRepository()
+    {
+        return $this->get( 'vs_application.repository.taxon' );
+    }
 }

@@ -24,7 +24,7 @@ class PagesCategoryController extends AbstractCrudController
     {
         return [
             // This Controller Need to be extended into the App/Controller
-            'taxonomyId'    => 0
+            'taxonomyId'    => $this->getParameter( 'vs_cms.page_categories.taxonomy_id' )
         ];
     }
 }
