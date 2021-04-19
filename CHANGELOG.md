@@ -1,3 +1,9 @@
+0.3.7	|	Release date: **19.04.2021**
+============================================
+* New Features:
+  - Remove All Pages Categories if not selected by form.
+
+
 0.3.6	|	Release date: **19.04.2021**
 ============================================
 * Bug-Fixes:
