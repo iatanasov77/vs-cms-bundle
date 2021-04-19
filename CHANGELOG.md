@@ -1,3 +1,9 @@
+0.3.5	|	Release date: **19.04.2021**
+============================================
+* New Features:
+  - Add Route to get EasyUI Combotree with selected categories.
+
+
 0.3.4	|	Release date: **19.04.2021**
 ============================================:
 * Bug-Fixes:

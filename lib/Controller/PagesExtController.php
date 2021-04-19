@@ -22,6 +22,11 @@ class PagesExtController extends Controller
         return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId ) );
     }
     
+    public function easyuiComboTreeWithSelectedSource( $pageId, $taxonomyId, Request $request ): Response
+    {
+        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId, $this->getSelectedCategoryTaxons( $pageId ) ) );
+    }
+    
     public function deleteCategory_ByTaxonId( $taxonId, Request $request )
     {
         $em         = $this->getDoctrine()->getManager();
@@ -54,6 +59,11 @@ class PagesExtController extends Controller
         ]);
     }
     
+    protected function getPageRepository()
+    {
+        return $this->get( 'vs_cms.repository.pages' );
+    }
+    
     protected function getPageCategoryRepository()
     {
         return $this->get( 'vs_cms.repository.page_categories' );
@@ -62,5 +72,18 @@ class PagesExtController extends Controller
     protected function getTaxonRepository()
     {
         return $this->get( 'vs_application.repository.taxon' );
+    }
+    
+    protected function getSelectedCategoryTaxons( $pageId ): array
+    {
+        $selected   = [];
+        $page       = $this->getPageRepository()->find( $pageId );
+        if ( $page ) {
+            foreach( $page->getCategories() as $cat ) {
+                $selected[] = $cat->getTaxon()->getId();
+            }
+        }
+        
+        return $selected;
     }
 }

@@ -16,6 +16,10 @@ vs_cms_page_categories:
 vs_cms_pages_tree_combo:
     path: /json/pages-categories-{taxonomyId}/easyui-combotree
     controller: VS\CmsBundle\Controller\PagesExtController::easyuiComboTreeSource
+
+vs_cms_pages_tree_combo_with_selected:
+    path: /json/pages-categories-{pageId}-{taxonomyId}/easyui-combotree
+    controller: VS\CmsBundle\Controller\PagesExtController::easyuiComboTreeWithSelectedSource
     
 vs_cms_pages_tree_table:
     path: /json/pages-categories-{taxonomyId}/gtreetable

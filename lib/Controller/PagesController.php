@@ -17,8 +17,8 @@ class PagesController extends AbstractCrudController
     {
         $pcr        = $this->get( 'vs_cms.repository.page_categories' );
         
-        $categoryTaxons = $form['category_taxon']->getData();
-        foreach ( $categoryTaxons as $taxonId ) {
+        $formPost = $request->request->get( 'page_form' );
+        foreach ( $formPost['category_taxon'] as $taxonId ) {
             $category   = $pcr->findOneBy( ['taxon' => $taxonId] );
             $entity->addCategory( $category );
         }
