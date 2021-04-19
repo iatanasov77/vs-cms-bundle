@@ -1,3 +1,9 @@
+0.3.4	|	Release date: **19.04.2021**
+============================================:
+* Bug-Fixes:
+  - Fix PageController to get values of unmapped 'category_taxon' field.
+
+
 0.3.3	|	Release date: **19.04.2021**
 ============================================
 * Bug-Fixes:
