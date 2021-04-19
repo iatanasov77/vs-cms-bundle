@@ -33,14 +33,15 @@ class PageForm extends AbstractResourceType
         $builder
             ->add( 'locale', ChoiceType::class, [
                 'label'     => 'Locale',
-                'choices'  => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'choices'   => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
                 'mapped'    => false,
             ])
             
             ->add( 'enabled', CheckboxType::class, ['label' => 'Enabled'] )
 
             ->add( 'category_taxon', ChoiceType::class, [
-                'label' => 'Category',
+                'label'     => 'Category',
+                'multiple'  => true,
                 'mapped'    => false,
             ])
             

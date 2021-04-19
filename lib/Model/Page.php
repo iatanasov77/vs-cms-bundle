@@ -28,18 +28,14 @@ class Page implements PageInterface
     protected $text;
     
     /** @var Collection|PageCategory[] */
-    //protected $categories;
-    
-    /** @var Collection|PageCategoryRelation[] */
-    protected $relations;
+    protected $categories;
     
     /** @var string */
     protected $locale;
     
     public function __construct()
     {
-        //$this->categories = new ArrayCollection();
-        $this->relations    = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
     
     public function getId()
@@ -48,47 +44,30 @@ class Page implements PageInterface
     }
     
     /**
-     * @return Collection|PageCategoryRelation[]
-     */
-    public function getRelations(): Collection
-    {
-        return $this->relations;
-    }
-    
-    /**
      * @return Collection|PageCategory[]
      */
     public function getCategories()
     {
-        //return $this->categories;
-        
-        $categories = [];
-        foreach( $this->getRelations() as $relation ){
-            if( ! isset( $categories[$relation->getCategory()->getId()] ) ) {
-                $categories[$relation->getCategory()->getId()]    = $relation->getCategory(); //Ensure uniqueness
-            }
-        }
-        
-        return $categories;
+        return $this->categories;
     }
     
-//     public function addCategory( PageCategory $category ) : self
-//     {
-//         if ( ! $this->categories->contains( $category ) ) {
-//             $this->categories[] = $category;
-//             $category->addPage( $this );
-//         }
-//         return $this;
-//     }
+    public function addCategory( PageCategory $category ) : self
+    {
+        if ( ! $this->categories->contains( $category ) ) {
+            $this->categories[] = $category;
+        }
+        
+        return $this;
+    }
     
-//     public function removeCategory( PageCategory $category ) : self
-//     {
-//         if ( ! $this->categories->contains( $category ) ) {
-//             $this->categories->removeElement( $category );
-//             $category->removePage( $this );
-//         }
-//         return $this;
-//     }
+    public function removeCategory( PageCategory $category ) : self
+    {
+        if ( ! $this->categories->contains( $category ) ) {
+            $this->categories->removeElement( $category );
+        }
+        
+        return $this;
+    }
     
     public function setTranslatableLocale($locale) : self
     {

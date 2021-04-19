@@ -21,11 +21,7 @@
             </cascade>
         </one-to-many>
         
-      	<one-to-many field="relations" target-entity="VS\CmsBundle\Model\PageCategoryRelationInterface" mapped-by="category" orphan-removal="true">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-many>
+        <many-to-many field="pages" target-entity="VS\CmsBundle\Model\PageInterface" mapped-by="categories" />
         
         <many-to-one field="taxon" name="taxon_id" target-entity="VS\ApplicationBundle\Model\Interfaces\TaxonInterface" inversed-by="children">
         	<cascade>

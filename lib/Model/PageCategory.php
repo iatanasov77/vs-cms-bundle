@@ -21,15 +21,15 @@ class PageCategory implements PageCategoryInterface
     protected $children;
     
     /** @var Collection|PageCategoryRelation[] */
-    protected $relations;
+    protected $pages;
     
     /** @var TaxonInterface */
     protected $taxon;
     
     public function __construct()
     {
-        $this->children     = new ArrayCollection();
-        $this->relations    = new ArrayCollection();
+        $this->children = new ArrayCollection();
+        $this->pages    = new ArrayCollection();
     }
     
     /**
@@ -64,26 +64,31 @@ class PageCategory implements PageCategoryInterface
     }
     
     /**
-     * @return Collection|PageCategoryRelation[]
+     * @return Collection|Page[]
      */
-    public function getRelations(): Collection
+    public function getPages(): Collection
     {
-        return $this->relations;
+        return $this->pages;
     }
     
-    /**
-     * @return Collection|PageCategory[]
-     */
-    public function getPages()
+    public function addPage( Page $page ) : self
     {
-        $pages = [];
-        foreach( $this->getRelations() as $relation ){
-            if( ! isset( $pages[$relation->getPage()->getId()] ) ) {
-                $pages[$relation->getPage()->getId()]    = $relation->getPage(); //Ensure uniqueness
-            }
+        if ( ! $this->pages->contains( $page ) ) {
+            $this->pages[] = $page;
+            $page->addCategory( $this );
         }
         
-        return $pages;
+        return $this;
+    }
+    
+    public function removePage( Page $page ) : self
+    {
+        if ( ! $this->pages->contains( $page ) ) {
+            $this->pages->removeElement( $page );
+            $page->removeCategory( $this );
+        }
+        
+        return $this;
     }
     
     /**

@@ -1,3 +1,10 @@
+0.3.2	|	Release date: **19.04.2021**
+============================================
+* Bug-Fixes:
+  - Fix Pages Categories many2many relation.
+  - Pass taxonomyId for pages categories into PagesController templates.
+
+
 0.3.1	|	Release date: **18.04.2021**
 ============================================
 * New Features:

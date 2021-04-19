@@ -19,9 +19,9 @@ interface PageInterface extends
     
     public function getCategories();
     
-    //public function addCategory( PageCategory $category ) : self;
+    public function addCategory( PageCategory $category ) : self;
     
-    //public function removeCategory( PageCategory $category ) : self;
+    public function removeCategory( PageCategory $category ) : self;
     
     public function getSlug() : ?string;
     
