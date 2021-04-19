@@ -1,3 +1,9 @@
+0.3.3	|	Release date: **19.04.2021**
+============================================
+* Bug-Fixes:
+  - Fix Page Form 'category_taxon' field to not validate when use EasyUiCombo.
+
+
 0.3.2	|	Release date: **19.04.2021**
 ============================================
 * Bug-Fixes:

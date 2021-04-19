@@ -42,6 +42,7 @@ class PageForm extends AbstractResourceType
             ->add( 'category_taxon', ChoiceType::class, [
                 'label'     => 'Category',
                 'multiple'  => true,
+                'required'  => false,
                 'mapped'    => false,
             ])
             
