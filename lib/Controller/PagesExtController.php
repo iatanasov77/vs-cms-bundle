@@ -97,7 +97,7 @@ class PagesExtController extends Controller
         $leafs  = [];
         foreach ( $this->getPageCategoryRepository()->findAll() as $category ) {
             $pages  = $category->getPages();
-            if ( ! $pages->count() ) {
+            if ( $pages->count() ) {
                 $leafs[$category->getTaxon()->getId()]  = $pages;
             }
         }

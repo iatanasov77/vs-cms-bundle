@@ -1,3 +1,9 @@
+0.4.1	|	Release date: **20.04.2021**
+============================================
+* Bug-Fixes:
+  - Fix Category Tree with Pages for EasyUi Combo.
+
+
 0.4.0	|	Release date: **20.04.2021**
 ============================================
 * New Features:
