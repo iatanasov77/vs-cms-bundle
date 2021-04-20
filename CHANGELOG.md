@@ -1,3 +1,10 @@
+0.3.8	|	Release date: **20.04.2021**
+============================================
+* Bug-Fixes:
+  - Fix Page many-to-many mapping.
+  - Fix Page::removeCategory
+
+
 0.3.7	|	Release date: **19.04.2021**
 ============================================
 * New Features:

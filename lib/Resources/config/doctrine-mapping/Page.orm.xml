@@ -25,7 +25,25 @@
             <gedmo:translatable />
         </field>
         
-        <many-to-many field="categories" target-entity="VS\CmsBundle\Model\PageCategoryInterface" inversed-by="pages" />
+        <!-- Look Examples:
+        ======================
+        	https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/inheritance-mapping.html#mapped-superclasses
+        -->
+        <many-to-many field="categories" target-entity="VS\CmsBundle\Model\PageCategoryInterface" inversed-by="pages">
+        	<cascade>
+                <cascade-persist/>
+                <cascade-merge/>
+                <cascade-detach/>
+            </cascade>
+            <join-table name="VSCMS_Pages_Categories">
+                <join-columns>
+                    <join-column name="page_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="category_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
         
         <!--
             Used locale to override Translation listener`s locale

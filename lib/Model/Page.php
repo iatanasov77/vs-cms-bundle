@@ -62,7 +62,7 @@ class Page implements PageInterface
     
     public function removeCategory( PageCategory $category ) : self
     {
-        if ( ! $this->categories->contains( $category ) ) {
+        if ( $this->categories->contains( $category ) ) {
             $this->categories->removeElement( $category );
         }
         
