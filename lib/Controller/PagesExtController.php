@@ -27,6 +27,11 @@ class PagesExtController extends Controller
         return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId, $this->getSelectedCategoryTaxons( $pageId ) ) );
     }
     
+    public function easyuiComboTreeWithLeafsSource( $taxonomyId, Request $request ): Response
+    {
+        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId, [], $this->getCategoryPagesByTaxons() ) );
+    }
+    
     public function deleteCategory_ByTaxonId( $taxonId, Request $request )
     {
         $em         = $this->getDoctrine()->getManager();
@@ -85,5 +90,18 @@ class PagesExtController extends Controller
         }
         
         return $selected;
+    }
+    
+    protected function getCategoryPagesByTaxons(): array
+    {
+        $leafs  = [];
+        foreach ( $this->getPageCategoryRepository()->findAll() as $category ) {
+            $pages  = $category->getPages();
+            if ( ! $pages->count() ) {
+                $leafs[$category->getTaxon()->getId()]  = $pages;
+            }
+        }
+        
+        return $leafs;
     }
 }

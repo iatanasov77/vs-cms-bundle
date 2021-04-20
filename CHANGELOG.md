@@ -1,3 +1,9 @@
+0.4.0	|	Release date: **20.04.2021**
+============================================
+* New Features:
+  - Create Custom Controller Action to get Category Tree with Pages for EasyUi Combo.
+
+
 0.3.9	|	Release date: **20.04.2021**
 ============================================
 * Bug-Fixes:

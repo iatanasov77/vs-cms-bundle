@@ -9,11 +9,15 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-class Page implements PageInterface
+use VS\ApplicationBundle\Model\Interfaces\TaxonLeafInterface;
+use VS\ApplicationBundle\Model\Traits\TaxonLeafTrait;
+
+class Page implements PageInterface, TaxonLeafInterface
 {
     use TimestampableTrait;
     use ToggleableTrait;    // About enabled field - $enabled (published)
     use TranslatableTrait;
+    use TaxonLeafTrait; 
     
     /** @var integer */
     protected $id;
@@ -118,6 +122,14 @@ class Page implements PageInterface
     {
         $this->enabled = (bool) $published;
         return $this;
+    }
+    
+    /*
+     * @NOTE: From TaxonLeafInterface
+     */
+    public function getName(): ?string
+    {
+        return $this->title;
     }
     
     /*
