@@ -17,7 +17,6 @@ use VS\CmsBundle\Model\PageCategory;
 use VS\CmsBundle\Controller\PagesCategoryController;
 use VS\CmsBundle\Repository\PageCategoryRepository;
 use VS\CmsBundle\Form\PageCategoryForm;
-use VS\CmsBundle\Model\PageCategoryRelation;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -89,24 +88,6 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         
-                        ->arrayNode( 'page_category_relations' )
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->variableNode( 'options' )->end()
-                                ->arrayNode( 'classes' )
-                                    ->addDefaultsIfNotSet()
-                                    ->children()
-                                        ->scalarNode( 'model' )->defaultValue( PageCategoryRelation::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'controller' )->defaultValue( PagesCategoryController::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'repository' )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'repository' )->defaultValue( PageCategoryRepository::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'form' )->defaultValue( PageCategoryForm::class )->cannotBeEmpty()->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
                     ->end()
                 ->end()
             ->end()

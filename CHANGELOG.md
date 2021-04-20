@@ -1,3 +1,9 @@
+0.3.9	|	Release date: **20.04.2021**
+============================================
+* Bug-Fixes:
+  - Remove PageCategoryRelation from models.
+
+
 0.3.8	|	Release date: **20.04.2021**
 ============================================
 * Bug-Fixes:

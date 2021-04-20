@@ -20,7 +20,7 @@ class PageCategory implements PageCategoryInterface
     /** @var Collection|PageCategory[] */
     protected $children;
     
-    /** @var Collection|PageCategoryRelation[] */
+    /** @var Collection|Page[] */
     protected $pages;
     
     /** @var TaxonInterface */
