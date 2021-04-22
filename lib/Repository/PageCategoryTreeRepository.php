@@ -18,6 +18,15 @@ class PageCategoryTreeRepository extends NestedTreeRepository implements Reposit
         $this->resourceRepository = new ResourceRepository( $em, $class );
     }
     
+    public function find( $id, $lockMode = null, $lockVersion = null )
+    {
+        if( ! is_numeric( $id ) ) {
+            return $this->findOneBy( ['slug'=>$id] );
+        }
+        
+        return parent::find( $id, $lockMode, $lockVersion );
+    }
+    
     public function countPages( $categoryId )
     {
         $countPages = $this->find( $categoryId )->getPages()->count();

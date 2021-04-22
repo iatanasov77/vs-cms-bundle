@@ -5,10 +5,39 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use VS\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
+use VS\CmsBundle\Form\ClonePageForm;
 
 class PagesExtController extends Controller
 {
     use TaxonomyTreeDataTrait;
+
+    public function clonePage( $pageId, Request $request ) : Response
+    {
+        $parentPage = $this->getPageRepository()->find( $pageId );
+        $formClone  = $this->createForm( ClonePageForm::class );
+        
+        $formClone->handleRequest( $request );
+        if( $formClone->isSubmitted() ) {
+            if ( ! $formClone->isValid() ) {
+                return new Response( 'The form is not valid !!!', Response::HTTP_BAD_REQUEST );
+            }
+            
+            $em     = $this->getDoctrine()->getManager();
+            $oPage  = $this->get( 'vs_cms.factory.pages' )->createNew();
+            $data   = $formClone->getData();
+            
+            $oPage->setTitle( $data['newTitle'] );
+            $oPage->setCategory( $data['category'] );
+            $oPage->setText( $parentPage->getText() );
+            
+            $em->persist( $oPage );
+            $em->flush();
+            
+            return $this->redirect( $this->generateUrl( 'vs_cms_pages_update', ['id' => $oPage->getId()] ) );
+        }
+        
+        return new Response( 'The form is not hanled properly !!!', Response::HTTP_BAD_REQUEST );
+    }
     
     public function gtreeTableSource( $taxonomyId, Request $request ): Response
     {
@@ -62,6 +91,48 @@ class PagesExtController extends Controller
         return new JsonResponse([
             'status'   => 'SUCCESS'
         ]);
+    }
+    
+    /**
+     * The NestedTreeRepository has some useful functions
+     * to interact with NestedSet tree. Repository uses
+     * the strategy used by listener
+     *
+     * @author Gediminas Morkevicius <gediminas.morkevicius@gmail.com>
+     * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+     * @method persistAsFirstChild($node)
+     * @method persistAsFirstChildOf($node, $parent)
+     * @method persistAsLastChild($node)
+     * @method persistAsLastChildOf($node, $parent)
+     * @method persistAsNextSibling($node)
+     * @method persistAsNextSiblingOf($node, $sibling)
+     * @method persistAsPrevSibling($node)
+     * @method persistAsPrevSiblingOf($node, $sibling)
+     */
+    public function moveCategory_ByTaxonId( $sourceTaxonId, $destinationTaxonId, $position, Request $request )
+    {
+        $repo               = $this->getTaxonRepository();
+        $sourceTaxon        = $repo->find( $sourceTaxonId );
+        $destinationTaxon   = $repo->find( $destinationTaxonId );
+        
+        //$repo->persistAsFirstChildOf( $sourceTaxon, $sourceTaxon->getRoot() );
+        switch ( $position ) {
+            case 'before':
+                $repo->persistAsPrevSiblingOf( $sourceTaxon, $destinationTaxon );
+                break;
+            case 'after':
+                $repo->persistAsNextSiblingOf( $sourceTaxon, $destinationTaxon );
+                break;
+            case 'lastChild':
+                $repo->persistAsLastChildOf( $sourceTaxon, $destinationTaxon );
+                break;
+            default:
+                
+        }
+        
+        $this->getDoctrine()->getManager()->flush();
+        
+        return new JsonResponse(['status' => 'SUCCESS']);
     }
     
     protected function getPageRepository()

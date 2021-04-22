@@ -12,6 +12,11 @@ vs_cms_page_categories:
         templates: "@VSCms/Page_Categories"
     type: sylius.resource
 
+# Page Action Routes
+vs_cms_pages_clone:
+    path: /page-actions/clone/{pageId}
+    controller: VS\CmsBundle\Controller\PagesExtController::clonePage
+
 # Page Categories Callbacks
 vs_cms_pages_tree_combo:
     path: /json/pages-categories-{taxonomyId}/easyui-combotree
@@ -36,4 +41,7 @@ vs_cms_pages_categories_update_by_taxon:
 vs_cms_pages_categories_delete_by_taxon:
     path: /json/delete-pages-category-by-taxon/{taxonId}
     controller: VS\CmsBundle\Controller\PagesExtController::deleteCategory_ByTaxonId
+vs_cms_pages_categories_move_by_taxon:
+    path: /json/move-pages-category-by-taxon/{sourceTaxonId}-{destinationTaxonId}-{position}
+    controller: VS\CmsBundle\Controller\PagesExtController::moveCategory_ByTaxonId
 

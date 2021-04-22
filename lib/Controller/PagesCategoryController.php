@@ -15,10 +15,10 @@ use VS\ApplicationBundle\Controller\AbstractCrudController;
  */
 class PagesCategoryController extends AbstractCrudController
 {
-    protected function prepareEntity( &$entity, &$form, Request $request )
-    {
-        $entity->setTranslatableLocale( $form['locale']->getData() );
-    }
+//     protected function prepareEntity( &$entity, &$form, Request $request )
+//     {
+//         $entity->setTranslatableLocale( $form['locale']->getData() );
+//     }
     
     protected function customData(): array
     {

@@ -1,3 +1,12 @@
+0.5.0	|	Release date: **22.04.2021**
+============================================
+* New Features:
+  - Add Page Clone Action.
+  - Add Move Functionality of Pages Categories Tree Table.
+* Improvements:
+  - Remove setTranslatableLocale in saving PageCategory.
+
+
 0.4.1	|	Release date: **20.04.2021**
 ============================================
 * Bug-Fixes:
