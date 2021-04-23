@@ -1,3 +1,12 @@
+0.5.1	|	Release date: **23.04.2021**
+============================================
+* New Features:
+  - Add Form Lable Trabslations.
+  - Add isPublished method of Page Entity.
+* Bug-Fixes:
+  - Fix! Enable to save uncategorized pages.
+
+
 0.5.0	|	Release date: **22.04.2021**
 ============================================
 * New Features:

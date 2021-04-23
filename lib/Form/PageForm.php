@@ -32,31 +32,32 @@ class PageForm extends AbstractResourceType
     {
         $builder
             ->add( 'locale', ChoiceType::class, [
-                'label'     => 'Locale',
+                'label'     => 'vs_cms.form.locale',
                 'choices'   => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
                 'mapped'    => false,
             ])
             
-            ->add( 'enabled', CheckboxType::class, ['label' => 'Enabled'] )
+            ->add( 'enabled', CheckboxType::class, ['label' => 'vs_cms.form.page.published'] )
 
             ->add( 'category_taxon', ChoiceType::class, [
-                'label'     => 'Category',
-                'multiple'  => true,
-                'required'  => false,
-                'mapped'    => false,
+                'label'         => 'vs_cms.form.page.categories',
+                'multiple'      => true,
+                'required'      => false,
+                'mapped'        => false,
+                'placeholder'   => 'vs_cms.form.page.categories_placeholder',
             ])
             
-            ->add( 'title', TextType::class, ['label' => 'Title'] )
-            ->add( 'slug', TextType::class, ['label' => 'Slug'] )
+            ->add( 'title', TextType::class, ['label' => 'vs_cms.form.title'] )
+            ->add( 'slug', TextType::class, ['label' => 'vs_cms.form.page.slug'] )
             
             ->add( 'text', CKEditorType::class, [
-                'label'     => 'Page Content',
+                'label'     => 'vs_cms.form.page.page_content',
                 'config'    => ['uiColor' => '#ffffff'],
             ])
             
-            ->add( 'btnApply', SubmitType::class, ['label' => 'Apply'] )
-            ->add( 'btnSave', SubmitType::class, ['label' => 'Save'] )
-            ->add( 'btnCancel', ButtonType::class, ['label' => 'Cancel'] )
+            ->add( 'btnApply', SubmitType::class, ['label' => 'vs_cms.form.apply'] )
+            ->add( 'btnSave', SubmitType::class, ['label' => 'vs_cms.form.save'] )
+            ->add( 'btnCancel', ButtonType::class, ['label' => 'vs_cms.form.cancel'] )
         ;
     }
 

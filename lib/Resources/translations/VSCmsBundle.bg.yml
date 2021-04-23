@@ -1,0 +1,21 @@
+vs_cms:
+    form:
+        locale: 'Език'
+        title: 'Име'
+        apply: 'Въведи'
+        save: 'Запази'
+        cancel: 'Отказ'
+        
+        page:
+            published: 'Публикувана'
+            category: 'Категория'
+            category_placeholder: '-- Категория --'
+            categories: 'Категории'
+            categories_placeholder: '-- Категории --'
+            slug: 'Слуг'
+            page_content: 'Съдържание'
+        clone_page:
+            new_title: 'Ново Име'
+        category:
+            parent_category: 'Родителска Категория'
+            parent_category_placeholder: '-- Родителска Категория --'

@@ -1,0 +1,21 @@
+vs_cms:
+    form:
+        locale: 'Locale'
+        title: 'Title'
+        apply: 'Apply'
+        save: 'Save'
+        cancel: 'Cancel'
+        
+        page:
+            published: 'Published'
+            category: 'Category'
+            category_placeholder: '-- Category --'
+            categories: 'Categories'
+            categories_placeholder: '-- Categories --'
+            slug: 'Slug'
+            page_content: 'Page Content'
+        clone_page:
+            new_title: 'New Title'
+        category:
+            parent_category: 'Parent Category'
+            parent_category_placeholder: '-- Parent Category --'

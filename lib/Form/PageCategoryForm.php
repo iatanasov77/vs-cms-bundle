@@ -34,15 +34,15 @@ class PageCategoryForm extends AbstractResourceType
             ->setMethod( $category && $category->getId() ? 'PUT' : 'POST' )
             
             ->add( 'currentLocale', ChoiceType::class, [
-                'label'     => 'Locale',
+                'label'     => 'vs_cms.form.locale',
                 'choices'  => \array_flip( I18N::LanguagesAvailable() ),
                 'mapped'        => false,
             ])
         
-            ->add( 'name', TextType::class, ['label' => 'Title'] )
+            ->add( 'name', TextType::class, ['label' => 'vs_cms.form.title'] )
             
             ->add( 'parent', EntityType::class, [
-                'label'         => 'Parent Category',
+                'label'         => 'vs_cms.form.category.parent_category',
                 
                 'class'         => $this->categoryClass,
                 'query_builder' => function ( EntityRepository $er ) use ( $category )
@@ -57,11 +57,11 @@ class PageCategoryForm extends AbstractResourceType
                 'choice_label'  => 'name',
                 
                 'required'      => false,
-                'placeholder'   => '-- Parent Category --',
+                'placeholder'   => 'vs_cms.form.category.parent_category_placeholder',
             ])
 
-            ->add( 'btnSave', SubmitType::class, ['label' => 'Save'] )
-            ->add( 'btnCancel', ButtonType::class, ['label' => 'Cancel'] )
+            ->add( 'btnSave', SubmitType::class, ['label' => 'vs_cms.form.save'] )
+            ->add( 'btnCancel', ButtonType::class, ['label' => 'vs_cms.form.cancel'] )
         ;
     }
 }

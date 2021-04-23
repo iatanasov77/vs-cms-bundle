@@ -16,16 +16,16 @@ class ClonePageForm extends AbstractType
     {
         $builder
             ->add( 'category', EntityType::class, [
-                'label' => 'Category',
+                'label' => 'vs_cms.form.page.category',
                 'class' => PageCategory::class,
                 'choice_label' => 'name',
-                'placeholder' => '--- Choose a Category ---',
+                'placeholder' => 'vs_cms.form.page.category_placeholder',
                 'required' => true
             ])
-            ->add( 'newTitle', TextType::class, ['label' => 'New Title'] )
+            ->add( 'newTitle', TextType::class, ['label' => 'vs_cms.form.clone_page.new_title'] )
             
-            ->add( 'btnSave', SubmitType::class, ['label' => 'Save'] )
-            ->add( 'btnCancel', ButtonType::class, ['label' => 'Cancel'] )
+            ->add( 'btnSave', SubmitType::class, ['label' => 'vs_cms.form.save'] )
+            ->add( 'btnCancel', ButtonType::class, ['label' => 'vs_cms.form.cancel'] )
         ;
     }
 }

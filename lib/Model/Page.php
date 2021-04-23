@@ -132,6 +132,11 @@ class Page implements PageInterface, TaxonLeafInterface
         return $this->title;
     }
     
+    public function isPublished()
+    {
+        return $this->isEnabled();
+    }
+    
     /*
      * @NOTE: Decalared abstract in TranslatableTrait
      */
