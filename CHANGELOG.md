@@ -1,3 +1,10 @@
+0.5.3	|	Release date: **24.04.2021**
+============================================
+* New Features:
+  - Add Fool CkEditor Toolbar into Page::text field.
+  - Separate routes to Show Page by ID and by SLUG.
+
+
 0.5.2	|	Release date: **24.04.2021**
 ============================================
 * Bug-Fixes:

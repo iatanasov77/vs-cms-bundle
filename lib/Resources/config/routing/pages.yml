@@ -1,9 +1,30 @@
 vs_cms_pages:
     resource: |
         alias: vs_cms.pages
+        except: ['show']
         path: /pages
         templates: "@VSCms/Pages"
     type: sylius.resource
+
+vs_cms_pages_show_by_id:
+    path: /pages/{id}
+    methods: [GET]
+    defaults:
+        _controller: vs_cms.controller.pages:showAction
+        _sylius:
+            template: "@VSCms/Pages/show.html.twig" # If you want you can use a custom template.
+
+vs_cms_pages_show_by_slug:
+    path: /pages/{slug}
+    methods: [GET]
+    defaults:
+        _controller: vs_cms.controller.pages:showAction
+        _sylius:
+            template: "@VSCms/Pages/show.html.twig" # If you want you can use a custom template.
+            repository:
+                # If you want you can use a custom repository method.
+                method: findBySlug
+                arguments: [$slug] # Pass the slug from the url to the repository.
 
 vs_cms_page_categories:
     resource: |

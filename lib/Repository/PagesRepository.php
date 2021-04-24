@@ -12,18 +12,22 @@ class PagesRepository extends EntityRepository
 {
     public function countTotal() 
     {
-        $query = $this->getEntityManager()->createQuery('SELECT COUNT(p) FROM VSCmsBundle:Page p');
+        $query = $this->getEntityManager()->createQuery( 'SELECT COUNT(p) FROM VSCmsBundle:Page p' );
 
         return $query->getSingleScalarResult();
     }
     
     public function find($id, $lockMode = null, $lockVersion = null) 
     {
-        if(!is_numeric($id)) {
-            return $this->findOneBy(array('slug'=>$id));
+        if( ! is_numeric( $id ) ) {
+            return $this->findOneBy( [ 'slug' => $id ] );
         }
         
-        return parent::find($id, $lockMode, $lockVersion);
+        return parent::find( $id, $lockMode, $lockVersion );
     }
     
+    public function findBySlug( $slug )
+    {
+        return $this->findOneBy( [ 'slug'=> $slug ] );
+    }
 }

@@ -64,7 +64,12 @@ class PageForm extends AbstractResourceType
             ->add( 'text', CKEditorType::class, [
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
-                'config'                => ['uiColor' => '#ffffff'],
+                'config'                => [
+                    'toolbar'   => 'full',
+                    // Create a toolbar in config for example a 'document_toolbar' and use it 
+                    //'toolbar'   => 'document_toolbar',
+                    'uiColor'   => '#ffffff',
+                ],
             ])
             
             ->add( 'btnApply', SubmitType::class, [
