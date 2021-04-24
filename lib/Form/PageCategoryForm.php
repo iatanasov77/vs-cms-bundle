@@ -34,18 +34,22 @@ class PageCategoryForm extends AbstractResourceType
             ->setMethod( $category && $category->getId() ? 'PUT' : 'POST' )
             
             ->add( 'currentLocale', ChoiceType::class, [
-                'label'     => 'vs_cms.form.locale',
-                'choices'  => \array_flip( I18N::LanguagesAvailable() ),
-                'mapped'        => false,
+                'label'                 => 'vs_cms.form.locale',
+                'translation_domain'    => 'VSCmsBundle',
+                'choices'               => \array_flip( I18N::LanguagesAvailable() ),
+                'mapped'                => false,
             ])
         
-            ->add( 'name', TextType::class, ['label' => 'vs_cms.form.title'] )
+            ->add( 'name', TextType::class, [
+                'label'                 => 'vs_cms.form.title',
+                'translation_domain'    => 'VSCmsBundle',
+            ] )
             
             ->add( 'parent', EntityType::class, [
-                'label'         => 'vs_cms.form.category.parent_category',
-                
-                'class'         => $this->categoryClass,
-                'query_builder' => function ( EntityRepository $er ) use ( $category )
+                'label'                 => 'vs_cms.form.category.parent_category',
+                'translation_domain'    => 'VSCmsBundle',
+                'class'                 => $this->categoryClass,
+                'query_builder'         => function ( EntityRepository $er ) use ( $category )
                 {
                     $qb = $er->createQueryBuilder( 'pc' );
                     if  ( $category && $category->getId() ) {
@@ -60,8 +64,14 @@ class PageCategoryForm extends AbstractResourceType
                 'placeholder'   => 'vs_cms.form.category.parent_category_placeholder',
             ])
 
-            ->add( 'btnSave', SubmitType::class, ['label' => 'vs_cms.form.save'] )
-            ->add( 'btnCancel', ButtonType::class, ['label' => 'vs_cms.form.cancel'] )
+            ->add( 'btnSave', SubmitType::class, [
+                'label'                 => 'vs_cms.form.save',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
+            ->add( 'btnCancel', ButtonType::class, [
+                'label'                 => 'vs_cms.form.cancel',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
         ;
     }
 }

@@ -32,32 +32,53 @@ class PageForm extends AbstractResourceType
     {
         $builder
             ->add( 'locale', ChoiceType::class, [
-                'label'     => 'vs_cms.form.locale',
-                'choices'   => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
-                'mapped'    => false,
+                'label'                 => 'vs_cms.form.locale',
+                'translation_domain'    => 'VSCmsBundle',
+                'choices'               => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'mapped'                => false,
             ])
             
-            ->add( 'enabled', CheckboxType::class, ['label' => 'vs_cms.form.page.published'] )
+            ->add( 'enabled', CheckboxType::class, [
+                'label' => 'vs_cms.form.page.published',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
 
             ->add( 'category_taxon', ChoiceType::class, [
-                'label'         => 'vs_cms.form.page.categories',
-                'multiple'      => true,
-                'required'      => false,
-                'mapped'        => false,
-                'placeholder'   => 'vs_cms.form.page.categories_placeholder',
+                'label'                 => 'vs_cms.form.page.categories',
+                'translation_domain'    => 'VSCmsBundle',
+                'multiple'              => true,
+                'required'              => false,
+                'mapped'                => false,
+                'placeholder'           => 'vs_cms.form.page.categories_placeholder',
             ])
             
-            ->add( 'title', TextType::class, ['label' => 'vs_cms.form.title'] )
-            ->add( 'slug', TextType::class, ['label' => 'vs_cms.form.page.slug'] )
+            ->add( 'title', TextType::class, [
+                'label'                 => 'vs_cms.form.title',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
+            ->add( 'slug', TextType::class, [
+                'label'                 => 'vs_cms.form.page.slug',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
             
             ->add( 'text', CKEditorType::class, [
-                'label'     => 'vs_cms.form.page.page_content',
-                'config'    => ['uiColor' => '#ffffff'],
+                'label'                 => 'vs_cms.form.page.page_content',
+                'translation_domain'    => 'VSCmsBundle',
+                'config'                => ['uiColor' => '#ffffff'],
             ])
             
-            ->add( 'btnApply', SubmitType::class, ['label' => 'vs_cms.form.apply'] )
-            ->add( 'btnSave', SubmitType::class, ['label' => 'vs_cms.form.save'] )
-            ->add( 'btnCancel', ButtonType::class, ['label' => 'vs_cms.form.cancel'] )
+            ->add( 'btnApply', SubmitType::class, [
+                'label'                 => 'vs_cms.form.apply',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
+            ->add( 'btnSave', SubmitType::class, [
+                'label'                 => 'vs_cms.form.save',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
+            ->add( 'btnCancel', ButtonType::class, [
+                'label'                 => 'vs_cms.form.cancel',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
         ;
     }
 

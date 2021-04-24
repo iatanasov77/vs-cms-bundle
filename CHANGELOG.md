@@ -1,3 +1,9 @@
+0.5.2	|	Release date: **24.04.2021**
+============================================
+* Bug-Fixes:
+  - Fix Form Labels Translations. Adding translation_domain to forms.
+
+
 0.5.1	|	Release date: **23.04.2021**
 ============================================
 * New Features:
