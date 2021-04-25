@@ -27,8 +27,10 @@ class PagesExtController extends Controller
             $data   = $formClone->getData();
             
             $oPage->setTitle( $data['newTitle'] );
-            $oPage->setCategory( $data['category'] );
             $oPage->setText( $parentPage->getText() );
+            foreach ( $parentPage->getCategories() as $category ) {
+                $oPage->addCategory( $category );
+            }
             
             $em->persist( $oPage );
             $em->flush();
