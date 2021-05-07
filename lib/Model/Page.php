@@ -55,7 +55,7 @@ class Page implements PageInterface, TaxonLeafInterface
         return $this->categories;
     }
     
-    public function addCategory( PageCategory $category ) : self
+    public function addCategory( PageCategory $category ) : PageInterface
     {
         if ( ! $this->categories->contains( $category ) ) {
             $this->categories[] = $category;
@@ -64,7 +64,7 @@ class Page implements PageInterface, TaxonLeafInterface
         return $this;
     }
     
-    public function removeCategory( PageCategory $category ) : self
+    public function removeCategory( PageCategory $category ) : PageInterface
     {
         if ( $this->categories->contains( $category ) ) {
             $this->categories->removeElement( $category );
@@ -73,7 +73,7 @@ class Page implements PageInterface, TaxonLeafInterface
         return $this;
     }
     
-    public function setTranslatableLocale($locale) : self
+    public function setTranslatableLocale($locale) : PageInterface
     {
         $this->locale = $locale;
         
@@ -118,7 +118,7 @@ class Page implements PageInterface, TaxonLeafInterface
         return $this->enabled;
     }
     
-    public function setPublished( ?bool $published ) : self
+    public function setPublished( ?bool $published ) : PageInterface
     {
         $this->enabled = (bool) $published;
         return $this;

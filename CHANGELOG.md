@@ -1,3 +1,9 @@
+0.5.5	|	Release date: **07.05.2021**
+============================================
+* Bug-Fixes:
+  - Fix Model Classes and Interfaces return types.
+
+
 0.5.4	|	Release date: **25.04.2021**
 ============================================
 * Bug-Fixes:

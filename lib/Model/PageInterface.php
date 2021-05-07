@@ -15,13 +15,13 @@ interface PageInterface extends
     ToggleableInterface,
     TranslatableInterface
 {
-    public function setTranslatableLocale( $locale ) : self;
+    public function setTranslatableLocale( $locale ) : PageInterface;
     
     public function getCategories();
     
-    public function addCategory( PageCategory $category ) : self;
+    public function addCategory( PageCategory $category ) : PageInterface;
     
-    public function removeCategory( PageCategory $category ) : self;
+    public function removeCategory( PageCategory $category ) : PageInterface;
     
     public function getSlug() : ?string;
     

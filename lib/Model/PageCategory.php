@@ -51,7 +51,7 @@ class PageCategory implements PageCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function setParent(?PageCategoryInterface $parent) : self
+    public function setParent(?PageCategoryInterface $parent) : PageCategoryInterface
     {
         $this->parent = $parent;
         
@@ -71,7 +71,7 @@ class PageCategory implements PageCategoryInterface
         return $this->pages;
     }
     
-    public function addPage( Page $page ) : self
+    public function addPage( Page $page ) : PageCategoryInterface
     {
         if ( ! $this->pages->contains( $page ) ) {
             $this->pages[] = $page;
@@ -81,7 +81,7 @@ class PageCategory implements PageCategoryInterface
         return $this;
     }
     
-    public function removePage( Page $page ) : self
+    public function removePage( Page $page ) : PageCategoryInterface
     {
         if ( ! $this->pages->contains( $page ) ) {
             $this->pages->removeElement( $page );
