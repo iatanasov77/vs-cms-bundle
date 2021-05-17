@@ -17,7 +17,7 @@ class PagesRepository extends EntityRepository
         return $query->getSingleScalarResult();
     }
     
-    public function find($id, $lockMode = null, $lockVersion = null) 
+    public function find( $id, $lockMode = null, $lockVersion = null )
     {
         if( ! is_numeric( $id ) ) {
             return $this->findOneBy( [ 'slug' => $id ] );
@@ -28,6 +28,13 @@ class PagesRepository extends EntityRepository
     
     public function findBySlug( $slug )
     {
-        return $this->findOneBy( [ 'slug'=> $slug ] );
+        return $this->findOneBy( ['slug'=> $slug] );
+    }
+    
+    public function getCurrentVersion( $id, $locale, $logRepo )
+    {
+        $log    = $logRepo->findOneBy( ['objectClass' => $this->_entityName, 'objectId' => $id, 'locale' => $locale], ['version' => 'desc'] );
+        
+        return $log ? $log->getVersion() : null;
     }
 }

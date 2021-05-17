@@ -18,12 +18,10 @@ class PagesExtController extends Controller
         $repository = $this->container->get( 'vs_cms.repository.pages' );
         $page       = $repository->find( $pageId );
         
-        /* Find All Page Translations */
-        // $translations = $repository->findTranslations( $page );
-        
-        /* Load in Selected Language */
-        $page->setTranslatableLocale( $locale );
-        $em->refresh( $page );
+        if ( $locale != $request->getLocale() ) {
+            $page->setTranslatableLocale( $locale );
+            $em->refresh( $page );
+        }
         
         return $this->render( '@VSCms/Pages/partial/page_form.html.twig', [
             'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
@@ -61,6 +59,29 @@ class PagesExtController extends Controller
         }
         
         return new Response( 'The form is not hanled properly !!!', Response::HTTP_BAD_REQUEST );
+    }
+    
+    public function previewPage( $pageId, $locale, $version, Request $request ) : Response
+    {
+        $em     = $this->get( 'doctrine.orm.entity_manager' );
+        $page   = $this->container->get( 'vs_cms.repository.pages' )->find( $pageId );
+        $layout = $request->query->get( 'layout' );
+        
+        if ( $locale != $request->getLocale() ) {
+            $page->setTranslatableLocale( $locale );
+            $em->refresh( $page );
+        }
+        
+        if ( $version ) {
+            $erLogs = $this->get( 'vs_application.repository.logentry' );
+            $erLogs->revertByLocale( $page, $version, $locale ); // This only load Entity Data for concrete Version 
+                                                                 // from LogEntry Repository but not persist it
+        }
+        
+        return $this->render( '@VSCms/Pages/show.html.twig', [
+            'page'      => $page,
+            'layout'    => $layout,
+        ]);
     }
     
     public function gtreeTableSource( $taxonomyId, Request $request ): Response

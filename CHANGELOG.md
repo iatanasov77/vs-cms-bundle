@@ -1,3 +1,10 @@
+0.5.7	|	Release date: **17.05.2021**
+============================================
+* New Features:
+  - Add Route and ControllerAction for Pages Preview.
+  - Make PagesController to sent available translations and versions to the template.
+
+
 0.5.6	|	Release date: **17.05.2021**
 ============================================
 * New Features:

@@ -8,9 +8,15 @@ class PagesController extends AbstractCrudController
 {
     protected function customData(): array
     {
+        $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
+        $versions       = $this->classInfo['action'] == 'indexAction' ? $this->getVersions( $translations ) : [];
+        
         return [
             'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
-            'taxonomyId'    => $this->getParameter( 'vs_cms.page_categories.taxonomy_id' )
+            'taxonomyId'    => $this->getParameter( 'vs_cms.page_categories.taxonomy_id' ),
+            'translations'  => $translations,
+            'translations'  => $translations,
+            'versions'      => $versions,
         ];
     }
     
@@ -39,5 +45,35 @@ class PagesController extends AbstractCrudController
                 }
             }
         }
+    }
+    
+    private function getTranslations()
+    {
+        $translations   = [];
+        $em             = $this->get( 'doctrine.orm.entity_manager' );
+        $transRepo      = $em->getRepository( 'Gedmo\Translatable\Entity\Translation' );
+        
+        foreach ( $this->getRepository()->findAll() as $page ) {
+            $translations[$page->getId()] = array_keys( $transRepo->findTranslations( $page ) );
+        }
+        
+        return $translations;
+    }
+    
+    private function getVersions( $translations )
+    {
+        $versions   = [];
+        $logRepo    = $this->get( 'vs_application.repository.logentry' );
+        
+        foreach ( $translations as $pageId => $locales ) {
+            foreach ( $locales as $locale ) {
+                $currentVersion = $this->getRepository()->getCurrentVersion( $pageId, $locale, $logRepo );
+                if ( $currentVersion ) {
+                    $versions[$pageId][$locale] = $currentVersion;
+                }
+            }
+        }
+        
+        return $versions;
     }
 }
