@@ -4,6 +4,7 @@ services:
         tags:
             - { name: form.type }
         arguments:  # '%vs_cms.pages.form.type.validation_groups%'
+            - "@request_stack"
             - '%vs_cms.model.pages.class%'
             - '%vs_cms.model.page_categories.class%'
 

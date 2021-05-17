@@ -1,7 +1,7 @@
 <?php namespace VS\CmsBundle\Form;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -10,31 +10,35 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-
 use VS\CmsBundle\Model\PageInterface;
 
 class PageForm extends AbstractResourceType
 {
+    protected $requestStack;
+    
     protected $categoryClass;
     
-    public function __construct( string $dataClass, string $categoryClass )
+    public function __construct( RequestStack $requestStack, string $dataClass, string $categoryClass )
     {
         parent::__construct( $dataClass );
         
-        $this->categoryClass = $categoryClass;
+        $this->requestStack     = $requestStack;
+        $this->categoryClass    = $categoryClass;
     }
 
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
+        $entity         = $builder->getData();
+        $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
+        
         $builder
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
                 'choices'               => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'data'                  => $currentLocale,
                 'mapped'                => false,
             ])
             

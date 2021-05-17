@@ -1,3 +1,12 @@
+0.5.6	|	Release date: **17.05.2021**
+============================================
+* New Features:
+  - Add route to get page form in different locales.
+  - Make Pages Translatable not only in default locale.
+  - Make Page slugs lowercases and use dash for slug separator.
+  - Update Page Model to use Versioning of Body Field.
+
+
 0.5.5	|	Release date: **07.05.2021**
 ============================================
 * Bug-Fixes:

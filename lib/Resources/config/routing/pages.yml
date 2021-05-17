@@ -37,6 +37,9 @@ vs_cms_page_categories:
 vs_cms_pages_clone:
     path: /page-actions/clone/{pageId}
     controller: VS\CmsBundle\Controller\PagesExtController::clonePage
+vs_cms_pages_form_in_locale:
+    path: /page-actions/get-form/{locale}/{pageId}
+    controller: VS\CmsBundle\Controller\PagesExtController::getPageForm
 
 # Page Categories Callbacks
 vs_cms_pages_tree_combo:

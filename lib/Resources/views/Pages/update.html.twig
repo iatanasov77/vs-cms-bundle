@@ -45,9 +45,9 @@
 			            {% endif %}
 			            <section class="panel">                                          
 			                <div class="panel-body bio-graph-info">
-			                	{{ form_start(form, { 'attr': {'class': 'form-horizontal '} }) }}
-			                        {{ form_widget(form) }}
-			                    {{ form_end(form, {'render_rest': false}) }}
+			                	<div id="pageFormContainer" data-pageId="{{ item.id }}">
+                                    {% include '@VSCms/Pages/partial/page_form.html.twig' %}
+                                </div>
 			                </div>
 			            </section>  
 	        		</div>

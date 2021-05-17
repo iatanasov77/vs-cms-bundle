@@ -6,11 +6,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use VS\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
 use VS\CmsBundle\Form\ClonePageForm;
+use VS\CmsBundle\Form\PageForm;
 
 class PagesExtController extends Controller
 {
     use TaxonomyTreeDataTrait;
-
+    
+    public function getPageForm( $pageId, $locale, Request $request ) : Response
+    {
+        $em         = $this->get( 'doctrine.orm.entity_manager' );
+        $repository = $this->container->get( 'vs_cms.repository.pages' );
+        $page       = $repository->find( $pageId );
+        
+        /* Find All Page Translations */
+        // $translations = $repository->findTranslations( $page );
+        
+        /* Load in Selected Language */
+        $page->setTranslatableLocale( $locale );
+        $em->refresh( $page );
+        
+        return $this->render( '@VSCms/Pages/partial/page_form.html.twig', [
+            'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
+            'taxonomyId'    => $this->getParameter( 'vs_cms.page_categories.taxonomy_id' ),
+            'item'          => $page,
+            'form'          => $this->createForm( PageForm::class, $page )->createView(),
+        ]);
+    }
+    
     public function clonePage( $pageId, Request $request ) : Response
     {
         $parentPage = $this->getPageRepository()->find( $pageId );

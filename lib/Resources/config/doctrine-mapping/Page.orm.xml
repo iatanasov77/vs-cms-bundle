@@ -14,7 +14,7 @@
         <field name="enabled" column="published" type="boolean" />
         
         <field name="slug" column="slug" type="string" length="255" nullable="false" unique="true">
-            <gedmo:slug unique="true" style="camel" updatable="false" separator="_" fields="title" />
+            <gedmo:slug unique="true" style="lower" updatable="true" separator="-" fields="title" />
         </field>
         
         <field name="title" column="title" type="string" length="255" nullable="false">
@@ -23,6 +23,7 @@
         
         <field name="text" column="text" type="text" nullable="false">
             <gedmo:translatable />
+            <gedmo:versioned />
         </field>
         
         <!-- Look Examples:

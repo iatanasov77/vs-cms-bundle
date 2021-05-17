@@ -73,6 +73,11 @@ class Page implements PageInterface, TaxonLeafInterface
         return $this;
     }
     
+    public function getTranslatableLocale() : ?string
+    {
+        return $this->locale;
+    }
+    
     public function setTranslatableLocale($locale) : PageInterface
     {
         $this->locale = $locale;
