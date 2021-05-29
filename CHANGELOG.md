@@ -1,3 +1,10 @@
+0.5.8	|	Release date: **29.05.2021**
+============================================
+* Many Fixes and Improvements:
+  - Fixes of Forms, Controller and Twig Templates. 
+  - Add PreviewPageForm.
+
+
 0.5.7	|	Release date: **17.05.2021**
 ============================================
 * New Features:

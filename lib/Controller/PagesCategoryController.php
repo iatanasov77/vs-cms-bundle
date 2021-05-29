@@ -15,15 +15,30 @@ use VS\ApplicationBundle\Controller\AbstractCrudController;
  */
 class PagesCategoryController extends AbstractCrudController
 {
-//     protected function prepareEntity( &$entity, &$form, Request $request )
-//     {
-//         $entity->setTranslatableLocale( $form['locale']->getData() );
-//     }
+    /*
+     *  This Controller Need to be extended into the App/Controller
+     */
+    
+    protected function prepareEntity( &$entity, &$form, Request $request )
+    {
+        /*
+         * @WORKAROUND Create Taxon If not exists
+         */
+        if ( ! $entity->getTaxon() ) {
+            $newTaxon   = $this->createTaxon(
+                $form['name']->getData(),
+                $form['currentLocale']->getData(),
+                $entity->getParent() ? $entity->getParent()->getTaxon() : null,
+                $this->getParameter( 'vs_cms.page_categories.taxonomy_id' )
+                );
+            
+            $entity->setTaxon( $newTaxon );
+        }
+    }
     
     protected function customData(): array
     {
         return [
-            // This Controller Need to be extended into the App/Controller
             'taxonomyId'    => $this->getParameter( 'vs_cms.page_categories.taxonomy_id' )
         ];
     }

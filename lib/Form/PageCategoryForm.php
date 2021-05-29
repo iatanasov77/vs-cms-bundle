@@ -1,6 +1,6 @@
 <?php namespace VS\CmsBundle\Form;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use VS\ApplicationBundle\Form\AbstractForm;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use VS\ApplicationBundle\Component\I18N;
 
-class PageCategoryForm extends AbstractResourceType
+class PageCategoryForm extends AbstractForm
 {
     protected $categoryClass;
     
@@ -28,6 +28,8 @@ class PageCategoryForm extends AbstractResourceType
     
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
+        parent::buildForm( $builder, $options );
+        
         $category   = $options['data'];
         
         $builder
@@ -63,15 +65,11 @@ class PageCategoryForm extends AbstractResourceType
                 'required'      => false,
                 'placeholder'   => 'vs_cms.form.category.parent_category_placeholder',
             ])
-
-            ->add( 'btnSave', SubmitType::class, [
-                'label'                 => 'vs_cms.form.save',
-                'translation_domain'    => 'VSCmsBundle',
-            ])
-            ->add( 'btnCancel', ButtonType::class, [
-                'label'                 => 'vs_cms.form.cancel',
-                'translation_domain'    => 'VSCmsBundle',
-            ])
         ;
+    }
+    
+    public function getName()
+    {
+        return 'vs_cms.page_category';
     }
 }

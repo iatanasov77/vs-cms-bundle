@@ -1,6 +1,6 @@
 <?php namespace VS\CmsBundle\Form;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use VS\ApplicationBundle\Form\AbstractForm;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -8,13 +8,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use VS\CmsBundle\Model\PageInterface;
 
-class PageForm extends AbstractResourceType
+class PageForm extends AbstractForm
 {
     protected $requestStack;
     
@@ -30,6 +28,8 @@ class PageForm extends AbstractResourceType
 
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
+        parent::buildForm( $builder, $options );
+        
         $entity         = $builder->getData();
         $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
         
@@ -75,19 +75,6 @@ class PageForm extends AbstractResourceType
                     'uiColor'   => '#ffffff',
                 ],
             ])
-            
-            ->add( 'btnApply', SubmitType::class, [
-                'label'                 => 'vs_cms.form.apply',
-                'translation_domain'    => 'VSCmsBundle',
-            ])
-            ->add( 'btnSave', SubmitType::class, [
-                'label'                 => 'vs_cms.form.save',
-                'translation_domain'    => 'VSCmsBundle',
-            ])
-            ->add( 'btnCancel', ButtonType::class, [
-                'label'                 => 'vs_cms.form.cancel',
-                'translation_domain'    => 'VSCmsBundle',
-            ])
         ;
     }
 
@@ -101,6 +88,11 @@ class PageForm extends AbstractResourceType
             ])
             ->setAllowedTypes( 'page', PageInterface::class )
         ;
+    }
+    
+    public function getName()
+    {
+        return 'vs_cms.page';
     }
 }
 
