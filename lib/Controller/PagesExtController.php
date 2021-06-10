@@ -1,6 +1,6 @@
 <?php  namespace VS\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -8,7 +8,7 @@ use VS\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
 use VS\CmsBundle\Form\ClonePageForm;
 use VS\CmsBundle\Form\PageForm;
 
-class PagesExtController extends Controller
+class PagesExtController extends AbstractController
 {
     use TaxonomyTreeDataTrait;
     

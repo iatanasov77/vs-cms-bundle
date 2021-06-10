@@ -1,11 +1,11 @@
 <?php  namespace VS\CmsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class GetImageController extends Controller
+class GetImageController extends AbstractController
 {
     public function getFile( $file, Request $request )
     {
