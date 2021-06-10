@@ -13,6 +13,9 @@
 	],
 	"require": {
 		"php": "^5.5.9 || ^7.0",
+		
+		"vankosoft/application-bundle": "^0.9",
+		
 		"friendsofsymfony/ckeditor-bundle": "^2.0",
         "liip/imagine-bundle": "^2.6"
 	},

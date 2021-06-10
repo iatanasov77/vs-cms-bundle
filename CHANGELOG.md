@@ -1,3 +1,9 @@
+0.6.0	|	Release date: **11.06.2021**
+============================================
+* New Features:
+  - Add Composer Dependencies.
+
+
 0.5.8	|	Release date: **29.05.2021**
 ============================================
 * Many Fixes and Improvements:
