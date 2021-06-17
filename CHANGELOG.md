@@ -1,3 +1,9 @@
+0.6.3	|	Release date: **17.06.2021**
+============================================
+* Bug-Fixes:
+  - Fix Controlers to get Pages Category Taxonomy ID by Taxonomy Code.
+
+
 0.6.2	|	Release date: **14.06.2021**
 ============================================
 * New Features:

@@ -11,9 +11,16 @@ class PagesController extends AbstractCrudController
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
         $versions       = $this->classInfo['action'] == 'indexAction' ? $this->getVersions( $translations ) : [];
         
+        if ( $this->container->hasParameter( 'vs_cms.page_categories.taxonomy_id' ) ) {
+            $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
+        } else {
+            $taxonomyCode   = $this->getParameter( 'vs_application.page_categories.taxonomy_code' );
+            $taxonomyId     = $this->get( 'vs_application.repository.taxonomy' )->findByCode( $taxonomyCode )->getId();
+        }
+        
         return [
             'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
-            'taxonomyId'    => $this->getParameter( 'vs_cms.page_categories.taxonomy_id' ),
+            'taxonomyId'    => $taxonomyId,
             'translations'  => $translations,
             'translations'  => $translations,
             'versions'      => $versions,

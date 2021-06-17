@@ -25,12 +25,19 @@ class PagesCategoryController extends AbstractCrudController
          * @WORKAROUND Create Taxon If not exists
          */
         if ( ! $entity->getTaxon() ) {
+            if ( $this->container->hasParameter( 'vs_cms.page_categories.taxonomy_id' ) ) {
+                $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
+            } else {
+                $taxonomyCode   = $this->getParameter( 'vs_application.page_categories.taxonomy_code' );
+                $taxonomyId     = $this->get( 'vs_application.repository.taxonomy' )->findByCode( $taxonomyCode )->getId();
+            }
+ 
             $newTaxon   = $this->createTaxon(
                 $form['name']->getData(),
                 $form['currentLocale']->getData(),
                 $entity->getParent() ? $entity->getParent()->getTaxon() : null,
-                $this->getParameter( 'vs_cms.page_categories.taxonomy_id' )
-                );
+                $taxonomyId
+            );
             
             $entity->setTaxon( $newTaxon );
         }
@@ -38,8 +45,15 @@ class PagesCategoryController extends AbstractCrudController
     
     protected function customData(): array
     {
+        if ( $this->container->hasParameter( 'vs_cms.page_categories.taxonomy_id' ) ) {
+            $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
+        } else {
+            $taxonomyCode   = $this->getParameter( 'vs_application.page_categories.taxonomy_code' );
+            $taxonomyId     = $this->get( 'vs_application.repository.taxonomy' )->findByCode( $taxonomyCode )->getId();
+        }
+        
         return [
-            'taxonomyId'    => $this->getParameter( 'vs_cms.page_categories.taxonomy_id' )
+            'taxonomyId'    => $taxonomyId
         ];
     }
 }
