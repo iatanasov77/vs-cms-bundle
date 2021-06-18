@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    VS\CmsBundle\Controller\GetImageController:
+        tags: ['controller.service_arguments']
+        autowire: true
+
+    VS\CmsBundle\Controller\PagesExtController:
+        tags: ['controller.service_arguments']
+        autowire: true

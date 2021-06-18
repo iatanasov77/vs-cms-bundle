@@ -1,3 +1,10 @@
+0.6.5	|	Release date: **18.06.2021**
+============================================
+* Bug-Fixes:
+  - Add Controller Services.
+  - Fix TwigTemplates.
+
+
 0.6.4	|	Release date: **18.06.2021**
 ============================================
 * Bug-Fixes and Improvements:
