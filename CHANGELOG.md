@@ -1,3 +1,10 @@
+0.6.4	|	Release date: **18.06.2021**
+============================================
+* Bug-Fixes and Improvements:
+  - Fix TwigTemplate.
+  - Update VankosoftApplicationBundle version.
+
+
 0.6.3	|	Release date: **17.06.2021**
 ============================================
 * Bug-Fixes:
