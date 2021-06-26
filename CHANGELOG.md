@@ -1,3 +1,9 @@
+0.6.7	|	Release date: **26.06.2021**
+============================================
+* New Features:
+  - Add Template's Translations.
+
+
 0.6.6	|	Release date: **22.06.2021**
 ============================================
 * New Features:

@@ -35,7 +35,7 @@ class PagesExtController extends AbstractController
             $taxonomyId     = $taxonomyRepository->findByCode( $taxonomyCode )->getId();
         }
         
-        return $this->render( '@VSCms/Pages/partial/page_form.html.twig', [
+        return $this->render( '@VSCms/Pages/Pages/partial/page_form.html.twig', [
             'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
             'taxonomyId'    => $taxonomyId,
             'item'          => $page,
@@ -90,7 +90,7 @@ class PagesExtController extends AbstractController
                                                                  // from LogEntry Repository but not persist it
         }
         
-        return $this->render( '@VSCms/Pages/show.html.twig', [
+        return $this->render( '@VSCms/Pages/Pages/show.html.twig', [
             'page'      => $page,
             'layout'    => $layout,
         ]);

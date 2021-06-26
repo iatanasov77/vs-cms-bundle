@@ -19,3 +19,32 @@ vs_cms:
         category:
             parent_category: 'Родителска Категория'
             parent_category_placeholder: '-- Родителска Категория --'
+            
+    template:
+        page_categories_index_title: 'Категории Страници'
+        page_categories_index_row_category: 'Категория'
+        page_categories_index_row_actions: 'Действия'
+        page_categories_index_button_edit: 'Редактирай'
+        page_categories_update_title: 'Редактиране Категория на Страници'
+        page_categories_create_title: 'Създаване Нова Категория на Страници'
+        pages_index_title: 'Листинг Страници'
+        pages_index_row_slug: 'Слуг'
+        pages_index_row_published: 'Публикувана'
+        pages_index_row_locales: 'Преводи'
+        pages_index_row_log_versions: 'Лог Версии'
+        pages_index_row_title: 'Заглавие'
+        pages_index_row_action: 'Действие'
+        pages_update_title: 'Редактиране на Страница'
+        pages_create_title: 'Създаване Нова Страница'
+        button_clone: 'Клонирай Страница'
+        button_preview: 'Прегледай Страница'
+        button_edit: 'Запиши'
+        button_delete: 'Изтрий'
+        
+    modal:
+        page_clone:
+            title: 'Клониране на Страница'
+            button_clone: 'Клонирай Страница'
+        page_preview:
+            title: 'Преглед на Страница'
+            button_preview: 'Прегледай Страница'

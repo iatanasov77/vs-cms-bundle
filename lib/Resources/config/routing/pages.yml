@@ -3,7 +3,7 @@ vs_cms_pages:
         alias: vs_cms.pages
         except: ['show']
         path: /pages
-        templates: "@VSCms/Pages"
+        templates: "@VSCms/Pages/Pages"
     type: sylius.resource
 
 vs_cms_pages_show_by_id:
@@ -12,7 +12,7 @@ vs_cms_pages_show_by_id:
     defaults:
         _controller: vs_cms.controller.pages:showAction
         _sylius:
-            template: "@VSCms/Pages/show.html.twig" # If you want you can use a custom template.
+            template: "@VSCms/Pages/Pages/show.html.twig" # If you want you can use a custom template.
 
 vs_cms_pages_show_by_slug:
     path: /pages/{slug}
@@ -20,7 +20,7 @@ vs_cms_pages_show_by_slug:
     defaults:
         _controller: vs_cms.controller.pages:showAction
         _sylius:
-            template: "@VSCms/Pages/show.html.twig" # If you want you can use a custom template.
+            template: "@VSCms/Pages/Pages/show.html.twig" # If you want you can use a custom template.
             repository:
                 # If you want you can use a custom repository method.
                 method: findBySlug
@@ -30,7 +30,7 @@ vs_cms_page_categories:
     resource: |
         alias: vs_cms.page_categories
         path: /page_categories
-        templates: "@VSCms/Page_Categories"
+        templates: "@VSCms/Pages/Page_Categories"
     type: sylius.resource
 
 # Page Action Routes

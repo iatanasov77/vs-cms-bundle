@@ -1,8 +1,9 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
 {# Override Blocs #}
-{% block title %}{{ parent() }} :: Page Categories{% endblock %}
-{% block pageTitle %}<i class="icon_genius"></i> Page Categories{% endblock %}
+{% block title %}{{ parent() }} :: {{ 'vs_application.template.page_categories_index_title' | trans( {},'VSCmsBundle' ) }}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_application.template.page_categories_index_title' | trans( {},'VSCmsBundle' ) }}{% endblock %}
+
 {% block content %}
     <div class="container-fluid  dashboard-content">
     	<!-- ============================================================== -->
@@ -11,7 +12,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-header">
-                    <h2 class="pageheader-title">Page Categories</h2>
+                    <h2 class="pageheader-title">{{ 'vs_application.template.page_categories_index_title' | trans( {},'VSCmsBundle' ) }}</h2>
                     <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                     <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
