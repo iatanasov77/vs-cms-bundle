@@ -1,3 +1,9 @@
+0.6.8	|	Release date: **28.06.2021**
+============================================
+* New Features:
+  - Add PageCategoriesRepository Method to Find Vategory by Taxon Code.
+
+
 0.6.7	|	Release date: **26.06.2021**
 ============================================
 * New Features:
