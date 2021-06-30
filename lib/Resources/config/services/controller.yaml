@@ -7,6 +7,9 @@ services:
     VS\CmsBundle\Controller\GetImageController:
         tags: ['controller.service_arguments']
         autowire: true
+        arguments:
+            - "@liip_imagine.binary.loader.default"
+            - "@liip_imagine.filter.manager"
 
     VS\CmsBundle\Controller\PagesExtController:
         tags: ['controller.service_arguments']

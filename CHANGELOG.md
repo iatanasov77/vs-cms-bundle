@@ -1,3 +1,10 @@
+0.6.12	|	Release date: **30.06.2021**
+============================================
+* Bug-Fixes:
+  - Fix GetImageController with Symfony 5 Container.
+  - Fix Pages Template.
+
+
 0.6.11	|	Release date: **29.06.2021**
 ============================================
 * Bug Fixes:
