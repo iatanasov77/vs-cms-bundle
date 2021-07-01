@@ -1,3 +1,9 @@
+0.6.13	|	Release date: **01.07.2021**
+============================================
+* New Features:
+  - Set Pages/show.html.twig template to extend layout passed as variable.
+
+
 0.6.12	|	Release date: **30.06.2021**
 ============================================
 * Bug-Fixes:
