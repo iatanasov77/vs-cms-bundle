@@ -21,7 +21,7 @@ class MultiPageToc implements MultiPageTocInterface
         return $this->tocTitle;
     }
     
-    public function setTocTitle( $tocTitle ): string
+    public function setTocTitle( $tocTitle )
     {
         $this->tocTitle = $tocTitle;
         
