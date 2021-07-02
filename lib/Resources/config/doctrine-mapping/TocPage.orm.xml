@@ -7,10 +7,6 @@
 >
 
 	<mapped-superclass name="VS\CmsBundle\Model\TocPage">
-        <indexes>
-            <index name="name_idx" columns="name"/>
-        </indexes>
-
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
