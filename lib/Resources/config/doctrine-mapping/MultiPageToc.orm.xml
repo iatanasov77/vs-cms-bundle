@@ -35,7 +35,7 @@
 	       this is not a mapped field of entity metadata, just a simple property
 	       and it is not necessary because globally locale can be set in listener
         -->
-        <gedmo:translation entity="Gedmo\Translatable\Entity\Translation" locale="locale"/>
+        <gedmo:translation entity="VS\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
     </mapped-superclass>
 
 </doctrine-mapping>

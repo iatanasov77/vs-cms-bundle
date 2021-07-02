@@ -1,3 +1,9 @@
+0.7.15	|	Release date: **02.07.2021**
+=============================================
+* Bug-Fixes:
+  - Fix TOC Models Mapping Translation Relations.
+
+
 0.7.14	|	Release date: **02.07.2021**
 ============================================
 * Bug-Fixes:
