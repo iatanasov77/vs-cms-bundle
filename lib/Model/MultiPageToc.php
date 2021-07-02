@@ -2,11 +2,19 @@
 
 class MultiPageToc implements MultiPageTocInterface
 {
+    /** @var integer */
+    protected $id;
+    
     /** @var string */
     protected $tocTitle;
     
     /** @var TocPageInterface */
     protected $tocRootPage;
+    
+    public function getId()
+    {
+        return $this->id;
+    }
     
     public function getTocTitle(): string
     {
