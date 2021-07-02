@@ -28,7 +28,7 @@ class MultiPageToc implements MultiPageTocInterface
         return $this;
     }
     
-    public function getTocRootPage(): TocPageInterface
+    public function getTocRootPage(): ?TocPageInterface
     {
         return $this->tocRootPage;
     }
