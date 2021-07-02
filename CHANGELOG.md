@@ -1,3 +1,9 @@
+0.7.5	|	Release date: **02.07.2021**
+============================================
+* Bug-Fixes:
+  - Fix Syntax Error in TocPageInterface.
+
+
 0.7.4	|	Release date: **02.07.2021**
 ============================================
 * Bug-Fixes:
