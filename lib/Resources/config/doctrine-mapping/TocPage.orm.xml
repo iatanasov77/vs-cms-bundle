@@ -29,20 +29,23 @@
         <field name="rgt" column="rgt" type="integer">
             <gedmo:tree-right/>
         </field>
-        <field name="root" type="integer" nullable="true">
-            <gedmo:tree-root/>
-        </field>
-        <field name="level" column="lvl" type="integer">
+        
+        <field name="lvl" column="lvl" type="integer">
             <gedmo:tree-level/>
         </field>
 
+		<!--
+		<field name="root" type="integer" nullable="true">
+            <gedmo:tree-root/>
+        </field>
+		-->
         <many-to-one field="root" target-entity="VS\CmsBundle\Model\TocPageInterface">
             <join-column name="tree_root" referenced-column-name="id" on-delete="CASCADE"/>
             <gedmo:tree-root/>
         </many-to-one>
 
         <many-to-one field="parent" target-entity="VS\CmsBundle\Model\TocPageInterface" inversed-by="children">
-            <join-column name="parent_id" referenced-column-name="id" on-delete="CASCADE"/>
+            <join-column name="parent_id" nullable="true" referenced-column-name="id" on-delete="CASCADE"/>
             <gedmo:tree-parent/>
         </many-to-one>
 

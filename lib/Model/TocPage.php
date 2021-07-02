@@ -75,7 +75,6 @@ class TocPage implements TocPageInterface
         return $this;
     }
     
-    
     public function getRoot()
     {
         return $this->root;
