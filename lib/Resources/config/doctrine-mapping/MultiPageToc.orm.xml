@@ -15,8 +15,19 @@
             <gedmo:translatable />
         </field>
         
+        <!-- Taxonomy Example ;)
+        <one-to-one field="rootTaxon" target-entity="VS\ApplicationBundle\Model\Interfaces\TaxonInterface" inversed-by="taxonomy" >
+            <join-column name="root_taxon_id" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+        -->
         <many-to-one field="tocRootPage" target-entity="VS\CmsBundle\Model\TocPageInterface">
             <join-column name="toc_root_page_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+            <cascade>
+                <cascade-all/>
+            </cascade>
         </many-to-one>
     
     	<!--
