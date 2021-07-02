@@ -55,7 +55,7 @@ class MultiPageTocForm extends AbstractForm
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->tocPageClass,
                 'query_builder' => function ( EntityRepository $er ) {
-                    return $er->createQueryBuilder( 'p' )->where( 'p.parent = NULL' );
+                    return $er->createQueryBuilder( 'p' )->where( 'p.parent IS NULL' );
                 },
                 'placeholder'           => 'vs_cms.form.title',
                 'choice_label'          => 'title',
