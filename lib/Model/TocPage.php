@@ -17,6 +17,9 @@ class TocPage implements TocPageInterface
     /** @var integer */
     protected $id;
     
+    /** @var string */
+    protected $locale;
+    
     /** @var integer */
     protected $title;
     
@@ -49,6 +52,18 @@ class TocPage implements TocPageInterface
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+    
+    public function setTranslatableLocale( $locale )
+    {
+        $this->locale = $locale;
+        
+        return $this;
     }
     
     public function getTitle(): string
