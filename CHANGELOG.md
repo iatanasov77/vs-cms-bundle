@@ -1,3 +1,10 @@
+0.7.17	|	Release date: **02.07.2021**
+============================================
+* Bug-Fixes:
+  - Other Toc Fixes.
+  - Fix Page Model Translation Relation.
+
+
 0.7.16	|	Release date: **02.07.2021**
 ============================================
 * Bug-Fixes:

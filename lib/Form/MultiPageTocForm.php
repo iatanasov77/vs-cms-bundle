@@ -35,15 +35,16 @@ class MultiPageTocForm extends AbstractForm
 //         $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
-        /*
+
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
                 'choices'               => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
-                'data'                  => $currentLocale,
+                //'data'                  => $currentLocale,
+                'data'                  => \Locale::getDefault(),
                 'mapped'                => false,
             ])
-       */     
+            
             ->add( 'tocTitle', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',

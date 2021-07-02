@@ -20,7 +20,7 @@ class TocPage implements TocPageInterface
     /** @var string */
     protected $locale;
     
-    /** @var integer */
+    /** @var string */
     protected $title;
     
     /** @var PageInterface */

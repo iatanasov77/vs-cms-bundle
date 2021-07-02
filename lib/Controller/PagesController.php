@@ -57,8 +57,7 @@ class PagesController extends AbstractCrudController
     private function getTranslations()
     {
         $translations   = [];
-        $em             = $this->get( 'doctrine.orm.entity_manager' );
-        $transRepo      = $em->getRepository( 'Gedmo\Translatable\Entity\Translation' );
+        $transRepo      = $this->get( 'vs_application.repository.translation' );
         
         foreach ( $this->getRepository()->findAll() as $page ) {
             $translations[$page->getId()] = array_keys( $transRepo->findTranslations( $page ) );
