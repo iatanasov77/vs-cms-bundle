@@ -11,6 +11,9 @@ class MultiPageToc implements MultiPageTocInterface
     /** @var TocPageInterface */
     protected $tocRootPage;
     
+    /** @var string */
+    protected $locale;
+    
     public function getId()
     {
         return $this->id;
@@ -36,6 +39,18 @@ class MultiPageToc implements MultiPageTocInterface
     public function setTocRootPage( TocPageInterface $tocRootPage )
     {
         $this->tocRootPage  = $tocRootPage;
+        
+        return $this;
+    }
+    
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+    
+    public function setTranslatableLocale( $locale )
+    {
+        $this->locale = $locale;
         
         return $this;
     }
