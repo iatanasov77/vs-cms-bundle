@@ -1,3 +1,9 @@
+0.7.3	|	Release date: **02.07.2021**
+============================================
+* Bug-Fixes:
+  - Not Use Sylius RepositoryInterface for now.
+
+
 0.7.2	|	Release date: **02.07.2021**
 ============================================
 * New Features:
