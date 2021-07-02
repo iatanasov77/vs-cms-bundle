@@ -95,7 +95,7 @@ class TocPage implements TocPageInterface
         return $this->root;
     }
     
-    public function setParent(Category $parent = null)
+    public function setParent( ?TocPageInterface $parent = null )
     {
         $this->parent = $parent;
     }
