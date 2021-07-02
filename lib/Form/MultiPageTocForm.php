@@ -31,8 +31,8 @@ class MultiPageTocForm extends AbstractForm
     {
         parent::buildForm( $builder, $options );
         
-        $entity         = $builder->getData();
-        $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
+//         $entity         = $builder->getData();
+//         $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
         /*
