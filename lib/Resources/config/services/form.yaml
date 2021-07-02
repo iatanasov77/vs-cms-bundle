@@ -15,3 +15,13 @@ services:
         arguments:
             - '%vs_cms.model.page_categories.class%'
             - '@vs_cms.repository.page_categories'
+            
+    vs_cms.resources.multipage_toc.form:
+        class: VS\CmsBundle\Form\MultiPageTocForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - "@request_stack"
+            - '%vs_cms.model.multipage_toc.class%'
+            - '%vs_cms.model.multipage_toc_page.class%'
+

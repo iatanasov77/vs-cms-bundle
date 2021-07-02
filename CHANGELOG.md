@@ -1,3 +1,9 @@
+0.7.2	|	Release date: **02.07.2021**
+============================================
+* New Features:
+  - Add Table of Content from Pages.
+
+
 0.7.1	|	Release date: **02.07.2021**
 ============================================
 * New Features:

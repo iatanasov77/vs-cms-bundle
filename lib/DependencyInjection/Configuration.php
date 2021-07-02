@@ -7,6 +7,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Factory\Factory;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 use VS\CmsBundle\Model\Page;
 use VS\CmsBundle\Controller\PagesController;
@@ -17,6 +18,20 @@ use VS\CmsBundle\Model\PageCategory;
 use VS\CmsBundle\Controller\PagesCategoryController;
 use VS\CmsBundle\Repository\PageCategoryRepository;
 use VS\CmsBundle\Form\PageCategoryForm;
+
+
+
+
+use VS\CmsBundle\Model\MultiPageToc;
+use VS\CmsBundle\Controller\MultiPageTocController;
+use VS\CmsBundle\Form\MultiPageTocForm;
+
+
+use VS\CmsBundle\Model\TocPage;
+use VS\CmsBundle\Controller\TocPageController;
+use VS\CmsBundle\Repository\TocPagesRepository;
+use VS\CmsBundle\Form\TocPageForm;
+
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -87,6 +102,41 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
+                        ->arrayNode( 'multipage_toc' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( MultiPageToc::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( MultiPageTocController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( MultiPageTocForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode( 'multipage_toc_page' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( TocPage::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( TocPageController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( TocPagesRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( TocPageForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
                         
                     ->end()
                 ->end()
