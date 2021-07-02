@@ -1,3 +1,10 @@
+0.7.0	|	Release date: **02.07.2021**
+============================================
+* New Features:
+  - Update VsApplication Bundle version.
+  - Add field 'type' of Page Model.
+
+
 0.6.13	|	Release date: **01.07.2021**
 ============================================
 * New Features:

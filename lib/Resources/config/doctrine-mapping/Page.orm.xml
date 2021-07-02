@@ -13,6 +13,8 @@
         
         <field name="enabled" column="published" type="boolean" />
         
+        <field name="type" column="type" type="integer" nullable="false" />
+        
         <field name="slug" column="slug" type="string" length="255" nullable="false" unique="true">
             <gedmo:slug unique="true" style="lower" updatable="true" separator="-" fields="title" />
         </field>

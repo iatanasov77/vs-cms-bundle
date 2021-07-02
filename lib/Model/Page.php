@@ -17,7 +17,10 @@ class Page implements PageInterface, TaxonLeafInterface
     use TimestampableTrait;
     use ToggleableTrait;    // About enabled field - $enabled (published)
     use TranslatableTrait;
-    use TaxonLeafTrait; 
+    use TaxonLeafTrait;
+    
+    const TYPE_SINGLE_PAGE  = 1;
+    const TYPE_MULTI_PAGE   = 2;
     
     /** @var integer */
     protected $id;
@@ -36,6 +39,9 @@ class Page implements PageInterface, TaxonLeafInterface
     
     /** @var string */
     protected $locale;
+    
+    /** @var integer */
+    protected $type;
     
     public function __construct()
     {
@@ -140,6 +146,21 @@ class Page implements PageInterface, TaxonLeafInterface
     public function isPublished()
     {
         return $this->isEnabled();
+    }
+    
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    public function setType( $type )
+    {
+        if ( ! in_array( $type, [self::TYPE_SINGLE_PAGE, self::TYPE_MULTI_PAGE] ) ) {
+            throw new \InvalidArgumentException( "Invalid Page Type !!!" );
+        }
+        $this->type = $type;
+        
+        return $this;
     }
     
     /*

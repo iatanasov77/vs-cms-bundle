@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use VS\CmsBundle\Model\Page;
 use VS\CmsBundle\Model\PageInterface;
 
 class PageForm extends AbstractForm
@@ -47,6 +48,14 @@ class PageForm extends AbstractForm
                 'translation_domain'    => 'VSCmsBundle',
             ])
 
+            ->add( 'type', ChoiceType::class, [
+                'choices'   => [
+                    Page::TYPE_SINGLE_PAGE  => 'Single Page',
+                    Page::TYPE_MULTI_PAGE   => 'Multi Page',
+                ],
+                'required'  => true,
+            ])
+            
             ->add( 'category_taxon', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.page.categories',
                 'translation_domain'    => 'VSCmsBundle',
