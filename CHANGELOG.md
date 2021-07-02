@@ -1,3 +1,9 @@
+0.7.1	|	Release date: **02.07.2021**
+============================================
+* New Features:
+  - Add Page type to PageForm Template.
+
+
 0.7.0	|	Release date: **02.07.2021**
 ============================================
 * New Features:

@@ -50,8 +50,8 @@ class PageForm extends AbstractForm
 
             ->add( 'type', ChoiceType::class, [
                 'choices'   => [
-                    Page::TYPE_SINGLE_PAGE  => 'Single Page',
-                    Page::TYPE_MULTI_PAGE   => 'Multi Page',
+                    'Single Page'   => Page::TYPE_SINGLE_PAGE,
+                    'Multi Page'    => Page::TYPE_MULTI_PAGE,
                 ],
                 'required'  => true,
             ])
