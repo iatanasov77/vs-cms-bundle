@@ -5,21 +5,37 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use Sylius\Component\Resource\Factory\FactoryInterface;
+
 use VS\ApplicationBundle\Component\Slug;
 
 //use Sylius\Component\Resource\Repository\RepositoryInterface;
+use VS\CmsBundle\Repository\MultiPageTocRepository;
 use VS\CmsBundle\Repository\TocPagesRepository;
 use VS\CmsBundle\Form\TocPageForm;
 
-
 class MultiPageTocPageController extends AbstractController
 {
-    public function editTocPage( TocPagesRepository $multipageTocRepository, $tocId, Request $request ): Response
+    private $tocRepository;
+    private $tocPageRepository;
+    private $tocPageFactory;
+    
+    public function __construct(
+        MultiPageTocRepository $tocRepository,
+        TocPagesRepository $tocPageRepository,
+        FactoryInterface $tocPageFactory
+    ) {
+        $this->tocRepository        = $tocRepository;
+        $this->tocPageRepository    = $tocPageRepository;
+        $this->tocPageFactory       = $tocPageFactory;
+    }
+    
+    public function editTocPage( $tocId, Request $request ): Response
     {
         $locale         = $request->getLocale();
-        $tocRootPage    = $multipageTocRepository->find( $tocId )->getTocRootPage();
+        $tocRootPage    = $this->tocRepository->find( $tocId )->getTocRootPage();
         
-        $oTocPage       = $this->get( 'vs_cms.factory.multipage_toc_page' )->createNew();
+        $oTocPage       = $this->tocPageFactory->createNew();
         //$oTocPage->setTranslatableLocale( $locale );
         
         $form           = $this->createForm( TocPageForm::class, $oTocPage, [
@@ -33,7 +49,7 @@ class MultiPageTocPageController extends AbstractController
         ]);
     }
     
-    public function handleTocPage( TocPagesRepository $multipageTocRepository, Request $request ): Response
+    public function handleTocPage( Request $request ): Response
     {
         $form   = $this->createForm( TocPageForm::class );
         
@@ -58,14 +74,14 @@ class MultiPageTocPageController extends AbstractController
         return new Response( 'The form is not submited properly !!!', 500 );
     }
     
-    public function gtreeTableSource( RepositoryInterface $multipageTocRepository, $tocId, Request $request ): Response
-    {   
+    public function gtreeTableSource( $tocId, Request $request ): Response
+    {
         $parentId   = (int)$request->query->get( 'parentTaxonId' );
         
         return new JsonResponse( $this->gtreeTableData( $tocId, $parentId ) );
     }
     
-    public function easyuiComboTreeSource( TaxonomyRepository $taxonomyRepository, TaxonRepository $taxonRepository, $tocId, Request $request ): Response
+    public function easyuiComboTreeSource( TaxonRepository $taxonRepository, $tocId, Request $request ): Response
     {
         return new JsonResponse( $this->easyuiComboTreeData( $tocId ) );
     }

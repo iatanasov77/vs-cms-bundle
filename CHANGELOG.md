@@ -1,3 +1,9 @@
+0.7.20	|	Release date: **03.07.2021**
+============================================
+* New Features:
+  - Wiring MultiPageTocPageController needed services.
+
+
 0.7.19	|	Release date: **03.07.2021**
 ============================================
 * Bug-Fixes and Improvements:

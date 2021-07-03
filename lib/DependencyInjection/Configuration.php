@@ -19,13 +19,10 @@ use VS\CmsBundle\Controller\PagesCategoryController;
 use VS\CmsBundle\Repository\PageCategoryRepository;
 use VS\CmsBundle\Form\PageCategoryForm;
 
-
-
-
 use VS\CmsBundle\Model\MultiPageToc;
 use VS\CmsBundle\Controller\MultiPageTocController;
+use VS\CmsBundle\Repository\MultiPageTocRepository;use VS\CmsBundle\Repository\MultiPageTocRepository;
 use VS\CmsBundle\Form\MultiPageTocForm;
-
 
 use VS\CmsBundle\Model\TocPage;
 use VS\CmsBundle\Controller\TocPageController;
