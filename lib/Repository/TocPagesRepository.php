@@ -1,6 +1,10 @@
 <?php namespace VS\CmsBundle\Repository;
 
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Resource\Model\ResourceInterface;
+
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
 /**
@@ -14,7 +18,38 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  * )
  *
  */
-class TocPagesRepository extends NestedTreeRepository // implements RepositoryInterface
+class TocPagesRepository extends NestedTreeRepository implements RepositoryInterface
 {
     
+    
+    
+    /**
+     * 
+     * This Abstract Methods Copied from Sylius\Component\Resource\Repository\InMemoryRepository
+     */
+    
+    public function createPaginator( array $criteria = [], array $sorting = [] ): iterable
+    {
+        $resources = $this->findAll();
+        
+        if ( ! empty( $sorting ) ) {
+            //$resources = $this->applyOrder( $resources, $sorting );
+        }
+        
+        if ( ! empty( $criteria ) ) {
+            //$resources = $this->applyCriteria($resources, $criteria);
+        }
+        
+        return new Pagerfanta( new ArrayAdapter( $resources ) );
+    }
+    
+    public function add( ResourceInterface $resource ): void
+    {
+        
+    }
+    
+    public function remove( ResourceInterface $resource ): void
+    {
+        
+    }
 }

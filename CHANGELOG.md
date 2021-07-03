@@ -1,3 +1,10 @@
+0.7.19	|	Release date: **03.07.2021**
+============================================
+* Bug-Fixes and Improvements:
+  - Adjust MultiPageTocPageController.
+  - Make TocPagesRepository to implement Sylius RepositoryInterface. Fake Variant ;).
+
+
 0.7.18	|	Release date: **03.07.2021**
 ============================================
 * Bug-Fixes and Improvements:
