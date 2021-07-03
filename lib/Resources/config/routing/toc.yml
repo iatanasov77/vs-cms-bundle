@@ -14,11 +14,11 @@ vs_cms_multipage_toc_page:
     
 
 vs_cms_multipage_toc_page_gtreetable:
-    path: /multipage_toc_{tocId}/taxons/gtreetable
+    path: /multipage_toc_{tocId}_gtreetable
     controller: VS\CmsBundle\Controller\MultiPageTocPageController::gtreeTableSource
 
 vs_cms_multipage_toc_page_easyui_combotree:
-    path: /multipage_toc_{tocId}/taxons/easyui-combotree
+    path: /multipage_toc_{tocId}_easyui-combotree
     controller: VS\CmsBundle\Controller\MultiPageTocPageController::easyuiComboTreeSource
     
 vs_cms_multipage_toc_page_edit:
