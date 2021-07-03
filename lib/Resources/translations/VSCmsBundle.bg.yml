@@ -40,6 +40,7 @@ vs_cms:
         button_preview: 'Прегледай Страница'
         button_edit: 'Запиши'
         button_delete: 'Изтрий'
+        button_create_toc_page: 'Create New TOC Page'
         
     modal:
         page_clone:

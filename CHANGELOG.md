@@ -1,3 +1,9 @@
+0.7.18	|	Release date: **03.07.2021**
+============================================
+* Bug-Fixes and Improvements:
+  - TOC Fixes and Improvements.
+
+
 0.7.17	|	Release date: **02.07.2021**
 ============================================
 * Bug-Fixes:

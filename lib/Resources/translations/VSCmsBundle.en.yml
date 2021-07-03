@@ -40,6 +40,7 @@ vs_cms:
         button_preview: 'Preview Page'
         button_edit: 'Edit'
         button_delete: 'Edit'
+        button_create_toc_page: 'Create New TOC Page'
         
     modal:
         page_clone:

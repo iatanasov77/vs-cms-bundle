@@ -11,3 +11,20 @@ vs_cms_multipage_toc_page:
         path: /multipage_toc_page
         templates: "@VSCms/Pages/MultipageTocPage"
     type: sylius.resource
+    
+
+vs_cms_multipage_toc_page_gtreetable:
+    path: /multipage_toc_{tocId}/taxons/gtreetable
+    controller: VS\CmsBundle\Controller\MultiPageTocPageController::gtreeTableSource
+
+vs_cms_multipage_toc_page_easyui_combotree:
+    path: /multipage_toc_{tocId}/taxons/easyui-combotree
+    controller: VS\CmsBundle\Controller\MultiPageTocPageController::easyuiComboTreeSource
+    
+vs_cms_multipage_toc_page_edit:
+    path: /multipage_toc_page/{tocId}
+    controller: VS\CmsBundle\Controller\MultiPageTocPageController::editTocPage
+    
+vs_cms_multipage_toc_page_handle:
+    path: /multipage_toc_page/{tocId}/handle
+    controller: VS\CmsBundle\Controller\MultiPageTocPageController::handleTocPage
