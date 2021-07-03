@@ -1,3 +1,9 @@
+0.7.26	|	Release date: **03.07.2021**
+============================================
+* New Features:
+  - Make Model Pages to can has a MultipageToc Relation.
+
+
 0.7.25	|	Release date: **03.07.2021**
 ============================================
 

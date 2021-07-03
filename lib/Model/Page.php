@@ -43,6 +43,8 @@ class Page implements PageInterface, TaxonLeafInterface
     /** @var integer */
     protected $type;
     
+    protected $multipageToc;
+    
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -159,6 +161,18 @@ class Page implements PageInterface, TaxonLeafInterface
             throw new \InvalidArgumentException( "Invalid Page Type !!!" );
         }
         $this->type = $type;
+        
+        return $this;
+    }
+    
+    public function getMultipageToc()
+    {
+        return $this->multipageToc;
+    }
+    
+    public function setMultipageToc( $multipageToc )
+    {
+        $this->multipageToc = $multipageToc;
         
         return $this;
     }

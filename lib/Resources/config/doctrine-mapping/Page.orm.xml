@@ -14,6 +14,9 @@
         <field name="enabled" column="published" type="boolean" />
         
         <field name="type" column="type" type="integer" nullable="false" />
+        <many-to-one field="multipageToc" target-entity="VS\CmsBundle\Model\MultiPageTocInterface">
+            <join-column name="multipage_toc_id" referenced-column-name="id" nullable="true" />
+        </many-to-one>
         
         <field name="slug" column="slug" type="string" length="255" nullable="false" unique="true">
             <gedmo:slug unique="true" style="lower" updatable="true" separator="-" fields="title" />
