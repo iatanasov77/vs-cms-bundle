@@ -109,4 +109,10 @@ class TocPage implements TocPageInterface
     {
         return $this->children;
     }
+    
+    /** Needed For GTreeTable */
+    public function getLevel()
+    {
+        return $this->lvl;
+    }
 }

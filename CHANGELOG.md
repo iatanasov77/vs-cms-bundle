@@ -1,3 +1,10 @@
+0.7.22	|	Release date: **03.07.2021**
+============================================
+* Bug-Fixes and Improvements:
+  - Add Source Url For TocPages GTreeTable.
+  - Attach Linked page on TocPage in form handle.
+
+
 0.7.21	|	Release date: **03.07.2021**
 ============================================
 * Bug-Fixes:

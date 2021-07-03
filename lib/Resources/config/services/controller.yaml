@@ -22,4 +22,5 @@ services:
             - '@vs_cms.repository.multipage_toc'
             - '@vs_cms.repository.multipage_toc_page'
             - '@vs_cms.factory.multipage_toc_page'
+            - '@vs_cms.repository.pages'
 

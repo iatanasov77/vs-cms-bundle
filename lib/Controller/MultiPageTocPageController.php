@@ -12,22 +12,33 @@ use VS\ApplicationBundle\Component\Slug;
 //use Sylius\Component\Resource\Repository\RepositoryInterface;
 use VS\CmsBundle\Repository\MultiPageTocRepository;
 use VS\CmsBundle\Repository\TocPagesRepository;
+use VS\CmsBundle\Repository\PagesRepository;
 use VS\CmsBundle\Form\TocPageForm;
 
 class MultiPageTocPageController extends AbstractController
 {
+    /** @var MultiPageTocRepository */
     private $tocRepository;
+    
+    /** @var TocPagesRepository */
     private $tocPageRepository;
+    
+    /** @var FactoryInterface */
     private $tocPageFactory;
+    
+    /** @var PagesRepository */
+    private $pagesRepository;
     
     public function __construct(
         MultiPageTocRepository $tocRepository,
         TocPagesRepository $tocPageRepository,
-        FactoryInterface $tocPageFactory
+        FactoryInterface $tocPageFactory,
+        PagesRepository $pagesRepository
     ) {
         $this->tocRepository        = $tocRepository;
         $this->tocPageRepository    = $tocPageRepository;
         $this->tocPageFactory       = $tocPageFactory;
+        $this->pagesRepository      = $pagesRepository;
     }
     
     public function editTocPage( $tocId, Request $request ): Response
@@ -62,6 +73,9 @@ class MultiPageTocPageController extends AbstractController
             $parentTocPage  = $this->tocPageRepository->find( $_POST['toc_page_form']['parent'] );
             $oTocPage->setParent( $parentTocPage );
             
+            $linkedPage  = $this->pagesRepository->find( $_POST['toc_page_form']['page'] );
+            $oTocPage->setPage( $linkedPage );
+            
             $em->persist( $oTocPage );
             $em->flush();
             
@@ -73,7 +87,7 @@ class MultiPageTocPageController extends AbstractController
     
     public function gtreeTableSource( $tocId, Request $request ): Response
     {
-        $parentId   = (int)$request->query->get( 'parentTaxonId' );
+        $parentId   = (int)$request->query->get( 'parentId' );
         
         return new JsonResponse( $this->gtreeTableData( $tocId, $parentId ) );
     }
@@ -81,5 +95,68 @@ class MultiPageTocPageController extends AbstractController
     public function easyuiComboTreeSource( TaxonRepository $taxonRepository, $tocId, Request $request ): Response
     {
         return new JsonResponse( $this->easyuiComboTreeData( $tocId ) );
+    }
+    
+    protected function gtreeTableData( $tocId, $parentId ): array
+    {
+        $parent = $parentId ? $this->tocPageRepository->find( $parentId ) : $this->tocRepository->find( $tocId )->getTocRootPage();
+        
+        $gtreeTableData = [];
+        $children       = $this->tocPageRepository->findBy( ['parent' => $parent] );
+        foreach ( $children as $c ) {
+            $gtreeTableData[] = [
+                'id'        => (int)$c->getId(),
+                'name'      => $c->getTitle(),
+                'level'     => (int)$c->getLevel(),
+                'type'      => "default"
+            ];
+        }
+        
+        return ['nodes' => $gtreeTableData];
+    }
+    
+    protected function easyuiComboTreeData( $taxonomyId, array $selectedValues = [], array $leafs = [], $displayRootTaxon = false ) : array
+    {
+        $rootTaxon      = $this->getTaxonomyRepository()->find( $taxonomyId )->getRootTaxon();
+        $data           = [];
+        
+        if ( $displayRootTaxon ) {
+            $data[0]        = [
+                'id'        => $rootTaxon->getId(),
+                'text'      => $rootTaxon->getName(),
+                'children'  => []
+            ];
+            
+            $this->buildEasyuiCombotreeData( $rootTaxon->getChildren(), $data[0]['children'], $selectedValues, $leafs );
+        } else {
+            $this->buildEasyuiCombotreeData( $rootTaxon->getChildren(), $data, $selectedValues, $leafs );
+        }
+        
+        return $data;
+    }
+    
+    protected function buildEasyuiCombotreeData( $tree, &$data, array $selectedValues, array $leafs )
+    {
+        $key    = 0;
+        foreach( $tree as $node ) {
+            $data[$key]   = [
+                'id'        => $node->getId(),
+                'text'      => $node->getName(),
+                'children'  => []
+            ];
+            if ( in_array( $node->getId(), $selectedValues ) ) {
+                $data[$key]['checked'] = true;
+            }
+            
+            if ( $node->getChildren()->count() ) {
+                $this->buildEasyuiCombotreeData( $node->getChildren(), $data[$key]['children'], $selectedValues, $leafs );
+            }
+            
+            if ( array_key_exists( $node->getId(), $leafs ) ) {
+                $this->buildEasyuiCombotreeData( $leafs[$node->getId()], $data[$key]['children'], $selectedValues, $leafs );
+            }
+            
+            $key++;
+        }
     }
 }
