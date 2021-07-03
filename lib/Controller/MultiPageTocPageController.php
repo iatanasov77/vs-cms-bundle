@@ -45,30 +45,27 @@ class MultiPageTocPageController extends AbstractController
         ]);
         
         return $this->render( '@VSCms/Pages/MultipageToc/form/toc_page.html.twig', [
-            'form'          => $form->createView(),
+            'form'  => $form->createView(),
+            'tocId' => $tocId,
         ]);
     }
     
-    public function handleTocPage( Request $request ): Response
+    public function handleTocPage( $tocId, Request $request ): Response
     {
         $form   = $this->createForm( TocPageForm::class );
         
-        if ( $request->isMethod( 'POST' ) ) {
-            //$parentTocPage    = $multipageTocRepository->find( $_POST['taxon_form']['parentTaxon'] );
+        $form->handleRequest( $request );
+        if ( $form->isSubmitted()  ) { // && $form->isValid()
+            $em             = $this->getDoctrine()->getManager();
+            $oTocPage       = $form->getData();
             
-            //$form->submit( $request->request->get( $form->getName() ) );
+            $parentTocPage  = $this->tocPageRepository->find( $_POST['toc_page_form']['parent'] );
+            $oTocPage->setParent( $parentTocPage );
             
-            if ( $form->isSubmitted()  ) { // && $form->isValid()
-                $em         = $this->getDoctrine()->getManager();
-                $oTocPage   = $form->getData();
-                //$oTocPage->setParent( $parentTocPage );
-                
-                $em->persist( $oTocPage );
-                $em->flush();
-                
-                $tocId = $request->attributes->get( '$tocId' );
-                return $this->redirect( $this->generateUrl( 'vs_cms_multipage_toc_update', ['id' => $tocId] ) );
-            }
+            $em->persist( $oTocPage );
+            $em->flush();
+            
+            return $this->redirect( $this->generateUrl( 'vs_cms_multipage_toc_update', ['id' => $tocId] ) );
         }
         
         return new Response( 'The form is not submited properly !!!', 500 );

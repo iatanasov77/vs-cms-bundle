@@ -13,6 +13,15 @@ use Doctrine\ORM\EntityRepository;
 
 class TocPageForm extends AbstractForm
 {
+    protected $pagesClass;
+    
+    public function __construct( string $dataClass, string $pagesClass )
+    {
+        parent::__construct( $dataClass );
+        
+        $this->pagesClass   = $pagesClass;
+    }
+    
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
         parent::buildForm( $builder, $options );
@@ -28,23 +37,36 @@ class TocPageForm extends AbstractForm
             ])
        */
         
-        ->add( 'parent', EntityType::class, [
-            'mapped'                => false,
-            'required'              => true,
-            'label'                 => 'vs_cms.form.parent',
-            'translation_domain'    => 'VSCmsBundle',
-            'class'                 => $this->dataClass,
-            'choice_label'          => 'title',
-            'query_builder'         => function ( EntityRepository $er ) use ( $options )
-            {
-                //var_dump( $er ); die;
-                return $er->createQueryBuilder( 't' )
-                            ->where( 't.root = :root' )
-                            ->setParameter( 'rootTaxon', $options['root'] );
-            }
-        ])
-        
-        ->add( 'name', TextType::class, ['label' => 'vs_application.form.name', 'translation_domain' => 'VSApplicationBundle',] )
+            ->add( 'parent', EntityType::class, [
+                'mapped'                => false,
+                'required'              => true,
+                'label'                 => 'vs_cms.form.parent',
+                'translation_domain'    => 'VSCmsBundle',
+                'class'                 => $this->dataClass,
+                'choice_label'          => 'title',
+                'query_builder'         => function ( EntityRepository $er ) use ( $options )
+                {
+                    //var_dump( $er ); die;
+                    return $er->createQueryBuilder( 't' )
+                            ->where( 't.root = :tocRootPage' )
+                            ->setParameter( 'tocRootPage', $options['tocRootPage'] );
+                }
+            ])
+            
+            ->add( 'title', TextType::class, [
+                'label' => 'vs_cms.form.title',
+                'translation_domain' => 'VSCmsBundle',
+                
+            ])
+            
+            ->add( 'page', EntityType::class, [
+                'mapped'                => false,
+                'required'              => true,
+                'label'                 => 'vs_cms.form.page_label',
+                'translation_domain'    => 'VSCmsBundle',
+                'class'                 => $this->pagesClass,
+                'choice_label'          => 'title',
+            ])
         ;
     }
 
@@ -53,7 +75,7 @@ class TocPageForm extends AbstractForm
         parent::configureOptions( $resolver );
         
         $resolver->setDefaults([
-            'root'  => null,
+            'tocRootPage'  => null,
         ]);
     }
     

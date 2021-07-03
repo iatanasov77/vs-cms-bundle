@@ -1,3 +1,10 @@
+0.7.21	|	Release date: **03.07.2021**
+============================================
+* Bug-Fixes:
+  - Fixes and Improvements.
+  - Fix Stupid Bug.
+
+
 0.7.20	|	Release date: **03.07.2021**
 ============================================
 * New Features:

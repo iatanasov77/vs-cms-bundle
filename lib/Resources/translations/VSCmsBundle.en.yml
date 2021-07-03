@@ -2,9 +2,12 @@ vs_cms:
     form:
         locale: 'Locale'
         title: 'Title'
+        parent: 'Parent'
         apply: 'Apply'
         save: 'Save'
         cancel: 'Cancel'
+        
+        page_label: 'Page'
         
         page:
             published: 'Published'
@@ -49,3 +52,5 @@ vs_cms:
         page_preview:
             title: 'Preview Page'
             button_preview: 'Preview Page'
+        multipage_toc_page:
+            title: 'Create TOC Page'

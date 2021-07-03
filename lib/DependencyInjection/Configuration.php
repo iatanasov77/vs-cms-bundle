@@ -21,7 +21,7 @@ use VS\CmsBundle\Form\PageCategoryForm;
 
 use VS\CmsBundle\Model\MultiPageToc;
 use VS\CmsBundle\Controller\MultiPageTocController;
-use VS\CmsBundle\Repository\MultiPageTocRepository;use VS\CmsBundle\Repository\MultiPageTocRepository;
+use VS\CmsBundle\Repository\MultiPageTocRepository;
 use VS\CmsBundle\Form\MultiPageTocForm;
 
 use VS\CmsBundle\Model\TocPage;
@@ -109,7 +109,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode( 'model' )->defaultValue( MultiPageToc::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( MultiPageTocController::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( MultiPageTocRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( MultiPageTocForm::class )->cannotBeEmpty()->end()
                                     ->end()

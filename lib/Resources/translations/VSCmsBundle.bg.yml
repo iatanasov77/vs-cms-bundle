@@ -2,9 +2,12 @@ vs_cms:
     form:
         locale: 'Език'
         title: 'Име'
+        parent: 'Родител'
         apply: 'Въведи'
         save: 'Запази'
         cancel: 'Отказ'
+        
+        page_label: 'Страница'
         
         page:
             published: 'Публикувана'
@@ -49,3 +52,5 @@ vs_cms:
         page_preview:
             title: 'Преглед на Страница'
             button_preview: 'Прегледай Страница'
+        multipage_toc_page:
+            title: 'Нова Страница за Съдържание'
