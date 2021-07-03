@@ -115,23 +115,19 @@ class MultiPageTocPageController extends AbstractController
         return ['nodes' => $gtreeTableData];
     }
     
-    protected function easyuiComboTreeData( $taxonomyId, array $selectedValues = [], array $leafs = [], $displayRootTaxon = false ) : array
+    protected function easyuiComboTreeData( $tocId ) : array
     {
-        $rootTaxon      = $this->getTaxonomyRepository()->find( $taxonomyId )->getRootTaxon();
-        $data           = [];
+        $root       = $this->tocRepository->find( $tocId )->getTocRootPage();
+        $data       = [];
+
+        $data[0]    = [
+            'id'        => $root->getId(),
+            'text'      => $root->getTitle(),
+            'children'  => []
+        ];
         
-        if ( $displayRootTaxon ) {
-            $data[0]        = [
-                'id'        => $rootTaxon->getId(),
-                'text'      => $rootTaxon->getName(),
-                'children'  => []
-            ];
-            
-            $this->buildEasyuiCombotreeData( $rootTaxon->getChildren(), $data[0]['children'], $selectedValues, $leafs );
-        } else {
-            $this->buildEasyuiCombotreeData( $rootTaxon->getChildren(), $data, $selectedValues, $leafs );
-        }
-        
+        $this->buildEasyuiCombotreeData( $root->getChildren(), $data[0]['children'] );
+    
         return $data;
     }
     

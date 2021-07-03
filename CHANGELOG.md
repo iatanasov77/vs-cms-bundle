@@ -1,3 +1,9 @@
+0.7.23	|	Release date: **03.07.2021**
+============================================
+* New Features:
+  - Add Source Url For TocPages EasyComboTree.
+
+
 0.7.22	|	Release date: **03.07.2021**
 ============================================
 * Bug-Fixes and Improvements:
