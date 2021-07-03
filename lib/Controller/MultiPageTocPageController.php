@@ -92,7 +92,7 @@ class MultiPageTocPageController extends AbstractController
         return new JsonResponse( $this->gtreeTableData( $tocId, $parentId ) );
     }
     
-    public function easyuiComboTreeSource( TaxonRepository $taxonRepository, $tocId, Request $request ): Response
+    public function easyuiComboTreeSource( $tocId, Request $request ): Response
     {
         return new JsonResponse( $this->easyuiComboTreeData( $tocId ) );
     }
@@ -126,18 +126,18 @@ class MultiPageTocPageController extends AbstractController
             'children'  => []
         ];
         
-        $this->buildEasyuiCombotreeData( $root->getChildren(), $data[0]['children'] );
+        $this->buildEasyuiCombotreeData( $root->getChildren(), $data[0]['children'], [] );
     
         return $data;
     }
     
-    protected function buildEasyuiCombotreeData( $tree, &$data, array $selectedValues, array $leafs )
+    protected function buildEasyuiCombotreeData( $tree, &$data, array $selectedValues )
     {
         $key    = 0;
         foreach( $tree as $node ) {
             $data[$key]   = [
                 'id'        => $node->getId(),
-                'text'      => $node->getName(),
+                'text'      => $node->getTitle(),
                 'children'  => []
             ];
             if ( in_array( $node->getId(), $selectedValues ) ) {
@@ -145,11 +145,7 @@ class MultiPageTocPageController extends AbstractController
             }
             
             if ( $node->getChildren()->count() ) {
-                $this->buildEasyuiCombotreeData( $node->getChildren(), $data[$key]['children'], $selectedValues, $leafs );
-            }
-            
-            if ( array_key_exists( $node->getId(), $leafs ) ) {
-                $this->buildEasyuiCombotreeData( $leafs[$node->getId()], $data[$key]['children'], $selectedValues, $leafs );
+                $this->buildEasyuiCombotreeData( $node->getChildren(), $data[$key]['children'], $selectedValues );
             }
             
             $key++;
