@@ -67,17 +67,22 @@ class MultiPageTocPageController extends AbstractController
     
     public function handleTocPage( $tocId, Request $request ): Response
     {
-        $form   = $this->createForm( TocPageForm::class );
+        $tocPageId      = $this->tocPageRepository->find( $_POST['toc_page_form']['id'] );
+        $parentTocPage  = $this->tocPageRepository->find( $_POST['toc_page_form']['parent'] );
+        $linkedPage     = $this->pagesRepository->find( $_POST['toc_page_form']['page'] );
+        
+        if ( $tocPageId ) {
+            $oTocPage   = $this->tocPageRepository->find( $tocPageId );
+        } else {
+            $oTocPage   = $this->tocPageFactory->createNew();
+        }
+        $form   = $this->createForm( TocPageForm::class, $oTocPage );
         
         $form->handleRequest( $request );
         if ( $form->isSubmitted()  ) { // && $form->isValid()
             $em             = $this->getDoctrine()->getManager();
-            $oTocPage       = $form->getData();
             
-            $parentTocPage  = $this->tocPageRepository->find( $_POST['toc_page_form']['parent'] );
             $oTocPage->setParent( $parentTocPage );
-            
-            $linkedPage  = $this->pagesRepository->find( $_POST['toc_page_form']['page'] );
             $oTocPage->setPage( $linkedPage );
             
             $em->persist( $oTocPage );

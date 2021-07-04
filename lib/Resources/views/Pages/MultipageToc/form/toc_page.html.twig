@@ -3,6 +3,7 @@
 
 {{ form_start(form, { 'attr': {'id': 'form_toc_page'}, 'action': path('vs_cms_multipage_toc_page_handle', {'tocId': tocId}) }) }}
     {{ form_widget(form._token) }}
+    {{ form_widget(form.id) }}
     
     {% if form_errors(form) is not empty %}
         <div class="alert alert-block alert-danger fade in">

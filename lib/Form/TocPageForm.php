@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -27,6 +28,8 @@ class TocPageForm extends AbstractForm
         parent::buildForm( $builder, $options );
         
         $builder
+            ->add( 'id', HiddenType::class )
+        
         /*
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',

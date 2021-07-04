@@ -89,7 +89,7 @@
     	                <div class="card-header">
                             <div class="float-left" style="height:30px; padding-top:10px;">TOC Pages</div>
                             <div class="btn-group float-right">
-                                <a class="btn btn-primary btnTocPage" 
+                                <a class="btn btn-primary btnTocPage" id="btnTocPage" 
                                 	title="{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}" 
                                 	href="javascript:void(0);" 
                                 	data-url="{{ path('vs_cms_multipage_toc_page_edit', {'tocId': item.id}) }}"
@@ -116,6 +116,12 @@
 
 {% block modals %}
     {% include '@VSCms/Pages/MultipageToc/modal/multipage_toc_page_edit.html.twig' %}
+{% endblock %}
+
+{% block head_styles %}
+	{{ parent() }}
+	
+	{{ encore_entry_link_tags( 'js/multipage-toc-update' ) }}
 {% endblock %}
 
 {% block body_scripts %}
