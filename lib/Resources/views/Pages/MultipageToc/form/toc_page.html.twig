@@ -1,0 +1,81 @@
+{{ encore_entry_link_tags( 'js/multipage-toc-page-form' ) }}
+{{ encore_entry_script_tags( 'js/multipage-toc-page-form' ) }}
+
+{{ form_start(form, { 'attr': {'id': 'form_toc_page'}, 'action': path('vs_cms_multipage_toc_page_handle', {'tocId': tocId}) }) }}
+    {{ form_widget(form._token) }}
+    
+    {% if form_errors(form) is not empty %}
+        <div class="alert alert-block alert-danger fade in">
+            <button type="button" class="close close-sm" data-dismiss="alert">
+                <i class="icon-remove"></i>
+            </button>
+            <strong>{{ 'vs_application.form.errors_title' | trans( {},'VSApplicationBundle' ) }}</strong> {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    {% set comboDataSourceUrl  = path('vs_cms_multipage_toc_page_easyui_combotree', {'tocId': tocId}) %}
+    {% set comboDataOptions    = "
+    		url:'" ~ comboDataSourceUrl ~ "',
+    		required:true,
+    		onBeforeLoad:function( node ) {
+    		    //showSpiner
+    		},
+    		onLoadSuccess:function( node ) {
+    			$( '#toc_page_form_parent' ).combotree( 'setValue', $( '#toc_page_form_parent' ).attr( 'data-value' ) );
+    			//hideSpiner
+    		}
+    " %}
+    <div class="form-group">
+        {{ form_label( form.parent, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        
+        {# 'data-value': item.parent ? item.parent.id : null #}
+        {{ form_widget( form.parent, {
+            'attr': {
+                'class': 'form-control easyui-combotree',
+                'data-options': comboDataOptions,
+            }
+        }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label( form.title, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        {{ form_widget( form.title, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    
+    {% set pagesComboDataSourceUrl  = path('vs_cms_pages_tree_combo_with_leafs', {'taxonomyId': 3}) %}
+    {% set pagesComboDataOptions    = "
+    		url:'" ~ pagesComboDataSourceUrl ~ "',
+    		required:true,
+    		onBeforeLoad:function( node ) {
+    		    //showSpiner
+    		},
+    		onLoadSuccess:function( node ) {
+    			$( '#toc_page_form_page' ).combotree( 'setValue', $( '#toc_page_form_page' ).attr( 'data-value' ) );
+    			//hideSpiner
+    		}
+    " %}
+    <div class="form-group">
+        {{ form_label( form.page, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        
+        {# 'data-value': item.page ? item.page.id : null #}
+        {{ form_widget( form.page, {
+            'attr': {
+                'class': 'form-control easyui-combotree',
+                'data-options': pagesComboDataOptions,
+            }
+        }) }}
+    </div>
+    
+    {% do form.btnSave.setRendered() %}
+    {% do form.btnApply.setRendered(false) %}
+    {% do form.btnCancel.setRendered() %}
+{{ form_end(form, {'render_rest': false}) }}

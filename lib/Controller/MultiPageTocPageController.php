@@ -46,8 +46,12 @@ class MultiPageTocPageController extends AbstractController
         $locale         = $request->getLocale();
         $tocRootPage    = $this->tocRepository->find( $tocId )->getTocRootPage();
         
-        $oTocPage       = $this->tocPageFactory->createNew();
-        //$oTocPage->setTranslatableLocale( $locale );
+        $tocPageId      = (int)$request->query->get( 'toc-page-id' );
+        if ( $tocPageId ) {
+            $oTocPage   = $this->tocPageRepository->find( $tocPageId );
+        } else {
+            $oTocPage   = $this->tocPageFactory->createNew();
+        }
         
         $form           = $this->createForm( TocPageForm::class, $oTocPage, [
             'data'          => $oTocPage,

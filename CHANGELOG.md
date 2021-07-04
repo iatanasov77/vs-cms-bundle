@@ -1,3 +1,10 @@
+0.8.0	|	Release date: **04.07.2021**
+============================================
+* New Features:
+  - Add Edit Option of TocPage.
+  - Add Templates For MultipageToc.
+
+
 0.7.26	|	Release date: **03.07.2021**
 ============================================
 * New Features:
