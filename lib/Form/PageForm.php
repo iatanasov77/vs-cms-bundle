@@ -23,7 +23,7 @@ class PageForm extends AbstractForm
     public function __construct(
         RequestStack $requestStack,
         string $dataClass,
-        string $categoryClass,
+        string $categoryClass
     ) {
         parent::__construct( $dataClass );
         
