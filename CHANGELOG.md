@@ -1,3 +1,9 @@
+0.8.3	|	Release date: **05.07.2021**
+============================================
+* Bug-Fixes:
+  - Add locale property in the Document Model.
+
+
 0.8.2	|	Release date: **05.07.2021**
 ============================================
 * New Features:

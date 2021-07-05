@@ -11,6 +11,9 @@ class Document implements DocumentInterface
     /** @var MultipageToc */
     protected $multipageToc;
     
+    /** @var string */
+    protected $locale;
+    
     public function getId()
     {
         return $this->id;
@@ -21,7 +24,7 @@ class Document implements DocumentInterface
         return $this->title;
     }
     
-    public function setTitle($title)
+    public function setTitle( $title )
     {
         $this->title = $title;
         return $this;
@@ -35,6 +38,13 @@ class Document implements DocumentInterface
     public function setMultipageToc( $multipageToc )
     {
         $this->multipageToc = $multipageToc;
+        
+        return $this;
+    }
+    
+    public function setTranslatableLocale( $locale )
+    {
+        $this->locale = $locale;
         
         return $this;
     }
