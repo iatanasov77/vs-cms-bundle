@@ -1,5 +1,7 @@
+{#
 {{ encore_entry_link_tags( 'js/multipage-toc-page-form' ) }}
 {{ encore_entry_script_tags( 'js/multipage-toc-page-form' ) }}
+#}
 
 {{ form_start(form, { 'attr': {'id': 'form_toc_page'}, 'action': path('vs_cms_multipage_toc_page_handle', {'tocId': tocId}) }) }}
     {{ form_widget(form._token) }}
