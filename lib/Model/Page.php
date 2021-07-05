@@ -40,11 +40,6 @@ class Page implements PageInterface, TaxonLeafInterface
     /** @var string */
     protected $locale;
     
-    /** @var integer */
-    protected $type;
-    
-    protected $multipageToc;
-    
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -148,33 +143,6 @@ class Page implements PageInterface, TaxonLeafInterface
     public function isPublished()
     {
         return $this->isEnabled();
-    }
-    
-    public function getType()
-    {
-        return $this->type;
-    }
-    
-    public function setType( $type )
-    {
-        if ( ! in_array( $type, [self::TYPE_SINGLE_PAGE, self::TYPE_MULTI_PAGE] ) ) {
-            throw new \InvalidArgumentException( "Invalid Page Type !!!" );
-        }
-        $this->type = $type;
-        
-        return $this;
-    }
-    
-    public function getMultipageToc()
-    {
-        return $this->multipageToc;
-    }
-    
-    public function setMultipageToc( $multipageToc )
-    {
-        $this->multipageToc = $multipageToc;
-        
-        return $this;
     }
     
     /*

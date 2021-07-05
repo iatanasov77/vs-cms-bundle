@@ -6,7 +6,6 @@ vs_cms:
         apply: 'Въведи'
         save: 'Запази'
         cancel: 'Отказ'
-        
         page_label: 'Страница'
         
         page:
@@ -22,6 +21,8 @@ vs_cms:
         category:
             parent_category: 'Родителска Категория'
             parent_category_placeholder: '-- Родителска Категория --'
+        document:
+            document_toc: 'Документ Съдържание'
             
     template:
         page_categories_index_title: 'Категории Страници'

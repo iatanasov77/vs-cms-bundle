@@ -6,7 +6,6 @@ vs_cms:
         apply: 'Apply'
         save: 'Save'
         cancel: 'Cancel'
-        
         page_label: 'Page'
         
         page:
@@ -22,6 +21,8 @@ vs_cms:
         category:
             parent_category: 'Parent Category'
             parent_category_placeholder: '-- Parent Category --'
+        document:
+            document_toc: 'Document TOC'
             
     template:
         page_categories_index_title: 'Page Categories'

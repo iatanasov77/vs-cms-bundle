@@ -1,3 +1,9 @@
+0.8.2	|	Release date: **05.07.2021**
+============================================
+* New Features:
+  - Separate Page Model Relation to Multipage TOC into the Document Model.
+
+
 0.8.1	|	Release date: **04.07.2021**
 ============================================
 * Bug-Fixes:

@@ -20,19 +20,15 @@ class PageForm extends AbstractForm
     
     protected $categoryClass;
     
-    protected $multipageTocClass;
-    
     public function __construct(
         RequestStack $requestStack,
         string $dataClass,
         string $categoryClass,
-        string $multipageTocClass
     ) {
         parent::__construct( $dataClass );
         
         $this->requestStack         = $requestStack;
         $this->categoryClass        = $categoryClass;
-        $this->multipageTocClass    = $multipageTocClass;
     }
 
     public function buildForm( FormBuilderInterface $builder, array $options )
@@ -54,25 +50,7 @@ class PageForm extends AbstractForm
             ->add( 'enabled', CheckboxType::class, [
                 'label' => 'vs_cms.form.page.published',
                 'translation_domain'    => 'VSCmsBundle',
-            ])
-
-            ->add( 'type', ChoiceType::class, [
-                'choices'   => [
-                    'Single Page'   => Page::TYPE_SINGLE_PAGE,
-                    'Multi Page'    => Page::TYPE_MULTI_PAGE,
-                ],
-                'required'  => true,
-            ])
-            
-            ->add( 'multipageToc', EntityType::class, [
-                'label'                 => 'vs_cms.form.multipage_toc',
-                'translation_domain'    => 'VSCmsBundle',
-                'class'                 => $this->multipageTocClass,
-                'placeholder'           => 'vs_cms.form.multipage_toc',
-                'choice_label'          => 'tocTitle',
-                'required'              => true
-            ])
-                
+            ])  
             
             ->add( 'category_taxon', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.page.categories',

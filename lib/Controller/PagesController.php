@@ -22,7 +22,6 @@ class PagesController extends AbstractCrudController
             'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
             'taxonomyId'    => $taxonomyId,
             'translations'  => $translations,
-            'translations'  => $translations,
             'versions'      => $versions,
         ];
     }
