@@ -51,8 +51,10 @@ class Document implements DocumentInterface
     
     public function getPage()
     {
-        return $this->multipageToc && ! empty( $this->multipageToc->getTocRootPage()->getChildren() ) ? 
-                    $this->multipageToc->getTocRootPage()->getChildren()[0]->getPage() : 
+        return $this->multipageToc &&
+                ! empty( $this->multipageToc->getTocRootPage()->getChildren() ) &&
+                $this->multipageToc->getTocRootPage()->getChildren()[0] ?
+                    $this->multipageToc->getTocRootPage()->getChildren()[0]->getPage() :
                     $this->multipageToc->getMainPage();
     }
 }

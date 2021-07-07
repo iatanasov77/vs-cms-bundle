@@ -1,3 +1,10 @@
+0.8.8	|	Release date: **07.07.2021**
+============================================
+* Bug-Fixes:
+  - Fix PagesCategoryController to save Parent Category.
+  - Some Another Fix.
+
+
 0.8.7	|	Release date: **07.07.2021**
 ============================================
 * Bug-Fixes:

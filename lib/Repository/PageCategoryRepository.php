@@ -13,6 +13,18 @@ class PageCategoryRepository extends EntityRepository
         return parent::find( $id, $lockMode, $lockVersion );
     }
     
+    public function findByTaxonId( $taxonId )
+    {
+        $allCategories  = $this->findAll();
+        foreach ( $allCategories as $cat ) {
+            if ( $cat->getTaxon()->getId() == $taxonId ) {
+                return $cat;
+            }
+        }
+        
+        return null;
+    }
+    
     public function findByTaxonCode( $code )
     {
         $allCategories  = $this->findAll();
