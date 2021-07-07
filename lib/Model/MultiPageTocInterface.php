@@ -6,7 +6,7 @@ interface MultiPageTocInterface extends ResourceInterface
 {
     public function getTocTitle(): string;
     
-    public function getMainPage(): ?PageInterface
+    public function getMainPage(): ?PageInterface;
     
     public function getTocRootPage(): ?TocPageInterface;
 }
