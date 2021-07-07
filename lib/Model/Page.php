@@ -30,6 +30,9 @@ class Page implements PageInterface, TaxonLeafInterface
 
     /** @var string */
     protected $title;
+    
+    /** @var string */
+    protected $description;
 
     /** @var string */
     protected $text;
@@ -118,6 +121,17 @@ class Page implements PageInterface, TaxonLeafInterface
     public function setText($text)
     {
         $this->text = $text;
+        return $this;
+    }
+    
+    public function getDescription() : ?string
+    {
+        return $this->description;
+    }
+    
+    public function setDescription($description)
+    {
+        $this->description = $description;
         return $this;
     }
     

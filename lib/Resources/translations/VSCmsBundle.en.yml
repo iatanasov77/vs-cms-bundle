@@ -2,6 +2,7 @@ vs_cms:
     form:
         locale: 'Locale'
         title: 'Title'
+        description: 'Description'
         parent: 'Parent'
         apply: 'Apply'
         save: 'Save'

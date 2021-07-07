@@ -8,6 +8,9 @@ class MultiPageToc implements MultiPageTocInterface
     /** @var string */
     protected $tocTitle;
     
+    /** @var PageInterface */
+    protected $mainPage;
+    
     /** @var TocPageInterface */
     protected $tocRootPage;
     
@@ -27,6 +30,18 @@ class MultiPageToc implements MultiPageTocInterface
     public function setTocTitle( $tocTitle )
     {
         $this->tocTitle = $tocTitle;
+        
+        return $this;
+    }
+    
+    public function getMainPage(): ?PageInterface
+    {
+        return $this->mainPage;
+    }
+    
+    public function setMainPage( ?PageInterface $mainPage )
+    {
+        $this->mainPage  = $mainPage;
         
         return $this;
     }

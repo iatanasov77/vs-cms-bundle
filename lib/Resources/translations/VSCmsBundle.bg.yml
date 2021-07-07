@@ -2,6 +2,7 @@ vs_cms:
     form:
         locale: 'Език'
         title: 'Име'
+        description: 'Описание'
         parent: 'Родител'
         apply: 'Въведи'
         save: 'Запази'

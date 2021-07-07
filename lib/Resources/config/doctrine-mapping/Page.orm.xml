@@ -21,6 +21,10 @@
             <gedmo:translatable />
         </field>
         
+        <field name="description" column="description" type="string" length="255" nullable="true">
+            <gedmo:translatable />
+        </field>
+        
         <field name="text" column="text" type="text" nullable="false">
             <gedmo:translatable />
             <gedmo:versioned />

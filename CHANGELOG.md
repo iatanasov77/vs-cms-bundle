@@ -1,3 +1,13 @@
+0.8.6	|	Release date: **07.07.2021**
+============================================
+* New Features:
+  - Add getPage method of Document Model.
+  - Add New Model Fields into the Templates.
+  - Add mainPage Field of the Model MultiPageToc.
+  - Add description Field of the Model Page.
+  - Set DocumentForm field multipageToc Not Required.
+
+
 0.8.5	|	Release date: **05.07.2021**
 ============================================
 * Bug-Fixes:

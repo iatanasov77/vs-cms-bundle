@@ -68,6 +68,15 @@
                                 {{ form_widget(form.tocTitle, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             
+                            <div class="form-group">
+                                {{ form_label(form.mainPage, null, {
+                                    'label_attr': {'class': 'col-form-label'}
+                                    }) 
+                                }}
+                                
+                                {{ form_widget(form.mainPage, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            
                             {# NOT NEED THIS-ONE
                             <div class="form-group">
                                 {{ form_label(form.tocRootPage, null, {

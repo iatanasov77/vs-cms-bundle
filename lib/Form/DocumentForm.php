@@ -45,6 +45,7 @@ class DocumentForm extends AbstractForm
             ->add( 'title', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
+                'required'              => true
             ])
             
             ->add( 'multipageToc', EntityType::class, [
@@ -53,7 +54,7 @@ class DocumentForm extends AbstractForm
                 'class'                 => $this->multipageTocClass,
                 'placeholder'           => 'vs_cms.form.document.document_toc',
                 'choice_label'          => 'tocTitle',
-                'required'              => true
+                'required'              => false
             ])
         ;
     }

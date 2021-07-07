@@ -60,6 +60,15 @@
         {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
     </div>
     
+    <div class="form-group">
+        {{ form_label(form.description, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    
     <div class="row">&nbsp;</div>
     <div class="">
 		<div class="card bg-info text-white shadow">

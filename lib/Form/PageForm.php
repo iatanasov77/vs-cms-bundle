@@ -61,6 +61,10 @@ class PageForm extends AbstractForm
                 'placeholder'           => 'vs_cms.form.page.categories_placeholder',
             ])
             
+            ->add( 'description', TextType::class, [
+                'label'                 => 'vs_cms.form.description',
+                'translation_domain'    => 'VSCmsBundle',
+            ])
             ->add( 'title', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',

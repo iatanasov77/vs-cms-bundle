@@ -19,12 +19,15 @@ class MultiPageTocForm extends AbstractForm
     
     protected $tocPageClass;
     
-    public function __construct( RequestStack $requestStack, string $dataClass, string $tocPageClass )
+    protected $pagesClass;
+    
+    public function __construct( RequestStack $requestStack, string $dataClass, string $tocPageClass, string $pagesClass )
     {
         parent::__construct( $dataClass );
         
         $this->requestStack = $requestStack;
         $this->tocPageClass = $tocPageClass;
+        $this->pagesClass   = $pagesClass;
     }
 
     public function buildForm( FormBuilderInterface $builder, array $options )
@@ -49,6 +52,14 @@ class MultiPageTocForm extends AbstractForm
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
                 'required'              => true
+            ])
+            
+            ->add( 'mainPage', EntityType::class, [
+                'required'              => true,
+                'label'                 => 'vs_cms.form.page_label',
+                'translation_domain'    => 'VSCmsBundle',
+                'class'                 => $this->pagesClass,
+                'choice_label'          => 'title',
             ])
             
             ->add( 'tocRootPage', EntityType::class, [

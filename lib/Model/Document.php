@@ -48,4 +48,11 @@ class Document implements DocumentInterface
         
         return $this;
     }
+    
+    public function getPage()
+    {
+        return $this->multipageToc && ! empty( $this->multipageToc->getTocRootPage()->getChildren() ) ? 
+                    $this->multipageToc->getTocRootPage()->getChildren()[0]->getPage() : 
+                    $this->multipageToc->getPage();
+    }
 }
