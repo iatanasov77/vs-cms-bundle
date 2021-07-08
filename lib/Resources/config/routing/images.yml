@@ -4,15 +4,3 @@ vs_cms_images_get_file:
     requirements:
         file: .+
 
-vs_cms_fosckeditor_browse:
-    path: /fosckeditor/browse/{directory}
-    controller: VS\CmsBundle\Controller\GetImageController::fosckeditorBrowse
-    requirements:
-        directory: .+
-
-vs_cms_fosckeditor_upload:
-    path: /fosckeditor/upload/{directory}
-    controller: VS\CmsBundle\Controller\GetImageController::fosckeditorUpload
-    requirements:
-        directory: .+
-

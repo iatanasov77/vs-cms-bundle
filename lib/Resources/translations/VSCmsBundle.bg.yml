@@ -24,6 +24,9 @@ vs_cms:
             parent_category_placeholder: '-- Родителска Категория --'
         document:
             document_toc: 'Документ Съдържание'
+        filemanager:
+            file_lable: 'Upload File'
+            file_info: 'Allowed Types: jpeg, png'
             
     template:
         page_categories_index_title: 'Категории Страници'
@@ -46,6 +49,7 @@ vs_cms:
         button_edit: 'Запиши'
         button_delete: 'Изтрий'
         button_create_toc_page: 'Create New TOC Page'
+        filemanager_upload_file_title: 'FileManager Uplod File'
         
     modal:
         page_clone:

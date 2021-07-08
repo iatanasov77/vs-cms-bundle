@@ -24,6 +24,9 @@ vs_cms:
             parent_category_placeholder: '-- Parent Category --'
         document:
             document_toc: 'Document TOC'
+        filemanager:
+            file_lable: 'Upload File'
+            file_info: 'Allowed Types: jpeg, png'
             
     template:
         page_categories_index_title: 'Page Categories'
@@ -46,6 +49,7 @@ vs_cms:
         button_edit: 'Edit'
         button_delete: 'Edit'
         button_create_toc_page: 'Create New TOC Page'
+        filemanager_upload_file_title: 'FileManager Uplod File'
         
     modal:
         page_clone:

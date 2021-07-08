@@ -36,18 +36,4 @@ class GetImageController extends AbstractController
             return new BinaryFileResponse( $this->getParameter( 'kernel.project_dir' ) . '/' . $file );
         }
     }
-    
-    public function fosckeditorBrowse( $directory, Request $request )
-    {
-        $response = $this->forward( 'Artgris\Bundle\FileManagerBundle\Controller::indexAction' );
-        
-        return $response;
-    }
-    
-    public function fosckeditorUpload( $directory, Request $request )
-    {
-        $response = $this->forward( 'Artgris\Bundle\FileManagerBundle\Controller::uploadFileAction' );
-        
-        return $response;
-    }
 }

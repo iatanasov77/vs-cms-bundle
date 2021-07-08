@@ -1,0 +1,16 @@
+{% import "@VSApplication/macros/form.html.twig" as vs_form %}
+
+{% set method = "POST" %}
+{{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
+    {{ form_widget(form._token) }}
+    
+    <div class="form-group">
+        {{ form_label(form.file, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    
+    {{ vs_form.buttons( form ) }}
+{{ form_end(form, {'render_rest': false}) }}

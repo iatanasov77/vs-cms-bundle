@@ -1,0 +1,18 @@
+vs_cms_fosckeditor_browse:
+    path: /fosckeditor/browse/{directory}
+    controller: VS\CmsBundle\Controller\FileManagerController::fosckeditorBrowse
+    requirements:
+        directory: .+
+
+vs_cms_fosckeditor_upload:
+    path: /fosckeditor/upload/{directory}
+    controller: VS\CmsBundle\Controller\FileManagerController::fosckeditorUpload
+    requirements:
+        directory: .+
+        
+vs_cms_filemanager_upload:
+    path: /filemanager/upload
+    controller: VS\CmsBundle\Controller\FileManagerController::uploadFile
+    requirements:
+        directory: .+
+
