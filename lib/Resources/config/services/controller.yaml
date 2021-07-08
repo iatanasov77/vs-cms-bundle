@@ -24,3 +24,6 @@ services:
             - '@vs_cms.factory.multipage_toc_page'
             - '@vs_cms.repository.pages'
 
+    VS\CmsBundle\Controller\FileManagerController:
+        tags: ['controller.service_arguments']
+        autowire: true

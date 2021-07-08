@@ -42,3 +42,9 @@ services:
             - '%vs_cms.model.multipage_toc_page.class%'
             - '%vs_cms.model.pages.class%'
 
+    VS\CmsBundle\Form\FileManager\UploadFileForm:
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.pages.class%'
+            
