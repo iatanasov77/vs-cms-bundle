@@ -1,3 +1,9 @@
+0.8.11	|	Release date: **08.07.2021**
+============================================
+* New Features:
+  - Add artgris/filemanager-bundle
+
+
 0.8.10	|	Release date: **08.07.2021**
 ============================================
 * New Features:
