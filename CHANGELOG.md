@@ -1,3 +1,12 @@
+0.8.9	|	Release date: **08.07.2021**
+============================================
+* New Features:
+  - Create Nested Acordion Form Pages/index.html.twig
+* Bug-Fixes:
+  - Fix Page Category Form Template.
+  - Fix Page Categories Templates.
+
+
 0.8.8	|	Release date: **07.07.2021**
 ============================================
 * Bug-Fixes:

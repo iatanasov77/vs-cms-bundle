@@ -8,5 +8,5 @@
 </tr>
 
 {% for child in item.children %}
-	{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'parentId': item.id, 'taxon': child} %}   
+	{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'parentId': item.id, 'item': child} %}   
 {% endfor %}

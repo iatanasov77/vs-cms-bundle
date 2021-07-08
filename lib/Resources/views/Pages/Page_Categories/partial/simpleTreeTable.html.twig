@@ -7,7 +7,9 @@
     </thead>
 	<tbody>
         {% for item in items %}
-        	{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'category': item, 'parentId': 0} %}
+        	{% if not item.parent %}
+        		{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'category': item, 'parentId': 0} %}
+        	{% endif %}
         {% endfor %}
     </tbody>
 </table>

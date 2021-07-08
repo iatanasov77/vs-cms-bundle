@@ -18,7 +18,20 @@
     {% else %}
     	{% set taxonId = '' %}
     {% endif %}
-    {% set tree_data_options = "url:'" ~ path( 'vs_application_taxonomy_taxons_easyui_combotree', {'taxonomyId': taxonomyId} ) ~ "', required:true" %}
+    {% if item.id %}{% set itemId = item.id %}{% else %}{% set itemId = 0 %}{% endif %}
+    {% set comboDataSourceUrl  = url( 'vs_application_taxonomy_taxons_easyui_combotree', {'taxonomyId': taxonomyId} ) %}
+    {% set comboTreePlaceholder = 'vs_cms.form.category.parent_category_placeholder' | trans( {},'VSCmsBundle' ) %}
+    {% set comboDataOptions    = "
+    		url:'" ~ comboDataSourceUrl ~ 
+    		"', required:true, prompt:'" ~ comboTreePlaceholder ~"',
+    		onBeforeLoad:function( node ) {
+    		    //showSpiner
+    		},
+    		onLoadSuccess:function( node ) {
+    			$( '#page_category_form_parent' ).combotree( 'setValue', $( '#page_category_form_parent' ).attr( 'data-value' ) );
+    			//hideSpiner
+    		}
+    " %}
     <div class="form-group">
         {{ form_label(form.parent, null, {
             'label_attr': {'class': 'col-form-label'}
@@ -27,7 +40,7 @@
         {{ form_widget(form.parent, {
             'attr': {
                 'class': 'easyui-combotree',
-                'data-options': tree_data_options,
+                'data-options': comboDataOptions,
                 'data-value': taxonId
             }
         }) }}
