@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 use VS\CmsBundle\Form\FileManager\UploadFileForm;
 
-class FileManagerController
+class FileManagerController extends AbstractController
 {
     public function uploadFile( Request $request ): Response
     {

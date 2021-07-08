@@ -13,6 +13,3 @@ vs_cms_fosckeditor_upload:
 vs_cms_filemanager_upload:
     path: /filemanager/upload
     controller: VS\CmsBundle\Controller\FileManagerController::uploadFile
-    requirements:
-        directory: .+
-
