@@ -36,4 +36,14 @@ class GetImageController extends AbstractController
             return new BinaryFileResponse( $this->getParameter( 'kernel.project_dir' ) . '/' . $file );
         }
     }
+    
+    public function fosckeditorBrowse( $directory, Request $request )
+    {
+        
+    }
+    
+    public function fosckeditorUpload( $directory, Request $request )
+    {
+        
+    }
 }

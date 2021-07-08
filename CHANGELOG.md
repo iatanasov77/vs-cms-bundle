@@ -1,3 +1,9 @@
+0.8.10	|	Release date: **08.07.2021**
+============================================
+* New Features:
+  - Add FOSCKEditor Browse and Upload COntroller Actions.
+
+
 0.8.9	|	Release date: **08.07.2021**
 ============================================
 * New Features:
