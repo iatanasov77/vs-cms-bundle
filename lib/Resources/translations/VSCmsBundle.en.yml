@@ -25,6 +25,7 @@ vs_cms:
         document:
             document_toc: 'Document TOC'
         filemanager:
+            file_directory_lable: 'Directory'
             file_lable: 'Upload File'
             file_info: 'Allowed Types: jpeg, png'
             

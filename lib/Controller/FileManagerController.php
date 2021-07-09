@@ -21,7 +21,8 @@ class FileManagerController extends AbstractController
             $formData   = $form->getData();
             
             if ( $formData['file'] ) {
-                $fileName   = $this->handleProfilePicture( $formData['file'] );
+                $targetDir  = $this->getParameter( 'kernel.project_dir' ) . $formData['directory'];
+                $fileName   = $this->handleFileUpload( $formData['file'], $targetDir );
             }
 
             return $this->redirectToRoute( 'file_manager', ['conf' => 'default'] );
@@ -47,7 +48,7 @@ class FileManagerController extends AbstractController
         return $response;
     }
     
-    protected function handleFileUpload( $file ) : string
+    protected function handleFileUpload( $file, $targetDir ) : string
     {
         $originalFilename   = pathinfo( $file->getClientOriginalName(), PATHINFO_FILENAME );
         // this is needed to safely include the file name as part of the URL
@@ -58,7 +59,7 @@ class FileManagerController extends AbstractController
         // Move the file to the directory where brochures are stored
         try {
             $file->move(
-                $this->getParameter( 'vs_user.profile_pictures_dir' ),
+                $targetDir,
                 $newFilename
             );
         } catch ( FileException $e ) {

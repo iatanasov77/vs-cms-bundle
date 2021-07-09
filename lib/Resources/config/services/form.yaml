@@ -45,6 +45,4 @@ services:
     VS\CmsBundle\Form\FileManager\UploadFileForm:
         tags:
             - { name: form.type }
-        arguments:
-            - '%vs_cms.model.pages.class%'
             

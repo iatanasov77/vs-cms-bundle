@@ -25,8 +25,9 @@ vs_cms:
         document:
             document_toc: 'Документ Съдържание'
         filemanager:
-            file_lable: 'Upload File'
-            file_info: 'Allowed Types: jpeg, png'
+            file_directory_lable: 'Директория'
+            file_lable: 'Избери Файл'
+            file_info: 'Позволени Типове: jpeg, png'
             
     template:
         page_categories_index_title: 'Категории Страници'
