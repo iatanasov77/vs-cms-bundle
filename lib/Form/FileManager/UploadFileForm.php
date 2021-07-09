@@ -15,16 +15,14 @@ class UploadFileForm extends AbstractType
 {    
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
-        parent::buildForm( $builder, $options );
-        
         $builder
             ->add( 'directory', TextType::class, [
-                'label'                 => 'vs_users.form.filemanager.file_directory_lable',
+                'label'                 => 'vs_cms.form.filemanager.file_directory_lable',
                 'translation_domain'    => 'VSCmsBundle',
                 'mapped'                => false,
             ])
             ->add( 'file', FileType::class, [
-                'label'                 => 'vs_users.form.filemanager.file_lable',
+                'label'                 => 'vs_cms.form.filemanager.file_lable',
                 'translation_domain'    => 'VSCmsBundle',
                 'mapped'                => false,
                 
@@ -50,22 +48,5 @@ class UploadFileForm extends AbstractType
             ->add( 'btnSave', SubmitType::class, ['label' => 'vs_application.form.save', 'translation_domain' => 'VSApplicationBundle',] )
             ->add( 'btnCancel', ButtonType::class, ['label' => 'vs_application.form.cancel', 'translation_domain' => 'VSApplicationBundle',] )
         ;
-    }
-    
-    public function configureOptions( OptionsResolver $resolver ) : void
-    {
-        parent::configureOptions( $resolver );
-        
-//         $resolver
-//             ->setDefined([
-//                 'users',
-//             ])
-//             ->setAllowedTypes( 'users', UserInterface::class )
-//         ;
-    }
-    
-    public function getName()
-    {
-        return 'vs_cms.filemanager.upload_file';
     }
 }

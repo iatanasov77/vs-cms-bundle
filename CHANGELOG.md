@@ -1,3 +1,10 @@
+0.8.16	|	Release date: **09.07.2021**
+============================================
+* Bug-Fixes:
+  - Fix FileManager FileUpload.
+  - Fix UploadFileForm Labels.
+
+
 0.8.15	|	Release date: **09.07.2021**
 ============================================
 * Bug-Fixes:

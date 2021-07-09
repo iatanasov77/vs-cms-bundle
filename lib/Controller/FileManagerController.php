@@ -18,13 +18,13 @@ class FileManagerController extends AbstractController
         
         $form->handleRequest( $request );
         if ( $form->isSubmitted() ) {
-            $formData   = $form->getData();
-            
-            if ( $formData['file'] ) {
-                $targetDir  = $this->getParameter( 'kernel.project_dir' ) . $formData['directory'];
-                $fileName   = $this->handleFileUpload( $formData['file'], $targetDir );
+            $directory   = $form['directory']->getData();
+            $file       = $form['file']->getData();
+            if ( $file ) {
+                $targetDir  = $this->getParameter( 'kernel.project_dir' ) . $directory;
+                $fileName   = $this->handleFileUpload( $file, $targetDir );
             }
-
+            
             return $this->redirectToRoute( 'file_manager', ['conf' => 'default'] );
         }
         
@@ -61,7 +61,7 @@ class FileManagerController extends AbstractController
             $file->move(
                 $targetDir,
                 $newFilename
-            );
+                );
         } catch ( FileException $e ) {
             // ... handle exception if something happens during file upload
         }
