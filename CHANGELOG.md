@@ -1,3 +1,9 @@
+0.8.17	|	Release date: **09.07.2021**
+============================================
+* New Features:
+  - Add List Action for FileManager.
+
+
 0.8.16	|	Release date: **09.07.2021**
 ============================================
 * Bug-Fixes:

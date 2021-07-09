@@ -9,6 +9,14 @@ use VS\CmsBundle\Form\FileManager\UploadFileForm;
 
 class FileManagerController extends AbstractController
 {
+	/**
+	 *	@TODO Try Implement This FileManager: https://ckeditor.com/docs/ckfinder/demo/ckfinder3/samples/ckeditor.html
+	 */
+    public function listFiles( Request $request ): Response
+    {
+        return $this->render( '@VSCms/Pages/FileManager/list_files.html.twig' );
+    }
+    
     public function uploadFile( Request $request ): Response
     {
         $form       = $this->createForm( UploadFileForm::class, null, [
