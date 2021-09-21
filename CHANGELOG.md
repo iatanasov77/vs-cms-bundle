@@ -1,3 +1,10 @@
+1.0.0	|	Release date: **21.09.2021**
+============================================
+* New Features:
+  - Upgrade to Application Bundle 1.0.*
+  - Styling FileManager List Template.
+
+
 0.8.17	|	Release date: **09.07.2021**
 ============================================
 * New Features:

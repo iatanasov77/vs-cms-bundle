@@ -33,7 +33,7 @@ class FileManagerController extends AbstractController
                 $fileName   = $this->handleFileUpload( $file, $targetDir );
             }
             
-            return $this->redirectToRoute( 'file_manager', ['conf' => 'default'] );
+            return $this->redirectToRoute( 'vs_cms_filemanager_list' );
         }
         
         return $this->render( '@VSCms/Pages/FileManager/upload_file.html.twig', [
