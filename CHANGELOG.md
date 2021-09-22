@@ -1,3 +1,9 @@
+1.0.1	|	Release date: **22.09.2021**
+============================================
+* Bug-Fixes:
+  - Add missing twig variables for PagesController.
+
+
 1.0.0	|	Release date: **21.09.2021**
 ============================================
 * New Features:

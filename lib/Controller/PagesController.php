@@ -4,6 +4,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use VS\ApplicationBundle\Controller\AbstractCrudController;
 
+use VS\CmsBundle\Form\ClonePageForm;
+use VS\CmsBundle\Form\PreviewPageForm;
+
 class PagesController extends AbstractCrudController
 {
     protected function customData(): array
@@ -23,6 +26,9 @@ class PagesController extends AbstractCrudController
             'taxonomyId'    => $taxonomyId,
             'translations'  => $translations,
             'versions'      => $versions,
+            
+            'formClone'     => $this->createForm( ClonePageForm::class )->createView(),
+            'formPreview'   => $this->createForm( PreviewPageForm::class )->createView(),
         ];
     }
     
