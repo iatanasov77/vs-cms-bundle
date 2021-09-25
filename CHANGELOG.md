@@ -1,3 +1,9 @@
+1.0.2	|	Release date: **25.09.2021**
+============================================
+* New Features and Improvements:
+  - Initialize Taxonomy Repositories in Controller Constructor and get taxonomyId by Code everywhere that is needed.
+
+
 1.0.1	|	Release date: **22.09.2021**
 ============================================
 * Bug-Fixes:

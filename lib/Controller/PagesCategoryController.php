@@ -24,13 +24,6 @@ class PagesCategoryController extends AbstractCrudController
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
-        if ( $this->container->hasParameter( 'vs_cms.page_categories.taxonomy_id' ) ) {
-            $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
-        } else {
-            $taxonomyCode   = $this->getParameter( 'vs_application.page_categories.taxonomy_code' );
-            $taxonomyId     = $this->get( 'vs_application.repository.taxonomy' )->findByCode( $taxonomyCode )->getId();
-        }
-        
         $translatableLocale     = $form['currentLocale']->getData();
         $categoryName           = $form['name']->getData();
         $parentCategory         = $this->get( 'vs_cms.repository.page_categories' )
@@ -48,11 +41,14 @@ class PagesCategoryController extends AbstractCrudController
             /*
              * @WORKAROUND Create Taxon If not exists
              */
+            $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+                                        $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
+                                    );
             $newTaxon   = $this->createTaxon(
                 $categoryName,
                 $translatableLocale,
                 $parentCategory ? $parentCategory->getTaxon() : null,
-                $taxonomyId
+                $taxonomy->getId()
             );
             
             $entity->setTaxon( $newTaxon );
@@ -62,15 +58,12 @@ class PagesCategoryController extends AbstractCrudController
     
     protected function customData(): array
     {
-        if ( $this->container->hasParameter( 'vs_cms.page_categories.taxonomy_id' ) ) {
-            $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
-        } else {
-            $taxonomyCode   = $this->getParameter( 'vs_application.page_categories.taxonomy_code' );
-            $taxonomyId     = $this->get( 'vs_application.repository.taxonomy' )->findByCode( $taxonomyCode )->getId();
-        }
+        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode( 
+                                    $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
+                                );
         
         return [
-            'taxonomyId'    => $taxonomyId
+            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
         ];
     }
 }

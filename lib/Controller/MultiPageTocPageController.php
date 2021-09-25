@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
 use VS\ApplicationBundle\Component\Slug;
+use VS\ApplicationBundle\Repository\TaxonomyRepository;
 
-//use Sylius\Component\Resource\Repository\RepositoryInterface;
 use VS\CmsBundle\Repository\MultiPageTocRepository;
 use VS\CmsBundle\Repository\TocPagesRepository;
 use VS\CmsBundle\Repository\PagesRepository;
@@ -29,16 +29,21 @@ class MultiPageTocPageController extends AbstractController
     /** @var PagesRepository */
     private $pagesRepository;
     
+    /** @var TaxonomyRepository */
+    private $taxonomyRepository;
+    
     public function __construct(
         MultiPageTocRepository $tocRepository,
         TocPagesRepository $tocPageRepository,
         FactoryInterface $tocPageFactory,
-        PagesRepository $pagesRepository
+        PagesRepository $pagesRepository,
+        TaxonomyRepository $taxonomyRepository
     ) {
         $this->tocRepository        = $tocRepository;
         $this->tocPageRepository    = $tocPageRepository;
         $this->tocPageFactory       = $tocPageFactory;
         $this->pagesRepository      = $pagesRepository;
+        $this->taxonomyRepository   = $taxonomyRepository;
     }
     
     public function editTocPage( $tocId, Request $request ): Response
@@ -59,10 +64,12 @@ class MultiPageTocPageController extends AbstractController
             'tocRootPage'   => $tocRootPage
         ]);
         
+        $pageCategoriesTaxonomy = $this->taxonomyRepository->findByCode( 'page-categories' );
         return $this->render( '@VSCms/Pages/MultipageToc/form/toc_page.html.twig', [
             'form'  => $form->createView(),
             'tocId' => $tocId,
             'item'  => $oTocPage,
+            'pageCategoriesTaxonomyId'  => $pageCategoriesTaxonomy ? $pageCategoriesTaxonomy->getId() : 0,
         ]);
     }
     

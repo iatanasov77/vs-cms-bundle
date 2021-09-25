@@ -4,9 +4,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sylius\Component\Resource\Factory\Factory;
 
 use VS\ApplicationBundle\Repository\LogEntryRepository;
 use VS\ApplicationBundle\Repository\TaxonomyRepository;
+use VS\ApplicationBundle\Repository\TaxonRepository;
 use VS\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
 use VS\CmsBundle\Repository\PagesRepository;
 use VS\CmsBundle\Form\ClonePageForm;
@@ -17,35 +19,59 @@ class PagesExtController extends AbstractController
 {
     use TaxonomyTreeDataTrait;
     
-    public function getPageForm( TaxonomyRepository $taxonomyRepository, PagesRepository $pagesRepository, $pageId, $locale, Request $request ) : Response
+    /** @var PagesRepository */
+    protected PagesRepository $pagesRepository;
+    
+    /** @var PageCategoryRepository */
+    protected PageCategoryRepository $pagesCategoriesRepository;
+    
+    /** @var LogEntryRepository */
+    protected LogEntryRepository $logentryRepository;
+    
+    /** @var Factory */
+    protected Factory $pagesFactory;
+    
+    public function __construct(
+        TaxonomyRepository $taxonomyRepository,
+        TaxonRepository $taxonRepository,
+        PagesRepository $pagesRepository,
+        PageCategoryRepository $pagesCategoriesRepository,
+        LogEntryRepository $logentryRepository,
+        Factory $pagesFactory
+    ) {
+            $this->taxonomyRepository           = $taxonomyRepository;
+            $this->taxonRepository              = $taxonRepository;
+            $this->pagesRepository              = $pagesRepository;
+            $this->pagesCategoriesRepository    = $pagesCategoriesRepository;
+            $this->logentryRepository           = $logentryRepository;
+            $this->pagesFactory                 = $pagesFactory;
+    }
+    
+    public function getPageForm( $pageId, $locale, Request $request ) : Response
     {
         $em         = $this->get( 'doctrine.orm.entity_manager' );
-        $repository = $pagesRepository;
-        $page       = $repository->find( $pageId );
+        $page       = $this->pagesRepository->find( $pageId );
         
         if ( $locale != $request->getLocale() ) {
             $page->setTranslatableLocale( $locale );
             $em->refresh( $page );
         }
         
-        if ( $this->container->hasParameter( 'vs_cms.page_categories.taxonomy_id' ) ) {
-            $taxonomyId = $this->getParameter( 'vs_cms.page_categories.taxonomy_id' );
-        } else {
-            $taxonomyCode   = $this->getParameter( 'vs_application.page_categories.taxonomy_code' );
-            $taxonomyId     = $taxonomyRepository->findByCode( $taxonomyCode )->getId();
-        }
+        $taxonomy   = $this->taxonomyRepository->findByCode(
+                                                    $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
+                                                );
         
         return $this->render( '@VSCms/Pages/Pages/partial/page_form.html.twig', [
-            'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
-            'taxonomyId'    => $taxonomyId,
+            'categories'    => $this->pagesCategoriesRepository->findAll(),
+            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
             'item'          => $page,
             'form'          => $this->createForm( PageForm::class, $page )->createView(),
         ]);
     }
     
-    public function clonePage( PagesRepository $pagesRepository, $pageId, Request $request ) : Response
+    public function clonePage( $pageId, Request $request ) : Response
     {
-        $parentPage = $pagesRepository->find( $pageId );
+        $parentPage = $this->pagesRepository>find( $pageId );
         $formClone  = $this->createForm( ClonePageForm::class );
         
         $formClone->handleRequest( $request );
@@ -55,7 +81,7 @@ class PagesExtController extends AbstractController
             }
             
             $em     = $this->getDoctrine()->getManager();
-            $oPage  = $this->get( 'vs_cms.factory.pages' )->createNew();
+            $oPage  = $this->pagesFactory->createNew();
             $data   = $formClone->getData();
             
             $oPage->setTitle( $data['newTitle'] );
@@ -73,10 +99,10 @@ class PagesExtController extends AbstractController
         return new Response( 'The form is not hanled properly !!!', Response::HTTP_BAD_REQUEST );
     }
     
-    public function previewPage( LogEntryRepository $logentryRepository, PagesRepository $pagesRepository, $pageId, $locale, $version, Request $request ) : Response
+    public function previewPage( $pageId, $locale, $version, Request $request ) : Response
     {
         $em     = $this->get( 'doctrine.orm.entity_manager' );
-        $page   = $pagesRepository->find( $pageId );
+        $page   = $this->pagesRepository->find( $pageId );
         $layout = $request->query->get( 'layout' );
         
         if ( $locale != $request->getLocale() ) {
@@ -85,9 +111,8 @@ class PagesExtController extends AbstractController
         }
         
         if ( $version ) {
-            $erLogs = $logentryRepository;
-            $erLogs->revertByLocale( $page, $version, $locale ); // This only load Entity Data for concrete Version 
-                                                                 // from LogEntry Repository but not persist it
+            $this->logentryRepository->revertByLocale( $page, $version, $locale );  // This only load Entity Data for concrete Version 
+                                                                                    // from LogEntry Repository but not persist it
         }
         
         return $this->render( '@VSCms/Pages/Pages/show.html.twig', [
@@ -96,40 +121,32 @@ class PagesExtController extends AbstractController
         ]);
     }
     
-    public function gtreeTableSource( TaxonomyRepository $taxonomyRepository, $taxonomyId, Request $request ): Response
+    public function gtreeTableSource( $taxonomyId, Request $request ): Response
     {
-        $this->taxonomyRepository   = $taxonomyRepository;
         $parentId                   = (int)$request->query->get( 'parentTaxonId' );
         
         return new JsonResponse( $this->gtreeTableData( $taxonomyId, $parentId ) );
     }
     
-    public function easyuiComboTreeSource( TaxonomyRepository $taxonomyRepository, $taxonomyId, Request $request ): Response
+    public function easyuiComboTreeSource( $taxonomyId, Request $request ): Response
     {
-        $this->taxonomyRepository   = $taxonomyRepository;
-        
         return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId ) );
     }
     
-    public function easyuiComboTreeWithSelectedSource( TaxonomyRepository $taxonomyRepository, PagesRepository $pagesRepository, $pageId, $taxonomyId, Request $request ): Response
+    public function easyuiComboTreeWithSelectedSource( $pageId, $taxonomyId, Request $request ): Response
     {
-        $this->taxonomyRepository   = $taxonomyRepository;
-        
-        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId, $this->getSelectedCategoryTaxons( $pagesRepository, $pageId ) ) );
+        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId, $this->getSelectedCategoryTaxons( $pageId ) ) );
     }
     
-    public function easyuiComboTreeWithLeafsSource( TaxonomyRepository $taxonomyRepository, PageCategoryRepository $categoryRepository, $taxonomyId, Request $request ): Response
+    public function easyuiComboTreeWithLeafsSource( $taxonomyId, Request $request ): Response
     {
-        $this->taxonomyRepository   = $taxonomyRepository;
-        
-        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId, [], $this->getCategoryPagesByTaxons( $categoryRepository ) ) );
+        return new JsonResponse( $this->easyuiComboTreeData( $taxonomyId, [], $this->getCategoryPagesByTaxons() ) );
     }
     
-    public function deleteCategory_ByTaxonId( PageCategoryRepository $categoryRepository, $taxonId, Request $request )
+    public function deleteCategory_ByTaxonId( $taxonId, Request $request )
     {
         $em         = $this->getDoctrine()->getManager();
-        $pcr        = $categoryRepository;
-        $category   = $pcr->findOneBy( ['taxon' => $taxonId] );
+        $category   = $this->pagesCategoriesRepository->findOneBy( ['taxon' => $taxonId] );
         
         $em->remove( $category );
         $em->flush();
@@ -199,10 +216,10 @@ class PagesExtController extends AbstractController
         return new JsonResponse(['status' => 'SUCCESS']);
     }
     
-    protected function getSelectedCategoryTaxons( $pagesRepository, $pageId ): array
+    protected function getSelectedCategoryTaxons( $pageId ): array
     {
         $selected   = [];
-        $page       = $pagesRepository->find( $pageId );
+        $page       = $this->pagesRepository->find( $pageId );
         if ( $page ) {
             foreach( $page->getCategories() as $cat ) {
                 $selected[] = $cat->getTaxon()->getId();
@@ -212,10 +229,10 @@ class PagesExtController extends AbstractController
         return $selected;
     }
     
-    protected function getCategoryPagesByTaxons( $categoryRepository ): array
+    protected function getCategoryPagesByTaxons(): array
     {
         $leafs  = [];
-        foreach ( $categoryRepository->findAll() as $category ) {
+        foreach ( $this->pagesCategoriesRepository->findAll() as $category ) {
             $pages  = $category->getPages();
             if ( $pages->count() ) {
                 $leafs[$category->getTaxon()->getId()]  = $pages;

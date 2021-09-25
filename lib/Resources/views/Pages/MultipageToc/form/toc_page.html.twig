@@ -51,7 +51,7 @@
         {{ form_widget( form.title, {'attr': {'class': 'form-control'}}) }}
     </div>
     
-    {% set pagesComboDataSourceUrl  = path('vs_cms_pages_tree_combo_with_leafs', {'taxonomyId': 3}) %}
+    {% set pagesComboDataSourceUrl  = path('vs_cms_pages_tree_combo_with_leafs', {'taxonomyId': pageCategoriesTaxonomyId}) %}
     {% set pagesComboDataOptions    = "
     		url:'" ~ pagesComboDataSourceUrl ~ "',
     		required:true,
