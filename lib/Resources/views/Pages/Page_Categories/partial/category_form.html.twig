@@ -1,4 +1,4 @@
-{% import "@VSApplication/macros/form.html.twig" as vs_form %}
+{% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
 {{ form_start(form, { 'attr': {'class': 'form-horizontal '} }) }}

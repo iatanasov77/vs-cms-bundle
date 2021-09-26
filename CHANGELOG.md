@@ -1,3 +1,9 @@
+1.0.3	|	Release date: **26.09.2021**
+============================================
+* Bug-Fixes:
+  - Fix Views Macros Namespace.
+
+
 1.0.2	|	Release date: **25.09.2021**
 ============================================
 * New Features and Improvements:
