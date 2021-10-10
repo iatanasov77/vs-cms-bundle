@@ -1,3 +1,9 @@
+1.3.0	|	Release date: **10.10.2021**
+============================================
+* New Features:
+  - Update ApplicationBundle Version.
+
+
 1.2.0	|	Release date: **05.10.2021**
 ============================================
 * New Features:
