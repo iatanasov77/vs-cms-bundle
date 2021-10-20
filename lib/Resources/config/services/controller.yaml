@@ -1,0 +1,37 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    VS\CmsBundle\Controller\GetImageController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - "@liip_imagine.binary.loader.default"
+            - "@liip_imagine.filter.manager"
+
+    VS\CmsBundle\Controller\PagesExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@vs_application.repository.taxonomy'
+            - '@vs_application.repository.taxon'
+            - '@vs_cms.repository.pages'
+            - '@vs_cms.repository.page_categories'
+            - '@vs_application.repository.logentry'
+            - '@vs_cms.factory.pages'
+            
+    VS\CmsBundle\Controller\MultiPageTocPageController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@vs_cms.repository.multipage_toc'
+            - '@vs_cms.repository.multipage_toc_page'
+            - '@vs_cms.factory.multipage_toc_page'
+            - '@vs_cms.repository.pages'
+            - '@vs_application.repository.taxonomy'
+
+    VS\CmsBundle\Controller\FileManagerController:
+        tags: ['controller.service_arguments']
+        autowire: true

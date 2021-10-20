@@ -1,0 +1,13 @@
+imports:
+    - { resource: services/resources.yaml }
+    - { resource: services/controller.yaml }
+    - { resource: services/form.yaml }
+
+parameters:
+#    vs_cms.example.class: VSCmsBundle\Example
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
