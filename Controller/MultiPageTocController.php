@@ -5,7 +5,7 @@ use VS\ApplicationBundle\Controller\AbstractCrudController;
 
 class MultiPageTocController extends AbstractCrudController
 {
-    protected function customData(): array
+    protected function customData( Request $request ): array
     {
         return [
             
