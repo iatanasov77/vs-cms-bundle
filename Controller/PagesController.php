@@ -9,7 +9,7 @@ use VS\CmsBundle\Form\PreviewPageForm;
 
 class PagesController extends AbstractCrudController
 {
-    protected function customData(): array
+    protected function customData( Request $request ): array
     {
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
         $versions       = $this->classInfo['action'] == 'indexAction' ? $this->getVersions( $translations ) : [];
