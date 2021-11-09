@@ -1,0 +1,22 @@
+parameters:
+    vs_cms.uploader.filesystem: vs_application_image
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+    
+    vs_cms.uploader_filesystem:
+        class: Gaufrette\Filesystem
+        arguments: ['%vs_cms.uploader.filesystem%']
+        factory: ['@knp_gaufrette.filesystem_map', 'get']
+
+    vs_cms.image_path_generator:
+        class: VS\CmsBundle\Component\Generator\UploadedImagePathGenerator
+
+    vs_cms.image_uploader:
+        class: VS\CmsBundle\Component\Uploader\PageCategoryForm
+        arguments:
+            - '@vs_cms.uploader_filesystem%'
+            - '@vs_cms.image_path_generator'
