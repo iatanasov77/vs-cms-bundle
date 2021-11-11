@@ -16,7 +16,7 @@ services:
         class: VS\CmsBundle\Component\Generator\UploadedImagePathGenerator
 
     vs_cms.image_uploader:
-        class: VS\CmsBundle\Component\Uploader\PageCategoryForm
+        class: VS\CmsBundle\Component\Uploader\ImageUploader
         arguments:
-            - '@vs_cms.uploader_filesystem%'
+            - '@vs_cms.uploader_filesystem'
             - '@vs_cms.image_path_generator'
