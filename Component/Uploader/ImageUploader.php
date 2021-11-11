@@ -1,24 +1,12 @@
-<?php
-
-/*
- * This file is part of the Sylius package.
- *
- * (c) Paweł Jędrzejewski
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-declare(strict_types=1);
-
-namespace Sylius\Component\Core\Uploader;
+<?php namespace VS\CmsBundle\Component\Uploader;
 
 use Gaufrette\Filesystem;
-use Sylius\Component\Core\Generator\ImagePathGeneratorInterface;
-use Sylius\Component\Core\Generator\UploadedImagePathGenerator;
-use Sylius\Component\Core\Model\ImageInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Webmozart\Assert\Assert;
+
+use VS\CmsBundle\Component\Generator\ImagePathGeneratorInterface;
+use VS\CmsBundle\Component\Generator\UploadedImagePathGenerator;
+use VS\CmsBundle\Model\ImageInterface;
 
 class ImageUploader implements ImageUploaderInterface
 {
