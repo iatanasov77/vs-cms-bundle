@@ -1,5 +1,7 @@
 parameters:
-    vs_cms.uploader.filesystem: vs_application_image
+    vs_cms.image_uploader.filesystem: vs_application_image
+    vs_cms.filemanager_uploader.filesystem: vs_application_filemanager
+    vs_cms.file_manager_uploads_dir: '%kernel.project_dir%/public/file_manager/uploads/'
 
 services:
     _defaults:
@@ -7,16 +9,32 @@ services:
         autoconfigure: true
         public: true
     
-    vs_cms.uploader_filesystem:
+    vs_cms.image_uploader.filesystem:
         class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.uploader.filesystem%']
+        arguments: ['%vs_cms.image_uploader.filesystem%']
+        factory: ['@knp_gaufrette.filesystem_map', 'get']
+    
+    vs_cms.filemanager_uploader.filesystem:
+        class: Gaufrette\Filesystem
+        arguments: ['%vs_cms.filemanager_uploader.filesystem%']
         factory: ['@knp_gaufrette.filesystem_map', 'get']
 
-    vs_cms.image_path_generator:
-        class: VS\CmsBundle\Component\Generator\UploadedImagePathGenerator
+    vs_cms.file_path_generator:
+        class: VS\CmsBundle\Component\Generator\UploadedFilePathGenerator
 
     vs_cms.image_uploader:
         class: VS\CmsBundle\Component\Uploader\ImageUploader
         arguments:
-            - '@vs_cms.uploader_filesystem'
-            - '@vs_cms.image_path_generator'
+            - '@vs_cms.image_uploader.filesystem'
+            - '@vs_cms.file_path_generator'
+            
+    vs_cms.filemanager_uploader:
+        class: VS\CmsBundle\Component\Uploader\FilemanagerUploader
+        arguments:
+            - '@vs_cms.filemanager_uploader.filesystem'
+            - '@vs_cms.file_path_generator'
+    
+    vs_cms.file_manager:
+        class: VS\CmsBundle\Component\FileManager
+        arguments:
+            - '@vs_cms.image_uploader'
