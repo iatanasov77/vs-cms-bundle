@@ -8,7 +8,7 @@
             <generator strategy="AUTO" />
         </id>
         
-        <one-to-many field="files" target-entity="VS\CmsBundle\Model\Interfaces\FileManagerFileInterface" mapped-by="owner" orphan-removal="true">
+        <one-to-many field="files" target-entity="VS\CmsBundle\Model\FileManagerFileInterface" mapped-by="owner" orphan-removal="true">
             <cascade>
                 <cascade-all/>
             </cascade>
