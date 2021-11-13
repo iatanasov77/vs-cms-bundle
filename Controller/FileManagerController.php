@@ -29,7 +29,7 @@ class FileManagerController extends AbstractController
             $directory   = $form['directory']->getData();
             $file       = $form['file']->getData();
             if ( $file ) {
-                $targetDir  = $this->getParameter( 'kernel.project_dir' ) . $directory;
+                $targetDir  = $this->getParameter( 'vs_cms.file_manager_uploads_dir' ) . $directory;
                 $fileName   = $this->handleFileUpload( $file, $targetDir );
             }
             
@@ -69,7 +69,7 @@ class FileManagerController extends AbstractController
             $file->move(
                 $targetDir,
                 $newFilename
-                );
+            );
         } catch ( FileException $e ) {
             // ... handle exception if something happens during file upload
         }

@@ -29,6 +29,10 @@ use VS\CmsBundle\Controller\TocPageController;
 use VS\CmsBundle\Repository\TocPagesRepository;
 use VS\CmsBundle\Form\TocPageForm;
 
+use VS\CmsBundle\Model\FileManager;
+use VS\CmsBundle\Model\FileManagerInterface;
+use VS\CmsBundle\Model\FileManagerFile;
+use VS\CmsBundle\Model\FileManagerFileInterface;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -133,8 +137,36 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
-                        
-                        
+                        ->arrayNode( 'file_manager' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( FileManager::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( FileManagerInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode( 'file_manager_file' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( FileManagerFile::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( FileManagerFileInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end()

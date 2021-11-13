@@ -2,7 +2,7 @@
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface ImageInterface extends ResourceInterface
+interface FileInterface extends ResourceInterface
 {
     /**
      * @return string

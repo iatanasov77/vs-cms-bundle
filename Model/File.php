@@ -1,6 +1,6 @@
 <?php namespace VS\CmsBundle\Model;
 
-abstract class Image implements ImageInterface
+abstract class File implements FileInterface
 {
     /** @var mixed */
     protected $id = null;
