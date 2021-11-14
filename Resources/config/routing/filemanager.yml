@@ -1,28 +1,28 @@
 vs_cms_fosckeditor_browse:
     path: /fosckeditor/browse/{directory}
-    controller: VS\CmsBundle\Controller\FileManagerController::fosckeditorBrowse
+    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::fosckeditorBrowse
     requirements:
         directory: .+
 
 vs_cms_fosckeditor_upload:
     path: /fosckeditor/upload/{directory}
-    controller: VS\CmsBundle\Controller\FileManagerController::fosckeditorUpload
+    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::fosckeditorUpload
     requirements:
         directory: .+
 
 vs_cms_filemanager_artgris_list:
-    path: /filemanager/list
+    path: /artgris-filemanager/list
     controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::listFiles
 
 vs_cms_filemanager_artgris_upload:
-    path: /filemanager/upload
+    path: /artgris-filemanager/upload
     controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::uploadFile
 
 vs_cms_filemanager:
     resource: |
         alias: vs_cms.file_manager
         except: ['show']
-        path: /pages
+        path: /vankosoft-filemanager
         templates: "@VSCms/Pages/VankosoftFileManager"
     type: sylius.resource
 
@@ -30,6 +30,6 @@ vs_cms_filemanager_file:
     resource: |
         alias: vs_cms.file_manager_file
         except: ['show']
-        path: /pages
+        path: /vankosoft-filemanager-files
         templates: "@VSCms/Pages/VankosoftFileManagerFile"
     type: sylius.resource
