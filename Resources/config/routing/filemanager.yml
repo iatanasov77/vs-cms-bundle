@@ -10,10 +10,26 @@ vs_cms_fosckeditor_upload:
     requirements:
         directory: .+
 
-vs_cms_filemanager_list:
+vs_cms_filemanager_artgris_list:
     path: /filemanager/list
-    controller: VS\CmsBundle\Controller\FileManagerController::listFiles
+    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::listFiles
 
-vs_cms_filemanager_upload:
+vs_cms_filemanager_artgris_upload:
     path: /filemanager/upload
-    controller: VS\CmsBundle\Controller\FileManagerController::uploadFile
+    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::uploadFile
+
+vs_cms_filemanager:
+    resource: |
+        alias: vs_cms.file_manager
+        except: ['show']
+        path: /pages
+        templates: "@VSCms/Pages/VankosoftFileManager"
+    type: sylius.resource
+
+vs_cms_filemanager_file:
+    resource: |
+        alias: vs_cms.file_manager_file
+        except: ['show']
+        path: /pages
+        templates: "@VSCms/Pages/VankosoftFileManagerFile"
+    type: sylius.resource

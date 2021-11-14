@@ -51,6 +51,10 @@ vs_cms:
         button_delete: 'Edit'
         button_create_toc_page: 'Create New TOC Page'
         filemanager_upload_file_title: 'FileManager Uplod File'
+        filemanager_index_title: 'List Filemanagers'
+        filemanager_update_title: Edit FileManager
+        filemanager_create_title: Create New FileManager
+        filemanager_update_details_title: 'File Manager Details'
         
     modal:
         page_clone:
