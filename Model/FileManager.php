@@ -9,6 +9,9 @@ class FileManager implements FileManagerInterface
     protected $id;
     
     /** @var string */
+    protected $code;
+    
+    /** @var string */
     protected $title;
     
     /** @var PageInterface */
@@ -22,6 +25,18 @@ class FileManager implements FileManagerInterface
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function getCode()
+    {
+        return $this->code;
+    }
+    
+    public function setCode( $code )
+    {
+        $this->code = $code;
+        
+        return $this;
     }
     
     public function getTitle(): string

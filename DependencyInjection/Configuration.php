@@ -31,8 +31,12 @@ use VS\CmsBundle\Form\TocPageForm;
 
 use VS\CmsBundle\Model\FileManager;
 use VS\CmsBundle\Model\FileManagerInterface;
+use VS\CmsBundle\Controller\VankosoftFileManagerController;
+use VS\CmsBundle\Form\VankosoftFileManagerForm;
 use VS\CmsBundle\Model\FileManagerFile;
 use VS\CmsBundle\Model\FileManagerFileInterface;
+use VS\CmsBundle\Controller\VankosoftFileManagerFileController;
+use VS\CmsBundle\Form\VankosoftFileManagerFileForm;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -146,8 +150,10 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( FileManager::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( FileManagerInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( VankosoftFileManagerController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( VankosoftFileManagerForm::class )->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -161,8 +167,10 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( FileManagerFile::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( FileManagerFileInterface::class )->cannotBeEmpty()->end()
+                                        >scalarNode( 'controller' )->defaultValue( VankosoftFileManagerFileController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( VankosoftFileManagerFileForm::class )->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
