@@ -1,3 +1,7 @@
+============================================
+* New Features:
+  - Start 1.5
+
 1.4.1	|	Release date: **14.11.2021**
 ============================================
 * Bug-Fixes, Improvements and Refactoring:
