@@ -32,6 +32,6 @@ services:
             - '@vs_cms.repository.pages'
             - '@vs_application.repository.taxonomy'
 
-    VS\CmsBundle\Controller\FileManagerController:
+    VS\CmsBundle\Controller\ArtgrisFileManagerController:
         tags: ['controller.service_arguments']
         autowire: true
