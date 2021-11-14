@@ -1,3 +1,18 @@
+1.4.1	|	Release date: **14.11.2021**
+============================================
+* Bug-Fixes, Improvements and Refactoring:
+  - Refactoring of CmsBundle.
+  - Many Fixes and Refactoring.
+  - Add User Avatars and Taxon Images.
+  - Many Fixes And New Doctrine Migration.
+  - Add FileManager Models.
+  - Fix Orm Mapping Interfaces.
+  - Improve FileManager Model.
+  - Add Controllers,Views and Forms for Vankosoft FileManager.
+  - Stupid Fix
+  - Fix and Improve Configs.
+
+
 1.4.0	|	Release date: **21.10.2021**
 ============================================
 * Big Refactoring of Subtree:
