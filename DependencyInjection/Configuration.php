@@ -167,7 +167,7 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( FileManagerFile::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( FileManagerFileInterface::class )->cannotBeEmpty()->end()
-                                        >scalarNode( 'controller' )->defaultValue( VankosoftFileManagerFileController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( VankosoftFileManagerFileController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( VankosoftFileManagerFileForm::class )->cannotBeEmpty()->end()
