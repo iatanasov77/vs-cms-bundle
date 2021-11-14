@@ -145,12 +145,7 @@
         </div>
     </div>
     
-    <div style="display: none;">
-        <form id="deleteForm" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" id="page_delete__token" name="_csrf_token" value="">
-        </form>
-    </div>
+    {% include '@VSApplication/Partial/resource-delete.html.twig' %}
 {% endblock content %}
 
 {% block modals %}

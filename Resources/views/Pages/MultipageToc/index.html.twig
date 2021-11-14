@@ -69,15 +69,17 @@
         </div>
     </div>
     
-    <div style="display: none;">
-        <form id="deleteForm" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" id="multipage_toc_delete__token" name="_csrf_token" value="">
-        </form>
-    </div>
+    {% include '@VSApplication/Partial/resource-delete.html.twig' %}
+{% endblock %}
+
+{% block head_styles %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/multipage-toc-index' ) }}
 {% endblock %}
 
 {% block body_scripts %}
     {{ parent() }}
     
+    {{ encore_entry_script_tags( 'js/multipage-toc-index' ) }}
 {% endblock %}

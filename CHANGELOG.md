@@ -1,3 +1,18 @@
+1.4.1	|	Release date: **14.11.2021**
+============================================
+* Bug-Fixes, Improvements and Refactoring:
+  - Refactoring of CmsBundle.
+  - Many Fixes and Refactoring.
+  - Add User Avatars and Taxon Images.
+  - Many Fixes And New Doctrine Migration.
+  - Add FileManager Models.
+  - Fix Orm Mapping Interfaces.
+  - Improve FileManager Model.
+  - Add Controllers,Views and Forms for Vankosoft FileManager.
+  - Stupid Fix
+  - Fix and Improve Configs.
+
+
 1.4.0	|	Release date: **21.10.2021**
 ============================================
 * Big Refactoring of Subtree:
@@ -191,6 +206,7 @@
 ============================================
 * Bug-Fixes:
   - Fix FileManager.
+<<<<<<< HEAD
 
 
 0.8.13	|	Release date: **08.07.2021**
@@ -323,6 +339,140 @@
 0.7.20	|	Release date: **03.07.2021**
 ============================================
 * New Features:
+=======
+
+
+0.8.13	|	Release date: **08.07.2021**
+============================================
+* Bug-Fixes:
+  - Fix Stupid Bug
+
+
+0.8.12	|	Release date: **08.07.2021**
+============================================
+* New Features:
+  - Create a FileManager.
+
+
+0.8.11	|	Release date: **08.07.2021**
+============================================
+* New Features:
+  - Add artgris/filemanager-bundle
+
+
+0.8.10	|	Release date: **08.07.2021**
+============================================
+* New Features:
+  - Add FOSCKEditor Browse and Upload COntroller Actions.
+
+
+0.8.9	|	Release date: **08.07.2021**
+============================================
+* New Features:
+  - Create Nested Acordion Form Pages/index.html.twig
+* Bug-Fixes:
+  - Fix Page Category Form Template.
+  - Fix Page Categories Templates.
+
+
+0.8.8	|	Release date: **07.07.2021**
+============================================
+* Bug-Fixes:
+  - Fix PagesCategoryController to save Parent Category.
+  - Some Another Fix.
+
+
+0.8.7	|	Release date: **07.07.2021**
+============================================
+* Bug-Fixes:
+  - Some Fixes.
+
+
+0.8.6	|	Release date: **07.07.2021**
+============================================
+* New Features:
+  - Add getPage method of Document Model.
+  - Add New Model Fields into the Templates.
+  - Add mainPage Field of the Model MultiPageToc.
+  - Add description Field of the Model Page.
+  - Set DocumentForm field multipageToc Not Required.
+
+
+0.8.5	|	Release date: **05.07.2021**
+============================================
+* Bug-Fixes:
+  - Little Fix.
+
+
+0.8.4	|	Release date: **05.07.2021**
+============================================
+* Bug-Fixes:
+  - Fix Stupid Bug.
+
+
+0.8.3	|	Release date: **05.07.2021**
+============================================
+* Bug-Fixes:
+  - Add locale property in the Document Model.
+
+
+0.8.2	|	Release date: **05.07.2021**
+============================================
+* New Features:
+  - Separate Page Model Relation to Multipage TOC into the Document Model.
+
+
+0.8.1	|	Release date: **04.07.2021**
+============================================
+* Bug-Fixes:
+  - Fixes For Toc Pages.
+
+
+0.8.0	|	Release date: **04.07.2021**
+============================================
+* New Features:
+  - Add Edit Option of TocPage.
+  - Add Templates For MultipageToc.
+
+
+0.7.26	|	Release date: **03.07.2021**
+============================================
+* New Features:
+  - Make Model Pages to can has a MultipageToc Relation.
+
+
+0.7.25	|	Release date: **03.07.2021**
+============================================
+
+
+0.7.24	|	Release date: **03.07.2021**
+============================================
+
+
+0.7.23	|	Release date: **03.07.2021**
+============================================
+* New Features:
+  - Add Source Url For TocPages EasyComboTree.
+
+
+0.7.22	|	Release date: **03.07.2021**
+============================================
+* Bug-Fixes and Improvements:
+  - Add Source Url For TocPages GTreeTable.
+  - Attach Linked page on TocPage in form handle.
+
+
+0.7.21	|	Release date: **03.07.2021**
+============================================
+* Bug-Fixes:
+  - Fixes and Improvements.
+  - Fix Stupid Bug.
+
+
+0.7.20	|	Release date: **03.07.2021**
+============================================
+* New Features:
+>>>>>>> 739db466d08f5bc1da05ef3a2877cc604de28961
   - Wiring MultiPageTocPageController needed services.
 
 

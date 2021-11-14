@@ -51,6 +51,10 @@ vs_cms:
         button_delete: 'Изтрий'
         button_create_toc_page: 'Create New TOC Page'
         filemanager_upload_file_title: 'FileManager Uplod File'
+        filemanager_index_title: 'Листинг Файл Мениджъри'
+        filemanager_update_title: Редактиране на Файл Мениджър
+        filemanager_create_title: Създаване Нов Файл Мениджър
+        filemanager_update_details_title: 'Файл Мениджър Детайли'
         
     modal:
         page_clone:
