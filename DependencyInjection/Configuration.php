@@ -31,6 +31,7 @@ use VS\CmsBundle\Form\TocPageForm;
 
 use VS\CmsBundle\Model\FileManager;
 use VS\CmsBundle\Model\FileManagerInterface;
+use VS\CmsBundle\Repository\FileManagerRepository;
 use VS\CmsBundle\Controller\VankosoftFileManagerController;
 use VS\CmsBundle\Form\VankosoftFileManagerForm;
 use VS\CmsBundle\Model\FileManagerFile;
@@ -151,7 +152,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode( 'model' )->defaultValue( FileManager::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( FileManagerInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( VankosoftFileManagerController::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( FileManagerRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( VankosoftFileManagerForm::class )->cannotBeEmpty()->end()
                                     ->end()

@@ -5,7 +5,10 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+
+use VS\ApplicationBundle\Component\I18N;
 use VS\CmsBundle\Model\FileManagerInterface;
 
 class VankosoftFileManagerForm extends AbstractForm
@@ -15,12 +18,17 @@ class VankosoftFileManagerForm extends AbstractForm
         parent::buildForm( $builder, $options );
         
         $builder
+            ->add( 'currentLocale', ChoiceType::class, [
+                'label'                 => 'vs_cms.form.locale',
+                'translation_domain'    => 'VSCmsBundle',
+                'choices'               => \array_flip( I18N::LanguagesAvailable() ),
+                'mapped'                => false,
+            ])
             
             ->add( 'title', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
             ])
-            
         ;
     }
 
