@@ -45,4 +45,18 @@ services:
     VS\CmsBundle\Form\FileManager\UploadFileForm:
         tags:
             - { name: form.type }
+    
+    vs_cms.resources.file_manager.form:
+        class: VS\CmsBundle\Form\VankosoftFileManagerForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.file_manager.class%'
+    
+    vs_cms.resources.file_manager_file.form:
+        class: VS\CmsBundle\Form\VankosoftFileManagerFileForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.file_manager_file.class%'
             

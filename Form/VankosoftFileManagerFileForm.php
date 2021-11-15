@@ -30,7 +30,7 @@ class VankosoftFileManagerFileForm extends AbstractForm
         
         $resolver
             ->setDefined([
-                'page',
+                'file_manager_file',
             ])
             ->setAllowedTypes( 'file_manager_file', FileManagerFileInterface::class )
         ;
