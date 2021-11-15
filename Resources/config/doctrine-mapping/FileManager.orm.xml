@@ -9,13 +9,11 @@
             <generator strategy="AUTO" />
         </id>
         
-        <field name="code" column="code" type="string" length="255" nullable="false" unique="true">
-            <gedmo:slug unique="true" style="lower" updatable="true" separator="-" fields="title" />
-        </field>
-        
-        <field name="title" column="title" type="string" length="255" nullable="false">
-            <gedmo:translatable />
-        </field>
+        <many-to-one field="taxon" name="taxon_id" target-entity="VS\ApplicationBundle\Model\Interfaces\TaxonInterface" inversed-by="children">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
         
         <one-to-many field="files" target-entity="VS\CmsBundle\Model\FileManagerFileInterface" mapped-by="owner" orphan-removal="true">
             <cascade>

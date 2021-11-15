@@ -57,6 +57,15 @@
                                 {{ form_widget(form._token) }}
                                 
                                 <div class="form-group">
+                                    {{ form_label(form.currentLocale, null, {
+                                        'label_attr': {'class': 'col-form-label'}
+                                        }) 
+                                    }}
+                                    
+                                    {{ form_widget(form.currentLocale, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+    
+                                <div class="form-group">
                                     {{ form_label(form.title, null, {
                                         'label_attr': {'class': 'col-form-label'}
                                         }) 
