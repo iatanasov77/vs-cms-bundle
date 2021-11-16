@@ -35,3 +35,5 @@ services:
     VS\CmsBundle\Controller\ArtgrisFileManagerController:
         tags: ['controller.service_arguments']
         autowire: true
+        arguments:
+            - '@vs_cms.file_manager'
