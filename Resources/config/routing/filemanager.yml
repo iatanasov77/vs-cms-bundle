@@ -33,3 +33,11 @@ vs_cms_filemanager_file:
         path: /vankosoft-filemanager-files
         templates: "@VSCms/Pages/VankosoftFileManagerFile"
     type: sylius.resource
+
+vs_cms_filemanager_vankosoft_get_upload_form:
+    path: /vankosoft-filemanager/{fileManagerId}/{fileManagerFileId}/upload-form
+    controller: VS\CmsBundle\Controller\VankosoftFileManagerExtController::getFileUploadForm
+
+vs_cms_filemanager_vankosoft_handle_upload_form:
+    path: /vankosoft-filemanager/upload
+    controller: VS\CmsBundle\Controller\VankosoftFileManagerExtController::handleFileUploadForm
