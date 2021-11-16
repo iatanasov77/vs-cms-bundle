@@ -10,14 +10,16 @@
         <!-- ============================================================== -->
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="item-header">
-                    <h2 class="itemheader-title">{{ 'vs_cms.template.filemanager_index_title' | trans( {},'VSCmsBundle' ) }}</h2>
-                    
-                    <p class="itemheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                    <div class="item-breadcrumb">
+                <div class="page-header">
+                    <h2 class="pageheader-title">{{ 'vs_cms.template.filemanager_index_title' | trans( {},'VSCmsBundle' ) }}</h2>
+                    <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                    <div class="page-breadcrumb">
                         <nav aria-label="breadcrumb">
+                        {#
                             {% set menuBreadCrumbs = knp_menu_get( 'breadcrumbs', [], {sdfsdfd: 'ADFDFDDFSDF'} ) %}
                             {{ knp_menu_render( menuBreadCrumbs, {'template': '@VSApplication/Menu/breadcrumb.html.twig'} ) }}
+                        #}
+                            {{ knp_menu_render('breadcrumbs', {'template': '@VSApplication/Menu/breadcrumb.html.twig'}) }}
                         </nav>
                     </div>
                 </div>
@@ -41,16 +43,15 @@
                         <th width="150">{{ 'vs_application.template.items_index_row_action' | trans( {},'VSApplicationBundle' ) }}</th>
                     </tr>
             {% for item in items %}
-            	{% if item.categories is empty %}
                     <tr>
                     	<td>{{ loop.index }}</td>
                     	<td>
-                            <a href="{{ path('vs_cms_items_update', {'id': item.id}) }}">
-                                {{ item.slug }}
+                            <a href="{{ path('vs_cms_file_manager_update', {'id': item.id}) }}">
+                                {{ item.code }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ path('vs_cms_items_update', {'id': item.id}) }}">
+                            <a href="{{ path('vs_cms_file_manager_update', {'id': item.id}) }}">
                                 {{ item.title }}
                             </a>
                         </td>
@@ -58,13 +59,13 @@
                             <div class="btn-group">
                                 <div class="btn-group">
                                     <a class="btn btn-primary"
-                                    	href="{{ path('vs_cms_items_update', {'id': item.id}) }}"
+                                    	href="{{ path('vs_cms_file_manager_update', {'id': item.id}) }}"
                                     	title="{{ 'vs_cms.template.button_edit' | trans( {},'VSCmsBundle' ) }}"
                                     >
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a class="btn btn-danger btnDelete" 
-                                    	href="{{ path('vs_cms_items_delete', {'id': item.id}) }}"
+                                    	href="{{ path('vs_cms_file_manager_delete', {'id': item.id}) }}"
                                     	data-csrfToken="{{ csrf_token( item.id ) }}"
                                     	title="{{ 'vs_cms.template.button_delete' | trans( {},'VSCmsBundle' ) }}"
                                     >
@@ -74,7 +75,6 @@
                             </div>
                         </td>
                     </tr>
-                {% endif %}
             {% endfor %}
                 </table>
             </div>
