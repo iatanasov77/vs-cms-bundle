@@ -6,6 +6,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
+
 use VS\CmsBundle\Model\FileManagerFileInterface;
 
 class VankosoftFileManagerFileForm extends AbstractForm
@@ -14,14 +17,37 @@ class VankosoftFileManagerFileForm extends AbstractForm
     {
         parent::buildForm( $builder, $options );
         
-//         $builder
+        $builder
             
 //             ->add( 'title', TextType::class, [
 //                 'label'                 => 'vs_cms.form.title',
 //                 'translation_domain'    => 'VSCmsBundle',
 //             ])
+
+            ->add( 'file', FileType::class, [
+                'label'                 => 'vs_cms.form.filemanager.file_lable',
+                'translation_domain'    => 'VSCmsBundle',
+                'mapped'                => false,
+                
+                // make it optional so you don't have to re-upload the Profile Image
+                // every time you edit the Profile details
+                'required'              => true,
+                
+                // unmapped fields can't define their validation using annotations
+                // in the associated entity, so you can use the PHP constraint classes
+                'constraints'           => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'vs_cms.form.filemanager.file_info',
+                    ])
+                ],
+            ])
             
-//         ;
+        ;
     }
 
     public function configureOptions( OptionsResolver $resolver ): void

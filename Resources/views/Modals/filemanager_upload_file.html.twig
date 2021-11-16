@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-lg" role="document">
+<div id="modalUploadFile" class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">{{ 'vs_cms.template.filemanager_update_upload_file' | trans( {},'VSCmsBundle' ) }}</h5>
@@ -7,21 +7,7 @@
             </button>
         </div>
         <div class="modal-body">
-            {{ form_start(formUploadFile, { 'method': 'POST', 'attr': {'class': 'form-horizontal', 'id': 'formUploadFile'} }) }}
-                {{ form_widget(formUploadFile._token) }}   
-            
-                <div class="form-group">
-                    {{ form_label(formUploadFile.newTitle, null, {
-                        'label_attr': {'class': 'col-form-label'}
-                        }) 
-                    }}
-                    {{ form_widget(formUploadFile.newTitle, {
-                        'attr': {
-                            'class': 'form-control',
-                        }
-                    }) }}
-                </div>
-            {{ form_end(formClone, {'render_rest': false}) }}
+            <div class="card-body"></div>
         </div>
         <div class="modal-footer" id="imContainer">
             <button type="button" class="btn btn-primary" id="btnSaveFormClone">

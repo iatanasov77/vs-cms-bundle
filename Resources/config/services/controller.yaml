@@ -37,3 +37,11 @@ services:
         autowire: true
         arguments:
             - '@vs_cms.file_manager'
+    
+    VS\CmsBundle\Controller\VankosoftFileManagerExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@vs_cms.repository.file_manager'
+            - '@vs_cms.repository.file_manager_file'
+            - '@vs_cms.factory.file_manager_file'

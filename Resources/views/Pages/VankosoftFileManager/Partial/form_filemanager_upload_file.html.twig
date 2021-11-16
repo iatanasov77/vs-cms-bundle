@@ -1,0 +1,15 @@
+{{ form_start(form, { 'action': path( 'vs_cms_filemanager_vankosoft_handle_upload_form' ), 'method': 'POST', 'attr': {'class': 'form-horizontal', 'id': 'formUploadFile'} }) }}
+    {{ form_widget(form._token) }}   
+
+    <div class="form-group">
+        {{ form_label(form.newTitle, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        {{ form_widget(form.newTitle, {
+            'attr': {
+                'class': 'form-control',
+            }
+        }) }}
+    </div>
+{{ form_end(form, {'render_rest': false}) }}
