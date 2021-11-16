@@ -14,10 +14,10 @@
     
     <div class="form-group">
         {{ form_label(form.file, null, {
-            'label_attr': {'class': 'col-form-label'}
+            'label_attr': {'class': 'custom-file-label'}
             }) 
         }}
-        {{ form_widget(form.file, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.file, {'attr': {'class': 'custom-file-input'}}) }}
     </div>
     
     {{ vs_form.buttons( form ) }}
