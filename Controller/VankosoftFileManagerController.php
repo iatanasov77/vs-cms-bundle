@@ -19,8 +19,8 @@ class VankosoftFileManagerController extends AbstractCrudController
         
         return [
             'taxonomyId'        => $taxonomy ? $taxonomy->getId() : 0,
-            //'formUploadFile'    => $this->createForm( VankosoftFileManagerFileForm::class, $fileEntity )->createView(),
-            'formUploadFile'    => $this->get( 'vs_cms.form.file_manager_file' )->createView(),
+            'formUploadFile'    => $this->createForm( VankosoftFileManagerFileForm::class, $fileEntity )->createView(),
+            //'formUploadFile'    => $this->get( 'vs_cms.form.file_manager_file' )->createView(),
         ];
     }
     
