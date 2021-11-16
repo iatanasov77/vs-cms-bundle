@@ -77,7 +77,37 @@
                         </div>
 	        		</div>
 				</div>
+				
+				{% if( item.id ) %}
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="float-left" style="height:30px; padding-top:10px;">{{ 'vs_cms.template.filemanager_update_uploaded_files' | trans( {},'VSCmsBundle' ) }}</div>
+                            <div class="btn-group float-right">
+                                <a class="btn btn-primary btnTaxonomyTaxon"
+                                    title="{{ 'vs_cms.template.filemanager_update_upload_file' | trans( {},'VSCmsBundle' ) }}"
+                                    href="javascript:void(0);" 
+                                    data-url="{{ path('vs_application_taxonomy_taxon_edit', {'taxonomyId': item.id}) }}"
+                                    data-easyui-url="{{ path( 'vs_application_taxonomy_taxons_easyui_combotree', {'taxonomyId': item.id} ) }}"
+                                >
+                                    {{ 'vs_cms.template.filemanager_update_upload_file' | trans( {},'VSCmsBundle' ) }}
+                                </a>&nbsp;
+                            </div>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <!--  http://gtreetable.gilek.net/ -->
+                            <table class="table gtreetable"
+                                   id="tableTaxons"
+                                   data-url="{{ url('vs_application_taxonomy_taxons_gtreetable', {'taxonomyId': item.id}) }}"
+                            >
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
 			</div>
         </div>
     </div>   
 {% endblock content %}
+
+{% block modals %}
+    {% include '@VSCms/Pages/Modals/filemanager_upload_file.html.twig' %}
+{% endblock %}
