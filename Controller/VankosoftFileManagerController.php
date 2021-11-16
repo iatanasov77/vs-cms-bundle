@@ -4,6 +4,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use VS\ApplicationBundle\Controller\AbstractCrudController;
 use VS\ApplicationBundle\Controller\TaxonomyHelperTrait;
+use VS\CmsBundle\Form\VankosoftFileManagerFileForm;
 
 class VankosoftFileManagerController extends AbstractCrudController
 {
@@ -14,9 +15,12 @@ class VankosoftFileManagerController extends AbstractCrudController
         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
             $this->getParameter( 'vs_cms.file_manager.taxonomy_code' )
         );
+        $fileEntity = $this->get( 'vs_cms.factory.file_manager_file' )->createNew();
         
         return [
-            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+            'taxonomyId'        => $taxonomy ? $taxonomy->getId() : 0,
+            //'formUploadFile'    => $this->createForm( VankosoftFileManagerFileForm::class, $fileEntity )->createView(),
+            'formUploadFile'    => $this->get( 'vs_cms.form.file_manager_file' )->createView(),
         ];
     }
     

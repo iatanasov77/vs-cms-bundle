@@ -55,6 +55,9 @@ vs_cms:
         filemanager_update_title: Редактиране на Файл Мениджър
         filemanager_create_title: Създаване Нов Файл Мениджър
         filemanager_update_details_title: 'Файл Мениджър Детайли'
+        filemanager_update_uploaded_files: Ъплоаднати Файлове
+        filemanager_update_upload_file: Ъплоад Файл
+        filemanager_update_button_upload: Ъплоад
         
     modal:
         page_clone:
