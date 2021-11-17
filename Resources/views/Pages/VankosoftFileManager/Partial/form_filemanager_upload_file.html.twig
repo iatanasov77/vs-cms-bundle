@@ -3,6 +3,11 @@
 
     <div class="custom-file mb-3">
         {{ form_label(form.file, null, {
+            'label_attr': {'class': 'col-form-label'}
+            
+            }) 
+        }}
+        {{ form_label(form.file, null, {
             'label_attr': {'class': 'custom-file-label'}
             }) 
         }}
@@ -12,4 +17,5 @@
             }
         }) }}
     </div>
+    <div class="mb-3">&nbsp;</div>
 {{ form_end(form, {'render_rest': false}) }}
