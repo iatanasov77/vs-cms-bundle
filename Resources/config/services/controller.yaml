@@ -45,3 +45,4 @@ services:
             - '@vs_cms.repository.file_manager'
             - '@vs_cms.repository.file_manager_file'
             - '@vs_cms.factory.file_manager_file'
+            - '@vs_cms.file_manager'
