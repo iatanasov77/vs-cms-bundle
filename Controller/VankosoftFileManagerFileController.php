@@ -5,7 +5,7 @@ use VS\ApplicationBundle\Controller\AbstractCrudController;
 
 class VankosoftFileManagerFileController extends AbstractCrudController
 {
-    protected function customData( Request $request ): array
+    protected function customData( Request $request, $entity = null ): array
     {
         return [
             
