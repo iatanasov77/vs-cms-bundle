@@ -38,4 +38,4 @@ services:
     vs_cms.file_manager:
         class: VS\CmsBundle\Component\FileManager
         arguments:
-            - '@vs_cms.image_uploader'
+            - '@vs_cms.filemanager_uploader'
