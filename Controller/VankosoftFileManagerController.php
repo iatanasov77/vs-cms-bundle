@@ -9,7 +9,7 @@ class VankosoftFileManagerController extends AbstractCrudController
 {
     use TaxonomyHelperTrait;
     
-    protected function customData( Request $request ): array
+    protected function customData( Request $request, $entity = null ): array
     {
         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
             $this->getParameter( 'vs_cms.file_manager.taxonomy_code' )

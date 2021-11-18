@@ -56,7 +56,7 @@ class PagesCategoryController extends AbstractCrudController
         }
     }
     
-    protected function customData( Request $request ): array
+    protected function customData( Request $request, $entity = null ): array
     {
         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode( 
                                     $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
