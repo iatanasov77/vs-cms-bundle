@@ -21,8 +21,9 @@ class VankosoftFileManagerController extends AbstractCrudController
             
             foreach( $entity->getFiles() as $file ) {
                 if ( ! empty( $file->getPath() ) ) {
-                    $filePath           = $filesystem->getAdapter()->computeKey( $file->getPath() );
-                    $fileManagerFiles[] = new \SplFileInfo( $filePath );
+                    //$filePath           = $filesystem->getAdapter()->computeKey( $file->getPath() );
+                    //$fileManagerFiles[] = new \SplFileInfo( $filePath );
+                    $fileManagerFiles[] = $filesystem->get( $file->getPath() );
                 }
             }
         }
