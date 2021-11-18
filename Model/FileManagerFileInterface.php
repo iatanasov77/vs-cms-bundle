@@ -2,6 +2,6 @@
 
 interface FileManagerFileInterface extends FileInterface
 {
-    public function getFilemanager(): string;
+    public function getFilemanager(): FileManagerInterface;
     public function setFilemanager( FileManagerInterface $filemanager ): self;
 }
