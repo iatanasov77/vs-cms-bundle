@@ -20,10 +20,12 @@ class FileManager
     
     public function upload2GaufretteFilesystem( FileManagerFileInterface &$file, File $postFile )
     {
-        $uploadedFile   = new UploadedFile( $postFile->getRealPath(), $postFile->getBasename() );
-        $file->setFile( $uploadedFile );
+        $file->setOriginalName( $postFile->getBasename() );
         
         try {
+            $uploadedFile   = new UploadedFile( $postFile->getRealPath(), $postFile->getBasename() );
+            $file->setFile( $uploadedFile );
+            
             $this->fileUploader->upload( $file );
         } catch ( FileException $e ) {
             // ... handle exception if something happens during file upload
