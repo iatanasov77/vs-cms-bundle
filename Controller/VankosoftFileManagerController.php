@@ -15,8 +15,21 @@ class VankosoftFileManagerController extends AbstractCrudController
             $this->getParameter( 'vs_cms.file_manager.taxonomy_code' )
         );
         
+        $fileManagerFiles   = [];
+        if ( $entity ) {
+            $filesystem = $this->get( 'knp_gaufrette.filesystem_map' )->get( 'vs_application_filemanager' );
+            
+            foreach( $entity->getFiles() as $file ) {
+                if ( ! empty( $this->getPath() ) ) {
+                    $filePath           = $filesystem->getAdapter()->computeKey( $this->getPath() );
+                    $fileManagerFiles[] = new \SplFileInfo( $filePath );
+                }
+            }
+        }
+        
         return [
             'taxonomyId'        => $taxonomy ? $taxonomy->getId() : 0,
+            'fileManagerFiles'  => $fileManagerFiles,
         ];
     }
     
