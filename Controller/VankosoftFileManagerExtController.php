@@ -48,7 +48,8 @@ class VankosoftFileManagerExtController extends AbstractController
         }
         
         return $this->render( '@VSCms/Pages/VankosoftFileManager/Partial/form_filemanager_upload_file.html.twig', [
-            'form'  => $this->createForm( VankosoftFileManagerFileForm::class, $fileEntity )->createView(),
+            'form'          => $this->createForm( VankosoftFileManagerFileForm::class, $fileEntity )->createView(),
+            'fileManagerId' => $fileManagerId,
         ]);
     }
     
@@ -59,19 +60,13 @@ class VankosoftFileManagerExtController extends AbstractController
         
         $form->handleRequest( $request );
         if ( $form->isSubmitted() && $form->isValid() ) {
-            $file       = $form['file']->getData();
-            var_dump( $file ); die;
-            // $form->getData() holds the submitted values
-            // but, the original `$fileEntity` variable has also been updated
-            $fileEntity = $form->getData();
-            $em         = $this->getDoctrine()->getManager();
+            $em             = $this->getDoctrine()->getManager();
+            $postFile       = $form['file']->getData();
+            $fileManager    = $this->fileManagerRepository->find( $form['fileManagerId']->getData() );
+            $fileEntity     = $form->getData();
             
-            // ... perform some action, such as saving the fileEntity to the database
-            $fileEntity->setFile( $uploadedImage );
-            
-            $this->uploader->upload( $fileEntity );
-            
-            $userInfo->setAvatar( $avatarImage );
+            $this->filemanager->upload2GaufretteFilesystem( $fileEntity, $postFile );
+            $fileManager->addFile( $fileEntity );
             
             $em->persist( $fileEntity );
             $em->flush();
