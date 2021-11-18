@@ -20,8 +20,8 @@ class VankosoftFileManagerController extends AbstractCrudController
             $filesystem = $this->get( 'knp_gaufrette.filesystem_map' )->get( 'vs_application_filemanager' );
             
             foreach( $entity->getFiles() as $file ) {
-                if ( ! empty( $entity->getPath() ) ) {
-                    $filePath           = $filesystem->getAdapter()->computeKey( $entity->getPath() );
+                if ( ! empty( $file->getPath() ) ) {
+                    $filePath           = $filesystem->getAdapter()->computeKey( $file->getPath() );
                     $fileManagerFiles[] = new \SplFileInfo( $filePath );
                 }
             }
