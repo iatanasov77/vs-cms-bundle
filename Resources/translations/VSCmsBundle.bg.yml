@@ -55,6 +55,14 @@ vs_cms:
         filemanager_update_title: Редактиране на Файл Мениджър
         filemanager_create_title: Създаване Нов Файл Мениджър
         filemanager_update_details_title: 'Файл Мениджър Детайли'
+        filemanager_update_uploaded_files: Ъплоаднати Файлове
+        filemanager_update_upload_file: Ъплоад Файл
+        filemanager_update_button_upload: Ъплоад
+        filemanager_update_files_table_name: 'Име'
+        filemanager_update_files_table_date: 'Дата'
+        filemanager_update_files_table_size: 'Размер'
+        filemanager_update_files_table_dimension: 'Снимка Размер'
+        filemanager_update_files_table_actions: 'Действия'
         
     modal:
         page_clone:
