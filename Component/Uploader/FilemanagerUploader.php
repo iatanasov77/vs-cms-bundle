@@ -57,6 +57,10 @@ class FilemanagerUploader implements FileUploaderInterface
             $filemanagerFile->getPath(),
             file_get_contents( $filemanagerFile->getFile()->getPathname() )
         );
+        
+        if ( method_exists ( $this->filesystem->getAdapter(), 'mimeType' ) ) {
+            $filemanagerFile->setType( $this->filesystem->getAdapter()->mimeType( $filemanagerFile->getPath() ) );
+        }
     }
     
     public function remove( string $path ): bool

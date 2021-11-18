@@ -24,7 +24,13 @@ class VankosoftFileManagerController extends AbstractCrudController
                 if ( ! empty( $file->getPath() ) ) {
                     //$filePath           = $filesystem->getAdapter()->computeKey( $file->getPath() );
                     //$fileManagerFiles[] = new \SplFileInfo( $filePath );
-                    $fileManagerFiles[] = $filesystem->get( $file->getPath() );
+                    $fileManagerFiles[] = [
+                        'gaufrette_file'    => $filesystem->get( $file->getPath() ),
+                        'metadata'          => [
+                            'original_name' => $file->getOriginalName(),
+                            'dimension'     => '',
+                        ],
+                    ];
                 }
             }
         }
