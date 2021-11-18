@@ -7,12 +7,14 @@ class FileManagerFile extends File implements FileManagerFileInterface
     
     public function getFilemanager(): string
     {
-        return $this->filemanager;
+        //return $this->filemanager;
+        return $this->owner;
     }
     
     public function setFilemanager( FileManagerInterface $filemanager ): self
     {
         $this->filemanager  = $filemanager;
+        $this->setOwner( $filemanager );
         
         return $this;
     }

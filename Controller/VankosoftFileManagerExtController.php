@@ -67,7 +67,6 @@ class VankosoftFileManagerExtController extends AbstractController
             
             $this->filemanager->upload2GaufretteFilesystem( $fileEntity, $postFile );
             $fileManager->addFile( $fileEntity );
-            $fileEntity->setOwner( $fileManager ); //@Note: Maybe this should be fixed
             
             $em->persist( $fileEntity );
             $em->flush();
