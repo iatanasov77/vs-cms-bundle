@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
@@ -24,6 +25,7 @@ class VankosoftFileManagerFileForm extends AbstractForm
 //                 'translation_domain'    => 'VSCmsBundle',
 //             ])
 
+            ->add( 'fileManagerId', HiddenType::class, ['mapped' => false] )
             ->add( 'file', FileType::class, [
                 'label'                 => 'vs_cms.form.filemanager.file_lable',
                 'translation_domain'    => 'VSCmsBundle',

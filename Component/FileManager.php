@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 use VS\CmsBundle\Component\Uploader\FileUploaderInterface;
+use VS\CmsBundle\Model\FileManagerFileInterface;
 
 class FileManager
 {    
@@ -17,11 +18,9 @@ class FileManager
         $this->fileUploader = $fileUploader;
     }
     
-    public function upload2GaufretteFilesystem( FileManagerInterface &$fileManager, File $file )
+    public function upload2GaufretteFilesystem( FileManagerFileInterface &$file, File $postFile )
     {
-        $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
-        
-        $file           = $this->filesFactory->createNew();
+        $uploadedFile   = new UploadedFile( $postFile->getRealPath(), $postFile->getBasename() );
         $file->setFile( $uploadedFile );
         
         try {
@@ -29,8 +28,6 @@ class FileManager
         } catch ( FileException $e ) {
             // ... handle exception if something happens during file upload
         }
-        
-        $fileManager->addFile( $file );
     }
     
     public function upload2ArtgrisFileManager( File $file, $targetDir ): string
