@@ -12,11 +12,18 @@
     <tr>
         <td>{{ loop.index }}</td>
 
-        {# SplFileInfo Data #}
+        {# Gaufrette\File Data #}
+        <td>{{ file.name }}</td>
+        <td>{{ file.mtime | date( "d/m/Y" ) }}</td>
+        <td>{{ file.size }}</td>
+        <td>{{ file.size }}</td>
+        
+        {# SplFileInfo Data
         <td>{{ file.getFilename() }}</td>
         <td>{{ file.getCTime() | date( "d/m/Y" ) }}</td>
         <td>{{ file.getSize() }}</td>
-        <td>{{ file.getSize() }}</td>{# Should Get Dimensions if the file is a an image #}
+        <td>{{ file.getSize() }}</td>
+        #}
         
         <td>
         {#
