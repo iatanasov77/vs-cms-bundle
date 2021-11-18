@@ -93,12 +93,7 @@
                             </div>
                         </div>
                         <div class="card-body" style="padding: 0;">
-                            <!--  http://gtreetable.gilek.net/ -->
-                            <table class="table gtreetable"
-                                   id="tableTaxons"
-                                   data-url="{{ url('vs_application_taxonomy_taxons_gtreetable', {'taxonomyId': item.id}) }}"
-                            >
-                            </table>
+                            {% include '@VSCms/Pages/VankosoftFileManager/Partial/table_filemanager_files.html.twig' %}
                         </div>
                     </div>
                 {% endif %}
