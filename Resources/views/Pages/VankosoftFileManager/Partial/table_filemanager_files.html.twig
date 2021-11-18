@@ -15,7 +15,7 @@
         {# Gaufrette\File Data #}
         <td>{{ file.name }}</td>
         <td>{{ file.mtime | date( "d/m/Y" ) }}</td>
-        <td>{{ file.size }}</td>
+        <td>{{ file.size | readable_filesize }}</td>
         <td>{{ file.size }}</td>
         
         {# SplFileInfo Data
