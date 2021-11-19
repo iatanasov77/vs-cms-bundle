@@ -1,9 +1,12 @@
 parameters:
     vs_cms.file_manager.taxonomy_code: file-managers
-    vs_cms.image_uploader.filesystem: vs_application_image
-    vs_cms.filemanager_uploader.filesystem: vs_application_filemanager
-    vs_cms.filemanager_uploader.filesystem_directory: "%kernel.project_dir%/public/file_manager/gaufrette"
-    vs_cms.file_manager_uploads_dir: '%kernel.project_dir%/public/file_manager/uploads/'
+    # Gaufrette File Systems
+    vs_cms.gaufrette.profile.filesystem: vs_application_profile
+    vs_cms.gaufrette.filemanager.filesystem: vs_application_filemanager
+    # Shared Media Directories
+    vs_cms.filemanager_shared_media_gaufrette.profile: "%kernel.project_dir%/public/shared_media/gaufrette/profile"
+    vs_cms.filemanager_shared_media_gaufrette.filemanager: "%kernel.project_dir%/public/shared_media/gaufrette/filemanager"
+    vs_cms.filemanager_shared_media_artgris: '%kernel.project_dir%/public/shared_media/artgris'
 
 services:
     _defaults:

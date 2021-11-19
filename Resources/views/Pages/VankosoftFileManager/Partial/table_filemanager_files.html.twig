@@ -12,7 +12,10 @@
     <tr>
         <td>{{ loop.index }}</td>
 
-        <td>{{ file.metadata.original_name }}</td>
+        <td>
+            <img src="{{ file.gaufrette_file.key|imagine_filter('file_manager_files_thumb') }}" />
+            {{ file.metadata.original_name }}
+        </td>
         <td>{{ file.gaufrette_file.mtime | date( "d/m/Y h:i:s" ) }}</td>
         <td>{{ file.gaufrette_file.size | readable_filesize }}</td>
         <td>{% if file.metadata.dimension is iterable %}{{ file.metadata.dimension[0] }} x {{ file.metadata.dimension[1] }}{% endif %}</td>

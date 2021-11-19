@@ -17,7 +17,7 @@ class VankosoftFileManagerController extends AbstractCrudController
         
         $fileManagerFiles   = [];
         if ( $entity ) {
-            $filesystem = $this->get( 'knp_gaufrette.filesystem_map' )->get( 'vs_application_filemanager' );
+            $filesystem = $this->get( 'knp_gaufrette.filesystem_map' )->get( 'vs_cms.gaufrette.filemanager.filesystem' );
             
             foreach( $entity->getFiles() as $file ) {
                 if ( ! empty( $file->getPath() ) ) {
@@ -27,7 +27,7 @@ class VankosoftFileManagerController extends AbstractCrudController
                             'original_name' => $file->getOriginalName(),
                             // dimension is false if not an image
                             'dimension'     => @getimagesize( 
-                                $this->getParameter( 'vs_cms.filemanager_uploader.filesystem_directory' ) . $file->getPath()
+                                $this->getParameter( 'vs_cms.filemanager_shared_media_gaufrette.filemanager' ) . $file->getPath()
                             ),
                         ],
                     ];
