@@ -2,6 +2,7 @@ parameters:
     vs_cms.file_manager.taxonomy_code: file-managers
     vs_cms.image_uploader.filesystem: vs_application_image
     vs_cms.filemanager_uploader.filesystem: vs_application_filemanager
+    vs_cms.filemanager_uploader.filesystem_directory: "%kernel.project_dir%/public/file_manager/gaufrette"
     vs_cms.file_manager_uploads_dir: '%kernel.project_dir%/public/file_manager/uploads/'
 
 services:
