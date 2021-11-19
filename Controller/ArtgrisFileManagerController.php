@@ -38,7 +38,7 @@ class ArtgrisFileManagerController extends AbstractController
             $directory   = $form['directory']->getData();
             $file       = $form['file']->getData();
             if ( $file ) {
-                $targetDir  = $this->getParameter( 'vs_cms.file_manager_uploads_dir' ) . $directory;
+                $targetDir  = $this->getParameter( 'vs_cms.filemanager_shared_media_artgris' ) . $directory;
                 $fileName   = $this->fm->upload2ArtgrisFileManager( $file, $targetDir );
             }
             
