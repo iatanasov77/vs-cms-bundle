@@ -12,18 +12,10 @@
     <tr>
         <td>{{ loop.index }}</td>
 
-        {# Gaufrette\File Data #}
         <td>{{ file.metadata.original_name }}</td>
         <td>{{ file.gaufrette_file.mtime | date( "d/m/Y h:i:s" ) }}</td>
         <td>{{ file.gaufrette_file.size | readable_filesize }}</td>
-        <td>{{ file.metadata.dimension }}</td>
-        
-        {# SplFileInfo Data
-        <td>{{ file.getFilename() }}</td>
-        <td>{{ file.getCTime() | date( "d/m/Y" ) }}</td>
-        <td>{{ file.getSize() }}</td>
-        <td>{{ file.getSize() }}</td>
-        #}
+        <td>{% if file.metadata.dimension is iterable %}{{ file.metadata.dimension[0] }} x {{ file.metadata.dimension[1] }}{% endif %}</td>
         
         <td>
         {#

@@ -15,20 +15,20 @@ class VankosoftFileManagerController extends AbstractCrudController
             $this->getParameter( 'vs_cms.file_manager.taxonomy_code' )
         );
         
-        /** @var Gaufrette\File[] fileManagerFiles */
         $fileManagerFiles   = [];
         if ( $entity ) {
             $filesystem = $this->get( 'knp_gaufrette.filesystem_map' )->get( 'vs_application_filemanager' );
             
             foreach( $entity->getFiles() as $file ) {
                 if ( ! empty( $file->getPath() ) ) {
-                    //$filePath           = $filesystem->getAdapter()->computeKey( $file->getPath() );
-                    //$fileManagerFiles[] = new \SplFileInfo( $filePath );
                     $fileManagerFiles[] = [
                         'gaufrette_file'    => $filesystem->get( $file->getPath() ),
                         'metadata'          => [
                             'original_name' => $file->getOriginalName(),
-                            'dimension'     => '',
+                            // dimension is false if not an image
+                            'dimension'     => @getimagesize( 
+                                $this->getParameter( 'vs_cms.filemanager_uploader.filesystem_directory' ) . $file->getPath()
+                            ),
                         ],
                     ];
                 }
