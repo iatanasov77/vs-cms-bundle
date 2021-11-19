@@ -20,7 +20,7 @@ class FileManager
     
     public function upload2GaufretteFilesystem( FileManagerFileInterface &$file, File $postFile )
     {
-        $file->setOriginalName( $postFile->getBasename() );
+        $file->setOriginalName( $postFile->getClientOriginalName() );
         
         try {
             $uploadedFile   = new UploadedFile( $postFile->getRealPath(), $postFile->getBasename() );
