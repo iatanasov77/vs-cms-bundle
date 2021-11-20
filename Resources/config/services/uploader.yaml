@@ -21,7 +21,7 @@ services:
     
     vs_cms.filemanager_uploader.filesystem:
         class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.filemanager_uploader.filesystem%']
+        arguments: ['%vs_cms.gaufrette.filemanager.filesystem%']
         factory: ['@knp_gaufrette.filesystem_map', 'get']
 
     vs_cms.file_path_generator:
