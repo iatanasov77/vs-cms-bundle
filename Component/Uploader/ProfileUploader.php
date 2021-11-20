@@ -8,7 +8,7 @@ use VS\CmsBundle\Component\Generator\FilePathGeneratorInterface;
 use VS\CmsBundle\Component\Generator\UploadedFilePathGenerator;
 use VS\CmsBundle\Model\FileInterface;
 
-class ImageUploader implements FileUploaderInterface
+class ProfileUploader implements FileUploaderInterface
 {
     /** @var Filesystem */
     protected $filesystem;
