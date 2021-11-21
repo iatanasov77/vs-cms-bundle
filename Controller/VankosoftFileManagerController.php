@@ -17,7 +17,7 @@ class VankosoftFileManagerController extends AbstractCrudController
         
         $fileManagerFiles   = [];
         if ( $entity ) {
-            $filesystem = $this->get( 'knp_gaufrette.filesystem_map' )->get( 'vs_cms.gaufrette.filemanager.filesystem' );
+            $filesystem = $this->get( 'knp_gaufrette.filesystem_map' )->get( $this->getParameter( 'vs_cms.gaufrette.filemanager.filesystem' ) );
             
             foreach( $entity->getFiles() as $file ) {
                 if ( ! empty( $file->getPath() ) ) {
