@@ -1,6 +1,6 @@
-<?php namespace VS\CmsBundle\Form;
+<?php namespace Vankosoft\CmsBundle\Form;
 
-use VS\ApplicationBundle\Form\AbstractForm;
+use Vankosoft\ApplicationBundle\Form\AbstractForm;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,7 +34,7 @@ class TocPageForm extends AbstractForm
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( \VS\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'choices'               => \array_flip( \Vankosoft\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
                 'data'                  => $currentLocale,
                 'mapped'                => false,
             ])

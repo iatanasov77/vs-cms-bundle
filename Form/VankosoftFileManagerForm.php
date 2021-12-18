@@ -1,6 +1,6 @@
-<?php namespace VS\CmsBundle\Form;
+<?php namespace Vankosoft\CmsBundle\Form;
 
-use VS\ApplicationBundle\Form\AbstractForm;
+use Vankosoft\ApplicationBundle\Form\AbstractForm;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -8,8 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-use VS\ApplicationBundle\Component\I18N;
-use VS\CmsBundle\Model\FileManagerInterface;
+use Vankosoft\ApplicationBundle\Component\I18N;
+use Vankosoft\CmsBundle\Model\FileManagerInterface;
 
 class VankosoftFileManagerForm extends AbstractForm
 {

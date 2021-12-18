@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Controller;
+<?php namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -7,13 +7,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-use VS\ApplicationBundle\Component\Slug;
-use VS\ApplicationBundle\Repository\TaxonomyRepository;
+use Vankosoft\ApplicationBundle\Component\Slug;
+use Vankosoft\ApplicationBundle\Repository\TaxonomyRepository;
 
-use VS\CmsBundle\Repository\MultiPageTocRepository;
-use VS\CmsBundle\Repository\TocPagesRepository;
-use VS\CmsBundle\Repository\PagesRepository;
-use VS\CmsBundle\Form\TocPageForm;
+use Vankosoft\CmsBundle\Repository\MultiPageTocRepository;
+use Vankosoft\CmsBundle\Repository\TocPagesRepository;
+use Vankosoft\CmsBundle\Repository\PagesRepository;
+use Vankosoft\CmsBundle\Form\TocPageForm;
 
 class MultiPageTocPageController extends AbstractController
 {

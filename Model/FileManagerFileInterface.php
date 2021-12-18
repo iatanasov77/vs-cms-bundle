@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Model;
+<?php namespace Vankosoft\CmsBundle\Model;
 
 interface FileManagerFileInterface extends FileInterface
 {

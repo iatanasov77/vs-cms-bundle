@@ -4,26 +4,26 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
 >
-    <mapped-superclass name="VS\CmsBundle\Model\PageCategory">
+    <mapped-superclass name="Vankosoft\CmsBundle\Model\PageCategory">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
       	
-      	<many-to-one field="parent" name="parent_id" target-entity="VS\CmsBundle\Model\PageCategoryInterface">
+      	<many-to-one field="parent" name="parent_id" target-entity="Vankosoft\CmsBundle\Model\PageCategoryInterface">
         	<cascade>
                 <cascade-all/>
             </cascade>
         </many-to-one>
         
-        <one-to-many field="children" target-entity="VS\CmsBundle\Model\PageCategoryInterface" mapped-by="parent">
+        <one-to-many field="children" target-entity="Vankosoft\CmsBundle\Model\PageCategoryInterface" mapped-by="parent">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-many>
         
-        <many-to-many field="pages" target-entity="VS\CmsBundle\Model\PageInterface" mapped-by="categories" />
+        <many-to-many field="pages" target-entity="Vankosoft\CmsBundle\Model\PageInterface" mapped-by="categories" />
         
-        <many-to-one field="taxon" name="taxon_id" target-entity="VS\ApplicationBundle\Model\Interfaces\TaxonInterface" inversed-by="children">
+        <many-to-one field="taxon" name="taxon_id" target-entity="Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface" inversed-by="children">
         	<cascade>
                 <cascade-all/>
             </cascade>

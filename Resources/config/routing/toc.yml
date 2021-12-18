@@ -15,16 +15,16 @@ vs_cms_multipage_toc_page:
 
 vs_cms_multipage_toc_page_gtreetable:
     path: /multipage_toc_{tocId}_gtreetable
-    controller: VS\CmsBundle\Controller\MultiPageTocPageController::gtreeTableSource
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::gtreeTableSource
 
 vs_cms_multipage_toc_page_easyui_combotree:
     path: /multipage_toc_{tocId}_easyui-combotree
-    controller: VS\CmsBundle\Controller\MultiPageTocPageController::easyuiComboTreeSource
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::easyuiComboTreeSource
     
 vs_cms_multipage_toc_page_edit:
     path: /multipage_toc_{tocId}/toc_page_form
-    controller: VS\CmsBundle\Controller\MultiPageTocPageController::editTocPage
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::editTocPage
     
 vs_cms_multipage_toc_page_handle:
     path: /multipage_toc_{tocId}/toc_page_form/handle
-    controller: VS\CmsBundle\Controller\MultiPageTocPageController::handleTocPage
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::handleTocPage

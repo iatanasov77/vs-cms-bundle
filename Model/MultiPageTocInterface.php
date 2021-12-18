@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Model;
+<?php namespace Vankosoft\CmsBundle\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 

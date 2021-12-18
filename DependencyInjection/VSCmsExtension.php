@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\DependencyInjection;
+<?php namespace Vankosoft\CmsBundle\DependencyInjection;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
 

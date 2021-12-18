@@ -1,4 +1,4 @@
-<?php  namespace VS\CmsBundle\Controller;
+<?php  namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Resource\Factory\Factory;
 
-use VS\ApplicationBundle\Component\Status;
-use VS\CmsBundle\Form\VankosoftFileManagerFileForm;
-use VS\CmsBundle\Component\FileManager;
+use Vankosoft\ApplicationBundle\Component\Status;
+use Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm;
+use Vankosoft\CmsBundle\Component\FileManager;
 
 class VankosoftFileManagerExtController extends AbstractController
 {
