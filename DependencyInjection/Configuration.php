@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\DependencyInjection;
+<?php namespace Vankosoft\CmsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -9,35 +9,35 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Factory\Factory;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
-use VS\CmsBundle\Model\Page;
-use VS\CmsBundle\Controller\PagesController;
-use VS\CmsBundle\Repository\PagesRepository;
-use VS\CmsBundle\Form\PageForm;
+use Vankosoft\CmsBundle\Model\Page;
+use Vankosoft\CmsBundle\Controller\PagesController;
+use Vankosoft\CmsBundle\Repository\PagesRepository;
+use Vankosoft\CmsBundle\Form\PageForm;
 
-use VS\CmsBundle\Model\PageCategory;
-use VS\CmsBundle\Controller\PagesCategoryController;
-use VS\CmsBundle\Repository\PageCategoryRepository;
-use VS\CmsBundle\Form\PageCategoryForm;
+use Vankosoft\CmsBundle\Model\PageCategory;
+use Vankosoft\CmsBundle\Controller\PagesCategoryController;
+use Vankosoft\CmsBundle\Repository\PageCategoryRepository;
+use Vankosoft\CmsBundle\Form\PageCategoryForm;
 
-use VS\CmsBundle\Model\MultiPageToc;
-use VS\CmsBundle\Controller\MultiPageTocController;
-use VS\CmsBundle\Repository\MultiPageTocRepository;
-use VS\CmsBundle\Form\MultiPageTocForm;
+use Vankosoft\CmsBundle\Model\MultiPageToc;
+use Vankosoft\CmsBundle\Controller\MultiPageTocController;
+use Vankosoft\CmsBundle\Repository\MultiPageTocRepository;
+use Vankosoft\CmsBundle\Form\MultiPageTocForm;
 
-use VS\CmsBundle\Model\TocPage;
-use VS\CmsBundle\Controller\TocPageController;
-use VS\CmsBundle\Repository\TocPagesRepository;
-use VS\CmsBundle\Form\TocPageForm;
+use Vankosoft\CmsBundle\Model\TocPage;
+use Vankosoft\CmsBundle\Controller\TocPageController;
+use Vankosoft\CmsBundle\Repository\TocPagesRepository;
+use Vankosoft\CmsBundle\Form\TocPageForm;
 
-use VS\CmsBundle\Model\FileManager;
-use VS\CmsBundle\Model\FileManagerInterface;
-use VS\CmsBundle\Repository\FileManagerRepository;
-use VS\CmsBundle\Controller\VankosoftFileManagerController;
-use VS\CmsBundle\Form\VankosoftFileManagerForm;
-use VS\CmsBundle\Model\FileManagerFile;
-use VS\CmsBundle\Model\FileManagerFileInterface;
-use VS\CmsBundle\Controller\VankosoftFileManagerFileController;
-use VS\CmsBundle\Form\VankosoftFileManagerFileForm;
+use Vankosoft\CmsBundle\Model\FileManager;
+use Vankosoft\CmsBundle\Model\FileManagerInterface;
+use Vankosoft\CmsBundle\Repository\FileManagerRepository;
+use Vankosoft\CmsBundle\Controller\VankosoftFileManagerController;
+use Vankosoft\CmsBundle\Form\VankosoftFileManagerForm;
+use Vankosoft\CmsBundle\Model\FileManagerFile;
+use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
+use Vankosoft\CmsBundle\Controller\VankosoftFileManagerFileController;
+use Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm;
 
 /**
  * This is the class that validates and merges configuration from your app/config files

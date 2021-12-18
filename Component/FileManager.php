@@ -1,12 +1,12 @@
-<?php namespace VS\CmsBundle\Component;
+<?php namespace Vankosoft\CmsBundle\Component;
 
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-use VS\CmsBundle\Component\Uploader\FileUploaderInterface;
-use VS\CmsBundle\Model\FileManagerFileInterface;
+use Vankosoft\CmsBundle\Component\Uploader\FileUploaderInterface;
+use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
 
 class FileManager
 {    

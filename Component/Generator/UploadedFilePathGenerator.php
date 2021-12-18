@@ -1,8 +1,8 @@
-<?php namespace VS\CmsBundle\Component\Generator;
+<?php namespace Vankosoft\CmsBundle\Component\Generator;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-use VS\CmsBundle\Model\FileInterface;
+use Vankosoft\CmsBundle\Model\FileInterface;
 
 final class UploadedFilePathGenerator implements FilePathGeneratorInterface
 {

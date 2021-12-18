@@ -1,8 +1,8 @@
-<?php namespace VS\CmsBundle\Model;
+<?php namespace Vankosoft\CmsBundle\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Doctrine\Common\Collections\Collection;
-use VS\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 
 interface PageCategoryInterface extends ResourceInterface
 {

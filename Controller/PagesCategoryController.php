@@ -1,8 +1,8 @@
-<?php  namespace VS\CmsBundle\Controller;
+<?php  namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use VS\ApplicationBundle\Controller\AbstractCrudController;
-use VS\ApplicationBundle\Controller\TaxonomyHelperTrait;
+use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
+use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
 
 /**
  * Documentation

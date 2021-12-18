@@ -1,4 +1,4 @@
-<?php  namespace VS\CmsBundle\Controller;
+<?php  namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -6,14 +6,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sylius\Component\Resource\Factory\Factory;
 
-use VS\ApplicationBundle\Repository\LogEntryRepository;
-use VS\ApplicationBundle\Repository\TaxonomyRepository;
-use VS\ApplicationBundle\Repository\TaxonRepository;
-use VS\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
-use VS\CmsBundle\Repository\PagesRepository;
-use VS\CmsBundle\Form\ClonePageForm;
-use VS\CmsBundle\Form\PageForm;
-use VS\CmsBundle\Repository\PageCategoryRepository;
+use Vankosoft\ApplicationBundle\Repository\LogEntryRepository;
+use Vankosoft\ApplicationBundle\Repository\TaxonomyRepository;
+use Vankosoft\ApplicationBundle\Repository\TaxonRepository;
+use Vankosoft\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
+use Vankosoft\CmsBundle\Repository\PagesRepository;
+use Vankosoft\CmsBundle\Form\ClonePageForm;
+use Vankosoft\CmsBundle\Form\PageForm;
+use Vankosoft\CmsBundle\Repository\PageCategoryRepository;
 
 class PagesExtController extends AbstractController
 {

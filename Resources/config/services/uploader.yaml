@@ -25,21 +25,21 @@ services:
         factory: ['@knp_gaufrette.filesystem_map', 'get']
 
     vs_cms.file_path_generator:
-        class: VS\CmsBundle\Component\Generator\UploadedFilePathGenerator
+        class: Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator
 
     vs_cms.profile_uploader:
-        class: VS\CmsBundle\Component\Uploader\ProfileUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\ProfileUploader
         arguments:
             - '@vs_cms.profile_uploader.filesystem'
             - '@vs_cms.file_path_generator'
             
     vs_cms.filemanager_uploader:
-        class: VS\CmsBundle\Component\Uploader\FilemanagerUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
         arguments:
             - '@vs_cms.filemanager_uploader.filesystem'
             - '@vs_cms.file_path_generator'
     
     vs_cms.file_manager:
-        class: VS\CmsBundle\Component\FileManager
+        class: Vankosoft\CmsBundle\Component\FileManager
         arguments:
             - '@vs_cms.filemanager_uploader'

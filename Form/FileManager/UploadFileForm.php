@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Form\FileManager;
+<?php namespace Vankosoft\CmsBundle\Form\FileManager;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
