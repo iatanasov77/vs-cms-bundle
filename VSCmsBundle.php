@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle;
+<?php namespace Vankosoft\CmsBundle;
 
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -18,7 +18,7 @@ class VSCmsBundle extends AbstractResourceBundle
     
     public function getContainerExtension()
     {
-        return new \VS\CmsBundle\DependencyInjection\VSCmsExtension();
+        return new \Vankosoft\CmsBundle\DependencyInjection\VSCmsExtension();
     }
     
     public function build( ContainerBuilder $container ): void
@@ -26,7 +26,7 @@ class VSCmsBundle extends AbstractResourceBundle
         parent::build( $container );
         
         $mappings = [
-            realpath( __DIR__.'/Resources/config/doctrine-mapping' ) => 'VS\CmsBundle\Model',
+            realpath( __DIR__.'/Resources/config/doctrine-mapping' ) => 'Vankosoft\CmsBundle\Model',
         ];
         
         if ( class_exists( 'Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass' ) ) {

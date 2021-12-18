@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Repository;
+<?php namespace Vankosoft\CmsBundle\Repository;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 

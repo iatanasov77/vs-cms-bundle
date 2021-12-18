@@ -1,11 +1,11 @@
-<?php namespace VS\CmsBundle\Controller;
+<?php namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use VS\CmsBundle\Component\FileManager;
-use VS\CmsBundle\Form\FileManager\UploadFileForm;
+use Vankosoft\CmsBundle\Component\FileManager;
+use Vankosoft\CmsBundle\Form\FileManager\UploadFileForm;
 
 class ArtgrisFileManagerController extends AbstractController
 {

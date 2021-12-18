@@ -36,40 +36,40 @@ vs_cms_page_categories:
 # Page Action Routes
 vs_cms_pages_clone:
     path: /page-actions/clone/{pageId}
-    controller: VS\CmsBundle\Controller\PagesExtController::clonePage
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::clonePage
 vs_cms_pages_preview:
     path: /page-actions/preview/{pageId}/{locale}/{version}
-    controller: VS\CmsBundle\Controller\PagesExtController::previewPage
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::previewPage
     defaults:   { version: null }
 vs_cms_pages_form_in_locale:
     path: /page-actions/get-form/{locale}/{pageId}
-    controller: VS\CmsBundle\Controller\PagesExtController::getPageForm
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::getPageForm
 
 # Page Categories Callbacks
 vs_cms_pages_tree_combo:
     path: /json/pages-categories-{taxonomyId}/easyui-combotree
-    controller: VS\CmsBundle\Controller\PagesExtController::easyuiComboTreeSource
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::easyuiComboTreeSource
 
 vs_cms_pages_tree_combo_with_selected:
     path: /json/{pageId}/pages-categories-{taxonomyId}/easyui-combotree
-    controller: VS\CmsBundle\Controller\PagesExtController::easyuiComboTreeWithSelectedSource
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::easyuiComboTreeWithSelectedSource
 
 vs_cms_pages_tree_combo_with_leafs:
     path: /json/pages-categories-{taxonomyId}/easyui-combotree-with-leafs
-    controller: VS\CmsBundle\Controller\PagesExtController::easyuiComboTreeWithLeafsSource
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::easyuiComboTreeWithLeafsSource
     
 vs_cms_pages_tree_table:
     path: /json/pages-categories-{taxonomyId}/gtreetable
-    controller: VS\CmsBundle\Controller\PagesExtController::gtreeTableSource
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::gtreeTableSource
 
 # Custom Routes
 vs_cms_pages_categories_update_by_taxon:
     path: /json/update-pages-category-by-taxon/{taxonId}
-    controller: VS\CmsBundle\Controller\PagesExtController::updateCategory_ByTaxonId
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::updateCategory_ByTaxonId
 vs_cms_pages_categories_delete_by_taxon:
     path: /json/delete-pages-category-by-taxon/{taxonId}
-    controller: VS\CmsBundle\Controller\PagesExtController::deleteCategory_ByTaxonId
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::deleteCategory_ByTaxonId
 vs_cms_pages_categories_move_by_taxon:
     path: /json/move-pages-category-by-taxon/{sourceTaxonId}-{destinationTaxonId}-{position}
-    controller: VS\CmsBundle\Controller\PagesExtController::moveCategory_ByTaxonId
+    controller: Vankosoft\CmsBundle\Controller\PagesExtController::moveCategory_ByTaxonId
 

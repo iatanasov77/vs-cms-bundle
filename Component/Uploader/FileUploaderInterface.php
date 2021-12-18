@@ -1,6 +1,6 @@
-<?php namespace VS\CmsBundle\Component\Uploader;
+<?php namespace Vankosoft\CmsBundle\Component\Uploader;
 
-use VS\CmsBundle\Model\FileInterface;
+use Vankosoft\CmsBundle\Model\FileInterface;
 
 interface FileUploaderInterface
 {

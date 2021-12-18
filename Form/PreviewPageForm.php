@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Form;
+<?php namespace Vankosoft\CmsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
