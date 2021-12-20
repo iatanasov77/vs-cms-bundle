@@ -1,6 +1,12 @@
 1.5.1	|	Release date: **20.12.2021**
 ============================================
 * New Features:
+  - New Version
+
+
+1.5.1	|	Release date: **20.12.2021**
+============================================
+* New Features:
 * Bug-Fixes:
 * Commits:
 	[2019-11-21 07:40:37 +0200][Commit: 4e128d3573eb63ed525a1b1de90aaff9ef9f5b06]
