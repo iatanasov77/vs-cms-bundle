@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Component;
+<?php namespace Vankosoft\CmsBundle\Component;
 
 use Spatie\Url\Url as SpatieUrl;
 

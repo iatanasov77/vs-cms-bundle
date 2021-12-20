@@ -1,15 +1,15 @@
-<?php namespace VS\CmsBundle\Controller;
+<?php namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
-use VS\ApplicationBundle\Controller\AbstractCrudController;
+use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
 
-use VS\CmsBundle\Form\ClonePageForm;
-use VS\CmsBundle\Form\PreviewPageForm;
+use Vankosoft\CmsBundle\Form\ClonePageForm;
+use Vankosoft\CmsBundle\Form\PreviewPageForm;
 
 class PagesController extends AbstractCrudController
 {
-    protected function customData( Request $request ): array
+    protected function customData( Request $request, $entity = null ): array
     {
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
         $versions       = $this->classInfo['action'] == 'indexAction' ? $this->getVersions( $translations ) : [];

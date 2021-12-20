@@ -19,7 +19,8 @@
 		"friendsofsymfony/ckeditor-bundle": "^2.0",
         "liip/imagine-bundle": "^2.6",
         "artgris/filemanager-bundle": "^2.2",
-        "knplabs/knp-gaufrette-bundle": "^0.7"
+        "knplabs/knp-gaufrette-bundle": "^0.7",
+        "spe/filesize-extension-bundle": "^2.0"
 	},
 	"conflict": {
 		"doctrine/doctrine-bundle" : "<1.3",
@@ -27,7 +28,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"VS\\CmsBundle\\": "lib/"
+			"Vankosoft\\CmsBundle\\": "lib/"
 		}
 	},
 	"minimum-stability": "dev"

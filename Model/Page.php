@@ -1,4 +1,4 @@
-<?php namespace VS\CmsBundle\Model;
+<?php namespace Vankosoft\CmsBundle\Model;
 
 use Sylius\Component\Resource\Model\TranslationInterface;
 
@@ -9,8 +9,8 @@ use Sylius\Component\Resource\Model\TranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-use VS\ApplicationBundle\Model\Interfaces\TaxonLeafInterface;
-use VS\ApplicationBundle\Model\Traits\TaxonLeafTrait;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonLeafInterface;
+use Vankosoft\ApplicationBundle\Model\Traits\TaxonLeafTrait;
 
 class Page implements PageInterface, TaxonLeafInterface
 {

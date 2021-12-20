@@ -1,11 +1,12 @@
-<?php namespace VS\CmsBundle\Component;
+<?php namespace Vankosoft\CmsBundle\Component;
 
 use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-use VS\CmsBundle\Component\Uploader\FileUploaderInterface;
+use Vankosoft\CmsBundle\Component\Uploader\FileUploaderInterface;
+use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
 
 class FileManager
 {    
@@ -17,20 +18,18 @@ class FileManager
         $this->fileUploader = $fileUploader;
     }
     
-    public function upload2GaufretteFilesystem( FileManagerInterface &$fileManager, File $file )
+    public function upload2GaufretteFilesystem( FileManagerFileInterface &$file, File $postFile )
     {
-        $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
-        
-        $file           = $this->filesFactory->createNew();
-        $file->setFile( $uploadedFile );
+        $file->setOriginalName( $postFile->getClientOriginalName() );
         
         try {
+            $uploadedFile   = new UploadedFile( $postFile->getRealPath(), $postFile->getBasename() );
+            $file->setFile( $uploadedFile );
+            
             $this->fileUploader->upload( $file );
         } catch ( FileException $e ) {
             // ... handle exception if something happens during file upload
         }
-        
-        $fileManager->addFile( $file );
     }
     
     public function upload2ArtgrisFileManager( File $file, $targetDir ): string

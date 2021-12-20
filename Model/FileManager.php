@@ -1,18 +1,18 @@
-<?php namespace VS\CmsBundle\Model;
+<?php namespace Vankosoft\CmsBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
+use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use Vankosoft\ApplicationBundle\Model\Taxon;
 
 class FileManager implements FileManagerInterface
 {
     /** @var integer */
     protected $id;
     
-    /** @var string */
-    protected $code;
-    
-    /** @var string */
-    protected $title;
+    /** @var TaxonInterface */
+    protected $taxon;
     
     /** @var PageInterface */
     protected $files;
@@ -29,26 +29,50 @@ class FileManager implements FileManagerInterface
     
     public function getCode()
     {
-        return $this->code;
+        return $this->taxon ? $this->taxon->getCode() : '';
     }
     
     public function setCode( $code )
     {
-        $this->code = $code;
+        if ( ! $this->taxon ) {
+            // Create new taxon into the controller and set the properties passed from form
+            return $this;
+        }
+        $this->taxon->setCode( $code );
         
         return $this;
     }
     
     public function getTitle(): string
     {
-        return $this->title;
+        return $this->taxon ? $this->taxon->getName() : '';
     }
     
     public function setTitle( $title )
     {
-        $this->title = $title;
+        if ( ! $this->taxon ) {
+            // Create new taxon into the controller and set the properties passed from form
+            return $this;
+        }
+        $this->taxon->setName( $title );
         
         return $this;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxon(): ?TaxonInterface
+    {
+        return $this->taxon;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setTaxon( ?TaxonInterface $taxon ): void
+    {
+        $this->taxon = $taxon;
     }
     
     /**
@@ -76,5 +100,10 @@ class FileManager implements FileManagerInterface
         }
         
         return $this;
+    }
+    
+    public function __toString()
+    {
+        return $this->taxon ? $this->taxon->getName() : '';
     }
 }

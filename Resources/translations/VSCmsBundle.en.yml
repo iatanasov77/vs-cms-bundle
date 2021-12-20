@@ -55,6 +55,14 @@ vs_cms:
         filemanager_update_title: Edit FileManager
         filemanager_create_title: Create New FileManager
         filemanager_update_details_title: 'File Manager Details'
+        filemanager_update_uploaded_files: Uploaded Files
+        filemanager_update_upload_file: Upload File
+        filemanager_update_button_upload: Upload
+        filemanager_update_files_table_name: 'Name'
+        filemanager_update_files_table_date: 'Date'
+        filemanager_update_files_table_size: 'Size'
+        filemanager_update_files_table_dimension: 'Dimension'
+        filemanager_update_files_table_actions: 'Actions'
         
     modal:
         page_clone:

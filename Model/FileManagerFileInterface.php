@@ -1,7 +1,7 @@
-<?php namespace VS\CmsBundle\Model;
+<?php namespace Vankosoft\CmsBundle\Model;
 
 interface FileManagerFileInterface extends FileInterface
 {
-    public function getFilemanager(): string;
+    public function getFilemanager(): FileManagerInterface;
     public function setFilemanager( FileManagerInterface $filemanager ): self;
 }

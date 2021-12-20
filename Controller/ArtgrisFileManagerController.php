@@ -1,14 +1,23 @@
-<?php namespace VS\CmsBundle\Controller;
+<?php namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-use VS\CmsBundle\Form\FileManager\UploadFileForm;
+use Vankosoft\CmsBundle\Component\FileManager;
+use Vankosoft\CmsBundle\Form\FileManager\UploadFileForm;
 
 class ArtgrisFileManagerController extends AbstractController
 {
+    /** @var FileManager */
+    protected FileManager $fm;
+    
+    public function __construct(
+        FileManager $fm
+    ) {
+        $this->fm   = $fm;
+    }
+    
 	/**
 	 *	@TODO Try Implement This FileManager: https://ckeditor.com/docs/ckfinder/demo/ckfinder3/samples/ckeditor.html
 	 */
@@ -29,8 +38,8 @@ class ArtgrisFileManagerController extends AbstractController
             $directory   = $form['directory']->getData();
             $file       = $form['file']->getData();
             if ( $file ) {
-                $targetDir  = $this->getParameter( 'vs_cms.file_manager_uploads_dir' ) . $directory;
-                $fileName   = $this->handleFileUpload( $file, $targetDir );
+                $targetDir  = $this->getParameter( 'vs_cms.filemanager_shared_media_artgris' ) . $directory;
+                $fileName   = $this->fm->upload2ArtgrisFileManager( $file, $targetDir );
             }
             
             return $this->redirectToRoute( 'vs_cms_filemanager_artgris_list' );
@@ -54,26 +63,5 @@ class ArtgrisFileManagerController extends AbstractController
         $response = $this->forward( 'Artgris\Bundle\FileManagerBundle\Controller::uploadFileAction' );
         
         return $response;
-    }
-    
-    protected function handleFileUpload( $file, $targetDir ) : string
-    {
-        $originalFilename   = pathinfo( $file->getClientOriginalName(), PATHINFO_FILENAME );
-        // this is needed to safely include the file name as part of the URL
-        //$safeFilename       = $slugger->slug( $originalFilename );    // Slugger is included in Symfony 5.0
-        $safeFilename       = $originalFilename;
-        $newFilename        = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
-        
-        // Move the file to the directory where brochures are stored
-        try {
-            $file->move(
-                $targetDir,
-                $newFilename
-            );
-        } catch ( FileException $e ) {
-            // ... handle exception if something happens during file upload
-        }
-        
-        return $newFilename;
     }
 }

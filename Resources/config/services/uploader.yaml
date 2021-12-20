@@ -1,7 +1,12 @@
 parameters:
-    vs_cms.image_uploader.filesystem: vs_application_image
-    vs_cms.filemanager_uploader.filesystem: vs_application_filemanager
-    vs_cms.file_manager_uploads_dir: '%kernel.project_dir%/public/file_manager/uploads/'
+    vs_cms.file_manager.taxonomy_code: file-managers
+    # Gaufrette File Systems
+    vs_cms.gaufrette.profile.filesystem: vs_application_profile
+    vs_cms.gaufrette.filemanager.filesystem: vs_application_filemanager
+    # Shared Media Directories
+    vs_cms.filemanager_shared_media_gaufrette.profile: "%kernel.project_dir%/public/shared_media/gaufrette/profile"
+    vs_cms.filemanager_shared_media_gaufrette.filemanager: "%kernel.project_dir%/public/shared_media/gaufrette/filemanager"
+    vs_cms.filemanager_shared_media_artgris: '%kernel.project_dir%/public/shared_media/artgris'
 
 services:
     _defaults:
@@ -9,32 +14,32 @@ services:
         autoconfigure: true
         public: true
     
-    vs_cms.image_uploader.filesystem:
+    vs_cms.profile_uploader.filesystem:
         class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.image_uploader.filesystem%']
+        arguments: ['%vs_cms.gaufrette.profile.filesystem%']
         factory: ['@knp_gaufrette.filesystem_map', 'get']
     
     vs_cms.filemanager_uploader.filesystem:
         class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.filemanager_uploader.filesystem%']
+        arguments: ['%vs_cms.gaufrette.filemanager.filesystem%']
         factory: ['@knp_gaufrette.filesystem_map', 'get']
 
     vs_cms.file_path_generator:
-        class: VS\CmsBundle\Component\Generator\UploadedFilePathGenerator
+        class: Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator
 
-    vs_cms.image_uploader:
-        class: VS\CmsBundle\Component\Uploader\ImageUploader
+    vs_cms.profile_uploader:
+        class: Vankosoft\CmsBundle\Component\Uploader\ProfileUploader
         arguments:
-            - '@vs_cms.image_uploader.filesystem'
+            - '@vs_cms.profile_uploader.filesystem'
             - '@vs_cms.file_path_generator'
             
     vs_cms.filemanager_uploader:
-        class: VS\CmsBundle\Component\Uploader\FilemanagerUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
         arguments:
             - '@vs_cms.filemanager_uploader.filesystem'
             - '@vs_cms.file_path_generator'
     
     vs_cms.file_manager:
-        class: VS\CmsBundle\Component\FileManager
+        class: Vankosoft\CmsBundle\Component\FileManager
         arguments:
-            - '@vs_cms.image_uploader'
+            - '@vs_cms.filemanager_uploader'

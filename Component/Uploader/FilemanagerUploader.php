@@ -1,12 +1,12 @@
-<?php namespace VS\CmsBundle\Component\Uploader;
+<?php namespace Vankosoft\CmsBundle\Component\Uploader;
 
 use Gaufrette\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use Webmozart\Assert\Assert;
 
-use VS\CmsBundle\Component\Generator\FilePathGeneratorInterface;
-use VS\CmsBundle\Component\Generator\UploadedFilePathGenerator;
-use VS\CmsBundle\Model\FileInterface;
+use Vankosoft\CmsBundle\Component\Generator\FilePathGeneratorInterface;
+use Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator;
+use Vankosoft\CmsBundle\Model\FileInterface;
 
 class FilemanagerUploader implements FileUploaderInterface
 {
@@ -57,6 +57,10 @@ class FilemanagerUploader implements FileUploaderInterface
             $filemanagerFile->getPath(),
             file_get_contents( $filemanagerFile->getFile()->getPathname() )
         );
+        
+        if ( method_exists ( $this->filesystem->getAdapter(), 'mimeType' ) ) {
+            $filemanagerFile->setType( $this->filesystem->getAdapter()->mimeType( $filemanagerFile->getPath() ) );
+        }
     }
     
     public function remove( string $path ): bool

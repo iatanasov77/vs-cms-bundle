@@ -1,22 +1,22 @@
 vs_cms_fosckeditor_browse:
     path: /fosckeditor/browse/{directory}
-    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::fosckeditorBrowse
+    controller: Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController::fosckeditorBrowse
     requirements:
         directory: .+
 
 vs_cms_fosckeditor_upload:
     path: /fosckeditor/upload/{directory}
-    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::fosckeditorUpload
+    controller: Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController::fosckeditorUpload
     requirements:
         directory: .+
 
 vs_cms_filemanager_artgris_list:
     path: /artgris-filemanager/list
-    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::listFiles
+    controller: Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController::listFiles
 
 vs_cms_filemanager_artgris_upload:
     path: /artgris-filemanager/upload
-    controller: VS\CmsBundle\Controller\ArtgrisFileManagerController::uploadFile
+    controller: Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController::uploadFile
 
 vs_cms_filemanager:
     resource: |
@@ -33,3 +33,11 @@ vs_cms_filemanager_file:
         path: /vankosoft-filemanager-files
         templates: "@VSCms/Pages/VankosoftFileManagerFile"
     type: sylius.resource
+
+vs_cms_filemanager_vankosoft_get_upload_form:
+    path: /vankosoft-filemanager/{fileManagerId}/{fileManagerFileId}/upload-form
+    controller: Vankosoft\CmsBundle\Controller\VankosoftFileManagerExtController::getFileUploadForm
+
+vs_cms_filemanager_vankosoft_handle_upload_form:
+    path: /vankosoft-filemanager/upload
+    controller: Vankosoft\CmsBundle\Controller\VankosoftFileManagerExtController::handleFileUploadForm

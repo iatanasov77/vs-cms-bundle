@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
-    <mapped-superclass name="VS\CmsBundle\Model\Document">
+    <mapped-superclass name="Vankosoft\CmsBundle\Model\Document">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -14,7 +14,7 @@
             <gedmo:translatable />
         </field>
       
-        <many-to-one field="multipageToc" target-entity="VS\CmsBundle\Model\MultiPageTocInterface">
+        <many-to-one field="multipageToc" target-entity="Vankosoft\CmsBundle\Model\MultiPageTocInterface">
             <join-column name="multipage_toc_id" referenced-column-name="id" nullable="true" />
         </many-to-one>
         
@@ -23,6 +23,6 @@
 	       this is not a mapped field of entity metadata, just a simple property
 	       and it is not necessary because globally locale can be set in listener
         -->
-        <gedmo:translation entity="VS\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
+        <gedmo:translation entity="Vankosoft\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
     </mapped-superclass>
 </doctrine-mapping>

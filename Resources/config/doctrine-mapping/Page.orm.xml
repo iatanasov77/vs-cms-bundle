@@ -6,7 +6,7 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
 >
 
-    <mapped-superclass name="VS\CmsBundle\Model\Page">
+    <mapped-superclass name="Vankosoft\CmsBundle\Model\Page">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -34,7 +34,7 @@
         ======================
         	https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/inheritance-mapping.html#mapped-superclasses
         -->
-        <many-to-many field="categories" target-entity="VS\CmsBundle\Model\PageCategoryInterface" inversed-by="pages">
+        <many-to-many field="categories" target-entity="Vankosoft\CmsBundle\Model\PageCategoryInterface" inversed-by="pages">
         	<cascade>
                 <cascade-persist/>
                 <cascade-merge/>
@@ -55,7 +55,7 @@
 	       this is not a mapped field of entity metadata, just a simple property
 	       and it is not necessary because globally locale can be set in listener
         -->
-        <gedmo:translation entity="VS\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
+        <gedmo:translation entity="Vankosoft\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
     </mapped-superclass>
 
 </doctrine-mapping>

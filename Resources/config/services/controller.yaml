@@ -4,14 +4,14 @@ services:
         autoconfigure: true
         public: true
 
-    VS\CmsBundle\Controller\GetImageController:
+    Vankosoft\CmsBundle\Controller\GetImageController:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - "@liip_imagine.binary.loader.default"
             - "@liip_imagine.filter.manager"
 
-    VS\CmsBundle\Controller\PagesExtController:
+    Vankosoft\CmsBundle\Controller\PagesExtController:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
@@ -22,7 +22,7 @@ services:
             - '@vs_application.repository.logentry'
             - '@vs_cms.factory.pages'
             
-    VS\CmsBundle\Controller\MultiPageTocPageController:
+    Vankosoft\CmsBundle\Controller\MultiPageTocPageController:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
@@ -32,6 +32,17 @@ services:
             - '@vs_cms.repository.pages'
             - '@vs_application.repository.taxonomy'
 
-    VS\CmsBundle\Controller\ArtgrisFileManagerController:
+    Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController:
         tags: ['controller.service_arguments']
         autowire: true
+        arguments:
+            - '@vs_cms.file_manager'
+    
+    Vankosoft\CmsBundle\Controller\VankosoftFileManagerExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@vs_cms.repository.file_manager'
+            - '@vs_cms.repository.file_manager_file'
+            - '@vs_cms.factory.file_manager_file'
+            - '@vs_cms.file_manager'

@@ -1,8 +1,8 @@
-<?php  namespace VS\CmsBundle\Controller;
+<?php  namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use VS\ApplicationBundle\Controller\AbstractCrudController;
-use VS\ApplicationBundle\Controller\TaxonomyHelperTrait;
+use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
+use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
 
 /**
  * Documentation
@@ -56,7 +56,7 @@ class PagesCategoryController extends AbstractCrudController
         }
     }
     
-    protected function customData( Request $request ): array
+    protected function customData( Request $request, $entity = null ): array
     {
         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode( 
                                     $this->getParameter( 'vs_application.page_categories.taxonomy_code' )

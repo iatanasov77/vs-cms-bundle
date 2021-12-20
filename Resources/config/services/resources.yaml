@@ -4,6 +4,6 @@ services:
         autoconfigure: true
         public: true
 
-#     VS\CmsBundle\Repository\PageCategoryRepository:
+#     Vankosoft\CmsBundle\Repository\PageCategoryRepository:
 #         tags: ['controller.service_arguments']
 #         autowire: true

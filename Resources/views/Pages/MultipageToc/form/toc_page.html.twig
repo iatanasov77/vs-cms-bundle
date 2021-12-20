@@ -1,7 +1,4 @@
-{#
-{{ encore_entry_link_tags( 'js/multipage-toc-page-form' ) }}
-{{ encore_entry_script_tags( 'js/multipage-toc-page-form' ) }}
-#}
+{% import "@VSApplication/Macros/tree.html.twig" as vs_tree %}
 
 {{ form_start(form, { 'attr': {'id': 'form_toc_page'}, 'action': path('vs_cms_multipage_toc_page_handle', {'tocId': tocId}) }) }}
     {{ form_widget(form._token) }}
@@ -17,30 +14,21 @@
     {% endif %}
 
     {% set comboDataSourceUrl  = path('vs_cms_multipage_toc_page_easyui_combotree', {'tocId': tocId}) %}
-    {% set comboDataOptions    = "
-    		url:'" ~ comboDataSourceUrl ~ "',
-    		required:true,
-    		onBeforeLoad:function( node ) {
-    		    //showSpiner
-    		},
-    		onLoadSuccess:function( node ) {
-    			$( '#toc_page_form_parent' ).combotree( 'setValue', $( '#toc_page_form_parent' ).attr( 'data-value' ) );
-    			//hideSpiner
-    		}
-    " %}
     <div class="form-group">
         {{ form_label( form.parent, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
         }}
         
-        {# 'data-value': item.parent ? item.parent.id : null #}
-        {{ form_widget( form.parent, {
-            'attr': {
-                'class': 'form-control easyui-combotree',
-                'data-options': comboDataOptions,
+        {{ vs_tree.easyuiCombobox( form.parent, comboDataSourceUrl, item.parent ? item.parent.id : 0,
+            {
+                'elementSelector': '#user_role_form_parent',
+                'required': 'true',
+                'multiple': 'false',
+                'checkbox': 'false',
+                'placeholder': comboTreePlaceholder
             }
-        }) }}
+        ) }}
     </div>
 
     <div class="form-group">
@@ -52,30 +40,23 @@
     </div>
     
     {% set pagesComboDataSourceUrl  = path('vs_cms_pages_tree_combo_with_leafs', {'taxonomyId': pageCategoriesTaxonomyId}) %}
-    {% set pagesComboDataOptions    = "
-    		url:'" ~ pagesComboDataSourceUrl ~ "',
-    		required:true,
-    		onBeforeLoad:function( node ) {
-    		    //showSpiner
-    		},
-    		onLoadSuccess:function( node ) {
-    			$( '#toc_page_form_page' ).combotree( 'setValue', $( '#toc_page_form_page' ).attr( 'data-value' ) );
-    			//hideSpiner
-    		}
-    " %}
     <div class="form-group">
         {{ form_label( form.page, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
         }}
         
-        {# 'data-value': item.page ? item.page.id : null #}
-        {{ form_widget( form.page, {
-            'attr': {
-                'class': 'form-control easyui-combotree',
-                'data-options': pagesComboDataOptions,
+        
+        
+        {{ vs_tree.easyuiCombobox( form.page, pagesComboDataSourceUrl, item.page ? item.page.id : 0,
+            {
+                'elementSelector': '#user_role_form_parent',
+                'required': 'true',
+                'multiple': 'false',
+                'checkbox': 'false',
+                'placeholder': comboTreePlaceholder
             }
-        }) }}
+        ) }}
     </div>
     
     {% do form.btnSave.setRendered() %}
