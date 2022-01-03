@@ -1,10 +1,11 @@
 <?php namespace Vankosoft\CmsBundle;
 
-use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
-use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+
+use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 
 class VSCmsBundle extends AbstractResourceBundle
 {
@@ -34,7 +35,7 @@ class VSCmsBundle extends AbstractResourceBundle
     /**
      * {@inheritdoc}
      */
-    public function getContainerExtension()
+    public function getContainerExtension(): ?ExtensionInterface
     {
         return new \Vankosoft\CmsBundle\DependencyInjection\VSCmsExtension();
     }
