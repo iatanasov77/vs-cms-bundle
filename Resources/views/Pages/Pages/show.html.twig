@@ -1,13 +1,10 @@
 {# Please send layout when render this template #}
-{% extends applicationLayout %}
+{% extends siteLayout %}
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% block pageTitle %}
-    <h2 class="pageheader-title"><i class="icon_genius"></i> {{ page.title }}</h2>
-    <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {{ pages.title }}{% endblock %}
 
 {% block content %}
-    {{ page.text|raw }}
+    {{ pages.text|raw }}
 {% endblock %}
