@@ -52,8 +52,6 @@
 			            <div id="pageFormContainer" data-itemId="{{ item.id }}">
                             {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
                             {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
-                                {{ form_widget(form._token) }}
-                                
                                 <div class="form-group">
                                     {{ form_label(form.currentLocale, null, {
                                         'label_attr': {'class': 'col-form-label'}
