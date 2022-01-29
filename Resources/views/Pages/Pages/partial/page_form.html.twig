@@ -3,8 +3,6 @@
 
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
 {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
-    {{ form_widget(form._token) }}
-    
     <label class="custom-control custom-checkbox">  
         <input type="checkbox" id="page_form_enabled"
             class="custom-control-input form-check-input"

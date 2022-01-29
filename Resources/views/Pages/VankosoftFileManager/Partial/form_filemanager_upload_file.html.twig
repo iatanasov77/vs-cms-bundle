@@ -1,5 +1,4 @@
 {{ form_start(form, { 'action': path( 'vs_cms_filemanager_vankosoft_handle_upload_form' ), 'method': 'POST', 'attr': {'class': 'form-horizontal', 'id': 'formUploadFile'} }) }}
-    {{ form_widget(form._token) }}   
     {{ form_widget(form.fileManagerId, {'value' : fileManagerId}) }}
     
     <div class="custom-file mb-3">
