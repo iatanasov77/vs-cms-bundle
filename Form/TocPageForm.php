@@ -78,7 +78,8 @@ class TocPageForm extends AbstractForm
         parent::configureOptions( $resolver );
         
         $resolver->setDefaults([
-            'tocRootPage'  => null,
+            'csrf_protection'   => false,
+            'tocRootPage'       => null,
         ]);
     }
     

@@ -92,6 +92,9 @@ class PageForm extends AbstractForm
         parent::configureOptions( $resolver );
         
         $resolver
+            ->setDefaults([
+                'csrf_protection' => false,
+            ])
             ->setDefined([
                 'page',
             ])

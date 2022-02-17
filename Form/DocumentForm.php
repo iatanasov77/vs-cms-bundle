@@ -63,12 +63,9 @@ class DocumentForm extends AbstractForm
     {
         parent::configureOptions( $resolver );
         
-//         $resolver
-//             ->setDefined([
-//                 'page',
-//             ])
-//             ->setAllowedTypes( 'page', PageInterface::class )
-//         ;
+        $resolver->setDefaults([
+            'csrf_protection' => false,
+        ]);
     }
     
     public function getName()
