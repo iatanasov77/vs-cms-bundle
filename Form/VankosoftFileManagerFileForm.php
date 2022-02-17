@@ -57,6 +57,9 @@ class VankosoftFileManagerFileForm extends AbstractForm
         parent::configureOptions( $resolver );
         
         $resolver
+            ->setDefaults([
+                'csrf_protection' => false,
+            ])
             ->setDefined([
                 'file_manager_file',
             ])
