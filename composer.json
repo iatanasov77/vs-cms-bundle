@@ -31,5 +31,11 @@
 			"Vankosoft\\CmsBundle\\": "lib/"
 		}
 	},
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../*"
+        }
+    ],
 	"minimum-stability": "dev"
 }
