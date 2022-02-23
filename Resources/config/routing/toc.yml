@@ -1,15 +1,15 @@
 vs_cms_multipage_toc:
     resource: |
-        alias: vs_cms.multipage_toc
-        path: /multipage_toc
-        templates: "@VSCms/Pages/MultipageToc"
+        alias: vs_cms.document
+        path: /documents
+        templates: "@VSCms/Pages/Document"
     type: sylius.resource
     
 vs_cms_multipage_toc_page:
     resource: |
-        alias: vs_cms.multipage_toc_page
-        path: /multipage_toc_page
-        templates: "@VSCms/Pages/MultipageTocPage"
+        alias: vs_cms.toc_page
+        path: /toc-pages
+        templates: "@VSCms/Pages/TocPage"
     type: sylius.resource
     
 
