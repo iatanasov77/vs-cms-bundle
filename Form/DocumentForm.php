@@ -9,21 +9,29 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Doctrine\ORM\EntityRepository;
+use Vankosoft\CmsBundle\Model\TocPage;
+use Vankosoft\CmsBundle\Model\TocPageInterface;
+
 class DocumentForm extends AbstractForm
 {
     protected $requestStack;
     
-    protected $multipageTocClass;
+    protected $tocPageClass;
+    
+    protected $pagesClass;
     
     public function __construct(
         RequestStack $requestStack,
         string $dataClass,
-        string $multipageTocClass
+        string $tocPageClass,
+        string $pagesClass
     ) {
             parent::__construct( $dataClass );
             
-            $this->requestStack         = $requestStack;
-            $this->multipageTocClass    = $multipageTocClass;
+            $this->requestStack = $requestStack;
+            $this->tocPageClass = $tocPageClass;
+            $this->pagesClass   = $pagesClass;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options )
@@ -48,13 +56,16 @@ class DocumentForm extends AbstractForm
                 'required'              => true
             ])
             
-            ->add( 'multipageToc', EntityType::class, [
-                'label'                 => 'vs_cms.form.document.document_toc',
+            ->add( 'tocRootPage', EntityType::class, [
+                'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
-                'class'                 => $this->multipageTocClass,
-                'placeholder'           => 'vs_cms.form.document.document_toc',
-                'choice_label'          => 'tocTitle',
-                'required'              => false
+                'class'                 => $this->tocPageClass,
+                'query_builder' => function ( EntityRepository $er ) {
+                    return $er->createQueryBuilder( 'p' )->where( 'p.parent IS NULL' );
+                },
+                'placeholder'           => 'vs_cms.form.title',
+                'choice_label'          => 'title',
+                'required'              => true
             ])
         ;
     }
@@ -63,9 +74,15 @@ class DocumentForm extends AbstractForm
     {
         parent::configureOptions( $resolver );
         
-        $resolver->setDefaults([
-            'csrf_protection' => false,
-        ]);
+        $resolver
+            ->setDefaults([
+                'csrf_protection' => false,
+            ])
+            ->setDefined([
+                'tocRootPage',
+            ])
+            ->setAllowedTypes( 'tocRootPage', TocPageInterface::class )
+        ;
     }
     
     public function getName()
