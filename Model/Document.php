@@ -43,6 +43,11 @@ class Document implements DocumentInterface
         return $this;
     }
     
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+    
     public function setTranslatableLocale( $locale ): self
     {
         $this->locale = $locale;
