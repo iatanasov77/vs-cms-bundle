@@ -25,16 +25,6 @@ services:
         arguments:
             - '%vs_cms.model.page_categories.class%'
             - '@vs_cms.repository.page_categories'
-            
-#    vs_cms.resources.multipage_toc.form:
-#        class: Vankosoft\CmsBundle\Form\MultiPageTocForm
-#        tags:
-#            - { name: form.type }
-#        arguments:
-#            - "@request_stack"
-#            - '%vs_cms.model.multipage_toc.class%'
-#            - '%vs_cms.model.toc_page.class%'
-#            - '%vs_cms.model.pages.class%'
 
     Vankosoft\CmsBundle\Form\TocPageForm:
         tags:
