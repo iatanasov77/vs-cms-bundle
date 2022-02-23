@@ -18,11 +18,9 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  * )
  *
  */
-class TocPagesRepository extends NestedTreeRepository implements RepositoryInterface
+//class TocPagesRepository extends NestedTreeRepository implements RepositoryInterface
+class TocPagesRepository implements RepositoryInterface
 {
-    
-    
-    
     /**
      * 
      * This Abstract Methods Copied from Sylius\Component\Resource\Repository\InMemoryRepository
