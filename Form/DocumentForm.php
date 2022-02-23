@@ -39,7 +39,7 @@ class DocumentForm extends AbstractForm
         parent::buildForm( $builder, $options );
         
         $entity         = $builder->getData();
-        $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
+        $currentLocale  = $entity->getLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
             ->add( 'locale', ChoiceType::class, [
