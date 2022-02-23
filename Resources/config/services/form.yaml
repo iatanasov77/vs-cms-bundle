@@ -8,15 +8,16 @@ services:
             - '%vs_cms.model.pages.class%'
             - '%vs_cms.model.page_categories.class%'
             
-#     vs_cms.resources.documents.form:
-#         class: Vankosoft\CmsBundle\Form\DocumentForm
-#         tags:
-#             - { name: form.type }
-#         arguments:
-#             - "@request_stack"
-#             - '%vs_cms.model.documents.class%'
-#             - '%vs_cms.model.multipage_toc.class%'
-
+    vs_cms.resources.document.form:
+        class: Vankosoft\CmsBundle\Form\DocumentForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - "@request_stack"
+            - '%vs_cms.model.documents.class%'
+            - '%vs_cms.model.toc_page.class%'
+            - '%vs_cms.model.pages.class%'
+            
     vs_cms.resources.page_categories.form:
         class: Vankosoft\CmsBundle\Form\PageCategoryForm
         tags:
@@ -25,15 +26,15 @@ services:
             - '%vs_cms.model.page_categories.class%'
             - '@vs_cms.repository.page_categories'
             
-    vs_cms.resources.multipage_toc.form:
-        class: Vankosoft\CmsBundle\Form\MultiPageTocForm
-        tags:
-            - { name: form.type }
-        arguments:
-            - "@request_stack"
-            - '%vs_cms.model.multipage_toc.class%'
-            - '%vs_cms.model.multipage_toc_page.class%'
-            - '%vs_cms.model.pages.class%'
+#    vs_cms.resources.multipage_toc.form:
+#        class: Vankosoft\CmsBundle\Form\MultiPageTocForm
+#        tags:
+#            - { name: form.type }
+#        arguments:
+#            - "@request_stack"
+#            - '%vs_cms.model.multipage_toc.class%'
+#            - '%vs_cms.model.multipage_toc_page.class%'
+#            - '%vs_cms.model.pages.class%'
 
     Vankosoft\CmsBundle\Form\TocPageForm:
         tags:
