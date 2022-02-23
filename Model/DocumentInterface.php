@@ -5,5 +5,5 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 interface DocumentInterface extends ResourceInterface
 {
     public function getTitle() : ?string;
-    public function getMultipageToc();
+    public function getTocRootPage(): ?TocPageInterface;
 }
