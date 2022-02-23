@@ -64,12 +64,12 @@ class TocPage implements TocPageInterface
         return $this;
     }
     
-    public function getChildren() : Collection
+    public function getChildren(): Collection
     {
         return $this->children;
     }
     
-    public function getDocument()
+    public function getDocument(): ?DocumentInterface
     {
         return $this->document;
     }
@@ -79,7 +79,7 @@ class TocPage implements TocPageInterface
         return $this->page;
     }
     
-    public function setPage( $page )
+    public function setPage( $page ): self
     {
         $this->page = $page;
         
@@ -91,7 +91,7 @@ class TocPage implements TocPageInterface
      * Proxy Methods
      */
     
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->page ? $this->page->getTitle() : '';
     }
@@ -107,7 +107,7 @@ class TocPage implements TocPageInterface
         return $this;
     }
     
-    public function getName()
+    public function getName(): string
     {
         return $this->taxon ? $this->taxon->getName() : '';
     }
