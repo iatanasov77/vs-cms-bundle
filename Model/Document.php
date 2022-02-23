@@ -8,8 +8,8 @@ class Document implements DocumentInterface
     /** @var string */
     protected $title;
     
-    /** @var MultipageToc */
-    protected $multipageToc;
+    /** @var TocPageInterface */
+    protected $tocRootPage;
     
     /** @var string */
     protected $locale;
@@ -19,7 +19,7 @@ class Document implements DocumentInterface
         return $this->id;
     }
     
-    public function getTitle() : ?string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -27,34 +27,31 @@ class Document implements DocumentInterface
     public function setTitle( $title )
     {
         $this->title = $title;
-        return $this;
-    }
-    
-    public function getMultipageToc()
-    {
-        return $this->multipageToc;
-    }
-    
-    public function setMultipageToc( $multipageToc )
-    {
-        $this->multipageToc = $multipageToc;
         
         return $this;
     }
     
-    public function setTranslatableLocale( $locale )
+    public function getTocRootPage(): ?TocPageInterface
+    {
+        return $this->tocRootPage;
+    }
+    
+    public function setTocRootPage( TocPageInterface $tocRootPage )
+    {
+        $this->tocRootPage  = $tocRootPage;
+        
+        return $this;
+    }
+    
+    public function setTranslatableLocale( $locale ): self
     {
         $this->locale = $locale;
         
         return $this;
     }
     
-    public function getPage()
+    public function getPage(): ?PageInterface
     {
-        return $this->multipageToc &&
-                ! empty( $this->multipageToc->getTocRootPage()->getChildren() ) &&
-                $this->multipageToc->getTocRootPage()->getChildren()[0] ?
-                    $this->multipageToc->getTocRootPage()->getChildren()[0]->getPage() :
-                    $this->multipageToc->getMainPage();
+        return ! empty( $this->tocRootPage->getChildren() ) ? $this->tocRootPage->getChildren()[0]->getPage() : $this->tocRootPage->getPage();
     }
 }

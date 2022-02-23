@@ -19,10 +19,10 @@ use Vankosoft\CmsBundle\Controller\PagesCategoryController;
 use Vankosoft\CmsBundle\Repository\PageCategoryRepository;
 use Vankosoft\CmsBundle\Form\PageCategoryForm;
 
-use Vankosoft\CmsBundle\Model\MultiPageToc;
-use Vankosoft\CmsBundle\Controller\MultiPageTocController;
-use Vankosoft\CmsBundle\Repository\MultiPageTocRepository;
-use Vankosoft\CmsBundle\Form\MultiPageTocForm;
+use Vankosoft\CmsBundle\Model\Document;
+use Vankosoft\CmsBundle\Controller\DocumentController;
+use Vankosoft\CmsBundle\Repository\DocumentsRepository;
+use Vankosoft\CmsBundle\Form\DocumentForm;
 
 use Vankosoft\CmsBundle\Model\TocPage;
 use Vankosoft\CmsBundle\Controller\TocPageController;
@@ -108,24 +108,24 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
-                        ->arrayNode( 'multipage_toc' )
+                        ->arrayNode( 'document' )
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode( 'options' )->end()
                                 ->arrayNode( 'classes' )
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode( 'model' )->defaultValue( MultiPageToc::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'model' )->defaultValue( Document::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'controller' )->defaultValue( MultiPageTocController::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'repository' )->defaultValue( MultiPageTocRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( DocumentController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( DocumentsRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'form' )->defaultValue( MultiPageTocForm::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( DocumentForm::class )->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
                         ->end()
-                        ->arrayNode( 'multipage_toc_page' )
+                        ->arrayNode( 'toc_page' )
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode( 'options' )->end()

@@ -1,48 +1,24 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-
-/**
- *  Can to be a Taxonomy but for now i think it's better to be a separate type
- *  ===========================================================================
- *  
- *  -------------------------
- *  Here is used this Manual:
- *  -------------------------
- *  https://github.com/doctrine-extensions/DoctrineExtensions/blob/v2.4.x/doc/tree.md
- */
 class TocPage implements TocPageInterface
 {
     /** @var integer */
     protected $id;
     
-    /** @var string */
-    protected $locale;
+    /** @var TaxonInterface */
+    protected $taxon;
     
-    /** @var string */
-    protected $title;
+    /** @var PageCategoryInterface */
+    protected $parent;
+    
+    /** @var Collection|PageCategory[] */
+    protected $children;
+    
+    /** @var DocumentInterface */
+    protected $document;
     
     /** @var PageInterface */
     protected $page;
-    
-    /** @var integer */
-    protected $lft;
-    
-    /** @var integer */
-    protected $lvl;
-    
-    /** @var integer */
-    protected $rgt;
-    
-    /** @var TocPageInterface */
-    protected $root;
-    
-    /** @var TocPageInterface */
-    protected $parent;
-    
-    /** @var Collection */
-    protected $children;
     
     public function __construct()
     {
@@ -53,35 +29,49 @@ class TocPage implements TocPageInterface
     {
         return $this->id;
     }
-    public function setId( $id )
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxon(): ?TaxonInterface
     {
-        $this->id   = $id;
+        return $this->taxon;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setTaxon( ?TaxonInterface $taxon ): void
+    {
+        $this->taxon = $taxon;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent(): ?PageCategoryInterface
+    {
+        return $this->parent;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setParent(?PageCategoryInterface $parent) : PageCategoryInterface
+    {
+        $this->parent = $parent;
         
         return $this;
     }
     
-    public function getLocale()
+    public function getChildren() : Collection
     {
-        return $this->locale;
+        return $this->children;
     }
     
-    public function setTranslatableLocale( $locale )
+    public function getDocument()
     {
-        $this->locale = $locale;
-        
-        return $this;
-    }
-    
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    
-    public function setTitle( $title )
-    {
-        $this->title = $title;
-        
-        return $this;
+        return $this->document;
     }
     
     public function getPage(): ?PageInterface
@@ -96,29 +86,24 @@ class TocPage implements TocPageInterface
         return $this;
     }
     
-    public function getRoot()
+    public function getName()
     {
-        return $this->root;
+        return $this->taxon ? $this->taxon->getName() : '';
     }
     
-    public function setParent( ?TocPageInterface $parent = null )
+    public function setName( string $name ) : self
     {
-        $this->parent = $parent;
+        if ( ! $this->taxon ) {
+            // Create new taxon into the controller and set the properties passed from form
+            return $this;
+        }
+        $this->taxon->setName( $name );
+        
+        return $this;
     }
     
-    public function getParent()
+    public function __toString()
     {
-        return $this->parent;
-    }
-    
-    public function getChildren(): Collection
-    {
-        return $this->children;
-    }
-    
-    /** Needed For GTreeTable */
-    public function getLevel()
-    {
-        return $this->lvl;
+        return $this->taxon ? $this->taxon->getName() : '';
     }
 }

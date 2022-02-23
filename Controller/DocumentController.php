@@ -3,7 +3,7 @@
 use Symfony\Component\HttpFoundation\Request;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
 
-class MultiPageTocController extends AbstractCrudController
+class DocumentController extends AbstractCrudController
 {
     protected function customData( Request $request, $entity = null ): array
     {
