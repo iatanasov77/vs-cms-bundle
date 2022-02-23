@@ -26,9 +26,9 @@ services:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
-            - '@vs_cms.repository.multipage_toc'
-            - '@vs_cms.repository.multipage_toc_page'
-            - '@vs_cms.factory.multipage_toc_page'
+            - '@vs_cms.repository.document'
+            - '@vs_cms.repository.toc_page'
+            - '@vs_cms.factory.toc_page'
             - '@vs_cms.repository.pages'
             - '@vs_application.repository.taxonomy'
 

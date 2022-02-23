@@ -14,11 +14,12 @@ use Vankosoft\CmsBundle\Repository\MultiPageTocRepository;
 use Vankosoft\CmsBundle\Repository\TocPagesRepository;
 use Vankosoft\CmsBundle\Repository\PagesRepository;
 use Vankosoft\CmsBundle\Form\TocPageForm;
+use Vankosoft\CmsBundle\Repository\DocumentsRepository;
 
 class MultiPageTocPageController extends AbstractController
 {
-    /** @var MultiPageTocRepository */
-    private $tocRepository;
+    /** @var DocumentsRepository */
+    private $documentRepository;
     
     /** @var TocPagesRepository */
     private $tocPageRepository;
@@ -33,13 +34,13 @@ class MultiPageTocPageController extends AbstractController
     private $taxonomyRepository;
     
     public function __construct(
-        MultiPageTocRepository $tocRepository,
+        DocumentsRepository $documentRepository,
         TocPagesRepository $tocPageRepository,
         FactoryInterface $tocPageFactory,
         PagesRepository $pagesRepository,
         TaxonomyRepository $taxonomyRepository
     ) {
-        $this->tocRepository        = $tocRepository;
+        $this->documentRepository   = $documentRepository;
         $this->tocPageRepository    = $tocPageRepository;
         $this->tocPageFactory       = $tocPageFactory;
         $this->pagesRepository      = $pagesRepository;
@@ -49,7 +50,7 @@ class MultiPageTocPageController extends AbstractController
     public function editTocPage( $tocId, Request $request ): Response
     {
         $locale         = $request->getLocale();
-        $tocRootPage    = $this->tocRepository->find( $tocId )->getTocRootPage();
+        $tocRootPage    = $this->documentRepository->find( $tocId )->getTocRootPage();
         
         $tocPageId      = (int)$request->query->get( 'toc-page-id' );
         if ( $tocPageId ) {
@@ -116,7 +117,7 @@ class MultiPageTocPageController extends AbstractController
     
     protected function gtreeTableData( $tocId, $parentId ): array
     {
-        $parent = $parentId ? $this->tocPageRepository->find( $parentId ) : $this->tocRepository->find( $tocId )->getTocRootPage();
+        $parent = $parentId ? $this->tocPageRepository->find( $parentId ) : $this->documentRepository->find( $tocId )->getTocRootPage();
         
         $gtreeTableData = [];
         $children       = $this->tocPageRepository->findBy( ['parent' => $parent] );
@@ -134,7 +135,7 @@ class MultiPageTocPageController extends AbstractController
     
     protected function easyuiComboTreeData( $tocId ) : array
     {
-        $root       = $this->tocRepository->find( $tocId )->getTocRootPage();
+        $root       = $this->documentRepository->find( $tocId )->getTocRootPage();
         $data       = [];
 
         $data[0]    = [
