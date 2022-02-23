@@ -86,12 +86,33 @@ class TocPage implements TocPageInterface
         return $this;
     }
     
+    
+    /*
+     * Proxy Methods
+     */
+    
+    public function getTitle()
+    {
+        return $this->page ? $this->page->getTitle() : '';
+    }
+    
+    public function setTitle( string $title ): self
+    {
+        if ( ! $this->page ) {
+            // Create new page into the controller and set the properties passed from form
+            return $this;
+        }
+        $this->page->setTitle( $title );
+        
+        return $this;
+    }
+    
     public function getName()
     {
         return $this->taxon ? $this->taxon->getName() : '';
     }
     
-    public function setName( string $name ) : self
+    public function setName( string $name ): self
     {
         if ( ! $this->taxon ) {
             // Create new taxon into the controller and set the properties passed from form
