@@ -28,10 +28,9 @@
             </cascade>
         </one-to-many>
         
-        <one-to-one field="page" name="page_id" target-entity="Vankosoft\CmsBundle\Model\PageInterface" orphan-removal="true">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-one>
+        <field name="text" column="text" type="text" nullable="true">
+            <gedmo:translatable />
+            <gedmo:versioned />
+        </field>
     </mapped-superclass>
 </doctrine-mapping>
