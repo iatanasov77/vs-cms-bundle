@@ -9,27 +9,20 @@ use Vankosoft\ApplicationBundle\Model\Taxon;
 /**
  * Page Category Model
  */
-class PageCategory implements PageCategoryInterface
+class DocumentCategory implements DocumentCategoryInterface
 {
     /** @var mixed */
     protected $id;
     
-    /** @var PageCategoryInterface */
-    protected $parent;
-    
-    /** @var Collection|PageCategory[] */
-    protected $children;
-    
-    /** @var Collection|Page[] */
-    protected $pages;
+    /** @var Collection|Document[] */
+    protected $documents;
     
     /** @var TaxonInterface */
     protected $taxon;
     
     public function __construct()
     {
-        $this->children = new ArrayCollection();
-        $this->pages    = new ArrayCollection();
+        $this->documents    = new ArrayCollection();
     }
     
     /**
@@ -40,52 +33,26 @@ class PageCategory implements PageCategoryInterface
         return $this->id;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent(): ?PageCategoryInterface
+    public function getDocuments(): Collection
     {
-        return $this->parent;
+        return $this->documents;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setParent(?PageCategoryInterface $parent): PageCategoryInterface
+    public function addDocument( DocumentInterface $document ): DocumentCategoryInterface
     {
-        $this->parent = $parent;
-        
-        return $this;
-    }
-    
-    public function getChildren(): Collection
-    {
-        return $this->children;
-    }
-    
-    /**
-     * @return Collection|Page[]
-     */
-    public function getPages(): Collection
-    {
-        return $this->pages;
-    }
-    
-    public function addPage( Page $page ): PageCategoryInterface
-    {
-        if ( ! $this->pages->contains( $page ) ) {
-            $this->pages[] = $page;
-            $page->addCategory( $this );
+        if ( ! $this->documents->contains( $document ) ) {
+            $this->documents[] = $document;
+            $document->setCategory( $this );
         }
         
         return $this;
     }
     
-    public function removePage( Page $page ): PageCategoryInterface
+    public function removeDocument( DocumentInterface $document ): DocumentCategoryInterface
     {
-        if ( $this->pages->contains( $page ) ) {
-            $this->pages->removeElement( $page );
-            $page->removeCategory( $this );
+        if ( $this->documents->contains( $document ) ) {
+            $this->documents->removeElement( $document );
+            $document->setCategory( null );
         }
         
         return $this;
@@ -102,11 +69,11 @@ class PageCategory implements PageCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function setTaxon(?TaxonInterface $taxon): void
+    public function setTaxon( ?TaxonInterface $taxon ): void
     {
         $this->taxon = $taxon;
     }
-
+    
     public function getName()
     {
         return $this->taxon ? $this->taxon->getName() : '';

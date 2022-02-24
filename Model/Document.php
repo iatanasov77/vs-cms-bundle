@@ -5,6 +5,9 @@ class Document implements DocumentInterface
     /** @var integer */
     protected $id;
     
+    /** @var DocumentCategory */
+    protected $category;
+    
     /** @var string */
     protected $title;
     
@@ -17,6 +20,18 @@ class Document implements DocumentInterface
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function getCategory(): ?DocumentCategoryInterface
+    {
+        return $this->category;
+    }
+    
+    public function setCategory( ?DocumentCategoryInterface $category )
+    {
+        $this->category = $category;
+        
+        return $this;
     }
     
     public function getTitle(): ?string
@@ -55,8 +70,8 @@ class Document implements DocumentInterface
         return $this;
     }
     
-    public function getPage(): ?PageInterface
+    public function getPage(): ?TocPageInterface
     {
-        return ! empty( $this->tocRootPage->getChildren() ) ? $this->tocRootPage->getChildren()[0]->getPage() : $this->tocRootPage->getPage();
+        return ! empty( $this->tocRootPage->getChildren() ) ? $this->tocRootPage->getChildren()[0] : $this->tocRootPage;
     }
 }

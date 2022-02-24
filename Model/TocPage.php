@@ -20,8 +20,8 @@ class TocPage implements TocPageInterface
     /** @var DocumentInterface */
     protected $document;
     
-    /** @var PageInterface */
-    protected $page;
+    /** @var string */
+    protected $text;
     
     public function __construct()
     {
@@ -77,14 +77,14 @@ class TocPage implements TocPageInterface
         return $this->document;
     }
     
-    public function getPage(): ?PageInterface
+    public function getText(): ?string
     {
-        return $this->page;
+        return $this->text;
     }
     
-    public function setPage( $page ): self
+    public function setText( ?string $text ): self
     {
-        $this->page = $page;
+        $this->text = $text;
         
         return $this;
     }
@@ -96,16 +96,16 @@ class TocPage implements TocPageInterface
     
     public function getTitle(): string
     {
-        return $this->page ? $this->page->getTitle() : '';
+        return $this->taxon ? $this->taxon->getName() : '';
     }
     
     public function setTitle( string $title ): self
     {
-        if ( ! $this->page ) {
-            // Create new page into the controller and set the properties passed from form
+        if ( ! $this->taxon ) {
+            // Create new taxon into the controller and set the properties passed from form
             return $this;
         }
-        $this->page->setTitle( $title );
+        $this->taxon->setName( $title );
         
         return $this;
     }
