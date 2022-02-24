@@ -57,13 +57,13 @@ class DocumentForm extends AbstractForm
             ])
             
             ->add( 'tocRootPage', EntityType::class, [
-                'label'                 => 'vs_cms.form.title',
+                'label'                 => 'vs_cms.form.document.document_toc',
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->tocPageClass,
                 'query_builder' => function ( EntityRepository $er ) {
                     return $er->createQueryBuilder( 'p' )->where( 'p.parent IS NULL' );
                 },
-                'placeholder'           => 'vs_cms.form.title',
+                'placeholder'           => 'vs_cms.form.document.document_toc',
                 'choice_label'          => 'title',
                 'required'              => true
             ])
