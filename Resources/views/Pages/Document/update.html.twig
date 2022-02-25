@@ -58,6 +58,15 @@
                             </div>
                             
                             <div class="form-group">
+                                {{ form_label(form.category, null, {
+                                    'label_attr': {'class': 'col-form-label'}
+                                    }) 
+                                }}
+                                
+                                {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                            
+                            <div class="form-group">
                                 {{ form_label(form.title, null, {
                                     'label_attr': {'class': 'col-form-label'}
                                     }) 
@@ -67,12 +76,12 @@
                             </div>
                             
                             <div class="form-group">
-                                {{ form_label(form.tocRootPage, null, {
+                                {{ form_label(form.text, null, {
                                     'label_attr': {'class': 'col-form-label'}
                                     }) 
                                 }}
                                 
-                                {{ form_widget(form.tocRootPage, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
                             </div>
                             
                         	{{ vs_form.buttons( form ) }}

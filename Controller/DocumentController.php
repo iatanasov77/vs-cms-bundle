@@ -2,9 +2,12 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
+use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
 
 class DocumentController extends AbstractCrudController
 {
+    use TaxonomyHelperTrait;
+    
     protected function customData( Request $request, $entity = null ): array
     {
         return [
@@ -28,7 +31,9 @@ class DocumentController extends AbstractCrudController
     
     protected function createRootTocPage( $entity, $form )
     {
-        //$locale     = $taxonomy->getLocale() ?: $requestLocale;
+        $translatableLocale     = $form['currentLocale']->getData();
+        $rootTocPageContent     = $form['text']->getData();
+        
         $rootTocPage  = $this->get( 'vs_cms.factory.toc_page' )->createNew();
         
         //$rootTocPage->setCurrentLocale( $locale );
