@@ -9,11 +9,11 @@
         {% for item in items %}
             {#
         	{% if not item.parent %}
-        	   {% include '@VSCmDocumentDocument_Categories/partial/simpleTreeTableRows.html.twig' with {'category': item, 'parentId': 0} %}
+        	   {% include '@VSCms/Pages/Document_Categories/partial/simpleTreeTableRows.html.twig' with {'parentId': 0, 'item': item} %}
         	{% endif %}
         	#}
             
-        	{% include '@VSCmDocumentDocument_Categories/partial/simpleTreeTableRows.html.twig' with {'category': item, 'parentId': 0} %}
+            {% include '@VSCms/Pages/Document_Categories/partial/simpleTreeTableRows.html.twig' with {'parentId': 0, 'item': item} %}
         {% endfor %}
     </tbody>
 </table>
