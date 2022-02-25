@@ -1,4 +1,12 @@
 services:
+    vs_cms.resources.page_categories.form:
+        class: Vankosoft\CmsBundle\Form\PageCategoryForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.page_categories.class%'
+            - '@vs_cms.repository.page_categories'
+            
     vs_cms.resources.pages.form:
         class: Vankosoft\CmsBundle\Form\PageForm
         tags:
@@ -8,6 +16,13 @@ services:
             - '%vs_cms.model.pages.class%'
             - '%vs_cms.model.page_categories.class%'
             
+    vs_cms.resources.document_categories.form:
+        class: Vankosoft\CmsBundle\Form\DocumentCategoryForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.document_categories.class%'
+    
     vs_cms.resources.document.form:
         class: Vankosoft\CmsBundle\Form\DocumentForm
         tags:
@@ -17,15 +32,7 @@ services:
             - '%vs_cms.model.document.class%'
             - '%vs_cms.model.toc_page.class%'
             - '%vs_cms.model.pages.class%'
-            
-    vs_cms.resources.page_categories.form:
-        class: Vankosoft\CmsBundle\Form\PageCategoryForm
-        tags:
-            - { name: form.type }
-        arguments:
-            - '%vs_cms.model.page_categories.class%'
-            - '@vs_cms.repository.page_categories'
-
+    
     Vankosoft\CmsBundle\Form\TocPageForm:
         tags:
             - { name: form.type }
