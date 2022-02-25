@@ -38,6 +38,9 @@ use Vankosoft\CmsBundle\Model\FileManagerFile;
 use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
 use Vankosoft\CmsBundle\Controller\VankosoftFileManagerFileController;
 use Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm;
+use Vankosoft\CmsBundle\Model\DocumentCategory;
+use Vankosoft\CmsBundle\Controller\DocumentCategoryController;
+use Vankosoft\CmsBundle\Repository\DocumentCategoryRepository;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -100,8 +103,24 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode( 'model' )->defaultValue( PageCategory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( PagesCategoryController::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'repository' )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( PageCategoryRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( PageCategoryForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode( 'document_categories' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( DocumentCategory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( DocumentCategoryController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( DocumentCategoryRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( PageCategoryForm::class )->cannotBeEmpty()->end()
                                     ->end()

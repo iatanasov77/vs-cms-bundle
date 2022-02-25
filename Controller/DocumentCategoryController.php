@@ -4,24 +4,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
 use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
 
-/**
- * Documentation
- * --------------
- * http://atlantic18.github.io/DoctrineExtensions/doc/tree.html
- *
- * Good example
- * -------------
- * http://drib.tech/programming/hierarchical-data-relational-databases-symfony-4-doctrine
- * https://github.com/dribtech/hierarchical-data-tutorial-part-2
- */
-class PagesCategoryController extends AbstractCrudController
+class DocumentCategoryController extends AbstractCrudController
 {
     use TaxonomyHelperTrait;
     
     protected function customData( Request $request, $entity = null ): array
     {
         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-            $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
+            $this->getParameter( 'vs_application.document_categories.taxonomy_code' )
         );
         
         return [
@@ -62,4 +52,6 @@ class PagesCategoryController extends AbstractCrudController
             $entity->setParent( $parentCategory );
         }
     }
+    
+    
 }
