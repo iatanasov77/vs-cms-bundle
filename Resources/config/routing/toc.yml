@@ -1,11 +1,18 @@
-vs_cms_multipage_toc:
+vs_cms_document_categories:
+    resource: |
+        alias: vs_cms.document_categories
+        path: /document-categories
+        templates: "@VSCms/Pages/Document_Categories"
+    type: sylius.resource
+
+vs_cms_document:
     resource: |
         alias: vs_cms.document
         path: /documents
         templates: "@VSCms/Pages/Document"
     type: sylius.resource
     
-vs_cms_multipage_toc_page:
+vs_cms_toc_page:
     resource: |
         alias: vs_cms.toc_page
         path: /toc-pages
