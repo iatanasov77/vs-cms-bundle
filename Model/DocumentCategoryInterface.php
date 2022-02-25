@@ -4,13 +4,13 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 
-interface PageCategoryInterface extends ResourceInterface
+interface DocumentCategoryInterface extends ResourceInterface
 {
-    public function getPages(): Collection;
+    public function getDocuments(): Collection;
     
-    public function addPage( Page $page ): PageCategoryInterface;
+    public function addDocument( DocumentInterface $document ): DocumentCategoryInterface;
     
-    public function removePage( Page $page ): PageCategoryInterface;
+    public function removeDocument( DocumentInterface $document ): DocumentCategoryInterface;
     
     public function getTaxon(): ?TaxonInterface;
     

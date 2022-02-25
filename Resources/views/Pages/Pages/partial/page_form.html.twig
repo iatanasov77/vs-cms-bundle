@@ -61,6 +61,9 @@
         {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
     </div>
     
+    {# I THINK THAT NOT NEED THIS HELP BECAUSE FOS CKEditor is Installed with Webpack Encore. 
+     # See: https://symfony.com/bundles/FOSCKEditorBundle/current/installation.html#using-webpack-encore
+     #####################################################################################################
     <div class="row">&nbsp;</div>
     <div class="">
 		<div class="card bg-info text-white shadow">
@@ -70,7 +73,7 @@
 			</div>
 		</div>
     </div>
-    
+    #}
     <div class="form-group">
         {{ form_label(form.text, null, {
             'label_attr': {'class': 'col-form-label'}
