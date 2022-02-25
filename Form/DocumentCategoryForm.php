@@ -1,14 +1,10 @@
 <?php namespace Vankosoft\CmsBundle\Form;
 
 use Vankosoft\ApplicationBundle\Form\AbstractForm;
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Vankosoft\ApplicationBundle\Component\I18N;
 
