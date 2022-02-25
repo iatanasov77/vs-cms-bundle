@@ -23,6 +23,7 @@ vs_cms:
             parent_category: 'Parent Category'
             parent_category_placeholder: '-- Parent Category --'
         document:
+            document_category: 'Document Category'
             document_toc: 'Document TOC'
         filemanager:
             file_directory_lable: 'Directory'

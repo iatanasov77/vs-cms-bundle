@@ -23,6 +23,7 @@ vs_cms:
             parent_category: 'Родителска Категория'
             parent_category_placeholder: '-- Родителска Категория --'
         document:
+            document_category: 'Категория на Документ'
             document_toc: 'Документ Съдържание'
         filemanager:
             file_directory_lable: 'Директория'
