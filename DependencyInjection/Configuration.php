@@ -34,13 +34,17 @@ use Vankosoft\CmsBundle\Model\FileManagerInterface;
 use Vankosoft\CmsBundle\Repository\FileManagerRepository;
 use Vankosoft\CmsBundle\Controller\VankosoftFileManagerController;
 use Vankosoft\CmsBundle\Form\VankosoftFileManagerForm;
+
 use Vankosoft\CmsBundle\Model\FileManagerFile;
 use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
 use Vankosoft\CmsBundle\Controller\VankosoftFileManagerFileController;
 use Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm;
+
 use Vankosoft\CmsBundle\Model\DocumentCategory;
+use Vankosoft\CmsBundle\Model\DocumentCategoryInterface;
 use Vankosoft\CmsBundle\Controller\DocumentCategoryController;
 use Vankosoft\CmsBundle\Repository\DocumentCategoryRepository;
+use Vankosoft\CmsBundle\Form\DocumentCategoryForm;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -118,11 +122,11 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( DocumentCategory::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( DocumentCategoryInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( DocumentCategoryController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( DocumentCategoryRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'form' )->defaultValue( PageCategoryForm::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( DocumentCategoryForm::class )->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
