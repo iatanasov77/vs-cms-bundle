@@ -63,6 +63,12 @@ vs_cms:
         filemanager_update_files_table_size: 'Размер'
         filemanager_update_files_table_dimension: 'Снимка Размер'
         filemanager_update_files_table_actions: 'Действия'
+        document_categories_index_title: 'Категории Страници'
+        document_categories_index_row_category: 'Категория'
+        document_categories_index_row_actions: 'Действия'
+        document_categories_index_button_edit: 'Редактирай'
+        document_categories_update_title: 'Редактиране Категория на Страници'
+        document_categories_create_title: 'Създаване Нова Категория на Страници'
         
     modal:
         page_clone:

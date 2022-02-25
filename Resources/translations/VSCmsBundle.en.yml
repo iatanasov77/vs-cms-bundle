@@ -63,6 +63,12 @@ vs_cms:
         filemanager_update_files_table_size: 'Size'
         filemanager_update_files_table_dimension: 'Dimension'
         filemanager_update_files_table_actions: 'Actions'
+        document_categories_index_title: 'Document Categories'
+        document_categories_index_row_category: 'Category'
+        document_categories_index_row_actions: 'Actions'
+        document_categories_index_button_edit: 'Edit'
+        document_categories_update_title: 'Edit Document Category'
+        document_categories_create_title: 'Create New Document Category'
         
     modal:
         page_clone:
