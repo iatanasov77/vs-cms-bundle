@@ -5,7 +5,14 @@
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
 {% block title %}{{ parent() }} :: Edit Document{% endblock %}
-{% block pageTitle %}<i class="icon_genius"></i> {% if(item.id) %}Edit Document:    {{ item.title }}{% else %}Create New Document{% endif %}{% endblock %}
+{% block pageTitle %}
+    <i class="icon_genius"></i>
+    {% if( item.id) %}
+        {{ 'vs_cms.template.document_update_title' | trans( {},'VSCmsBundle' ) }}: {{ item.title }}
+    {% else %}
+        {{ 'vs_cms.template.document_create_title' | trans( {},'VSCmsBundle' ) }}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -67,7 +74,7 @@
             {% if( item.id ) %}
 				<div class="card">
 	                <div class="card-header">
-                        <div class="float-left" style="height:30px; padding-top:10px;">TOC Pages</div>
+                        <div class="float-left" style="height:30px; padding-top:10px;">{{ 'vs_cms.template.document_update_toc_pages_title' | trans( {},'VSCmsBundle' ) }}</div>
                         <div class="btn-group float-right">
                             <a class="btn btn-primary btnTocPage" id="btnTocPage" 
                             	title="{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}" 
