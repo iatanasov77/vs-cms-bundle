@@ -57,7 +57,7 @@ class DocumentForm extends AbstractForm
                 'class'                 => $this->documentCategoryClass,
                 'placeholder'           => 'vs_cms.form.document.document_category_placeholder',
                 'choice_label'          => 'name',
-                'required'              => true
+                'required'              => false
             ])
             
             /*
@@ -89,6 +89,7 @@ class DocumentForm extends AbstractForm
                     //'toolbar'   => 'document_toolbar',
                     'uiColor'   => '#ffffff',
                 ],
+                'required'              => false,
                 'mapped'                => false,
             ])
         ;
