@@ -25,14 +25,14 @@ class DocumentForm extends AbstractForm
     public function __construct(
         RequestStack $requestStack,
         string $dataClass,
-        string $tocPageClass,
-        string $pagesClass
+        string $documentCategoryClass,
+        string $tocPageClass
     ) {
-            parent::__construct( $dataClass );
-            
-            $this->requestStack = $requestStack;
-            $this->tocPageClass = $tocPageClass;
-            $this->pagesClass   = $pagesClass;
+        parent::__construct( $dataClass );
+        
+        $this->requestStack             = $requestStack;
+        $this->documentCategoryClass    = $documentCategoryClass;
+        $this->tocPageClass             = $tocPageClass;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options )
