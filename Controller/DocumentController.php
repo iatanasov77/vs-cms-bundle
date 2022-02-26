@@ -13,7 +13,7 @@ class DocumentController extends AbstractCrudController
 //         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
 //             $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
 //         );
-        $rootTocPageText    = $entity->getTocRootPage() ? $entity->getTocRootPage()->getText() : null;
+        $rootTocPageText    = $entity && $entity->getTocRootPage() ? $entity->getTocRootPage()->getText() : null;
         return [
             //'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
             'rootTocPageText'   => $rootTocPageText,
