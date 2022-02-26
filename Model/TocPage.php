@@ -3,8 +3,9 @@
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
 
-class TocPage implements TocPageInterface
+class TocPage implements TocPageInterface, LoggableObjectInterface
 {
     /** @var integer */
     protected $id;
@@ -32,6 +33,16 @@ class TocPage implements TocPageInterface
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * {@inheritDoc}
+     * @see \Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface::getTranslatableLocale()
+     */
+    public function getTranslatableLocale() : ?string
+    {
+        //return $this->locale;
+        return null;
     }
     
     /**

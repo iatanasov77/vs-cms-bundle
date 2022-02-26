@@ -11,8 +11,9 @@ use Doctrine\Common\Collections\Collection;
 
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonLeafInterface;
 use Vankosoft\ApplicationBundle\Model\Traits\TaxonLeafTrait;
+use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
 
-class Page implements PageInterface, TaxonLeafInterface
+class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
 {
     use TimestampableTrait;
     use ToggleableTrait;    // About enabled field - $enabled (published)
