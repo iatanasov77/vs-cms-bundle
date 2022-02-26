@@ -18,7 +18,6 @@
         
         <many-to-one field="root" target-entity="Vankosoft\CmsBundle\Model\TocPageInterface">
             <join-column name="tree_root" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
-            <gedmo:tree-root />
             <cascade>
                 <cascade-all/>
             </cascade>
@@ -26,7 +25,6 @@
         
         <many-to-one field="parent" target-entity="Vankosoft\CmsBundle\Model\TocPageInterface" inversed-by="children">
             <join-column name="parent_id" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
-            <gedmo:tree-parent />
             <cascade>
                 <cascade-all/>
             </cascade>
