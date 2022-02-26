@@ -47,7 +47,7 @@ class TocPageForm extends AbstractForm
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->dataClass,
                 'choice_label'          => 'title',
-                'placeholder'           => 'vs_cms.form.toc_page.parent_page_placeholder'
+                'placeholder'           => 'vs_cms.form.toc_page.parent_page_placeholder',
                 'query_builder'         => function ( EntityRepository $er ) use ( $options )
                 {
                     //var_dump( $er ); die;
