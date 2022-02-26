@@ -20,13 +20,19 @@ class DocumentController extends AbstractCrudController
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
         $translatableLocale = $form['locale']->getData();
+        $rootTocPageName    = $form['title']->getData();
+        $rootTocPageContent = $form['text']->getData();
         
         $entity->setTranslatableLocale( $translatableLocale );
         
-        if ( ! $entity->getTocRootPage() ) {
-            $tocRootPage    = $this->createRootTocPage( $entity, $form );
-            $entity->setTocRootPage( $tocRootPage );
+        $rootTocPage        = $entity->getTocRootPage();
+        if ( ! $rootTocPage ) {
+            $rootTocPage    = $this->createRootTocPage( $entity, $form );
         }
+        
+        $rootTocPage->setTitle( $rootTocPageName );
+        $rootTocPage->setText( $rootTocPageContent );
+        $entity->setTocRootPage( $rootTocPage );
     }
     
     protected function createRootTocPage( $entity, $form )
@@ -34,7 +40,6 @@ class DocumentController extends AbstractCrudController
         $translatableLocale     = $form['locale']->getData();
         $rootTocPageName        = $form['title']->getData();
         //$rootTocPageName        = $entity->getTitle()
-        $rootTocPageContent     = $form['text']->getData();
         
         $rootTocPage            = $this->get( 'vs_cms.factory.toc_page' )->createNew();
         $taxonomy               = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
@@ -48,8 +53,6 @@ class DocumentController extends AbstractCrudController
         );
         
         $rootTocPage->setTaxon( $newTaxon );
-        $rootTocPage->setTitle( $rootTocPageName );
-        $rootTocPage->setText( $rootTocPageContent );
         
         return $rootTocPage;
     }
