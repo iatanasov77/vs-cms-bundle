@@ -72,6 +72,10 @@ vs_cms:
         document_categories_update_title: 'Edit Document Category'
         document_categories_create_title: 'Create New Document Category'
         
+        
+        document_index_title: Documents with TOC
+        
+        
     modal:
         page_clone:
             title: 'Clone Page'
