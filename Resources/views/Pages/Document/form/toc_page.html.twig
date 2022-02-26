@@ -38,24 +38,14 @@
         {{ form_widget( form.title, {'attr': {'class': 'form-control'}}) }}
     </div>
     
-    {% set pagesComboDataSourceUrl  = path('vs_cms_pages_tree_combo_with_leafs', {'taxonomyId': pageCategoriesTaxonomyId}) %}
+    
     <div class="form-group">
-        {{ form_label( form.page, null, {
+        {{ form_label(form.text, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
         }}
         
-        
-        
-        {{ vs_tree.easyuiCombobox( form.page, pagesComboDataSourceUrl, item.page ? item.page.id : 0,
-            {
-                'elementSelector': '#user_role_form_parent',
-                'required': 'true',
-                'multiple': 'false',
-                'checkbox': 'false',
-                'placeholder': comboTreePlaceholder
-            }
-        ) }}
+        {{ form_widget(form.text, {'attr': {'class': 'form-control'}, 'value' : rootTocPageText}) }}
     </div>
     
     {% do form.btnSave.setRendered() %}

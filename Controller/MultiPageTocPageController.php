@@ -65,12 +65,10 @@ class MultiPageTocPageController extends AbstractController
             'tocRootPage'   => $tocRootPage
         ]);
         
-        $pageCategoriesTaxonomy = $this->taxonomyRepository->findByCode( 'page-categories' );
-        return $this->render( '@VSCms/Pages/MultipageToc/form/toc_page.html.twig', [
+        return $this->render( '@VSCms/Pages/Document/form/toc_page.html.twig', [
             'form'  => $form->createView(),
             'tocId' => $tocId,
             'item'  => $oTocPage,
-            'pageCategoriesTaxonomyId'  => $pageCategoriesTaxonomy ? $pageCategoriesTaxonomy->getId() : 0,
         ]);
     }
     
