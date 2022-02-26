@@ -10,13 +10,35 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-one field="document" target-entity="Vankosoft\CmsBundle\Model\DocumentInterface" mapped-by="tocRootPage">
+        <one-to-one field="taxon" name="taxon_id" target-entity="Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface" orphan-removal="true">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
         
-        <one-to-one field="taxon" name="taxon_id" target-entity="Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface" orphan-removal="true">
+        <many-to-one field="root" target-entity="Vankosoft\CmsBundle\Model\TocPageInterface">
+            <join-column name="tree_root" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
+            <gedmo:tree-root />
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+        
+        <many-to-one field="parent" target-entity="Vankosoft\CmsBundle\Model\TocPageInterface" inversed-by="children">
+            <join-column name="parent_id" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
+            <gedmo:tree-parent />
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+
+        <one-to-many field="children" target-entity="Vankosoft\CmsBundle\Model\TocPageInterface" mapped-by="parent">
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </one-to-many>
+        
+        <one-to-one field="document" target-entity="Vankosoft\CmsBundle\Model\DocumentInterface" mapped-by="tocRootPage">
             <cascade>
                 <cascade-all/>
             </cascade>

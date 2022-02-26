@@ -13,10 +13,15 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     /** @var TaxonInterface */
     protected $taxon;
     
-    /** @var PageCategoryInterface */
+    /**
+     * @var TocPageInterface|null
+     */
+    protected $root;
+    
+    /** @var TocPageInterface */
     protected $parent;
     
-    /** @var Collection|PageCategory[] */
+    /** @var Collection|TocPageInterface[] */
     protected $children;
     
     /** @var DocumentInterface */
@@ -61,10 +66,22 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         $this->taxon = $taxon;
     }
     
+    public function getRoot(): ?TocPageInterface
+    {
+        return $this->root;
+    }
+    
+    public function setRoot( ?TocPageInterface $root ): self
+    {
+        $this->root = $root;
+        
+        return $this;
+    }
+    
     /**
      * {@inheritdoc}
      */
-    public function getParent(): ?PageCategoryInterface
+    public function getParent(): ?TocPageInterface
     {
         return $this->parent;
     }
@@ -72,7 +89,7 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     /**
      * {@inheritdoc}
      */
-    public function setParent(?PageCategoryInterface $parent) : PageCategoryInterface
+    public function setParent(?TocPageInterface $parent): self
     {
         $this->parent = $parent;
         
