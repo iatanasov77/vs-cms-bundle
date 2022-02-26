@@ -13,6 +13,7 @@
     {% endif %}
 
     {% set comboDataSourceUrl  = path('vs_cms_multipage_toc_page_easyui_combotree', {'tocId': tocId}) %}
+    {% set comboTreePlaceholder = 'vs_cms.form.toc_page.parent_page_placeholder' | trans( {},'VSCmsBundle' ) %}
     <div class="form-group">
         {{ form_label( form.parent, null, {
             'label_attr': {'class': 'col-form-label'}

@@ -26,6 +26,8 @@ vs_cms:
             document_category: 'Document Category'
             document_category_placeholder: '-- Select Document Category --'
             document_toc: 'Document TOC'
+        toc_page:
+            parent_page_placeholder: '-- Select a Parent Page --'
         filemanager:
             file_directory_lable: 'Directory'
             file_lable: 'Upload File'
