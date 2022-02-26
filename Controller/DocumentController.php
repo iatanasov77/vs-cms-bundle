@@ -10,12 +10,9 @@ class DocumentController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
-//         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-//             $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
-//         );
         $rootTocPageText    = $entity && $entity->getTocRootPage() ? $entity->getTocRootPage()->getText() : null;
+        
         return [
-            //'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
             'rootTocPageText'   => $rootTocPageText,
         ];
     }
