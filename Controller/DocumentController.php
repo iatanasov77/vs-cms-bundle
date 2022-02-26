@@ -10,34 +10,48 @@ class DocumentController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
+        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+            $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
+        );
+        
         return [
-            
+            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
         ];
     }
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
-        //$formData   = $request->request->get( 'taxonomy_form' );
-        //$entity->setTocTitle(  );
-        $entity->setTranslatableLocale( $request->getLocale() );
+        $translatableLocale = $form['locale']->getData();
+        
+        $entity->setTranslatableLocale( $translatableLocale );
         
         if ( ! $entity->getTocRootPage() ) {
-            $entity->setTocRootPage( $this->createRootTocPage( $entity, $form ) );
-        } else {
-            // Update Root Page Text
-            
+            $tocRootPage    = $this->createRootTocPage( $entity, $form );
+            $entity->setTocRootPage( $tocRootPage );
         }
     }
     
     protected function createRootTocPage( $entity, $form )
     {
-        $translatableLocale     = $form['currentLocale']->getData();
+        $translatableLocale     = $form['locale']->getData();
+        $rootTocPageName        = $form['title']->getData();
+        //$rootTocPageName        = $entity->getTitle()
         $rootTocPageContent     = $form['text']->getData();
         
-        $rootTocPage  = $this->get( 'vs_cms.factory.toc_page' )->createNew();
+        $rootTocPage            = $this->get( 'vs_cms.factory.toc_page' )->createNew();
+        $taxonomy               = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+            $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
+        );
+        $newTaxon   = $this->createTaxon(
+            'Root TocPage of Document: "' . $rootTocPageName . '"',
+            $translatableLocale,
+            null,
+            $taxonomy->getId()
+        );
         
-        //$rootTocPage->setCurrentLocale( $locale );
-        $rootTocPage->setTitle( 'Root TocPage of Document: "' . $entity->getTitle() . '"' );
+        $rootTocPage->setTaxon( $newTaxon );
+        $rootTocPage->setTitle( $rootTocPageName );
+        $rootTocPage->setText( $rootTocPageContent );
         
         return $rootTocPage;
     }
