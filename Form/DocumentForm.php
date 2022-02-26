@@ -55,7 +55,7 @@ class DocumentForm extends AbstractForm
                 'label'                 => 'vs_cms.form.document.document_category',
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->documentCategoryClass,
-                'placeholder'           => 'vs_cms.form.document.document_category',
+                'placeholder'           => 'vs_cms.form.document.document_category_placeholder',
                 'choice_label'          => 'name',
                 'required'              => true
             ])
