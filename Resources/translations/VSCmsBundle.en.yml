@@ -49,8 +49,10 @@ vs_cms:
         pages_create_title: 'Create New Page'
         button_clone: 'Clone Page'
         button_preview: 'Preview Page'
+        title_actions: 'Actions'
         button_edit: 'Edit'
-        button_delete: 'Edit'
+        button_update: 'Edit'
+        button_delete: 'Delete'
         button_create_toc_page: 'Create New TOC Page'
         filemanager_upload_file_title: 'FileManager Uplod File'
         filemanager_index_title: 'List Filemanagers'
@@ -71,11 +73,11 @@ vs_cms:
         document_categories_index_button_edit: 'Edit'
         document_categories_update_title: 'Edit Document Category'
         document_categories_create_title: 'Create New Document Category'
-        
-        
         document_index_title: Documents with TOC
-        
-        
+        document_index_table_title: Document Title
+        document_update_toc_pages_title: 'TOC Pages'
+        document_update_title: 'Edit Document'
+        document_create_title: 'Create New Document'
     modal:
         page_clone:
             title: 'Clone Page'
