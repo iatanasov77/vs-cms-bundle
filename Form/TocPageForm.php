@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -41,8 +42,7 @@ class TocPageForm extends AbstractForm
        */
         
             ->add( 'parent', EntityType::class, [
-                'mapped'                => false,
-                'required'              => true,
+                'required'              => false,
                 'label'                 => 'vs_cms.form.parent',
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->dataClass,
@@ -62,13 +62,16 @@ class TocPageForm extends AbstractForm
                 
             ])
             
-            ->add( 'page', EntityType::class, [
-                'mapped'                => false,
-                'required'              => true,
-                'label'                 => 'vs_cms.form.page_label',
+            ->add( 'text', CKEditorType::class, [
+                'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
-                'class'                 => $this->pagesClass,
-                'choice_label'          => 'title',
+                'config'                => [
+                    'toolbar'           => 'full',
+                    // Create a toolbar in config for example a 'document_toolbar' and use it
+                    //'toolbar'   => 'document_toolbar',
+                    'uiColor'   => '#ffffff',
+                ],
+                'required'              => false,
             ])
         ;
     }

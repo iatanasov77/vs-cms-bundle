@@ -1,13 +1,13 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
 {% if( item.id ) %}
-	{% set pageTitle = 'vs_cms.template.page_categories_update_title' | trans( {},'VSCmsBundle' ) %}
+	{% set pageTitle = 'vs_cms.template.document_categories_update_title' | trans( {},'VSCmsBundle' ) %}
 {% else %}
-	{% set pageTitle = 'vs_cms.template.page_categories_create_title' | trans( {},'VSCmsBundle' ) %}
+	{% set pageTitle = 'vs_cms.template.document_categories_create_title' | trans( {},'VSCmsBundle' ) %}
 {% endif %}
 
 {% block title %}{{ parent() }} :: {{ pageTitle }}{% endblock %}
-{% block pageTitle %}<i class="icon_genius"></i> {% if(item.id) %}{{ pageTitle }}:    {{ item.name }}{% else %}{{ pageTitle }}{% endif %}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {{ pageTitle }}{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -16,7 +16,7 @@
         <!-- ============================================================== -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-                <h5 class="card-header">Page Category</h5>
+                <h5 class="card-header">Document Category</h5>
                 <div class="card-body">
                 	{% if form_errors(form) is not empty %}
 		                <div class="alert alert-block alert-danger fade in">
@@ -27,7 +27,7 @@
 		                </div>
 		            {% endif %}
                     <div id="pageCategoryFormContainer" data-pageId="{{ item.id }}">
-                        {% include '@VSCms/Pages/Page_Categories/partial/category_form.html.twig' %}
+                        {% include '@VSCms/Pages/Document_Categories/partial/category_form.html.twig' %}
                     </div>
                 </div>
             </div>

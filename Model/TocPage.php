@@ -2,8 +2,10 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
 
-class TocPage implements TocPageInterface
+class TocPage implements TocPageInterface, LoggableObjectInterface
 {
     /** @var integer */
     protected $id;
@@ -11,10 +13,15 @@ class TocPage implements TocPageInterface
     /** @var TaxonInterface */
     protected $taxon;
     
-    /** @var PageCategoryInterface */
+    /**
+     * @var TocPageInterface|null
+     */
+    protected $root;
+    
+    /** @var TocPageInterface */
     protected $parent;
     
-    /** @var Collection|PageCategory[] */
+    /** @var Collection|TocPageInterface[] */
     protected $children;
     
     /** @var DocumentInterface */
@@ -34,6 +41,16 @@ class TocPage implements TocPageInterface
     }
     
     /**
+     * {@inheritDoc}
+     * @see \Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface::getTranslatableLocale()
+     */
+    public function getTranslatableLocale() : ?string
+    {
+        //return $this->locale;
+        return null;
+    }
+    
+    /**
      * {@inheritdoc}
      */
     public function getTaxon(): ?TaxonInterface
@@ -49,10 +66,22 @@ class TocPage implements TocPageInterface
         $this->taxon = $taxon;
     }
     
+    public function getRoot(): ?TocPageInterface
+    {
+        return $this->root;
+    }
+    
+    public function setRoot( ?TocPageInterface $root ): self
+    {
+        $this->root = $root;
+        
+        return $this;
+    }
+    
     /**
      * {@inheritdoc}
      */
-    public function getParent(): ?PageCategoryInterface
+    public function getParent(): ?TocPageInterface
     {
         return $this->parent;
     }
@@ -60,7 +89,7 @@ class TocPage implements TocPageInterface
     /**
      * {@inheritdoc}
      */
-    public function setParent(?PageCategoryInterface $parent) : PageCategoryInterface
+    public function setParent(?TocPageInterface $parent): self
     {
         $this->parent = $parent;
         

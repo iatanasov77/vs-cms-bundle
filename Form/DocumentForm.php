@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 use Doctrine\ORM\EntityRepository;
 use Vankosoft\CmsBundle\Model\TocPage;
@@ -24,14 +25,14 @@ class DocumentForm extends AbstractForm
     public function __construct(
         RequestStack $requestStack,
         string $dataClass,
-        string $tocPageClass,
-        string $pagesClass
+        string $documentCategoryClass,
+        string $tocPageClass
     ) {
-            parent::__construct( $dataClass );
-            
-            $this->requestStack = $requestStack;
-            $this->tocPageClass = $tocPageClass;
-            $this->pagesClass   = $pagesClass;
+        parent::__construct( $dataClass );
+        
+        $this->requestStack             = $requestStack;
+        $this->documentCategoryClass    = $documentCategoryClass;
+        $this->tocPageClass             = $tocPageClass;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options )
@@ -50,12 +51,16 @@ class DocumentForm extends AbstractForm
                 'mapped'                => false,
             ])
             
-            ->add( 'title', TextType::class, [
-                'label'                 => 'vs_cms.form.title',
+            ->add( 'category', EntityType::class, [
+                'label'                 => 'vs_cms.form.document.document_category',
                 'translation_domain'    => 'VSCmsBundle',
-                'required'              => true
+                'class'                 => $this->documentCategoryClass,
+                'placeholder'           => 'vs_cms.form.document.document_category_placeholder',
+                'choice_label'          => 'name',
+                'required'              => false
             ])
             
+            /*
             ->add( 'tocRootPage', EntityType::class, [
                 'label'                 => 'vs_cms.form.document.document_toc',
                 'translation_domain'    => 'VSCmsBundle',
@@ -66,6 +71,26 @@ class DocumentForm extends AbstractForm
                 'placeholder'           => 'vs_cms.form.document.document_toc',
                 'choice_label'          => 'title',
                 'required'              => true
+            ])
+            */
+        
+            ->add( 'title', TextType::class, [
+                'label'                 => 'vs_cms.form.title',
+                'translation_domain'    => 'VSCmsBundle',
+                'required'              => true
+            ])
+        
+            ->add( 'text', CKEditorType::class, [
+                'label'                 => 'vs_cms.form.page.page_content',
+                'translation_domain'    => 'VSCmsBundle',
+                'config'                => [
+                    'toolbar'           => 'full',
+                    // Create a toolbar in config for example a 'document_toolbar' and use it
+                    //'toolbar'   => 'document_toolbar',
+                    'uiColor'   => '#ffffff',
+                ],
+                'required'              => false,
+                'mapped'                => false,
             ])
         ;
     }

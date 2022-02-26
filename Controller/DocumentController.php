@@ -2,37 +2,57 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
+use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
 
 class DocumentController extends AbstractCrudController
 {
+    use TaxonomyHelperTrait;
+    
     protected function customData( Request $request, $entity = null ): array
     {
+        $rootTocPageText    = $entity && $entity->getTocRootPage() ? $entity->getTocRootPage()->getText() : null;
+        
         return [
-            
+            'rootTocPageText'   => $rootTocPageText,
         ];
     }
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
-        //$formData   = $request->request->get( 'taxonomy_form' );
-        //$entity->setTocTitle(  );
-        $entity->setTranslatableLocale( $request->getLocale() );
+        $translatableLocale = $form['locale']->getData();
+        $rootTocPageName    = $form['title']->getData();
+        $rootTocPageContent = $form['text']->getData();
         
-        if ( ! $entity->getTocRootPage() ) {
-            $entity->setTocRootPage( $this->createRootTocPage( $entity, $form ) );
-        } else {
-            // Update Root Page Text
-            
+        $entity->setTranslatableLocale( $translatableLocale );
+        
+        $rootTocPage        = $entity->getTocRootPage();
+        if ( ! $rootTocPage ) {
+            $rootTocPage    = $this->createRootTocPage( $entity, $form );
         }
+        
+        $rootTocPage->setTitle( $rootTocPageName );
+        $rootTocPage->setText( $rootTocPageContent );
+        $entity->setTocRootPage( $rootTocPage );
     }
     
     protected function createRootTocPage( $entity, $form )
     {
-        //$locale     = $taxonomy->getLocale() ?: $requestLocale;
-        $rootTocPage  = $this->get( 'vs_cms.factory.toc_page' )->createNew();
+        $translatableLocale     = $form['locale']->getData();
+        $rootTocPageName        = $form['title']->getData();
+        //$rootTocPageName        = $entity->getTitle()
         
-        //$rootTocPage->setCurrentLocale( $locale );
-        $rootTocPage->setTitle( 'Root TocPage of Document: "' . $entity->getTitle() . '"' );
+        $rootTocPage            = $this->get( 'vs_cms.factory.toc_page' )->createNew();
+        $taxonomy               = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+            $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
+        );
+        $newTaxon   = $this->createTaxon(
+            'Root TocPage of Document: "' . $rootTocPageName . '"',
+            $translatableLocale,
+            null,
+            $taxonomy->getId()
+        );
+        
+        $rootTocPage->setTaxon( $newTaxon );
         
         return $rootTocPage;
     }

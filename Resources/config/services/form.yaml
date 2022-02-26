@@ -30,8 +30,8 @@ services:
         arguments:
             - "@request_stack"
             - '%vs_cms.model.document.class%'
+            - '%vs_cms.model.document_categories.class%'
             - '%vs_cms.model.toc_page.class%'
-            - '%vs_cms.model.pages.class%'
     
     Vankosoft\CmsBundle\Form\TocPageForm:
         tags:
