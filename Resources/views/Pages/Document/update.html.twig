@@ -77,8 +77,9 @@
                         <div class="btn-group float-right">
                             <a class="btn btn-primary btnTocPage" id="btnTocPage" 
                             	title="{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}" 
-                            	href="javascript:void(0);" 
-                            	data-url="{{ path('vs_cms_multipage_toc_page_edit', {'documentId': item.id}) }}"
+                            	href="javascript:void(0);"
+                            	data-documentId="item.id"
+                            	data-tocPageId="0"
                             >
                             	{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}
                             </a>&nbsp;

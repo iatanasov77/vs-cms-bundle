@@ -47,13 +47,11 @@ class MultiPageTocPageController extends AbstractController
         $this->taxonomyRepository   = $taxonomyRepository;
     }
     
-    public function editTocPage( $documentId, Request $request ): Response
+    public function editTocPage( $documentId, $tocPageId, Request $request ): Response
     {
         $locale         = $request->getLocale();
         $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
-        
-        $tocPageId      = (int)$request->query->get( 'toc-page-id' );
-        $oTocPage       = $tocPageId ? $this->tocPageRepository->find( $tocPageId ) : $this->tocPageFactory->createNew();
+        $oTocPage       = intval( $tocPageId ) ? $this->tocPageRepository->find( $tocPageId ) : $this->tocPageFactory->createNew();
         
         $form           = $this->createForm( TocPageForm::class, $oTocPage, [
             'data'          => $oTocPage,
@@ -66,43 +64,6 @@ class MultiPageTocPageController extends AbstractController
             'documentId'    => $documentId,
             'item'          => $oTocPage,
         ]);
-    }
-    
-    public function handleTocPage( $documentId, Request $request ): Response
-    {
-        $oTocPage       = $this->tocPageFactory->createNew();
-        $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
-        $form           = $this->createForm( TocPageForm::class, $oTocPage, [
-            'data'          => $oTocPage,
-            'method'        => 'POST',
-            'tocRootPage'   => $tocRootPage
-        ]);
-        
-        $form->handleRequest( $request );
-        if ( $form->isSubmitted()  ) { // && $form->isValid()
-            $em         = $this->getDoctrine()->getManager();
-            
-            $translatableLocale = $request->getLocale();
-            $tocPageName        = $form['title']->getData();
-            //$rootTocPageName        = $entity->getTitle()
-            
-            $tocPage    = $form->getData();
-            $tocPage->setRoot( $tocRootPage );
-            
-            if ( ! $tocPage->getId() ) {
-                $this->initNewTocPage( $tocPage, $tocPageName, $translatableLocale );
-            }
-            
-            if ( ! $tocPage->getParent() ) {
-                $tocPage->setParent( $tocRootPage );
-            }
-            $em->persist( $oTocPage );
-            $em->flush();
-            
-            return $this->redirect( $this->generateUrl( 'vs_cms_document_update', ['id' => $documentId] ) );
-        }
-        
-        return new Response( 'The form is not submited properly !!!', 500 );
     }
     
     public function gtreeTableSource( $documentId, Request $request ): Response
@@ -170,20 +131,5 @@ class MultiPageTocPageController extends AbstractController
             
             $key++;
         }
-    }
-    
-    protected function initNewTocPage( &$tocPage, $title, $locale )
-    {
-        $taxonomy               = $this->taxonomyRepository->findByCode(
-            $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
-        );
-        $newTaxon   = $this->createTaxon(
-            'Root TocPage of Document: "' . $title . '"',
-            $locale,
-            null,
-            $taxonomy->getId()
-        );
-        
-        $tocPage->setTaxon( $newTaxon );
     }
 }
