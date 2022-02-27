@@ -47,75 +47,58 @@ class MultiPageTocPageController extends AbstractController
         $this->taxonomyRepository   = $taxonomyRepository;
     }
     
-    public function editTocPage( $tocId, Request $request ): Response
+    public function editTocPage( $documentId, Request $request ): Response
     {
         $locale         = $request->getLocale();
-        $tocRootPage    = $this->documentRepository->find( $tocId )->getTocRootPage();
+        $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
         
         $tocPageId      = (int)$request->query->get( 'toc-page-id' );
-        if ( $tocPageId ) {
-            $oTocPage   = $this->tocPageRepository->find( $tocPageId );
-        } else {
-            $oTocPage   = $this->tocPageFactory->createNew();
-        }
-        
-        $form           = $this->createForm( TocPageForm::class, $oTocPage, [
-            'data'          => $oTocPage,
-            'method'        => 'POST',
-            'tocRootPage'   => $tocRootPage
-        ]);
+        $oTocPage       = $tocPageId ? $this->tocPageRepository->find( $tocPageId ) : $this->tocPageFactory->createNew();
         
         return $this->render( '@VSCms/Pages/Document/form/toc_page.html.twig', [
-            'form'  => $form->createView(),
-            'tocId' => $tocId,
+            'form'  => $this->createTocPageForm( $oTocPage, $tocRootPage )->createView(),
+            'tocId' => $documentId,
             'item'  => $oTocPage,
         ]);
     }
     
-    public function handleTocPage( $tocId, Request $request ): Response
+    public function handleTocPage( $documentId, Request $request ): Response
     {
-        $tocPageId      = $this->tocPageRepository->find( $_POST['toc_page_form']['id'] );
-        $parentTocPage  = $this->tocPageRepository->find( $_POST['toc_page_form']['parent'] );
-        $linkedPage     = $this->pagesRepository->find( $_POST['toc_page_form']['page'] );
-        
-        if ( $tocPageId ) {
-            $oTocPage   = $this->tocPageRepository->find( $tocPageId );
-        } else {
-            $oTocPage   = $this->tocPageFactory->createNew();
-        }
-        $form   = $this->createForm( TocPageForm::class, $oTocPage );
+        $oTocPage       = $this->tocPageFactory->createNew();
+        $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
+        $form           = $this->createTocPageForm( $oTocPage, $tocRootPage );
         
         $form->handleRequest( $request );
         if ( $form->isSubmitted()  ) { // && $form->isValid()
-            $em             = $this->getDoctrine()->getManager();
-            
-            $oTocPage->setParent( $parentTocPage );
-            $oTocPage->setPage( $linkedPage );
+            $em         = $this->getDoctrine()->getManager();
+            $oTocPage   = $form->getData();
+//             $oTocPage->setParent( $parentTocPage );
+//             $oTocPage->setPage( $linkedPage );
             
             $em->persist( $oTocPage );
             $em->flush();
             
-            return $this->redirect( $this->generateUrl( 'vs_cms_multipage_toc_update', ['id' => $tocId] ) );
+            return $this->redirect( $this->generateUrl( 'vs_cms_document_update', ['id' => $documentId] ) );
         }
         
         return new Response( 'The form is not submited properly !!!', 500 );
     }
     
-    public function gtreeTableSource( $tocId, Request $request ): Response
+    public function gtreeTableSource( $documentId, Request $request ): Response
     {
         $parentId   = (int)$request->query->get( 'parentId' );
         
-        return new JsonResponse( $this->gtreeTableData( $tocId, $parentId ) );
+        return new JsonResponse( $this->gtreeTableData( $documentId, $parentId ) );
     }
     
-    public function easyuiComboTreeSource( $tocId, Request $request ): Response
+    public function easyuiComboTreeSource( $documentId, Request $request ): Response
     {
-        return new JsonResponse( $this->easyuiComboTreeData( $tocId ) );
+        return new JsonResponse( $this->easyuiComboTreeData( $documentId ) );
     }
     
-    protected function gtreeTableData( $tocId, $parentId ): array
+    protected function gtreeTableData( $documentId, $parentId ): array
     {
-        $parent = $parentId ? $this->tocPageRepository->find( $parentId ) : $this->documentRepository->find( $tocId )->getTocRootPage();
+        $parent = $parentId ? $this->tocPageRepository->find( $parentId ) : $this->documentRepository->find( $documentId )->getTocRootPage();
         
         $gtreeTableData = [];
         $children       = $this->tocPageRepository->findBy( ['parent' => $parent] );
@@ -131,9 +114,9 @@ class MultiPageTocPageController extends AbstractController
         return ['nodes' => $gtreeTableData];
     }
     
-    protected function easyuiComboTreeData( $tocId ) : array
+    protected function easyuiComboTreeData( $documentId ) : array
     {
-        $root       = $this->documentRepository->find( $tocId )->getTocRootPage();
+        $root       = $this->documentRepository->find( $documentId )->getTocRootPage();
         $data       = [];
 
         $data[0]    = [
@@ -166,5 +149,23 @@ class MultiPageTocPageController extends AbstractController
             
             $key++;
         }
+    }
+    
+    private function createTocPageForm( $oTocPage, $tocRootPage )
+    {
+        $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
+        
+        $tocPageId      = (int)$request->query->get( 'toc-page-id' );
+        if ( $tocPageId ) {
+            $oTocPage   = $this->tocPageRepository->find( $tocPageId );
+        } else {
+            $oTocPage   = $this->tocPageFactory->createNew();
+        }
+        
+        return $this->createForm( TocPageForm::class, $oTocPage, [
+            'data'          => $oTocPage,
+            'method'        => 'POST',
+            'tocRootPage'   => $tocRootPage
+        ]);
     }
 }
