@@ -120,7 +120,7 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         return $this->locale;
     }
     
-    public function setTranslatableLocale($locale): PageInterface
+    public function setTranslatableLocale($locale): self
     {
         $this->locale = $locale;
         
