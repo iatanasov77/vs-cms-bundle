@@ -81,10 +81,21 @@ class MultiPageTocPageController extends AbstractController
         $form->handleRequest( $request );
         if ( $form->isSubmitted()  ) { // && $form->isValid()
             $em         = $this->getDoctrine()->getManager();
-            $oTocPage   = $form->getData();
-//             $oTocPage->setParent( $parentTocPage );
-//             $oTocPage->setPage( $linkedPage );
             
+            $translatableLocale = $request->getLocale();
+            $tocPageName        = $form['title']->getData();
+            //$rootTocPageName        = $entity->getTitle()
+            
+            $tocPage    = $form->getData();
+            $tocPage->setRoot( $tocRootPage );
+            
+            if ( ! $tocPage->getId() ) {
+                $this->initNewTocPage( $tocPage, $tocPageName, $translatableLocale );
+            }
+            
+            if ( ! $tocPage->getParent() ) {
+                $tocPage->setParent( $tocRootPage );
+            }
             $em->persist( $oTocPage );
             $em->flush();
             
@@ -159,5 +170,20 @@ class MultiPageTocPageController extends AbstractController
             
             $key++;
         }
+    }
+    
+    protected function initNewTocPage( &$tocPage, $title, $locale )
+    {
+        $taxonomy               = $this->taxonomyRepository->findByCode(
+            $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
+        );
+        $newTaxon   = $this->createTaxon(
+            'Root TocPage of Document: "' . $title . '"',
+            $locale,
+            null,
+            $taxonomy->getId()
+        );
+        
+        $tocPage->setTaxon( $newTaxon );
     }
 }
