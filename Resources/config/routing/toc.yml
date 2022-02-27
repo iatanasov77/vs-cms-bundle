@@ -48,9 +48,5 @@ vs_cms_multipage_toc_page_easyui_combotree:
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::easyuiComboTreeSource
     
 vs_cms_multipage_toc_page_edit:
-    path: /multipage_toc_{documentId}/toc_page_form
+    path: /multipage_toc/{documentId}/{tocPageId}
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::editTocPage
-    
-vs_cms_multipage_toc_page_handle:
-    path: /multipage_toc_{documentId}/toc_page_form/handle
-    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::handleTocPage

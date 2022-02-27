@@ -36,11 +36,12 @@ class TocPageController extends AbstractCrudController
             $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
         );
         $newTaxon   = $this->createTaxon(
-            'TocPage: "' . $title . '"',
+            $title,
             $locale,
             null,
             $taxonomy->getId()
         );
+        $newTaxon->setDescription( 'TocPage: "' . $title . '"' );
         
         $tocPage->setTaxon( $newTaxon );
     }
