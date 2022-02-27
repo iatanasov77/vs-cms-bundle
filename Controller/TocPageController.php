@@ -13,8 +13,11 @@ class TocPageController extends AbstractCrudController
         $documentRepository = $this->get( 'vs_cms.repository.document' );
         $rootTocPage        = $documentRepository->find( $request->attributes->get( 'documentId' ) )->getTocRootPage();
         
+        $locale        = $form['locale']->getData();
+        $entity->setTranslatableLocale( $locale );
+        
         if ( ! $entity->getId() ) {
-            $this->initNewTocPage( $entity, $form, $request->getLocale() );
+            $this->initNewTocPage( $entity, $form, $locale );
         }
         
         $selectedParent = intval( $request->request->get( 'toc_page_form' )['parent'] );

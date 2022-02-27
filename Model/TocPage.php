@@ -30,6 +30,9 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     /** @var string */
     protected $text;
     
+    /** @var string */
+    protected $locale;
+    
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -38,16 +41,6 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     public function getId()
     {
         return $this->id;
-    }
-    
-    /**
-     * {@inheritDoc}
-     * @see \Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface::getTranslatableLocale()
-     */
-    public function getTranslatableLocale() : ?string
-    {
-        //return $this->locale;
-        return null;
     }
     
     /**
@@ -118,6 +111,21 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         return $this;
     }
     
+    /**
+     * {@inheritDoc}
+     * @see \Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface::getTranslatableLocale()
+     */
+    public function getTranslatableLocale(): ?string
+    {
+        return $this->locale;
+    }
+    
+    public function setTranslatableLocale($locale): PageInterface
+    {
+        $this->locale = $locale;
+        
+        return $this;
+    }
     
     /*
      * Proxy Methods
