@@ -79,7 +79,7 @@
                             <a class="btn btn-primary btnTocPage" id="btnTocPage" 
                             	title="{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}" 
                             	href="javascript:void(0);" 
-                            	data-url="{{ path('vs_cms_multipage_toc_page_edit', {'tocId': item.id}) }}"
+                            	data-url="{{ path('vs_cms_multipage_toc_page_edit', {'documentId': item.id}) }}"
                             >
                             	{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}
                             </a>&nbsp;
@@ -89,7 +89,7 @@
                         <!--  http://gtreetable.gilek.net/ -->
                         <table class="table gtreetable"
                                id="tableTocPages"
-                               data-sourceUrl="{{ url('vs_cms_multipage_toc_page_gtreetable', {'tocId': item.id}) }}"
+                               data-sourceUrl="{{ url('vs_cms_multipage_toc_page_gtreetable', {'documentId': item.id}) }}"
                         >
                         </table>
                     </div>

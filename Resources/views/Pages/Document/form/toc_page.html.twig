@@ -1,6 +1,6 @@
 {% import "@VSApplication/Macros/tree.html.twig" as vs_tree %}
 
-{{ form_start(form, { 'attr': {'id': 'form_toc_page'}, 'action': path('vs_cms_multipage_toc_page_handle', {'tocId': tocId}) }) }}
+{{ form_start(form, { 'attr': {'id': 'form_toc_page'}, 'action': path('vs_cms_multipage_toc_page_handle', {'documentId': documentId}) }) }}
     {{ form_widget(form.id) }}
     
     {% if form_errors(form) is not empty %}
@@ -12,7 +12,7 @@
         </div>
     {% endif %}
 
-    {% set comboDataSourceUrl  = path('vs_cms_multipage_toc_page_easyui_combotree', {'tocId': tocId}) %}
+    {% set comboDataSourceUrl  = path('vs_cms_multipage_toc_page_easyui_combotree', {'documentId': documentId}) %}
     {% set comboTreePlaceholder = 'vs_cms.form.toc_page.parent_page_placeholder' | trans( {},'VSCmsBundle' ) %}
     <div class="form-group">
         {{ form_label( form.parent, null, {
