@@ -51,11 +51,21 @@ class MultiPageTocPageController extends AbstractController
     {
         $locale         = $request->getLocale();
         $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
-        $oTocPage       = intval( $tocPageId ) ? $this->tocPageRepository->find( $tocPageId ) : $this->tocPageFactory->createNew();
+        
+        if ( intval( $tocPageId ) ) {
+            $oTocPage   = $this->tocPageRepository->find( $tocPageId );
+            $formAction = $this->generateUrl( 'vs_cms_toc_page_update', ['documentId' => $documentId, 'id' => $tocPageId] );
+            $formMethod = 'PUT';
+        } else {
+            $oTocPage   = $this->tocPageFactory->createNew();
+            $formAction = $this->generateUrl( 'vs_cms_toc_page_create', ['documentId' => $documentId] );
+            $formMethod = 'POST';
+        }
         
         $form           = $this->createForm( TocPageForm::class, $oTocPage, [
+            'action'        => $formAction,
+            'method'        => $formMethod,
             'data'          => $oTocPage,
-            'method'        => 'POST',
             'tocRootPage'   => $tocRootPage
         ]);
         
