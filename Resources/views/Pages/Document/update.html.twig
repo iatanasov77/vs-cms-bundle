@@ -85,12 +85,20 @@
                         </div>
                     </div>
                     <div class="card-body" style="padding: 0;">
+                        {#
                         <!--  http://gtreetable.gilek.net/ -->
                         <table class="table gtreetable"
                                id="tableTocPages"
                                data-sourceUrl="{{ url('vs_cms_multipage_toc_page_gtreetable', {'documentId': item.id}) }}"
                         >
                         </table>
+                        #}
+                        
+                        {% if item.tocRootPage.children|length > 0 %}
+                            {% include '@VSCms/Pages/Document/partial/simpleTreeTable.html.twig' %}
+                        {% else %}
+                            {{ alerts.info('sylius.ui.there_are_no_mappers_to_display'|trans) }}
+                        {% endif %}
                     </div>
 				</div>
 			{% endif %}
