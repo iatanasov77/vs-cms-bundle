@@ -11,7 +11,9 @@ vs_cms_document:
         path: /documents
         templates: "@VSCms/Pages/Document"
     type: sylius.resource
-    
+    options:
+        expose: true
+
 vs_cms_toc_page_index:
     path: /toc-pages/{documentId}/
     methods: [GET]
