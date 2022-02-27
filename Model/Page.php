@@ -62,7 +62,7 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this->categories;
     }
     
-    public function addCategory( PageCategory $category ) : PageInterface
+    public function addCategory( PageCategory $category ): PageInterface
     {
         if ( ! $this->categories->contains( $category ) ) {
             $this->categories[] = $category;
@@ -71,7 +71,7 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this;
     }
     
-    public function removeCategory( PageCategory $category ) : PageInterface
+    public function removeCategory( PageCategory $category ): PageInterface
     {
         if ( $this->categories->contains( $category ) ) {
             $this->categories->removeElement( $category );
@@ -80,34 +80,34 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this;
     }
     
-    public function getTranslatableLocale() : ?string
+    public function getTranslatableLocale(): ?string
     {
         return $this->locale;
     }
     
-    public function setTranslatableLocale($locale) : PageInterface
+    public function setTranslatableLocale($locale): PageInterface
     {
         $this->locale = $locale;
         
         return $this;
     }
 
-    public function getSlug() : ?string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function getTitle() : ?string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function getText() : ?string
+    public function getText(): ?string
     {
         return $this->text;
     }
 
-    public function setSlug($slug=null) : void
+    public function setSlug($slug=null): void
     {
         $this->slug = $slug;
         //return $this;
@@ -125,7 +125,7 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this;
     }
     
-    public function getDescription() : ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -136,12 +136,12 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this;
     }
     
-    public function getPublished() : ?bool
+    public function getPublished(): ?bool
     {
         return $this->enabled;
     }
     
-    public function setPublished( ?bool $published ) : PageInterface
+    public function setPublished( ?bool $published ): PageInterface
     {
         $this->enabled = (bool) $published;
         return $this;
@@ -163,7 +163,7 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     /*
      * @NOTE: Decalared abstract in TranslatableTrait
      */
-    protected function createTranslation() : TranslationInterface
+    protected function createTranslation(): TranslationInterface
     {
         
     }

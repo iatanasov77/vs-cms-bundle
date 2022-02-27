@@ -26,6 +26,8 @@ vs_cms:
             document_category: 'Категория на Документ'
             document_category_placeholder: '-- Избери Категория на Документ --'
             document_toc: 'Документ Съдържание'
+        toc_page:
+            parent_page_placeholder: '-- Избери Родителска Страница --'
         filemanager:
             file_directory_lable: 'Директория'
             file_lable: 'Избери Файл'

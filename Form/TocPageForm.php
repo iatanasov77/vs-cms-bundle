@@ -8,30 +8,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 use Doctrine\ORM\EntityRepository;
 
 class TocPageForm extends AbstractForm
 {
-    protected $pagesClass;
+    protected $requestStack;
     
-    public function __construct( string $dataClass, string $pagesClass )
+    public function __construct( RequestStack $requestStack, string $dataClass )
     {
         parent::__construct( $dataClass );
         
-        $this->pagesClass   = $pagesClass;
+        $this->requestStack = $requestStack;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options )
     {
         parent::buildForm( $builder, $options );
         
-        $builder
-            ->add( 'id', HiddenType::class )
+        $entity         = $builder->getData();
+        $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
         
-        /*
+        $builder
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
@@ -39,7 +38,6 @@ class TocPageForm extends AbstractForm
                 'data'                  => $currentLocale,
                 'mapped'                => false,
             ])
-       */
         
             ->add( 'parent', EntityType::class, [
                 'required'              => false,
@@ -47,6 +45,7 @@ class TocPageForm extends AbstractForm
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->dataClass,
                 'choice_label'          => 'title',
+                'placeholder'           => 'vs_cms.form.toc_page.parent_page_placeholder',
                 'query_builder'         => function ( EntityRepository $er ) use ( $options )
                 {
                     //var_dump( $er ); die;

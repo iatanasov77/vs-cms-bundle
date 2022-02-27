@@ -3,6 +3,7 @@
 {# Import Macros #}
 {% from '@SyliusResource/Macros/actions.html.twig' import create %}
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
+{% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
 
 {% block title %}{{ parent() }} :: Edit Document{% endblock %}
 {% block pageTitle %}
@@ -18,8 +19,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-            	<div class="card-body">
-            	
+            	<div class="card-body" id="DocumentFormContainer" data-documentId="{{ item.id }}">
             		{% if useFormMethod is defined %}{% set formMethod = useFormMethod %}{% else %}{% set formMethod = 'PUT' %}{% endif %}
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'id': 'form-post'}, 'method': formMethod }) }}
                         {% if form_errors(form) is not empty %}
@@ -78,20 +78,29 @@
                         <div class="btn-group float-right">
                             <a class="btn btn-primary btnTocPage" id="btnTocPage" 
                             	title="{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}" 
-                            	href="javascript:void(0);" 
-                            	data-url="{{ path('vs_cms_multipage_toc_page_edit', {'tocId': item.id}) }}"
+                            	href="javascript:void(0);"
+                            	data-documentId="{{ item.id }}"
+                            	data-tocPageId="0"
                             >
                             	{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}
                             </a>&nbsp;
                         </div>
                     </div>
                     <div class="card-body" style="padding: 0;">
+                        {#
                         <!--  http://gtreetable.gilek.net/ -->
                         <table class="table gtreetable"
                                id="tableTocPages"
-                               data-sourceUrl="{{ url('vs_cms_multipage_toc_page_gtreetable', {'tocId': item.id}) }}"
+                               data-sourceUrl="{{ url('vs_cms_multipage_toc_page_gtreetable', {'documentId': item.id}) }}"
                         >
                         </table>
+                        #}
+                        
+                        {% if item.tocRootPage.children|length > 0 %}
+                            {% include '@VSCms/Pages/Document/partial/simpleTreeTable.html.twig' %}
+                        {% else %}
+                            {{ alerts.info('sylius.ui.there_are_no_mappers_to_display'|trans) }}
+                        {% endif %}
                     </div>
 				</div>
 			{% endif %}
@@ -107,11 +116,11 @@
 {% block head_styles %}
 	{{ parent() }}
 	
-	{{ encore_entry_link_tags( 'js/multipage-toc-update' ) }}
+	{{ encore_entry_link_tags( 'js/documents-edit' ) }}
 {% endblock %}
 
 {% block body_scripts %}
     {{ parent() }}
    
-    {{ encore_entry_script_tags( 'js/multipage-toc-update' ) }}
+    {{ encore_entry_script_tags( 'js/documents-edit' ) }}
 {% endblock %}
