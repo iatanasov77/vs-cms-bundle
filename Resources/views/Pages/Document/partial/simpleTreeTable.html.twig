@@ -8,7 +8,7 @@
 	<tbody>
         {% for tocPage in item.tocRootPage.children %}
         	{% if not tocPage.parent %}
-        		{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'parentId': 0, 'tocPage': tocPage} %}
+        		{% include '@VSCms/Pages/Document/partial/simpleTreeTableRows.html.twig' with {'parentId': 0, 'tocPage': tocPage} %}
         	{% endif %}
         {% endfor %}
     </tbody>
