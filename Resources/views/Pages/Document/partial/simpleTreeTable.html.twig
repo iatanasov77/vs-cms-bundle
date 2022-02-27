@@ -6,9 +6,9 @@
         </tr>
     </thead>
 	<tbody>
-        {% for item in items %}
+        {% for tocPage in item.tocRootPage.children %}
         	{% if not item.parent %}
-        		{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'category': item, 'parentId': 0} %}
+        		{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'parentId': 0, 'tocPage': tocPage} %}
         	{% endif %}
         {% endfor %}
     </tbody>
