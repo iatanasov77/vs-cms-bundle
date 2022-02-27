@@ -12,6 +12,15 @@
         </div>
     {% endif %}
 
+    <div class="form-group">
+        {{ form_label(form.locale, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        
+        {{ form_widget(form.locale, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    
     {% set comboDataSourceUrl  = path('vs_cms_multipage_toc_page_easyui_combotree', {'documentId': documentId}) %}
     {% set comboTreePlaceholder = 'vs_cms.form.toc_page.parent_page_placeholder' | trans( {},'VSCmsBundle' ) %}
     <div class="form-group">
