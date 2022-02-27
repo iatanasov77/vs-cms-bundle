@@ -55,8 +55,14 @@ class MultiPageTocPageController extends AbstractController
         $tocPageId      = (int)$request->query->get( 'toc-page-id' );
         $oTocPage       = $tocPageId ? $this->tocPageRepository->find( $tocPageId ) : $this->tocPageFactory->createNew();
         
+        $form           = $this->createForm( TocPageForm::class, $oTocPage, [
+            'data'          => $oTocPage,
+            'method'        => 'POST',
+            'tocRootPage'   => $tocRootPage
+        ]);
+        
         return $this->render( '@VSCms/Pages/Document/form/toc_page.html.twig', [
-            'form'          => $this->createTocPageForm( $oTocPage, $tocRootPage )->createView(),
+            'form'          => $form->createView(),
             'documentId'    => $documentId,
             'item'          => $oTocPage,
         ]);
@@ -66,7 +72,11 @@ class MultiPageTocPageController extends AbstractController
     {
         $oTocPage       = $this->tocPageFactory->createNew();
         $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
-        $form           = $this->createTocPageForm( $oTocPage, $tocRootPage );
+        $form           = $this->createForm( TocPageForm::class, $oTocPage, [
+            'data'          => $oTocPage,
+            'method'        => 'POST',
+            'tocRootPage'   => $tocRootPage
+        ]);
         
         $form->handleRequest( $request );
         if ( $form->isSubmitted()  ) { // && $form->isValid()
@@ -149,23 +159,5 @@ class MultiPageTocPageController extends AbstractController
             
             $key++;
         }
-    }
-    
-    private function createTocPageForm( $oTocPage, $tocRootPage )
-    {
-        $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
-        
-        $tocPageId      = (int)$request->query->get( 'toc-page-id' );
-        if ( $tocPageId ) {
-            $oTocPage   = $this->tocPageRepository->find( $tocPageId );
-        } else {
-            $oTocPage   = $this->tocPageFactory->createNew();
-        }
-        
-        return $this->createForm( TocPageForm::class, $oTocPage, [
-            'data'          => $oTocPage,
-            'method'        => 'POST',
-            'tocRootPage'   => $tocRootPage
-        ]);
     }
 }
