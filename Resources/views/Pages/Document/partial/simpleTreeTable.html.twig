@@ -7,7 +7,7 @@
     </thead>
 	<tbody>
         {% for tocPage in item.tocRootPage.children %}
-        	{% if not tocPage.parent %}
+        	{% if tocPage.parent.id == item.tocRootPage.id %}
         		{% include '@VSCms/Pages/Document/partial/simpleTreeTableRows.html.twig' with {'parentId': 0, 'tocPage': tocPage} %}
         	{% endif %}
         {% endfor %}
