@@ -12,13 +12,30 @@ vs_cms_document:
         templates: "@VSCms/Pages/Document"
     type: sylius.resource
     
+vs_cms_toc_page_index:
+    path: /toc-pages/{documentId}/
+    methods: [GET]
+    defaults:
+        _controller: vs_cms.controller.toc_page:indexAction
+        _sylius:
+            paginate: 30
+            sorting:
+                score: desc
+            filterable: true
+            criteria:
+                document: $documentId
+            template: "@VSCms/Pages/TocPage/index.html.twig"
+    options:
+        expose: true
+        
 vs_cms_toc_page:
     resource: |
         alias: vs_cms.toc_page
-        path: /toc-pages
+        path: /toc-pages/{documentId}
         templates: "@VSCms/Pages/TocPage"
     type: sylius.resource
-    
+    options:
+        expose: true
 
 vs_cms_multipage_toc_page_gtreetable:
     path: /multipage_toc_{documentId}_gtreetable
