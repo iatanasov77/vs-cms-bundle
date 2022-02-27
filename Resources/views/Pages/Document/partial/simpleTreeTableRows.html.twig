@@ -10,5 +10,5 @@
 </tr>
 
 {% for child in tocPage.children %}
-	{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'parentId': tocPage.id, 'tocPage': child} %}   
+	{% include '@VSCms/Pages/Document/partial/simpleTreeTableRows.html.twig' with {'parentId': tocPage.id, 'tocPage': child} %}   
 {% endfor %}
