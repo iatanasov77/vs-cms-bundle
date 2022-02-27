@@ -1,6 +1,6 @@
 {% import "@VSApplication/Macros/tree.html.twig" as vs_tree %}
 
-{{ form_start(form, { 'attr': {'id': 'form_toc_page'}, 'action': path('vs_cms_toc_page_create', {'documentId': documentId}) }) }}
+{{ form_start(form, { 'attr': {'id': 'form_toc_page'}} ) }}
     {{ form_widget(form.id) }}
     
     {% if form_errors(form) is not empty %}
