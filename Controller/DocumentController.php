@@ -27,34 +27,14 @@ class DocumentController extends AbstractCrudController
         
         $rootTocPage        = $entity->getTocRootPage();
         if ( ! $rootTocPage ) {
-            $rootTocPage    = $this->createRootTocPage( $entity, $form );
+            $rootTocPage    = $this->get( 'vs_cms.factory.toc_page' )->createNew();
         }
         
+        $rootTocPage->setTranslatableLocale( $translatableLocale );
         $rootTocPage->setTitle( $rootTocPageName );
+        $rootTocPage->setDescription( 'Root TocPage of Document: "' . $rootTocPageName . '"' );
         $rootTocPage->setText( $rootTocPageContent );
+        
         $entity->setTocRootPage( $rootTocPage );
-    }
-    
-    protected function createRootTocPage( $entity, $form )
-    {
-        $translatableLocale     = $form['locale']->getData();
-        $rootTocPageName        = $form['title']->getData();
-        //$rootTocPageName        = $entity->getTitle()
-        
-        $rootTocPage            = $this->get( 'vs_cms.factory.toc_page' )->createNew();
-        $taxonomy               = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-            $this->getParameter( 'vs_application.document_pages.taxonomy_code' )
-        );
-        $newTaxon   = $this->createTaxon(
-            $rootTocPageName,
-            $translatableLocale,
-            null,
-            $taxonomy->getId()
-        );
-        $newTaxon->setDescription( 'Root TocPage of Document: "' . $rootTocPageName . '"' );
-        
-        $rootTocPage->setTaxon( $newTaxon );
-        
-        return $rootTocPage;
     }
 }
