@@ -5,7 +5,8 @@ use Doctrine\Common\Collections\Collection;
 
 interface TocPageInterface extends ResourceInterface
 {
-    public function getTitle(): string;
+    public function getTitle(): ?string;
+    public function getDescription(): ?string;
     public function getText(): ?string;
     public function getChildren(): Collection;
 }
