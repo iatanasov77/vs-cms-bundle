@@ -28,6 +28,12 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     protected $document;
     
     /** @var string */
+    protected $title;
+    
+    /** @var string */
+    protected $description;
+    
+    /** @var string */
     protected $text;
     
     /** @var string */
@@ -99,6 +105,30 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         return $this->document;
     }
     
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    
+    public function setTitle( $title ): self
+    {
+        $this->title = $title;
+        
+        return $this;
+    }
+    
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    
+    public function setDescription( $description ): self
+    {
+        $this->description = $description;
+        
+        return $this;
+    }
+    
     public function getText(): ?string
     {
         return $this->text;
@@ -127,44 +157,8 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         return $this;
     }
     
-    /*
-     * Proxy Methods
-     */
-    
-    public function getTitle(): string
-    {
-        return $this->taxon ? $this->taxon->getName() : '';
-    }
-    
-    public function setTitle( string $title ): self
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setName( $title );
-        
-        return $this;
-    }
-    
-    public function getName(): string
-    {
-        return $this->taxon ? $this->taxon->getName() : '';
-    }
-    
-    public function setName( string $name ): self
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setName( $name );
-        
-        return $this;
-    }
-    
     public function __toString()
     {
-        return $this->taxon ? $this->taxon->getName() : '';
+        return $this->title;
     }
 }

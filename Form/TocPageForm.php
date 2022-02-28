@@ -56,8 +56,15 @@ class TocPageForm extends AbstractForm
             ])
             
             ->add( 'title', TextType::class, [
-                'label' => 'vs_cms.form.title',
-                'translation_domain' => 'VSCmsBundle',
+                'label'                 => 'vs_cms.form.title',
+                'translation_domain'    => 'VSCmsBundle',
+                
+            ])
+            
+            ->add( 'description', TextType::class, [
+                'required'              => false,
+                'label'                 => 'vs_cms.form.description',
+                'translation_domain'    => 'VSCmsBundle',
                 
             ])
             
@@ -65,7 +72,7 @@ class TocPageForm extends AbstractForm
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
                 'config'                => [
-                    'toolbar'           => 'full',
+                    'toolbar'   => 'full',
                     // Create a toolbar in config for example a 'document_toolbar' and use it
                     //'toolbar'   => 'document_toolbar',
                     'uiColor'   => '#ffffff',
