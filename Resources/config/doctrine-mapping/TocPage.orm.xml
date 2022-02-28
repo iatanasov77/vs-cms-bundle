@@ -10,12 +10,6 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-one field="taxon" name="taxon_id" target-entity="Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface" orphan-removal="true">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-one>
-        
         <many-to-one field="root" target-entity="Vankosoft\CmsBundle\Model\TocPageInterface">
             <join-column name="tree_root" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
             <cascade>
@@ -41,6 +35,14 @@
                 <cascade-all/>
             </cascade>
         </one-to-one>
+        
+        <field name="title" column="title" type="string" length="255" nullable="false">
+            <gedmo:translatable />
+        </field>
+        
+        <field name="description" column="description" type="string" length="255" nullable="true">
+            <gedmo:translatable />
+        </field>
         
         <field name="text" column="text" type="text" nullable="true">
             <gedmo:translatable />

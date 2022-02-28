@@ -6,13 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Sylius\Component\Resource\Factory\FactoryInterface;
-
-use Vankosoft\ApplicationBundle\Component\Slug;
-use Vankosoft\ApplicationBundle\Repository\TaxonomyRepository;
-
-use Vankosoft\CmsBundle\Repository\MultiPageTocRepository;
 use Vankosoft\CmsBundle\Repository\TocPagesRepository;
-use Vankosoft\CmsBundle\Repository\PagesRepository;
 use Vankosoft\CmsBundle\Form\TocPageForm;
 use Vankosoft\CmsBundle\Repository\DocumentsRepository;
 
@@ -27,24 +21,14 @@ class MultiPageTocPageController extends AbstractController
     /** @var FactoryInterface */
     private $tocPageFactory;
     
-    /** @var PagesRepository */
-    private $pagesRepository;
-    
-    /** @var TaxonomyRepository */
-    private $taxonomyRepository;
-    
     public function __construct(
         DocumentsRepository $documentRepository,
         TocPagesRepository $tocPageRepository,
-        FactoryInterface $tocPageFactory,
-        PagesRepository $pagesRepository,
-        TaxonomyRepository $taxonomyRepository
+        FactoryInterface $tocPageFactory
     ) {
         $this->documentRepository   = $documentRepository;
         $this->tocPageRepository    = $tocPageRepository;
         $this->tocPageFactory       = $tocPageFactory;
-        $this->pagesRepository      = $pagesRepository;
-        $this->taxonomyRepository   = $taxonomyRepository;
     }
     
     public function editTocPage( $documentId, $tocPageId, Request $request ): Response

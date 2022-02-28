@@ -29,8 +29,6 @@ services:
             - '@vs_cms.repository.document'
             - '@vs_cms.repository.toc_page'
             - '@vs_cms.factory.toc_page'
-            - '@vs_cms.repository.pages'
-            - '@vs_application.repository.taxonomy'
 
     Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController:
         tags: ['controller.service_arguments']
