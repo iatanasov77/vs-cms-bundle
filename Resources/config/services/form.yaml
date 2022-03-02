@@ -1,3 +1,8 @@
+parameters:
+    vs_cms.pages.ckeditor_options:
+        toolbar: VANKATA_E_LUD
+        
+
 services:
     vs_cms.resources.page_categories.form:
         class: Vankosoft\CmsBundle\Form\PageCategoryForm
