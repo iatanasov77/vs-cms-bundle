@@ -6,23 +6,8 @@ vs_cms_pages:
         templates: "@VSCms/Pages/Pages"
         form:
             options:
-                ckeditor_toolbar: '%vs_cms.file_manager.taxonomy_code%'
+                ckeditor_toolbar: '%@=parameter('vs_cms.pages.ckeditor_options')['toolbar']%'
     type: sylius.resource
-
-app_operators_index:
-    path: /operators/{groupId}/
-    methods: [GET]
-    defaults:
-        _controller: salaryj.controller.operators:indexAction
-        _sylius:
-            paginate: 30
-            sorting:
-                score: desc
-            filterable: true
-            criteria:
-                group: $groupId
-                application: 2  # Show Items Only For This Application
-            template: "pages/Operators/index.html.twig"
 
 vs_cms_pages_show_by_id:
     path: /pages/{id}
