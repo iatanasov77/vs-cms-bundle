@@ -1,6 +1,5 @@
 parameters:
-    vs_cms.pages.ckeditor_options:
-        toolbar: VANKATA_E_LUD
+    vs_cms.pages.ckeditor_toolbar: VANKATA_E_LUD
         
 
 services:
