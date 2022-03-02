@@ -4,7 +4,27 @@ vs_cms_pages:
         except: ['show']
         path: /pages
         templates: "@VSCms/Pages/Pages"
+        defaults:
+            form:
+                options:
+                    ckeditor_toolbar: 'EDITED'
+                
     type: sylius.resource
+
+app_operators_index:
+    path: /operators/{groupId}/
+    methods: [GET]
+    defaults:
+        _controller: salaryj.controller.operators:indexAction
+        _sylius:
+            paginate: 30
+            sorting:
+                score: desc
+            filterable: true
+            criteria:
+                group: $groupId
+                application: 2  # Show Items Only For This Application
+            template: "pages/Operators/index.html.twig"
 
 vs_cms_pages_show_by_id:
     path: /pages/{id}
