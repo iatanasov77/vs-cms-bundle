@@ -1,6 +1,6 @@
 parameters:
-    vs_cms.pages.ckeditor_toolbar: VANKATA_E_LUD
-        
+    vs_cms.form.pages.ckeditor_toolbar: devpage_toolbar
+    vs_cms.form.toc_page.ckeditor_toolbar: devpage_toolbar
 
 services:
     vs_cms.resources.page_categories.form:
