@@ -4,11 +4,9 @@ vs_cms_pages:
         except: ['show']
         path: /pages
         templates: "@VSCms/Pages/Pages"
-        defaults:
-            form:
-                options:
-                    ckeditor_toolbar: 'EDITED'
-                
+        form:
+            options:
+                ckeditor_toolbar: 'EDITED'
     type: sylius.resource
 
 app_operators_index:
