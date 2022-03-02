@@ -6,7 +6,7 @@ vs_cms_pages:
         templates: "@VSCms/Pages/Pages"
         form:
             options:
-                ckeditor_toolbar: 'EDITED'
+                ckeditor_toolbar: '%vs_cms.file_manager.taxonomy_code%'
     type: sylius.resource
 
 app_operators_index:
