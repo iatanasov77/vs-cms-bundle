@@ -6,7 +6,7 @@ vs_cms_pages:
         templates: "@VSCms/Pages/Pages"
         form:
             options:
-                ckeditor_toolbar: '%vs_cms.pages.ckeditor_toolbar%'
+                ckeditor_toolbar: '%vs_cms.form.pages.ckeditor_toolbar%'
     type: sylius.resource
 
 vs_cms_pages_show_by_id:
