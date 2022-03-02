@@ -7,6 +7,7 @@ vs_cms_pages:
         form:
             options:
                 ckeditor_toolbar: '%vs_cms.form.pages.ckeditor_toolbar%'
+                ckeditor_extraPlugins: '%vs_cms.form.pages.ckeditor_extraPlugins%'
     type: sylius.resource
 
 vs_cms_pages_show_by_id:
