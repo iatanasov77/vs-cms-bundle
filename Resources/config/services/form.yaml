@@ -1,5 +1,11 @@
 parameters:
+    # Pages Form Options
+    ##########################################################
     vs_cms.form.pages.ckeditor_toolbar: devpage_toolbar
+    vs_cms.form.pages.ckeditor_extraPlugins: ['font', 'justify', 'codesnippet', 'lightbox']
+    
+    # TocPage Form Options
+    ##########################################################
     vs_cms.form.toc_page.ckeditor_toolbar: devpage_toolbar
 
 services:
