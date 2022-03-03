@@ -4,6 +4,13 @@ vs_cms_pages:
         except: ['show']
         path: /pages
         templates: "@VSCms/Pages/Pages"
+        form:
+            options:
+                ckeditor_uiColor: '%vs_cms.form.pages.ckeditor_uiColor%'
+                ckeditor_extraAllowedContent: '%vs_cms.form.pages.ckeditor_extraAllowedContent%'
+                ckeditor_toolbar: '%vs_cms.form.pages.ckeditor_toolbar%'
+                ckeditor_extraPlugins: '%vs_cms.form.pages.ckeditor_extraPlugins%'
+                ckeditor_removeButtons: '%vs_cms.form.pages.ckeditor_removeButtons%'
     type: sylius.resource
 
 vs_cms_pages_show_by_id:

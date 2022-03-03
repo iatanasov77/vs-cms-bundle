@@ -72,10 +72,18 @@ class TocPageForm extends AbstractForm
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
                 'config'                => [
-                    'toolbar'   => 'full',
-                    // Create a toolbar in config for example a 'document_toolbar' and use it
-                    //'toolbar'   => 'document_toolbar',
-                    'uiColor'   => '#ffffff',
+                    'uiColor'                           => $options['ckeditor_uiColor'],
+                    'extraAllowedContent'               => $options['ckeditor_extraAllowedContent'],
+                    
+                    'toolbar'                           => $options['ckeditor_toolbar'],
+                    'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
+                    'removeButtons'                     => $options['ckeditor_removeButtons'],
+                    
+                    'filebrowserBrowseRoute'            => 'file_manager',
+                    'filebrowserBrowseRouteParameters'  => ['conf' => 'default'],
+                    'filebrowserBrowseRouteType'        => 0,
+                    'filebrowserUploadRoute'            => 'file_manager_upload',
+                    'filebrowserUploadRouteParameters'  => ['conf' => 'default'],
                 ],
                 'required'              => false,
             ])
@@ -86,10 +94,37 @@ class TocPageForm extends AbstractForm
     {
         parent::configureOptions( $resolver );
         
-        $resolver->setDefaults([
-            'csrf_protection'   => false,
-            'tocRootPage'       => null,
-        ]);
+        $resolver
+            ->setDefaults([
+                'csrf_protection'   => false,
+                'tocRootPage'       => null,
+                
+                // CKEditor Options
+                'ckeditor_uiColor'              => '#ffffff',
+                'ckeditor_extraAllowedContent'  => '*[*]{*}(*)',
+                
+                'ckeditor_toolbar'              => 'full',
+                'ckeditor_extraPlugins'         => '',
+                'ckeditor_removeButtons'        => ''
+            ])
+            
+            ->setDefined([
+                'page',
+                
+                // CKEditor Options
+                'ckeditor_uiColor',
+                'ckeditor_extraAllowedContent',
+                'ckeditor_toolbar',
+                'ckeditor_extraPlugins',
+                'ckeditor_removeButtons',
+            ])
+            
+            ->setAllowedTypes( 'ckeditor_uiColor', 'string' )
+            ->setAllowedTypes( 'ckeditor_extraAllowedContent', 'string' )
+            ->setAllowedTypes( 'ckeditor_toolbar', 'string' )
+            ->setAllowedTypes( 'ckeditor_extraPlugins', 'string' )
+            ->setAllowedTypes( 'ckeditor_removeButtons', 'string' )
+        ;
     }
     
     public function getName()
@@ -97,4 +132,3 @@ class TocPageForm extends AbstractForm
         return 'vs_cms.toc_page';
     }
 }
-

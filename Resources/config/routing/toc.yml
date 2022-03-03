@@ -35,6 +35,13 @@ vs_cms_toc_page:
         alias: vs_cms.toc_page
         path: /toc-pages/{documentId}
         templates: "@VSCms/Pages/TocPage"
+        form:
+            options:
+                ckeditor_uiColor: '%vs_cms.form.toc_page.ckeditor_uiColor%'
+                ckeditor_extraAllowedContent: '%vs_cms.form.toc_page.ckeditor_extraAllowedContent%'
+                ckeditor_toolbar: '%vs_cms.form.toc_page.ckeditor_toolbar%'
+                ckeditor_extraPlugins: '%vs_cms.form.toc_page.ckeditor_extraPlugins%'
+                ckeditor_removeButtons: '%vs_cms.form.toc_page.ckeditor_removeButtons%'
     type: sylius.resource
     options:
         expose: true
