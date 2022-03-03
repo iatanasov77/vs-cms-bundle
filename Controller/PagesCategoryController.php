@@ -18,9 +18,16 @@ class PagesCategoryController extends AbstractCrudController
 {
     use TaxonomyHelperTrait;
     
-    /*
-     *  This Controller Need to be extended into the App/Controller
-     */
+    protected function customData( Request $request, $entity = null ): array
+    {
+        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+            $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
+        );
+        
+        return [
+            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+        ];
+    }
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
@@ -54,16 +61,5 @@ class PagesCategoryController extends AbstractCrudController
             $entity->setTaxon( $newTaxon );
             $entity->setParent( $parentCategory );
         }
-    }
-    
-    protected function customData( Request $request, $entity = null ): array
-    {
-        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode( 
-                                    $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
-                                );
-        
-        return [
-            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
-        ];
     }
 }

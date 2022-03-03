@@ -8,8 +8,6 @@
         </div>
         <div class="modal-body">
             {{ form_start(formClone, { 'method': 'POST', 'attr': {'class': 'form-horizontal', 'id': 'formClone'} }) }}
-                {{ form_widget(formClone._token) }}    
-            
                 <div class="form-group">
                     {{ form_label(formClone.newTitle, null, {
                         'label_attr': {'class': 'col-form-label'}

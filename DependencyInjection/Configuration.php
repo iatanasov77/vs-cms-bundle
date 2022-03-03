@@ -19,10 +19,10 @@ use Vankosoft\CmsBundle\Controller\PagesCategoryController;
 use Vankosoft\CmsBundle\Repository\PageCategoryRepository;
 use Vankosoft\CmsBundle\Form\PageCategoryForm;
 
-use Vankosoft\CmsBundle\Model\MultiPageToc;
-use Vankosoft\CmsBundle\Controller\MultiPageTocController;
-use Vankosoft\CmsBundle\Repository\MultiPageTocRepository;
-use Vankosoft\CmsBundle\Form\MultiPageTocForm;
+use Vankosoft\CmsBundle\Model\Document;
+use Vankosoft\CmsBundle\Controller\DocumentController;
+use Vankosoft\CmsBundle\Repository\DocumentsRepository;
+use Vankosoft\CmsBundle\Form\DocumentForm;
 
 use Vankosoft\CmsBundle\Model\TocPage;
 use Vankosoft\CmsBundle\Controller\TocPageController;
@@ -34,10 +34,17 @@ use Vankosoft\CmsBundle\Model\FileManagerInterface;
 use Vankosoft\CmsBundle\Repository\FileManagerRepository;
 use Vankosoft\CmsBundle\Controller\VankosoftFileManagerController;
 use Vankosoft\CmsBundle\Form\VankosoftFileManagerForm;
+
 use Vankosoft\CmsBundle\Model\FileManagerFile;
 use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
 use Vankosoft\CmsBundle\Controller\VankosoftFileManagerFileController;
 use Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm;
+
+use Vankosoft\CmsBundle\Model\DocumentCategory;
+use Vankosoft\CmsBundle\Model\DocumentCategoryInterface;
+use Vankosoft\CmsBundle\Controller\DocumentCategoryController;
+use Vankosoft\CmsBundle\Repository\DocumentCategoryRepository;
+use Vankosoft\CmsBundle\Form\DocumentCategoryForm;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -100,7 +107,6 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode( 'model' )->defaultValue( PageCategory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( PagesCategoryController::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'repository' )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( PageCategoryRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( PageCategoryForm::class )->cannotBeEmpty()->end()
@@ -108,24 +114,41 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
-                        ->arrayNode( 'multipage_toc' )
+                        ->arrayNode( 'document_categories' )
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode( 'options' )->end()
                                 ->arrayNode( 'classes' )
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode( 'model' )->defaultValue( MultiPageToc::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'controller' )->defaultValue( MultiPageTocController::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'repository' )->defaultValue( MultiPageTocRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'model' )->defaultValue( DocumentCategory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( DocumentCategoryInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( DocumentCategoryController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( DocumentCategoryRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'form' )->defaultValue( MultiPageTocForm::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( DocumentCategoryForm::class )->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
                         ->end()
-                        ->arrayNode( 'multipage_toc_page' )
+                        ->arrayNode( 'document' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( Document::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( DocumentController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( DocumentsRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( DocumentForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode( 'toc_page' )
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode( 'options' )->end()

@@ -2,9 +2,7 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
-use Vankosoft\ApplicationBundle\Model\Taxon;
 
 /**
  * Page Category Model
@@ -51,14 +49,14 @@ class PageCategory implements PageCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function setParent(?PageCategoryInterface $parent) : PageCategoryInterface
+    public function setParent(?PageCategoryInterface $parent): PageCategoryInterface
     {
         $this->parent = $parent;
         
         return $this;
     }
     
-    public function getChildren() : Collection
+    public function getChildren(): Collection
     {
         return $this->children;
     }
@@ -71,7 +69,7 @@ class PageCategory implements PageCategoryInterface
         return $this->pages;
     }
     
-    public function addPage( Page $page ) : PageCategoryInterface
+    public function addPage( Page $page ): PageCategoryInterface
     {
         if ( ! $this->pages->contains( $page ) ) {
             $this->pages[] = $page;
@@ -81,9 +79,9 @@ class PageCategory implements PageCategoryInterface
         return $this;
     }
     
-    public function removePage( Page $page ) : PageCategoryInterface
+    public function removePage( Page $page ): PageCategoryInterface
     {
-        if ( ! $this->pages->contains( $page ) ) {
+        if ( $this->pages->contains( $page ) ) {
             $this->pages->removeElement( $page );
             $page->removeCategory( $this );
         }

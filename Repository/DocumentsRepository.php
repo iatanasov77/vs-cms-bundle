@@ -2,7 +2,7 @@
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
-class MultiPageTocRepository extends EntityRepository
+class DocumentsRepository extends EntityRepository
 {
     
 }

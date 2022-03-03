@@ -9,11 +9,11 @@
             <generator strategy="AUTO" />
         </id>
         
-        <many-to-one field="taxon" name="taxon_id" target-entity="Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface" inversed-by="children">
+        <one-to-one field="taxon" name="taxon_id" target-entity="Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface" orphan-removal="true">
             <cascade>
                 <cascade-all/>
             </cascade>
-        </many-to-one>
+        </one-to-one>
         
         <one-to-many field="files" target-entity="Vankosoft\CmsBundle\Model\FileManagerFileInterface" mapped-by="owner" orphan-removal="true">
             <cascade>

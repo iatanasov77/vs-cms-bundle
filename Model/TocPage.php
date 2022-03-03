@@ -2,47 +2,42 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
 
-/**
- *  Can to be a Taxonomy but for now i think it's better to be a separate type
- *  ===========================================================================
- *  
- *  -------------------------
- *  Here is used this Manual:
- *  -------------------------
- *  https://github.com/doctrine-extensions/DoctrineExtensions/blob/v2.4.x/doc/tree.md
- */
-class TocPage implements TocPageInterface
+class TocPage implements TocPageInterface, LoggableObjectInterface
 {
     /** @var integer */
     protected $id;
     
-    /** @var string */
-    protected $locale;
+    /** @var TaxonInterface */
+    protected $taxon;
     
-    /** @var string */
-    protected $title;
-    
-    /** @var PageInterface */
-    protected $page;
-    
-    /** @var integer */
-    protected $lft;
-    
-    /** @var integer */
-    protected $lvl;
-    
-    /** @var integer */
-    protected $rgt;
-    
-    /** @var TocPageInterface */
+    /**
+     * @var TocPageInterface|null
+     */
     protected $root;
     
     /** @var TocPageInterface */
     protected $parent;
     
-    /** @var Collection */
+    /** @var Collection|TocPageInterface[] */
     protected $children;
+    
+    /** @var DocumentInterface */
+    protected $document;
+    
+    /** @var string */
+    protected $title;
+    
+    /** @var string */
+    protected $description;
+    
+    /** @var string */
+    protected $text;
+    
+    /** @var string */
+    protected $locale;
     
     public function __construct()
     {
@@ -53,62 +48,51 @@ class TocPage implements TocPageInterface
     {
         return $this->id;
     }
-    public function setId( $id )
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getTaxon(): ?TaxonInterface
     {
-        $this->id   = $id;
-        
-        return $this;
+        return $this->taxon;
     }
     
-    public function getLocale()
+    /**
+     * {@inheritdoc}
+     */
+    public function setTaxon( ?TaxonInterface $taxon ): void
     {
-        return $this->locale;
+        $this->taxon = $taxon;
     }
     
-    public function setTranslatableLocale( $locale )
-    {
-        $this->locale = $locale;
-        
-        return $this;
-    }
-    
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    
-    public function setTitle( $title )
-    {
-        $this->title = $title;
-        
-        return $this;
-    }
-    
-    public function getPage(): ?PageInterface
-    {
-        return $this->page;
-    }
-    
-    public function setPage( $page )
-    {
-        $this->page = $page;
-        
-        return $this;
-    }
-    
-    public function getRoot()
+    public function getRoot(): ?TocPageInterface
     {
         return $this->root;
     }
     
-    public function setParent( ?TocPageInterface $parent = null )
+    public function setRoot( ?TocPageInterface $root ): self
     {
-        $this->parent = $parent;
+        $this->root = $root;
+        
+        return $this;
     }
     
-    public function getParent()
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent(): ?TocPageInterface
     {
         return $this->parent;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setParent(?TocPageInterface $parent): self
+    {
+        $this->parent = $parent;
+        
+        return $this;
     }
     
     public function getChildren(): Collection
@@ -116,9 +100,65 @@ class TocPage implements TocPageInterface
         return $this->children;
     }
     
-    /** Needed For GTreeTable */
-    public function getLevel()
+    public function getDocument(): ?DocumentInterface
     {
-        return $this->lvl;
+        return $this->document;
+    }
+    
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    
+    public function setTitle( $title ): self
+    {
+        $this->title = $title;
+        
+        return $this;
+    }
+    
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    
+    public function setDescription( $description ): self
+    {
+        $this->description = $description;
+        
+        return $this;
+    }
+    
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+    
+    public function setText( ?string $text ): self
+    {
+        $this->text = $text;
+        
+        return $this;
+    }
+    
+    /**
+     * {@inheritDoc}
+     * @see \Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface::getTranslatableLocale()
+     */
+    public function getTranslatableLocale(): ?string
+    {
+        return $this->locale;
+    }
+    
+    public function setTranslatableLocale($locale): self
+    {
+        $this->locale = $locale;
+        
+        return $this;
+    }
+    
+    public function __toString()
+    {
+        return $this->title;
     }
 }

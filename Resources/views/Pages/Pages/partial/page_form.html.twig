@@ -3,8 +3,6 @@
 
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
 {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
-    {{ form_widget(form._token) }}
-    
     <label class="custom-control custom-checkbox">  
         <input type="checkbox" id="page_form_enabled"
             class="custom-control-input form-check-input"
@@ -61,16 +59,6 @@
         }}
         
         {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    
-    <div class="row">&nbsp;</div>
-    <div class="">
-		<div class="card bg-info text-white shadow">
-			<div class="card-body">
-			  To display FOSCKEditor run: `bin/console ckeditor:install` and `bin/console assets:install`
-			  <div class="text-white-50 small">Reference: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/usage/ckeditor.html</div>
-			</div>
-		</div>
     </div>
     
     <div class="form-group">

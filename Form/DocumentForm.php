@@ -8,22 +8,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
+
+use Doctrine\ORM\EntityRepository;
+use Vankosoft\CmsBundle\Model\TocPage;
+use Vankosoft\CmsBundle\Model\TocPageInterface;
 
 class DocumentForm extends AbstractForm
 {
     protected $requestStack;
     
-    protected $multipageTocClass;
+    protected $tocPageClass;
+    
+    protected $pagesClass;
     
     public function __construct(
         RequestStack $requestStack,
         string $dataClass,
-        string $multipageTocClass
+        string $documentCategoryClass,
+        string $tocPageClass
     ) {
-            parent::__construct( $dataClass );
-            
-            $this->requestStack         = $requestStack;
-            $this->multipageTocClass    = $multipageTocClass;
+        parent::__construct( $dataClass );
+        
+        $this->requestStack             = $requestStack;
+        $this->documentCategoryClass    = $documentCategoryClass;
+        $this->tocPageClass             = $tocPageClass;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options )
@@ -31,7 +40,7 @@ class DocumentForm extends AbstractForm
         parent::buildForm( $builder, $options );
         
         $entity         = $builder->getData();
-        $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
+        $currentLocale  = $entity->getLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
             ->add( 'locale', ChoiceType::class, [
@@ -42,19 +51,46 @@ class DocumentForm extends AbstractForm
                 'mapped'                => false,
             ])
             
+            ->add( 'category', EntityType::class, [
+                'label'                 => 'vs_cms.form.document.document_category',
+                'translation_domain'    => 'VSCmsBundle',
+                'class'                 => $this->documentCategoryClass,
+                'placeholder'           => 'vs_cms.form.document.document_category_placeholder',
+                'choice_label'          => 'name',
+                'required'              => false
+            ])
+            
+            /*
+            ->add( 'tocRootPage', EntityType::class, [
+                'label'                 => 'vs_cms.form.document.document_toc',
+                'translation_domain'    => 'VSCmsBundle',
+                'class'                 => $this->tocPageClass,
+                'query_builder' => function ( EntityRepository $er ) {
+                    return $er->createQueryBuilder( 'p' )->where( 'p.parent IS NULL' );
+                },
+                'placeholder'           => 'vs_cms.form.document.document_toc',
+                'choice_label'          => 'title',
+                'required'              => true
+            ])
+            */
+        
             ->add( 'title', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
                 'required'              => true
             ])
-            
-            ->add( 'multipageToc', EntityType::class, [
-                'label'                 => 'vs_cms.form.document.document_toc',
+        
+            ->add( 'text', CKEditorType::class, [
+                'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
-                'class'                 => $this->multipageTocClass,
-                'placeholder'           => 'vs_cms.form.document.document_toc',
-                'choice_label'          => 'tocTitle',
-                'required'              => false
+                'config'                => [
+                    'toolbar'           => 'full',
+                    // Create a toolbar in config for example a 'document_toolbar' and use it
+                    //'toolbar'   => 'document_toolbar',
+                    'uiColor'   => '#ffffff',
+                ],
+                'required'              => false,
+                'mapped'                => false,
             ])
         ;
     }
@@ -63,12 +99,15 @@ class DocumentForm extends AbstractForm
     {
         parent::configureOptions( $resolver );
         
-//         $resolver
-//             ->setDefined([
-//                 'page',
-//             ])
-//             ->setAllowedTypes( 'page', PageInterface::class )
-//         ;
+        $resolver
+            ->setDefaults([
+                'csrf_protection' => false,
+            ])
+            ->setDefined([
+                'tocRootPage',
+            ])
+            ->setAllowedTypes( 'tocRootPage', TocPageInterface::class )
+        ;
     }
     
     public function getName()
