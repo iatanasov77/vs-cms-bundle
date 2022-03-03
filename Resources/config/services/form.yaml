@@ -1,12 +1,19 @@
 parameters:
     # Pages Form Options
     ##########################################################
+    vs_cms.form.pages.ckeditor_uiColor: '#ffffff'
+    vs_cms.form.pages.ckeditor_extraAllowedContent: '*[*]{*}(*)'
     vs_cms.form.pages.ckeditor_toolbar: devpage_toolbar
-    vs_cms.form.pages.ckeditor_extraPlugins: ['font', 'justify', 'codesnippet', 'lightbox']
+    vs_cms.form.pages.ckeditor_extraPlugins: 'font, justify, codesnippet, lightbox'
+    vs_cms.form.pages.ckeditor_removeButtons: ''
     
     # TocPage Form Options
     ##########################################################
+    vs_cms.form.toc_page.ckeditor_uiColor: '#ffffff'
+    vs_cms.form.toc_page.ckeditor_extraAllowedContent: '*[*]{*}(*)'
     vs_cms.form.toc_page.ckeditor_toolbar: devpage_toolbar
+    vs_cms.form.toc_page.ckeditor_extraPlugins: 'font, justify, codesnippet, lightbox'
+    vs_cms.form.toc_page.ckeditor_removeButtons: ''
 
 services:
     vs_cms.resources.page_categories.form:

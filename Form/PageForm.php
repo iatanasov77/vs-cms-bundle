@@ -78,10 +78,18 @@ class PageForm extends AbstractForm
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
                 'config'                => [
-                    'toolbar'   => 'full',
-                    // Create a toolbar in config for example a 'document_toolbar' and use it 
-                    //'toolbar'   => 'document_toolbar',
-                    'uiColor'   => '#ffffff',
+                    'uiColor'                           => $options['ckeditor_uiColor'],
+                    'extraAllowedContent'               => $options['ckeditor_extraAllowedContent'],
+                    
+                    'toolbar'                           => $options['ckeditor_toolbar'],
+                    'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
+                    'removeButtons'                     => $options['ckeditor_removeButtons'],
+                    
+                    'filebrowserBrowseRoute'            => 'file_manager',
+                    'filebrowserBrowseRouteParameters'  => ['conf' => 'default'],
+                    'filebrowserBrowseRouteType'        => 0,
+                    'filebrowserUploadRoute'            => 'file_manager_upload',
+                    'filebrowserUploadRouteParameters'  => ['conf' => 'default'],
                 ],
             ])
         ;
@@ -93,12 +101,34 @@ class PageForm extends AbstractForm
         
         $resolver
             ->setDefaults([
-                'csrf_protection' => false,
+                'csrf_protection'   => false,
+                
+                // CKEditor Options
+                'ckeditor_uiColor'              => '#ffffff',
+                'ckeditor_extraAllowedContent'  => '*[*]{*}(*)',
+                
+                'ckeditor_toolbar'              => 'full',
+                'ckeditor_extraPlugins'         => '',
+                'ckeditor_removeButtons'        => ''
             ])
+            
             ->setDefined([
                 'page',
+                
+                // CKEditor Options
+                'ckeditor_uiColor',
+                'ckeditor_extraAllowedContent',
+                'ckeditor_toolbar',
+                'ckeditor_extraPlugins',
+                'ckeditor_removeButtons',
             ])
+            
             ->setAllowedTypes( 'page', PageInterface::class )
+            ->setAllowedTypes( 'ckeditor_uiColor', 'string' )
+            ->setAllowedTypes( 'ckeditor_extraAllowedContent', 'string' )
+            ->setAllowedTypes( 'ckeditor_toolbar', 'string' )
+            ->setAllowedTypes( 'ckeditor_extraPlugins', 'string' )
+            ->setAllowedTypes( 'ckeditor_removeButtons', 'string' )
         ;
     }
     
