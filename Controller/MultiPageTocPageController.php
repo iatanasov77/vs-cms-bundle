@@ -47,10 +47,16 @@ class MultiPageTocPageController extends AbstractController
         }
         
         $form           = $this->createForm( TocPageForm::class, $oTocPage, [
-            'action'        => $formAction,
-            'method'        => $formMethod,
-            'data'          => $oTocPage,
-            'tocRootPage'   => $tocRootPage
+            'action'                        => $formAction,
+            'method'                        => $formMethod,
+            'data'                          => $oTocPage,
+            'tocRootPage'                   => $tocRootPage,
+            
+            'ckeditor_uiColor'              => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_uiColor' ),
+            'ckeditor_extraAllowedContent'  => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraAllowedContent' ),
+            'ckeditor_toolbar'              => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_toolbar' ),
+            'ckeditor_extraPlugins'         => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraPlugins' ),
+            'ckeditor_removeButtons'        => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_removeButtons' ),
         ]);
         
         return $this->render( '@VSCms/Pages/Document/form/toc_page.html.twig', [
