@@ -61,19 +61,6 @@
         {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
     </div>
     
-    {# I THINK THAT NOT NEED THIS HELP BECAUSE FOS CKEditor is Installed with Webpack Encore. 
-     # See: https://symfony.com/bundles/FOSCKEditorBundle/current/installation.html#using-webpack-encore
-     #####################################################################################################
-    <div class="row">&nbsp;</div>
-    <div class="">
-		<div class="card bg-info text-white shadow">
-			<div class="card-body">
-			  To display FOSCKEditor run: `bin/console ckeditor:install` and `bin/console assets:install`
-			  <div class="text-white-50 small">Reference: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/usage/ckeditor.html</div>
-			</div>
-		</div>
-    </div>
-    #}
     <div class="form-group">
         {{ form_label(form.text, null, {
             'label_attr': {'class': 'col-form-label'}
