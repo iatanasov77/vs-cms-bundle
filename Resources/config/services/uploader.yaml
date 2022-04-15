@@ -43,3 +43,4 @@ services:
         class: Vankosoft\CmsBundle\Component\FileManager
         arguments:
             - '@vs_cms.filemanager_uploader'
+
