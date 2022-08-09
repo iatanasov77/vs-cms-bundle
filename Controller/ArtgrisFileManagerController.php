@@ -53,7 +53,7 @@ class ArtgrisFileManagerController extends AbstractController
     
     public function fosckeditorBrowse( $directory, Request $request )
     {
-        $response = $this->forward( '\Artgris\Bundle\FileManagerBundle\Controller\ManagerController::indexAction', [
+        $response = $this->forward( '\Artgris\Bundle\FileManagerBundle\Controller\ManagerController::indexAction', [], [
             'conf'  => $request->query->get( 'conf' ),
         ]);
         
@@ -62,7 +62,7 @@ class ArtgrisFileManagerController extends AbstractController
     
     public function fosckeditorUpload( $directory, Request $request )
     {
-        $response = $this->forward( '\Artgris\Bundle\FileManagerBundle\Controller\ManagerController::uploadFileAction', [
+        $response = $this->forward( '\Artgris\Bundle\FileManagerBundle\Controller\ManagerController::uploadFileAction', [], [
             'conf'  => $request->query->get( 'conf' ),
         ]);
         
