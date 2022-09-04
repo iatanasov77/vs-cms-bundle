@@ -23,7 +23,11 @@ class PagesCategoryController extends AbstractCrudController
         $taxonomy       = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
             $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
         );
+        
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
+        if ( $entity && $entity->getTaxon() ) {
+            $entity->getTaxon()->setCurrentLocale( $request->getLocale() );
+        }
         
         return [
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
