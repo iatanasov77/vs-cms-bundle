@@ -2,6 +2,7 @@
 
 use Vankosoft\ApplicationBundle\Form\AbstractForm;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,12 +17,15 @@ class PageCategoryForm extends AbstractForm
     
     protected $repository;
     
-    public function __construct( string $dataClass, EntityRepository $repository )
+    protected $requestStack;
+    
+    public function __construct( string $dataClass, EntityRepository $repository, RequestStack $requestStack )
     {
         parent::__construct( $dataClass );
         
         $this->categoryClass    = $dataClass;
         $this->repository       = $repository;
+        $this->requestStack     = $requestStack;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options )
@@ -37,12 +41,14 @@ class PageCategoryForm extends AbstractForm
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
                 'choices'               => \array_flip( I18N::LanguagesAvailable() ),
+                'data'                  => $this->requestStack->getCurrentRequest()->getLocale(),
                 'mapped'                => false,
             ])
         
             ->add( 'name', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
+                'mapped'                => false,
             ] )
             
             ->add( 'parent', EntityType::class, [
