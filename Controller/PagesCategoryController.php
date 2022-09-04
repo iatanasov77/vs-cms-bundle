@@ -37,10 +37,17 @@ class PagesCategoryController extends AbstractCrudController
                                         ->findByTaxonId( $_POST['page_category_form']['parent'] );
         
         if ( $entity->getTaxon() ) {
-            $entity->getTaxon()->setCurrentLocale( $translatableLocale );
-            $entity->getTaxon()->setName( $categoryName );
+            $entityTaxon    = $entity->getTaxon();
+            
+            if ( ! in_array( $translatableLocale, $entityTaxon->getExistingTranslations() ) ) {
+                $taxonTranslation   = $this->createTranslation( $entityTaxon, $translatableLocale, $categoryName );
+                $entityTaxon->addTranslation( $taxonTranslation );
+            }
+            
+            $entityTaxon->setCurrentLocale( $translatableLocale );
+            $entityTaxon->setName( $categoryName );
             if ( $parentCategory ) {
-                $entity->getTaxon()->setParent( $parentCategory->getTaxon() );
+                $entityTaxon->setParent( $parentCategory->getTaxon() );
             }
             
             $entity->setParent( $parentCategory );
