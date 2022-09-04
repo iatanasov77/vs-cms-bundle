@@ -20,12 +20,14 @@ class PagesCategoryController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
-        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+        $taxonomy       = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
             $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
         );
+        $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
         
         return [
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+            'translations'  => $translations,
         ];
     }
     
