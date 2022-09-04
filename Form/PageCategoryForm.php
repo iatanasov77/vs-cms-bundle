@@ -43,6 +43,7 @@ class PageCategoryForm extends AbstractForm
             ->add( 'name', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
+                'mapped'                => false,
             ] )
             
             ->add( 'parent', EntityType::class, [
