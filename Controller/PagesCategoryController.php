@@ -44,7 +44,8 @@ class PagesCategoryController extends AbstractCrudController
             $entityTaxon    = $entity->getTaxon();
             
             $entityTaxon->getTranslation( $translatableLocale );
-            //$entityTaxon->setCurrentLocale( $translatableLocale );
+            $entityTaxon->setCurrentLocale( $translatableLocale );
+            $request->setLocale( $translatableLocale );
             if ( ! in_array( $translatableLocale, $entityTaxon->getExistingTranslations() ) ) {
                 $taxonTranslation   = $this->createTranslation( $entityTaxon, $translatableLocale, $categoryName );
                 
