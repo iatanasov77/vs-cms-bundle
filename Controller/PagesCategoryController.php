@@ -34,6 +34,8 @@ class PagesCategoryController extends AbstractCrudController
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
         $translatableLocale     = $form['currentLocale']->getData();
+        $this->get( 'vs_application.slug_generator' )->setLocaleCode( $translatableLocale );
+        
         $categoryName           = $form['name']->getData();
         $parentCategory         = $this->get( 'vs_cms.repository.page_categories' )
                                         ->findByTaxonId( $_POST['page_category_form']['parent'] );
