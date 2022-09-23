@@ -4,6 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Resource\Factory\Factory;
 
@@ -13,6 +14,9 @@ use Vankosoft\CmsBundle\Component\FileManager;
 
 class VankosoftFileManagerExtController extends AbstractController
 {
+    /** @var ManagerRegistry */
+    protected ManagerRegistry $doctrine;
+    
     /** @var EntityRepository */
     protected EntityRepository $fileManagerRepository;
     
@@ -26,11 +30,13 @@ class VankosoftFileManagerExtController extends AbstractController
     protected FileManager $filemanager;
     
     public function __construct(
+        ManagerRegistry $doctrine,
         EntityRepository $fileManagerRepository,
         EntityRepository $fileManagerFileRepository,
         Factory $fileManagerFileFactory,
         FileManager $filemanager
     ) {
+        $this->doctrine                     = $doctrine;
         $this->fileManagerRepository        = $fileManagerRepository;
         $this->fileManagerFileRepository    = $fileManagerFileRepository;
         $this->fileManagerFileFactory       = $fileManagerFileFactory;
@@ -60,7 +66,7 @@ class VankosoftFileManagerExtController extends AbstractController
         
         $form->handleRequest( $request );
         if ( $form->isSubmitted() && $form->isValid() ) {
-            $em             = $this->getDoctrine()->getManager();
+            $em             = $this->doctrine->getManager();
             $postFile       = $form['file']->getData();
             $fileManager    = $this->fileManagerRepository->find( $form['fileManagerId']->getData() );
             $fileEntity     = $form->getData();
