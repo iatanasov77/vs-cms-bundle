@@ -4,6 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Factory\Factory;
 
 use Vankosoft\ApplicationBundle\Repository\LogEntryRepository;
@@ -19,6 +20,9 @@ class PagesExtController extends AbstractController
 {
     use TaxonomyTreeDataTrait;
     
+    /** @var ManagerRegistry */
+    protected ManagerRegistry $doctrine;
+    
     /** @var PagesRepository */
     protected PagesRepository $pagesRepository;
     
@@ -32,6 +36,7 @@ class PagesExtController extends AbstractController
     protected Factory $pagesFactory;
     
     public function __construct(
+        ManagerRegistry $doctrine,
         TaxonomyRepository $taxonomyRepository,
         TaxonRepository $taxonRepository,
         PagesRepository $pagesRepository,
@@ -39,12 +44,13 @@ class PagesExtController extends AbstractController
         LogEntryRepository $logentryRepository,
         Factory $pagesFactory
     ) {
-            $this->taxonomyRepository           = $taxonomyRepository;
-            $this->taxonRepository              = $taxonRepository;
-            $this->pagesRepository              = $pagesRepository;
-            $this->pagesCategoriesRepository    = $pagesCategoriesRepository;
-            $this->logentryRepository           = $logentryRepository;
-            $this->pagesFactory                 = $pagesFactory;
+        $this->doctrine                     = $doctrine;
+        $this->taxonomyRepository           = $taxonomyRepository;
+        $this->taxonRepository              = $taxonRepository;
+        $this->pagesRepository              = $pagesRepository;
+        $this->pagesCategoriesRepository    = $pagesCategoriesRepository;
+        $this->logentryRepository           = $logentryRepository;
+        $this->pagesFactory                 = $pagesFactory;
     }
     
     public function getPageForm( $pageId, $locale, Request $request ) : Response
@@ -80,7 +86,7 @@ class PagesExtController extends AbstractController
                 return new Response( 'The form is not valid !!!', Response::HTTP_BAD_REQUEST );
             }
             
-            $em     = $this->getDoctrine()->getManager();
+            $em     = $this->doctrine->getManager();
             $oPage  = $this->pagesFactory->createNew();
             $data   = $formClone->getData();
             
@@ -145,7 +151,7 @@ class PagesExtController extends AbstractController
     
     public function deleteCategory_ByTaxonId( $taxonId, Request $request )
     {
-        $em         = $this->getDoctrine()->getManager();
+        $em         = $this->doctrine->getManager();
         $category   = $this->pagesCategoriesRepository->findOneBy( ['taxon' => $taxonId] );
         
         $em->remove( $category );
@@ -158,7 +164,7 @@ class PagesExtController extends AbstractController
     
     public function updateCategory_ByTaxonId( $taxonId, Request $request )
     {
-        $em         = $this->getDoctrine()->getManager();
+        $em         = $this->doctrine->getManager();
         
         //$category       = $this->getPageCategoryRepository()->findOneBy( ['taxon' => $taxonId] );
         //$em->persist( $category );
@@ -211,7 +217,7 @@ class PagesExtController extends AbstractController
                 
         }
         
-        $this->getDoctrine()->getManager()->flush();
+        $this->doctrine->getManager()->flush();
         
         return new JsonResponse(['status' => 'SUCCESS']);
     }
