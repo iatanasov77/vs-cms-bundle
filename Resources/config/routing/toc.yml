@@ -54,6 +54,12 @@ vs_cms_multipage_toc_page_easyui_combotree:
     path: /multipage_toc_{documentId}_easyui-combotree
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::easyuiComboTreeSource
     
+vs_cms_multipage_toc_page_sort_action:
+    path: /multipage-toc-sort/{id}/{insertAfterId}
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::sortAction
+    options:
+        expose: true
+
 vs_cms_multipage_toc_page_edit:
     path: /multipage_toc/{documentId}/{tocPageId}
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::editTocPage

@@ -9,6 +9,7 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 use Vankosoft\CmsBundle\Repository\TocPagesRepository;
 use Vankosoft\CmsBundle\Form\TocPageForm;
 use Vankosoft\CmsBundle\Repository\DocumentsRepository;
+use Vankosoft\ApplicationBundle\Component\Status;
 
 class MultiPageTocPageController extends AbstractController
 {
@@ -29,6 +30,23 @@ class MultiPageTocPageController extends AbstractController
         $this->documentRepository   = $documentRepository;
         $this->tocPageRepository    = $tocPageRepository;
         $this->tocPageFactory       = $tocPageFactory;
+    }
+    
+    public function sortAction( $id, $insertAfterId, Request $request ): Response
+    {
+        $em             = $this->getDoctrine()->getManager();
+        $item           = $this->tocPageRepository->find( $id );
+        $insertAfter    = $this->tocPageRepository->find( $insertAfterId );
+        $this->tocPageRepository->insertAfter( $item, $insertAfterId );
+
+        $position       = $insertAfter ? ( $insertAfter->getPosition() + 1 ) : 1;
+        $item->setPosition( $position );
+        $em->persist( $project );
+        $em->flush();
+        
+        return new JsonResponse([
+            'status'   => Status::STATUS_OK
+        ]);
     }
     
     public function editTocPage( $documentId, $tocPageId, Request $request ): Response
