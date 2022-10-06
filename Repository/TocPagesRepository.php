@@ -63,15 +63,5 @@ class TocPagesRepository extends EntityRepository
         $this->getEntityManager()->flush();
         
         return true;
-        
-        /*
-        UPDATE MyTable
-            SET `Order` = `Order` + 1
-            WHERE `Order` > (SELECT `Order` FROM MyTable WHERE ID=<insert-after-id>);
-        
-            
-        INSERT INTO MyTable (Name, `Order`)
-        VALUES (Name, (SELECT `Order` + 1 FROM MyTable WHERE ID = <insert-after-id>));
-        */
     }
 }
