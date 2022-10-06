@@ -2,7 +2,7 @@
     <td><i class="fas fa-arrows-alt" title="Drag and Drop to Change Order" style="cursor: pointer;"></i></td>
     <td>{{ tocPage.title }}</td>
     <td>
-        {% for locale in tocPagesTranslations[page.id] %}
+        {% for locale in tocPagesTranslations[tocPage.id] %}
             <i class="flag flag-{{ locale | split( '_' )[1] | lower }}"></i>
             {% if not loop.last %}&nbsp;{% endif %}
         {% endfor %}
