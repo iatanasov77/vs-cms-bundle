@@ -30,6 +30,9 @@
             <cascade>
                 <cascade-persist />
             </cascade>
+            <order-by>
+                <order-by-field name="position" direction="ASC" />
+            </order-by>
         </one-to-many>
         
         <one-to-one field="document" target-entity="Vankosoft\CmsBundle\Model\DocumentInterface" mapped-by="tocRootPage">
