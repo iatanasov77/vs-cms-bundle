@@ -61,7 +61,15 @@
             }) 
         }}
         
-        {{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.text, {
+            'attr': {'class': 'form-control'},
+            'config': {
+                'toolbar': 'devpage_toolbar',
+                'extraPlugins': ['liststyle', 'font', 'justify', 'codesnippet', 'simplebox'],
+                'removeButtons': '',
+            }
+            
+        }) }}
     </div>
     
     {% do form.btnSave.setRendered() %}
