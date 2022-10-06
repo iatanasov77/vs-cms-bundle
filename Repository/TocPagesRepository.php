@@ -51,4 +51,24 @@ class TocPagesRepository extends EntityRepository
     {
         
     }
+    
+    public function insertAfter( ResourceInterface $resource, int $insertAfterId ): bool
+    {
+        
+        
+        $query = $this->getEntityManager()->createQuery( 'UPDATE VSCmsBundle:TocPage tp' );
+        
+        return true;
+        //return $query->getSingleScalarResult();
+        
+        /*
+        UPDATE MyTable
+            SET `Order` = `Order` + 1
+            WHERE `Order` > (SELECT `Order` FROM MyTable WHERE ID=<insert-after-id>);
+        
+            
+        INSERT INTO MyTable (Name, `Order`)
+        VALUES (Name, (SELECT `Order` + 1 FROM MyTable WHERE ID = <insert-after-id>));
+        */
+    }
 }
