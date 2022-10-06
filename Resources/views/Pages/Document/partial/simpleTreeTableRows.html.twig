@@ -2,6 +2,12 @@
     <td><i class="fas fa-arrows-alt" title="Drag and Drop to Change Order" style="cursor: pointer;"></i></td>
     <td>{{ tocPage.title }}</td>
     <td>
+        {% for locale in tocPagesTranslations[page.id] %}
+            <i class="flag flag-{{ locale | split( '_' )[1] | lower }}"></i>
+            {% if not loop.last %}&nbsp;{% endif %}
+        {% endfor %}
+    </td>
+    <td>
     	<a href="javascript:void(0);"
     	   class="btn btn-primary btnTocPage"
     	   data-documentId="{{ item.id }}"
