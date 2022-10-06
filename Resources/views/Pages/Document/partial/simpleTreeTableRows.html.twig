@@ -1,4 +1,5 @@
-<tr data-node-id="{{ tocPage.id }}" {% if parentId %}data-node-pid="{{ tocPage.parent.id }}"{% endif %}>
+<tr data-node-id="{{ tocPage.id }}" {% if parentId %}data-node-pid="{{ tocPage.parent.id }}"{% endif %} data-position="{{ tocPage.position }}">
+    <td><i class="fas fa-arrows-alt" title="Drag and Drop to Change Order" style="cursor: pointer;"></i></td>
     <td>{{ tocPage.title }}</td>
     <td>
     	<a href="javascript:void(0);"
