@@ -39,6 +39,9 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     /** @var string */
     protected $locale;
     
+    /** @var integer */
+    protected $position;
+    
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -137,6 +140,18 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     public function setText( ?string $text ): self
     {
         $this->text = $text;
+        
+        return $this;
+    }
+    
+    public function getPosition()
+    {
+        return $this->position;
+    }
+    
+    public function setPosition( $position ): self
+    {
+        $this->position = $position;
         
         return $this;
     }
