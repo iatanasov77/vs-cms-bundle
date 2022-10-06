@@ -10,10 +10,12 @@ class DocumentController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
-        $rootTocPageText    = $entity && $entity->getTocRootPage() ? $entity->getTocRootPage()->getText() : null;
+        $rootTocPageText        = $entity && $entity->getTocRootPage() ? $entity->getTocRootPage()->getText() : null;
+        $tocPagesTranslations   = $this->classInfo['action'] == 'updateAction' ? $this->getTocPagesTranslations() : [];
         
         return [
-            'rootTocPageText'   => $rootTocPageText,
+            'rootTocPageText'       => $rootTocPageText,
+            'tocPagesTranslations'  => $tocPagesTranslations,
         ];
     }
     
@@ -36,5 +38,18 @@ class DocumentController extends AbstractCrudController
         $rootTocPage->setText( $rootTocPageContent );
         
         $entity->setTocRootPage( $rootTocPage );
+    }
+    
+    private function getTocPagesTranslations()
+    {
+        $translations   = [];
+        $transRepo      = $this->get( 'vs_application.repository.translation' );
+        $tocPagesRepo   = $this->get( 'vs_cms.repository.toc_page' );
+        
+        foreach ( $tocPagesRepo->findAll() as $page ) {
+            $translations[$page->getId()] = array_keys( $transRepo->findTranslations( $page ) );
+        }
+        
+        return $translations;
     }
 }
