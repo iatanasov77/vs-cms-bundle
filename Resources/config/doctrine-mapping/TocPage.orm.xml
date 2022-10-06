@@ -59,6 +59,9 @@
         
         <field name="position" column="position" type="integer" nullable="true">
             <gedmo:sortable-position />
+            <options>
+                <option name="default">999999</option>
+            </options>
         </field>
      
         <field name="left" column="tree_left" type="integer">
