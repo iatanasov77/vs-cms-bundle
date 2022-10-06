@@ -44,8 +44,9 @@ class DocumentController extends AbstractCrudController
     {
         $translations   = [];
         $transRepo      = $this->get( 'vs_application.repository.translation' );
+        $tocPagesRepo   = $this->get( 'vs_cms.repository.toc_page' );
         
-        foreach ( $this->getRepository()->findAll() as $page ) {
+        foreach ( $tocPagesRepo->findAll() as $page ) {
             $translations[$page->getId()] = array_keys( $transRepo->findTranslations( $page ) );
         }
         
