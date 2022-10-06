@@ -57,7 +57,7 @@ class TocPagesRepository extends EntityRepository
         $query      = $this->getEntityManager()->createQuery( 'SELECT tp FROM App\Entity\Cms\TocPage tp WHERE tp.id > ' . $insertAfterId );
         $tocPages   = $query->getResult();
         foreach ( $tocPages as $tp ) {
-            $tp->setPosition( $tp->getPosition() - 1 );
+            $tp->setPosition( $tp->getPosition() + 1 );
             $this->getEntityManager()->persist( $tp );
         }
         $this->getEntityManager()->flush();
