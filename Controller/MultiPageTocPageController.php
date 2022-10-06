@@ -41,7 +41,7 @@ class MultiPageTocPageController extends AbstractController
 
         $position       = $insertAfter ? ( $insertAfter->getPosition() + 1 ) : 1;
         $item->setPosition( $position );
-        $em->persist( $project );
+        $em->persist( $item );
         $em->flush();
         
         return new JsonResponse([
