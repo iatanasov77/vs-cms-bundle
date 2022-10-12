@@ -56,6 +56,9 @@
         
         <field name="position" column="position" type="integer" nullable="true">
             <gedmo:sortable-position />
+            <options>
+                <option name="default">999999</option>
+            </options>
         </field>
      
         <gedmo:translation entity="Vankosoft\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
