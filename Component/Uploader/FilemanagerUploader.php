@@ -72,7 +72,7 @@ class FilemanagerUploader implements FileUploaderInterface
         return false;
     }
     
-    private function has( string $path ): bool
+    protected function has( string $path ): bool
     {
         return $this->filesystem->has( $path );
     }
@@ -80,7 +80,7 @@ class FilemanagerUploader implements FileUploaderInterface
     /**
      * Will return true if the path is prone to be blocked by ad blockers
      */
-    private function isAdBlockingProne( string $path ): bool
+    protected function isAdBlockingProne( string $path ): bool
     {
         return strpos( $path, 'ad' ) !== false;
     }
