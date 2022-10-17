@@ -34,6 +34,7 @@ vs_cms:
             file_info: 'Позволени Типове: jpeg, png'
             
     template:
+        uncategorized_pages: Некатегоризирани Страници
         page_categories_index_title: 'Категории Страници'
         page_categories_index_row_category: 'Категория'
         page_categories_index_row_actions: 'Действия'
