@@ -34,6 +34,7 @@ vs_cms:
             file_info: 'Allowed Types: jpeg, png'
             
     template:
+        uncategorized_pages: Uncategorized Pages
         page_categories_index_title: 'Page Categories'
         page_categories_index_row_category: 'Category'
         page_categories_index_row_actions: 'Actions'

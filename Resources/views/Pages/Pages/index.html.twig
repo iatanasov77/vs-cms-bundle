@@ -22,10 +22,10 @@
         		<div class="card mb-2">
                     <div class="card-header">
                         <h5 class="mb-0">
-                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseUncategorized" aria-expanded="false" aria-controls="collapseUncategorized">
-                             <span class="fas fa-angle-down mr-3"></span>Uncategorized Pages
-                           </button>
-                          </h5>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseUncategorized" aria-expanded="false" aria-controls="collapseUncategorized">
+                                <span class="fas fa-angle-down mr-3"></span>{{ 'vs_cms.template.uncategorized_pages' | trans( {},'VSCmsBundle' ) }}
+                            </button>
+                        </h5>
                     </div>
                     <div id="collapseUncategorized" class="collapse" aria-labelledby="headingUncategorized" data-parent="#accordion" style="">
                         <div class="card-body">
@@ -82,14 +82,14 @@
                     								href="javascript:void(0);" 
                                             		{#href="{{ path('vs_cms_pages_show_by_id', {'id': item.id}) }}"#}
                                             		{#href="{{ path('vs_cms_pages_show_by_id', {'id': item.id}) }}"#} 
-                                            		title="Preview Page"
+                                            		title="{{ 'vs_cms.template.button_preview' | trans( {},'VSCmsBundle' ) }}"
                                             	>
                                                     <i class="fas fa-eye" style="color: #be4bdb;"></i>
                                                 </a>
                                                 <a class="btn btn-outline-primary pageClone" 
                                                 	data-url="{{ path( 'vs_cms_pages_clone', {'pageId': page.id} ) }}"
                     								href="javascript:void(0);" 
-                                                	title="Clone Page"
+                                                	title="{{ 'vs_cms.template.button_clone' | trans( {},'VSCmsBundle' ) }}"
                                                 >
                                                     <i class="fas fa-clone" style="color: #495057;"></i>
                                                 </a>
