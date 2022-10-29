@@ -48,10 +48,12 @@
                             {% endif %}
                         </td>
                         <td>
-							{% for locale in translations[item.id] %}
-								<i class="flag flag-{{ locale | split( '_' )[1] | lower }}"></i>
-                                {% if not loop.last %}&nbsp;{% endif %}
-                            {% endfor %}
+                            {% if translations[item.id] is defined %}
+    							{% for locale in translations[item.id] %}
+    								<i class="flag flag-{{ locale | split( '_' )[1] | lower }}"></i>
+                                    {% if not loop.last %}&nbsp;{% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </td>
                         <td>
                         	{% if versions[item.id] is defined %}
