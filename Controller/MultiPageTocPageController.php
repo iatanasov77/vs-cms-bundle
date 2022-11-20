@@ -4,6 +4,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\Persistence\ManagerRegistry;
 
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Vankosoft\CmsBundle\Repository\TocPagesRepository;
@@ -13,6 +14,9 @@ use Vankosoft\ApplicationBundle\Component\Status;
 
 class MultiPageTocPageController extends AbstractController
 {
+    /** @var ManagerRegistry */
+    private ManagerRegistry $doctrine;
+    
     /** @var DocumentsRepository */
     private $documentRepository;
     
@@ -23,10 +27,12 @@ class MultiPageTocPageController extends AbstractController
     private $tocPageFactory;
     
     public function __construct(
+        ManagerRegistry $doctrine,
         DocumentsRepository $documentRepository,
         TocPagesRepository $tocPageRepository,
         FactoryInterface $tocPageFactory
     ) {
+        $this->doctrine             = $doctrine;
         $this->documentRepository   = $documentRepository;
         $this->tocPageRepository    = $tocPageRepository;
         $this->tocPageFactory       = $tocPageFactory;
@@ -82,6 +88,17 @@ class MultiPageTocPageController extends AbstractController
             'documentId'    => $documentId,
             'item'          => $oTocPage,
         ]);
+    }
+    
+    public function deleteTocPage( $documentId, $tocPageId, Request $request ): Response
+    {
+        $em         = $this->doctrine->getManager();
+        $oTocPage   = $this->tocPageRepository->find( $tocPageId );
+        
+        $em->remove( $oTocPage );
+        $em->flush();
+        
+        return $this->redirectToRoute( 'vs_cms_document_update', ['id' => $documentId] );
     }
     
     public function gtreeTableSource( $documentId, Request $request ): Response
