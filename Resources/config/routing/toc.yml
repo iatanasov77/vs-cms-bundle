@@ -63,3 +63,9 @@ vs_cms_multipage_toc_page_sort_action:
 vs_cms_multipage_toc_page_edit:
     path: /multipage_toc/{documentId}/{tocPageId}
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::editTocPage
+    
+vs_cms_multipage_toc_page_delete:
+    path: /multipage_toc/{documentId}/{tocPageId}
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::deleteTocPage
+
+

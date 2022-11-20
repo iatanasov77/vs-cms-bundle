@@ -17,7 +17,7 @@
             <i class="fas fa-edit"></i>
     	</a>
     	<a class="btn btn-danger btnTocPageDelete btnDelete"
-            href="{{ path('vs_cms_toc_page_delete', {'documentId': item.id, 'id': tocPage.id}) }}"
+            href="{{ path('vs_cms_multipage_toc_page_delete', {'documentId': item.id, 'tocPageId': tocPage.id}) }}"
             data-csrfToken="{{ csrf_token( tocPage.id ) }}" 
             title="{{ 'vs_application.template.items_index_row_action_delete' | trans( {},'VSApplicationBundle' ) }}"
         >

@@ -27,6 +27,7 @@ services:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
+            - '@doctrine'
             - '@vs_cms.repository.document'
             - '@vs_cms.repository.toc_page'
             - '@vs_cms.factory.toc_page'
