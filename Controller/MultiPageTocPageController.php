@@ -119,13 +119,17 @@ class MultiPageTocPageController extends AbstractController
         $root       = $this->documentRepository->find( $documentId )->getTocRootPage();
         $data       = [];
 
+        /* With Root Document Page
         $data[0]    = [
             'id'        => $root->getId(),
             'text'      => $root->getTitle(),
             'children'  => []
         ];
-        
         $this->buildEasyuiCombotreeData( $root->getChildren(), $data[0]['children'], [] );
+        */
+        
+        // Without Root Document Page
+        $this->buildEasyuiCombotreeData( $root->getChildren(), $data, [] );
     
         return $data;
     }
