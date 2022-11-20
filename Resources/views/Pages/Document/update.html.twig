@@ -116,13 +116,13 @@
 {% block head_styles %}
 	{{ parent() }}
 	
-	{{ encore_entry_link_tags( 'js/documents-edit' ) }}
 	{{ encore_entry_link_tags( 'js/toc-pages' ) }}
+	{{ encore_entry_link_tags( 'js/documents-edit' ) }}
 {% endblock %}
 
 {% block body_scripts %}
     {{ parent() }}
    
-    {{ encore_entry_script_tags( 'js/documents-edit' ) }}
     {{ encore_entry_script_tags( 'js/toc-pages' ) }}
+    {{ encore_entry_script_tags( 'js/documents-edit' ) }}
 {% endblock %}
