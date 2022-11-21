@@ -35,11 +35,7 @@
             </order-by>
         </one-to-many>
         
-        <one-to-one field="document" target-entity="Vankosoft\CmsBundle\Model\DocumentInterface" mapped-by="tocRootPage">
-            <cascade>
-                <cascade-persist />
-            </cascade>
-        </one-to-one>
+        <one-to-one field="document" target-entity="Vankosoft\CmsBundle\Model\DocumentInterface" mapped-by="tocRootPage" />
         
         <field name="title" column="title" type="string" length="255" nullable="false">
             <gedmo:translatable />
