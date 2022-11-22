@@ -55,8 +55,8 @@ class PagesExtController extends AbstractController
     
     public function getPageForm( $pageId, $locale, Request $request ) : Response
     {
-        $em         = $this->get( 'doctrine.orm.entity_manager' );
-        $page       = $this->pagesRepository->find( $pageId );
+        $em     = $this->doctrine->getManager();
+        $page   = $this->pagesRepository->find( $pageId );
         
         if ( $locale != $request->getLocale() ) {
             $page->setTranslatableLocale( $locale );
@@ -107,7 +107,7 @@ class PagesExtController extends AbstractController
     
     public function previewPage( $pageId, $locale, $version, Request $request ) : Response
     {
-        $em     = $this->get( 'doctrine.orm.entity_manager' );
+        $em     = $this->doctrine->getManager();
         $page   = $this->pagesRepository->find( $pageId );
         $layout = $request->query->get( 'layout' );
         
