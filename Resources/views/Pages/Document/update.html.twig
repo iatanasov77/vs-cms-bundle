@@ -63,7 +63,6 @@
                                 }) 
                             }}
                             
-                            {# File Browser Route is Configured in artgris_file_manager.yaml #}
                             {{ form_widget(form.text, {
                                 'attr': {'class': 'form-control'},
                                 'value' : rootTocPageText,
@@ -122,6 +121,8 @@
          
         </div>
     </div>
+    
+    {% include '@VSApplication/Partial/resource-delete.html.twig' %}
 {% endblock %}
 
 {% block modals %}
@@ -132,12 +133,13 @@
 	{{ parent() }}
 	
 	{{ encore_entry_link_tags( 'js/toc-pages' ) }}
-	{{ encore_entry_link_tags( 'js/documents-edit' ) }}
+	{{ encore_entry_link_tags( 'js/toc-pages-delete' ) }}
 {% endblock %}
 
 {% block body_scripts %}
     {{ parent() }}
-   
+    
     {{ encore_entry_script_tags( 'js/toc-pages' ) }}
-    {{ encore_entry_script_tags( 'js/documents-edit' ) }}
+    {{ encore_entry_script_tags( 'js/toc-pages-delete' ) }}
 {% endblock %}
+
