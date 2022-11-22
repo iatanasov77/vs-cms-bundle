@@ -63,7 +63,22 @@
                                 }) 
                             }}
                             
-                            {{ form_widget(form.text, {'attr': {'class': 'form-control'}, 'value' : rootTocPageText}) }}
+                            {# File Browser Route is Configured in artgris_file_manager.yaml #}
+                            {{ form_widget(form.text, {
+                                'attr': {'class': 'form-control'},
+                                'value' : rootTocPageText,
+                                'config': {
+                                    'toolbar': 'devpage_toolbar',
+                                    'extraPlugins': ['liststyle', 'font', 'justify', 'codesnippet'],
+                                    'removeButtons': '',
+                    
+                                    'filebrowserBrowseRoute': 'vs_cms_fosckeditor_browse',
+                                    'filebrowserBrowseRouteParameters': {'conf': 'default', 'directory': '1'},
+                                    'filebrowserBrowseRouteType': 0,
+                                    'filebrowserUploadRoute': 'vs_cms_fosckeditor_upload',
+                                    'filebrowserUploadRouteParameters': {'conf': 'default', 'directory': '1'},
+                                }
+                            } ) }}
                         </div>
                         
                     	{{ vs_form.buttons( form ) }}
