@@ -25,6 +25,11 @@ abstract class File implements FileInterface
      */
     protected $owner;
     
+    /**
+     * @var string|null
+     */
+    protected $originalName;
+    
     public function getId()
     {
         return $this->id;
@@ -78,5 +83,15 @@ abstract class File implements FileInterface
     public function setOwner($owner): void
     {
         $this->owner = $owner;
+    }
+    
+    public function getOriginalName(): ?string
+    {
+        return $this->originalName;
+    }
+    
+    public function setOriginalName( string $originalName ): void
+    {
+        $this->originalName = $originalName;
     }
 }
