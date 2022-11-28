@@ -8,5 +8,12 @@
         <field name="type" column="type" type="string" nullable="true" />
 
         <field name="path" />
+        
+        <field name="originalName" column="original_name" type="string" length="255" nullable="false">
+            <options>
+                <option name="comment">The Original Name of the File.</option>
+                <option name="default"></option>
+            </options>
+        </field>
     </mapped-superclass>
 </doctrine-mapping>
