@@ -2,16 +2,12 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
 
 class TocPage implements TocPageInterface, LoggableObjectInterface
 {
     /** @var integer */
     protected $id;
-    
-    /** @var TaxonInterface */
-    protected $taxon;
     
     /**
      * @var TocPageInterface|null
@@ -39,6 +35,18 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     /** @var string */
     protected $locale;
     
+    /** @var integer */
+    protected $position;
+    
+    /** @var int|null */
+    protected $left;
+    
+    /** @var int|null */
+    protected $right;
+    
+    /** @var int|null */
+    protected $level;
+    
     public function __construct()
     {
         $this->children = new ArrayCollection();
@@ -49,20 +57,9 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         return $this->id;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getTaxon(): ?TaxonInterface
+    public function isRoot(): bool
     {
-        return $this->taxon;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function setTaxon( ?TaxonInterface $taxon ): void
-    {
-        $this->taxon = $taxon;
+        return null === $this->parent;
     }
     
     public function getRoot(): ?TocPageInterface
@@ -91,13 +88,57 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     public function setParent(?TocPageInterface $parent): self
     {
         $this->parent = $parent;
+        if (null !== $parent) {
+            $parent->addChild($this);
+        }
         
         return $this;
+    }
+    
+    public function getAncestors(): Collection
+    {
+        $ancestors = [];
+        
+        for ( $ancestor = $this->getParent(); null !== $ancestor; $ancestor = $ancestor->getParent() ) {
+            $ancestors[] = $ancestor;
+        }
+        
+        return new ArrayCollection( $ancestors );
     }
     
     public function getChildren(): Collection
     {
         return $this->children;
+    }
+    
+    public function hasChild( TocPageInterface $child ): bool
+    {
+        return $this->children->contains( $child );
+    }
+    
+    public function hasChildren(): bool
+    {
+        return ! $this->children->isEmpty();
+    }
+    
+    public function addChild( TocPageInterface $child ): void
+    {
+        if ( ! $this->hasChild( $child ) ) {
+            $this->children->add( $child );
+        }
+        
+        if ( $this !== $child->getParent() ) {
+            $child->setParent( $this );
+        }
+    }
+    
+    public function removeChild( TocPageInterface $child ): void
+    {
+        if ( $this->hasChild( $child ) ) {
+            $child->setParent( null );
+            
+            $this->children->removeElement( $child );
+        }
     }
     
     public function getDocument(): ?DocumentInterface
@@ -139,6 +180,48 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         $this->text = $text;
         
         return $this;
+    }
+    
+    public function getPosition()
+    {
+        return $this->position;
+    }
+    
+    public function setPosition( $position ): self
+    {
+        $this->position = $position;
+        
+        return $this;
+    }
+    
+    public function getLeft(): ?int
+    {
+        return $this->left;
+    }
+    
+    public function setLeft( ?int $left ): void
+    {
+        $this->left = $left;
+    }
+    
+    public function getRight(): ?int
+    {
+        return $this->right;
+    }
+    
+    public function setRight( ?int $right ): void
+    {
+        $this->right = $right;
+    }
+    
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+    
+    public function setLevel( ?int $level ): void
+    {
+        $this->level = $level;
     }
     
     /**

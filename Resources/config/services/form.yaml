@@ -16,6 +16,16 @@ parameters:
     vs_cms.form.toc_page.ckeditor_removeButtons: ''
 
 services:
+
+    ##########################################################
+    # Override Symfony Service '@form.factory' to be Public
+    # Needed in PagesController to Clone and Preview Forms
+    ##########################################################
+    form.factory:
+        class: Symfony\Component\Form\FormFactory
+        arguments: ['@form.registry']
+        public: true
+    
     vs_cms.resources.page_categories.form:
         class: Vankosoft\CmsBundle\Form\PageCategoryForm
         tags:
@@ -23,6 +33,7 @@ services:
         arguments:
             - '%vs_cms.model.page_categories.class%'
             - '@vs_cms.repository.page_categories'
+            - "@request_stack"
             
     vs_cms.resources.pages.form:
         class: Vankosoft\CmsBundle\Form\PageForm

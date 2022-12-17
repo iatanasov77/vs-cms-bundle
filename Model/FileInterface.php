@@ -21,6 +21,10 @@ interface FileInterface extends ResourceInterface
     
     public function setPath(?string $path): void;
     
+    public function getOriginalName(): ?string;
+    
+    public function setOriginalName( string $originalName ): void;
+    
     /**
      * @return object
      */

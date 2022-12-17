@@ -47,13 +47,25 @@ vs_cms_toc_page:
         expose: true
 
 vs_cms_multipage_toc_page_gtreetable:
-    path: /multipage_toc_{documentId}_gtreetable
+    path: /multipage-toc-{documentId}-gtreetable
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::gtreeTableSource
 
 vs_cms_multipage_toc_page_easyui_combotree:
-    path: /multipage_toc_{documentId}_easyui-combotree
+    path: /multipage-toc-{documentId}-easyui-combotree
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::easyuiComboTreeSource
     
+vs_cms_multipage_toc_page_sort_action:
+    path: /multipage-toc-sort/{id}/{insertAfterId}
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::sortAction
+    options:
+        expose: true
+
 vs_cms_multipage_toc_page_edit:
-    path: /multipage_toc/{documentId}/{tocPageId}
+    path: /multipage-toc-edit/{documentId}/{tocPageId}
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::editTocPage
+    
+vs_cms_multipage_toc_page_delete:
+    path: /multipage-toc-delete/{documentId}/{tocPageId}
+    controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::deleteTocPage
+
+

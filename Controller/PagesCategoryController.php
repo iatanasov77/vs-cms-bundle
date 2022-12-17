@@ -20,27 +20,49 @@ class PagesCategoryController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
-        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+        $taxonomy       = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
             $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
         );
         
+        $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
+        if ( $entity && $entity->getTaxon() ) {
+            $entity->getTaxon()->setCurrentLocale( $request->getLocale() );
+        }
+        
         return [
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+            'translations'  => $translations,
         ];
     }
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
         $translatableLocale     = $form['currentLocale']->getData();
+        $this->get( 'vs_application.slug_generator' )->setLocaleCode( $translatableLocale );
+        
         $categoryName           = $form['name']->getData();
         $parentCategory         = $this->get( 'vs_cms.repository.page_categories' )
                                         ->findByTaxonId( $_POST['page_category_form']['parent'] );
         
         if ( $entity->getTaxon() ) {
-            $entity->getTaxon()->setCurrentLocale( $translatableLocale );
-            $entity->getTaxon()->setName( $categoryName );
+            $entityTaxon    = $entity->getTaxon();
+            
+            $entityTaxon->getTranslation( $translatableLocale );
+            $entityTaxon->setCurrentLocale( $translatableLocale );
+            $request->setLocale( $translatableLocale );
+            if ( ! in_array( $translatableLocale, $entityTaxon->getExistingTranslations() ) ) {
+                $taxonTranslation   = $this->createTranslation( $entityTaxon, $translatableLocale, $categoryName );
+                
+                $entityTaxon->addTranslation( $taxonTranslation );
+            } else {
+                $taxonTranslation   = $entityTaxon->getTranslation( $translatableLocale );
+
+                $taxonTranslation->setName( $categoryName );
+                $taxonTranslation->setSlug( $this->get( 'vs_application.slug_generator' )->generate( $categoryName ) );
+            }
+            
             if ( $parentCategory ) {
-                $entity->getTaxon()->setParent( $parentCategory->getTaxon() );
+                $entityTaxon->setParent( $parentCategory->getTaxon() );
             }
             
             $entity->setParent( $parentCategory );
