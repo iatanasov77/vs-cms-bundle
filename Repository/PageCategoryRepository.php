@@ -4,7 +4,7 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 class PageCategoryRepository extends EntityRepository
 {
-    public function find( $id, $lockMode = null, $lockVersion = null )
+    public function find( $id, $lockMode = null, $lockVersion = null ): ?object
     {
         if( ! is_numeric( $id ) ) {
             return $this->findOneBy( ['slug'=>$id] );
