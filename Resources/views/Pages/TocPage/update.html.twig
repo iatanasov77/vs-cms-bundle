@@ -23,7 +23,7 @@
                                 <button type="button" class="close close-sm" data-bs-dismiss="alert">
                                     <i class="icon-remove"></i>
                                 </button>
-                                <strong>Error!</strong> {{ form_errors(form) }}
+                                <strong>{{ 'vs_application.form.errors_title' | trans( {},'VSApplicationBundle' ) }}</strong> {{ form_errors(form) }}
                             </div>
                         {% endif %}
                         
