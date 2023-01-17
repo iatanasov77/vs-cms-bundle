@@ -72,6 +72,15 @@ class FilemanagerUploader implements FileUploaderInterface
         return false;
     }
     
+    public function fileSize( FileInterface $filemanagerFile )
+    {
+        if ( $filemanagerFile->getFile() ) {
+            return $filemanagerFile->getFile()->getSize();
+        } else {
+            return $this->filesystem->size( $filemanagerFile->getPath() );
+        }
+    }
+    
     protected function has( string $path ): bool
     {
         return $this->filesystem->has( $path );
