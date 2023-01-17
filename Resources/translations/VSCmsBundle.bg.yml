@@ -66,6 +66,7 @@ vs_cms:
         filemanager_update_upload_file: Ъплоад Файл
         filemanager_update_button_upload: Ъплоад
         filemanager_update_files_table_name: 'Име'
+        filemanager_update_files_table_mime: 'МИМЕ Тип'
         filemanager_update_files_table_date: 'Дата'
         filemanager_update_files_table_size: 'Размер'
         filemanager_update_files_table_dimension: 'Снимка Размер'
