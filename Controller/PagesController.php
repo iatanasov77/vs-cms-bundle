@@ -37,7 +37,7 @@ class PagesController extends AbstractCrudController
         $formLocale = $request->request->get( 'locale' );
         $formTaxon  = $request->request->get( 'category_taxon' );
         
-        if ( isset( $formPost['locale'] ) ) {
+        if ( $formLocale ) {
             $entity->setTranslatableLocale( $formLocale );
         }
         
