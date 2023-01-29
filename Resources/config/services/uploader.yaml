@@ -43,4 +43,11 @@ services:
         class: Vankosoft\CmsBundle\Component\FileManager
         arguments:
             - '@vs_cms.filemanager_uploader'
+    
+    vs_cms.oneup_uploader.post_persist:
+        class: Vankosoft\CmsBundle\Component\OneupUploader\PostPersistListener
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
 
