@@ -35,6 +35,9 @@ class PostPersistListener
         /** @var FileInterface|File */
         $file           = $event->getFile();
         $uploadedFile   = $event->getRequest()->files->get( 'file' );
+        if ( isset( $request['formName'] ) ) {
+            $uploadedFile   = $event->getRequest()->files->get( 'upload_file_form' )['file'];
+        }
         
         if ( intval( $request['fileResourceId'] ) ) {
             $response['HasEntity']  = true;
