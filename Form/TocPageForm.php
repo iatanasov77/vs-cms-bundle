@@ -72,7 +72,6 @@ class TocPageForm extends AbstractForm
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
                 'config'                => [
-                    'clipboard_handleImages'            => false,
                     'uiColor'                           => $options['ckeditor_uiColor'],
                     'extraAllowedContent'               => $options['ckeditor_extraAllowedContent'],
                     
