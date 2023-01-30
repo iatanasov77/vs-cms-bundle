@@ -81,6 +81,12 @@ class MultiPageTocPageController extends AbstractController
             'ckeditor_toolbar'              => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_toolbar' ),
             'ckeditor_extraPlugins'         => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraPlugins' ),
             'ckeditor_removeButtons'        => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_removeButtons' ),
+            
+            'filebrowserBrowseRoute'            => 'vs_cms_fosckeditor_browse',
+            'filebrowserBrowseRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
+            'filebrowserBrowseRouteType'        => 0,
+            'filebrowserUploadRoute'            => 'vs_cms_fosckeditor_upload',
+            'filebrowserUploadRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
         ]);
         
         return $this->render( '@VSCms/Pages/Document/form/toc_page.html.twig', [
