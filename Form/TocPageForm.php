@@ -79,11 +79,11 @@ class TocPageForm extends AbstractForm
                     'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
                     'removeButtons'                     => $options['ckeditor_removeButtons'],
                     
-                    'filebrowserBrowseRoute'            => 'file_manager',
-                    'filebrowserBrowseRouteParameters'  => ['conf' => 'default'],
+                    'filebrowserBrowseRoute'            => 'vs_cms_fosckeditor_browse',
+                    'filebrowserBrowseRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
                     'filebrowserBrowseRouteType'        => 0,
-                    'filebrowserUploadRoute'            => 'file_manager_upload',
-                    'filebrowserUploadRouteParameters'  => ['conf' => 'default'],
+                    'filebrowserUploadRoute'            => 'vs_cms_fosckeditor_upload',
+                    'filebrowserUploadRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
                 ],
                 'required'              => false,
             ])
