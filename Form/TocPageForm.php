@@ -104,7 +104,7 @@ class TocPageForm extends AbstractForm
                 'ckeditor_extraAllowedContent'  => '*[*]{*}(*)',
                 
                 'ckeditor_toolbar'              => 'full',
-                'ckeditor_extraPlugins'         => '',
+                'ckeditor_extraPlugins'         => [],
                 'ckeditor_removeButtons'        => ''
             ])
             
@@ -122,7 +122,7 @@ class TocPageForm extends AbstractForm
             ->setAllowedTypes( 'ckeditor_uiColor', 'string' )
             ->setAllowedTypes( 'ckeditor_extraAllowedContent', 'string' )
             ->setAllowedTypes( 'ckeditor_toolbar', 'string' )
-            ->setAllowedTypes( 'ckeditor_extraPlugins', 'string' )
+            ->setAllowedTypes( 'ckeditor_extraPlugins', 'string[]' )
             ->setAllowedTypes( 'ckeditor_removeButtons', 'string' )
         ;
     }
