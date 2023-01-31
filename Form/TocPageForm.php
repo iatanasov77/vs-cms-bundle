@@ -76,7 +76,8 @@ class TocPageForm extends AbstractForm
                     'extraAllowedContent'               => $options['ckeditor_extraAllowedContent'],
                     
                     'toolbar'                           => $options['ckeditor_toolbar'],
-                    'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
+                    //'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
+                    'extraPlugins'                      => $options['ckeditor_extraPlugins'],
                     'removeButtons'                     => $options['ckeditor_removeButtons'],
                     
                     'filebrowserBrowseRoute'            => 'vs_cms_fosckeditor_browse',
