@@ -19,6 +19,7 @@ parameters:
         - codesnippet
         - lightbox
         - simplebox
+        - simplebox-2
         - ckeditor_add_class'
     vs_cms.form.toc_page.ckeditor_removeButtons: ''
     
