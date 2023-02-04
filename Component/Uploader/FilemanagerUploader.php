@@ -32,6 +32,11 @@ class FilemanagerUploader implements FileUploaderInterface
             $this->filePathGenerator = $filePathGenerator ?? new UploadedFilePathGenerator();
     }
     
+    public function getFilesystem(): Filesystem
+    {
+        return $this->filesystem;
+    }
+    
     public function upload( FileInterface $filemanagerFile ): void
     {
         if ( ! $filemanagerFile->hasFile() ) {
