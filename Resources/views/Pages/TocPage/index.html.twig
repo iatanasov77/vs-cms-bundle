@@ -31,7 +31,7 @@
                                         <a class="btn btn-primary" href="{{ path('vs_cms_multipage_toc_update', {'id': item.id}) }}" title="Edit TOC">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-danger btnDelete"
+                                        <a class="btn btn-danger btnDeleteResource"
                                         	href="{{ path('vs_cms_multipage_toc_delete', {'id': item.id}) }}" 
                                         	data-csrfToken="{{ csrf_token( item.id ) }}" 
                                         	title="Delete TOC"
