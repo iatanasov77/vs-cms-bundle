@@ -41,6 +41,7 @@ vs_cms:
         page_categories_index_button_edit: 'Редактирай'
         page_categories_update_title: 'Редактиране Категория на Страници'
         page_categories_create_title: 'Създаване Нова Категория на Страници'
+        page_categories_title: 'Категория на Страници'
         pages_index_title: 'Листинг Страници'
         pages_index_row_slug: 'Слуг'
         pages_index_row_published: 'Публикувана'
@@ -50,6 +51,7 @@ vs_cms:
         pages_index_row_action: 'Действие'
         pages_update_title: 'Редактиране на Страница'
         pages_create_title: 'Създаване Нова Страница'
+        pages_title: Страница детайли
         button_clone: 'Клонирай Страница'
         button_preview: 'Прегледай Страница'
         title_actions: 'Действия'

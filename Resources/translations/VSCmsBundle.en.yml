@@ -41,6 +41,7 @@ vs_cms:
         page_categories_index_button_edit: 'Edit'
         page_categories_update_title: 'Edit Page Category'
         page_categories_create_title: 'Create New Page Category'
+        page_categories_title: 'Page Category'
         pages_index_title: 'List Pages'
         pages_index_row_slug: 'Slug'
         pages_index_row_published: 'Published'
@@ -50,6 +51,7 @@ vs_cms:
         pages_index_row_action: 'Action'
         pages_update_title: 'Edit Page'
         pages_create_title: 'Create New Page'
+        pages_title: Page details
         button_clone: 'Clone Page'
         button_preview: 'Preview Page'
         title_actions: 'Actions'
