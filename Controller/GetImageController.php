@@ -22,7 +22,7 @@ class GetImageController extends AbstractController
         $this->imagineFilterManager  = $imagineFilterManager;
     }
     
-    public function getFile( $file, Request $request )
+    public function getFile( $file, Request $request ): Response
     {
         $filter = $request->query->get( 'filter' );
         
@@ -35,5 +35,10 @@ class GetImageController extends AbstractController
         } else {
             return new BinaryFileResponse( $this->getParameter( 'kernel.project_dir' ) . '/' . $file );
         }
+    }
+    
+    public function getFilesystemFile( $file, Request $request ): Response
+    {
+        return new BinaryFileResponse( $file );
     }
 }
