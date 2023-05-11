@@ -28,6 +28,9 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     protected $document;
     
     /** @var string */
+    protected $slug;
+    
+    /** @var string */
     protected $title;
     
     /** @var string */
