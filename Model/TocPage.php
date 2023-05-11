@@ -1,11 +1,15 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
+use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Component\Resource\Model\TranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
 
 class TocPage implements TocPageInterface, LoggableObjectInterface
 {
+    use TranslatableTrait;
+    
     /** @var integer */
     protected $id;
     
@@ -254,5 +258,13 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     public function __toString()
     {
         return $this->title;
+    }
+    
+    /*
+     * @NOTE: Decalared abstract in TranslatableTrait
+     */
+    protected function createTranslation(): TranslationInterface
+    {
+        
     }
 }
