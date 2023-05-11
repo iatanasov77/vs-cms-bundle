@@ -15,19 +15,19 @@ interface PageInterface extends
     ToggleableInterface,
     TranslatableInterface
 {
-    public function setTranslatableLocale( $locale ) : PageInterface;
+    public function setTranslatableLocale( $locale ): PageInterface;
     
-    public function getCategories();
+    public function getCategories(): Collection;
     
-    public function addCategory( PageCategory $category ) : PageInterface;
+    public function addCategory( PageCategory $category ): PageInterface;
     
-    public function removeCategory( PageCategory $category ) : PageInterface;
+    public function removeCategory( PageCategory $category ): PageInterface;
     
-    public function getSlug() : ?string;
+    public function getSlug(): ?string;
     
-    public function getTitle() : ?string;
+    public function getTitle(): ?string;
     
-    public function getText() : ?string;
+    public function getText(): ?string;
     
     /*
     public function getMetaKeywords(): ?string;
@@ -39,5 +39,5 @@ interface PageInterface extends
     public function setMetaDescription(?string $metaDescription): void;
     */
     
-    public function getPublished() : ?bool;
+    public function getPublished(): ?bool;
 }

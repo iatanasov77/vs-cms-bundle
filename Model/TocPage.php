@@ -224,6 +224,17 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         $this->level = $level;
     }
     
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+    
+    public function setSlug( $slug=null ): void
+    {
+        $this->slug = $slug;
+        //return $this;
+    }
+    
     /**
      * {@inheritDoc}
      * @see \Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface::getTranslatableLocale()
@@ -233,7 +244,7 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         return $this->locale;
     }
     
-    public function setTranslatableLocale($locale): self
+    public function setTranslatableLocale($locale): TocPageInterface
     {
         $this->locale = $locale;
         

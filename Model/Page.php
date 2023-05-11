@@ -57,7 +57,7 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     /**
      * @return Collection|PageCategory[]
      */
-    public function getCategories()
+    public function getCategories(): Collection
     {
         return $this->categories;
     }

@@ -44,6 +44,10 @@
             </cascade>
         </one-to-one>
         
+        <field name="slug" column="slug" type="string" length="255" nullable="false" unique="true">
+            <gedmo:slug unique="true" style="lower" updatable="true" separator="-" fields="parent,title" />
+        </field>
+        
         <field name="title" column="title" type="string" length="255" nullable="false">
             <gedmo:translatable />
         </field>
