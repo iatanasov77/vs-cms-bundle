@@ -36,14 +36,13 @@ class PagesController extends AbstractCrudController
         
         $formLocale = $request->request->get( 'locale' );
         $formPost   = $request->request->all( 'page_form' );
-        $formTaxon  = $formPost['category_taxon'];
         
         if ( $formLocale ) {
             $entity->setTranslatableLocale( $formLocale );
         }
         
-        if ( $formTaxon ) {
-            foreach ( $formTaxon as $taxonId ) {
+        if ( isset( $formPost['category_taxon'] ) ) {
+            foreach ( $formPost['category_taxon'] as $taxonId ) {
                 $category       = $pcr->findOneBy( ['taxon' => $taxonId] );
                 if ( $category ) {
                     $categories[]   = $category;
