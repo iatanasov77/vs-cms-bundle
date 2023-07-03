@@ -24,6 +24,7 @@ class PostPersistListener
         
         /** @var ResponseInterface */
         $response   = $event->getResponse();
+        
         $request    = $request->request->all();
         if ( ! isset( $request['fileResourceId'] ) ) {
             $response['DebugRequest']   = $request;
