@@ -1,5 +1,6 @@
 <?php namespace Vankosoft\CmsBundle\Component\OneupUploader;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Persistence\ManagerRegistry;
 use Oneup\UploaderBundle\Uploader\File\FileInterface;
@@ -20,6 +21,7 @@ class PostPersistListener
     
     public function onUpload( PostPersistEvent $event )
     {
+        /** @var Request */
         $request    = $event->getRequest();
         
         /** @var ResponseInterface */
