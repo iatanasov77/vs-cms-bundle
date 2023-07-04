@@ -50,7 +50,7 @@ class PostPersistListener
             $entity = new $entityClass();
         }
         
-        if ( ! ( $file instanceof \Symfony\Component\HttpFoundation\File\File ) ) {
+        if ( \method_exists( $file, 'getFilesystem' ) ) {
             $entity->setType( $file->getFilesystem()->mimeType( $file->getPathname() ) );
         }
         $entity->setPath( $file->getPathname() );
