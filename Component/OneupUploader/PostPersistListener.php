@@ -50,8 +50,10 @@ class PostPersistListener
             $entity = new $entityClass();
         }
         
-        $entity->setPath( $file->getPathname() );  
-        $entity->setType( $file->getFilesystem()->mimeType( $file->getPathname() ) );
+        if ( ! ( $file instanceof \Symfony\Component\HttpFoundation\File\File ) ) {
+            $entity->setType( $file->getFilesystem()->mimeType( $file->getPathname() ) );
+        }
+        $entity->setPath( $file->getPathname() );
         $entity->setOriginalName( $uploadedFile->getClientOriginalName() );
         
         $this->doctrine->getManager()->persist( $entity );
