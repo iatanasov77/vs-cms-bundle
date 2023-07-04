@@ -50,19 +50,16 @@ class PostPersistListener
             $entity = new $entityClass();
         }
         
-        $fileOwner  = $this->doctrine->getRepository( $request['fileOwnerClass'] )->find( intval( $request['fileResourceOwner'] ) );
-        
         $entity->setPath( $file->getPathname() );  
         $entity->setType( $file->getFilesystem()->mimeType( $file->getPathname() ) );
         $entity->setOriginalName( $uploadedFile->getClientOriginalName() );
-        $entity->setOwner( $fileOwner );
         
         $this->doctrine->getManager()->persist( $entity );
         $this->doctrine->getManager()->flush();
         
         $response['success']    = true;
         $response['resources']  = [
-            $entity->getId()
+            $request['fileResourceKey']  => $entity->getId()
         ];
         
 /* https://github.com/1up-lab/OneupUploaderBundle/blob/master/doc/response.md
