@@ -39,7 +39,7 @@ class PostPersistListener
         $file           = $event->getFile();
         $uploadedFile   = $event->getRequest()->files->get( 'file' );
         if ( isset( $request['formName'] ) ) {
-            $uploadedFile   = $event->getRequest()->files->get( 'upload_file_form' )['file'];
+            $uploadedFile   = $event->getRequest()->files->get( $request['formName'] )['file'];
         }
         
         if ( intval( $request['fileResourceId'] ) ) {
@@ -61,6 +61,9 @@ class PostPersistListener
         $this->doctrine->getManager()->flush();
         
         $response['success']    = true;
+        $response['resources']  = [
+            $entity->getId()
+        ];
         
 /* https://github.com/1up-lab/OneupUploaderBundle/blob/master/doc/response.md
         $response->setSuccess( false );
