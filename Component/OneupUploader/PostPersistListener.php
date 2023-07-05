@@ -39,7 +39,12 @@ class PostPersistListener
         $file           = $event->getFile();
         $uploadedFile   = $event->getRequest()->files->get( 'file' );
         if ( isset( $request['formName'] ) ) {
-            $uploadedFile   = $event->getRequest()->files->get( $request['formName'] )[$request['fileInputFieldName']];
+            $formFiles      = $event->getRequest()->files->get( $request['formName'] );
+            if ( ! $formFiles ) {
+                $response['error']  = 'Form Has Not Files !!!';
+                return $response;
+            }
+            $uploadedFile   = $formFiles[$request['fileInputFieldName']];
         }
         
         if ( intval( $request['fileResourceId'] ) ) {
