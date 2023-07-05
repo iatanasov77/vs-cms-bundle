@@ -59,22 +59,9 @@ class PostPersistListener
         $this->doctrine->getManager()->persist( $entity );
         $this->doctrine->getManager()->flush();
         
-        $response['success']    = true;
-        $response['resources']  = [
-            $request['fileResourceKey']  => $entity->getId()
-        ];
-        
-/* https://github.com/1up-lab/OneupUploaderBundle/blob/master/doc/response.md
-        $response->setSuccess( false );
-        $response->setError( $msg );
-        
-        $response['GaufretteFilesystemPath']    = $file->getPathname();
-        $response['GaufretteFileBasename']      = $file->getBasename();
-        $response['OriginalName']               = $uploadedFile->getClientOriginalName();
-        
-        //$response['MimeType']               = $file->getMimeType();
-        $response['MimeType']               = $file->getFilesystem()->mimeType( $file->getPathname() );
-*/
+        $response['success']        = true;
+        $response['resourceKey']    = $request['fileResourceKey'];
+        $response['resourceId']     = $entity->getId();
         
         return $response;
     }
