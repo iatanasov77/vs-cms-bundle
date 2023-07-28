@@ -1,7 +1,6 @@
 vs_cms_pages:
     resource: |
         alias: vs_cms.pages
-        except: ['show']
         path: /pages
         templates: "@VSCms/Pages/Pages"
         form:
