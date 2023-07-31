@@ -1,18 +1,13 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\VankosoftCategoryInterface;
 use Doctrine\Common\Collections\Collection;
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 
-interface DocumentCategoryInterface extends ResourceInterface
+interface DocumentCategoryInterface extends VankosoftCategoryInterface
 {
     public function getDocuments(): Collection;
     
     public function addDocument( DocumentInterface $document ): DocumentCategoryInterface;
     
     public function removeDocument( DocumentInterface $document ): DocumentCategoryInterface;
-    
-    public function getTaxon(): ?TaxonInterface;
-    
-    public function setTaxon( ?TaxonInterface $taxon ): void;
 }

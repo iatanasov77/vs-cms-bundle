@@ -20,6 +20,12 @@ class DocumentCategory implements DocumentCategoryInterface
     /** @var TaxonInterface */
     protected $taxon;
     
+    /** @var DocumentCategoryInterface */
+    protected $parent;
+    
+    /** @var Collection|DocumentCategory[] */
+    protected $children;
+    
     public function __construct()
     {
         $this->documents    = new ArrayCollection();
@@ -74,7 +80,30 @@ class DocumentCategory implements DocumentCategoryInterface
         $this->taxon = $taxon;
     }
     
-    public function getName()
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setParent(?DocumentInterface $parent): DocumentInterface
+    {
+        $this->parent = $parent;
+        
+        return $this;
+    }
+    
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+    
+    public function getName(): string
     {
         return $this->taxon ? $this->taxon->getName() : '';
     }

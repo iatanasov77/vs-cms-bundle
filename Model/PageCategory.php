@@ -41,7 +41,7 @@ class PageCategory implements PageCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getParent(): ?PageCategoryInterface
+    public function getParent()
     {
         return $this->parent;
     }
@@ -105,7 +105,7 @@ class PageCategory implements PageCategoryInterface
         $this->taxon = $taxon;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->taxon ? $this->taxon->getName() : '';
     }
