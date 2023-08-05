@@ -40,16 +40,18 @@ services:
             - { name: form.type }
         arguments:
             - '%vs_cms.model.page_categories.class%'
-            - '@vs_cms.repository.page_categories'
+            - '@vs_application.repository.locale'
             - "@request_stack"
+            - '@vs_cms.repository.page_categories'
             
     vs_cms.resources.pages.form:
         class: Vankosoft\CmsBundle\Form\PageForm
         tags:
             - { name: form.type }
         arguments:  # '%vs_cms.pages.form.type.validation_groups%'
-            - "@request_stack"
             - '%vs_cms.model.pages.class%'
+            - '@vs_application.repository.locale'
+            - "@request_stack"
             - '%vs_cms.model.page_categories.class%'
             
     vs_cms.resources.document_categories.form:
@@ -58,14 +60,17 @@ services:
             - { name: form.type }
         arguments:
             - '%vs_cms.model.document_categories.class%'
+            - '@vs_application.repository.locale'
+            - "@request_stack"
     
     vs_cms.resources.document.form:
         class: Vankosoft\CmsBundle\Form\DocumentForm
         tags:
             - { name: form.type }
         arguments:
-            - "@request_stack"
             - '%vs_cms.model.document.class%'
+            - '@vs_application.repository.locale'
+            - "@request_stack"
             - '%vs_cms.model.document_categories.class%'
             - '%vs_cms.model.toc_page.class%'
     
@@ -73,8 +78,9 @@ services:
         tags:
             - { name: form.type }
         arguments:
-            - "@request_stack"
             - '%vs_cms.model.toc_page.class%'
+            - '@vs_application.repository.locale'
+            - "@request_stack"
 
     Vankosoft\CmsBundle\Form\FileManager\UploadFileForm:
         tags:
@@ -86,6 +92,8 @@ services:
             - { name: form.type }
         arguments:
             - '%vs_cms.model.file_manager.class%'
+            - '@vs_application.repository.locale'
+            - "@request_stack"
     
     vs_cms.resources.file_manager_file.form:
         class: Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm

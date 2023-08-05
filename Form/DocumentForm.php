@@ -4,6 +4,7 @@ use Vankosoft\ApplicationBundle\Form\AbstractForm;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,21 +17,22 @@ use Vankosoft\CmsBundle\Model\TocPageInterface;
 
 class DocumentForm extends AbstractForm
 {
-    protected $requestStack;
-    
     protected $tocPageClass;
     
     protected $pagesClass;
     
     public function __construct(
-        RequestStack $requestStack,
         string $dataClass,
+        RepositoryInterface $localesRepository,
+        RequestStack $requestStack,
         string $documentCategoryClass,
         string $tocPageClass
     ) {
         parent::__construct( $dataClass );
         
+        $this->localesRepository        = $localesRepository;
         $this->requestStack             = $requestStack;
+        
         $this->documentCategoryClass    = $documentCategoryClass;
         $this->tocPageClass             = $tocPageClass;
     }
@@ -46,7 +48,7 @@ class DocumentForm extends AbstractForm
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( \Vankosoft\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'choices'               => \array_flip( $this->fillLocaleChoices() ),
                 'data'                  => $currentLocale,
                 'mapped'                => false,
             ])

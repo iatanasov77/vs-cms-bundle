@@ -4,6 +4,7 @@ use Vankosoft\ApplicationBundle\Form\AbstractForm;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -14,13 +15,15 @@ use Doctrine\ORM\EntityRepository;
 
 class TocPageForm extends AbstractForm
 {
-    protected $requestStack;
-    
-    public function __construct( RequestStack $requestStack, string $dataClass )
-    {
+    public function __construct(
+        string $dataClass,
+        RepositoryInterface $localesRepository,
+        RequestStack $requestStack
+    ) {
         parent::__construct( $dataClass );
         
-        $this->requestStack = $requestStack;
+        $this->localesRepository    = $localesRepository;
+        $this->requestStack         = $requestStack;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options ): void
@@ -34,7 +37,7 @@ class TocPageForm extends AbstractForm
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( \Vankosoft\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'choices'               => \array_flip( $this->fillLocaleChoices() ),
                 'data'                  => $currentLocale,
                 'mapped'                => false,
             ])

@@ -16,18 +16,20 @@ use Vankosoft\CmsBundle\Model\PageInterface;
 
 class PageForm extends AbstractForm
 {
-    protected $requestStack;
-    
+    /** @var string */
     protected $categoryClass;
     
     public function __construct(
-        RequestStack $requestStack,
         string $dataClass,
+        RepositoryInterface $localesRepository,
+        RequestStack $requestStack,
         string $categoryClass
     ) {
         parent::__construct( $dataClass );
         
+        $this->localesRepository    = $localesRepository;
         $this->requestStack         = $requestStack;
+        
         $this->categoryClass        = $categoryClass;
     }
 
@@ -42,7 +44,7 @@ class PageForm extends AbstractForm
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( \Vankosoft\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'choices'               => \array_flip( $this->fillLocaleChoices() ),
                 'data'                  => $currentLocale,
                 'mapped'                => false,
             ])

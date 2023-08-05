@@ -9,8 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-use Vankosoft\ApplicationBundle\Component\I18N;
-
 class PageCategoryForm extends AbstractForm
 {
     protected $categoryClass;
@@ -19,20 +17,27 @@ class PageCategoryForm extends AbstractForm
     
     protected $requestStack;
     
-    public function __construct( string $dataClass, EntityRepository $repository, RequestStack $requestStack )
-    {
+    public function __construct(
+        string $dataClass,
+        RepositoryInterface $localesRepository,
+        RequestStack $requestStack,
+        EntityRepository $repository
+    ) {
         parent::__construct( $dataClass );
         
-        $this->categoryClass    = $dataClass;
-        $this->repository       = $repository;
-        $this->requestStack     = $requestStack;
+        $this->localesRepository    = $localesRepository;
+        $this->requestStack         = $requestStack;
+        
+        $this->categoryClass        = $dataClass;
+        $this->repository           = $repository;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         parent::buildForm( $builder, $options );
         
-        $category   = $options['data'];
+        $category       = $options['data'];
+        $currentLocale  = $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
             ->setMethod( $category && $category->getId() ? 'PUT' : 'POST' )
@@ -40,8 +45,8 @@ class PageCategoryForm extends AbstractForm
             ->add( 'currentLocale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( I18N::LanguagesAvailable() ),
-                'data'                  => $this->requestStack->getCurrentRequest()->getLocale(),
+                'choices'               => \array_flip( $this->fillLocaleChoices() ),
+                'data'                  => $currentLocale,
                 'mapped'                => false,
             ])
         
