@@ -50,6 +50,7 @@ class PostPersistListener
         if ( intval( $request['fileResourceId'] ) ) {
             $response['HasEntity']  = true;
             $entity = $this->doctrine->getRepository( $entityClass )->find( intval( $request['fileResourceId'] ) );
+            // @TODO Need Old File To Be Removed
         } else {
             $response['HasEntity']  = false;
             $entity = new $entityClass();
