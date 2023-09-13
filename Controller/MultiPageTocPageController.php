@@ -77,10 +77,11 @@ class MultiPageTocPageController extends AbstractController
             'tocRootPage'                   => $tocRootPage,
             
             'ckeditor_uiColor'              => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_uiColor' ),
-            'ckeditor_extraAllowedContent'  => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraAllowedContent' ),
             'ckeditor_toolbar'              => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_toolbar' ),
             'ckeditor_extraPlugins'         => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraPlugins' ),
             'ckeditor_removeButtons'        => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_removeButtons' ),
+            'ckeditor_allowedContent'       => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_allowedContent' ),
+            'ckeditor_extraAllowedContent'  => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraAllowedContent' ),
         ]);
         
         return $this->render( '@VSCms/Pages/Document/form/toc_page.html.twig', [

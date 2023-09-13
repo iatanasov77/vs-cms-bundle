@@ -2,15 +2,15 @@ parameters:
     # Pages Form Options
     ##########################################################
     vs_cms.form.pages.ckeditor_uiColor: '#ffffff'
-    vs_cms.form.pages.ckeditor_extraAllowedContent: '*[*]{*}(*)'
     vs_cms.form.pages.ckeditor_toolbar: devpage_toolbar
     vs_cms.form.pages.ckeditor_extraPlugins: 'font, justify, codesnippet, lightbox'
     vs_cms.form.pages.ckeditor_removeButtons: ''
+    vs_cms.form.pages.ckeditor_allowedContent: true # Disable Advanced Content Filter
+    vs_cms.form.pages.ckeditor_extraAllowedContent: 'div(*)'
     
     # TocPage Form Options
     ##########################################################
     vs_cms.form.toc_page.ckeditor_uiColor: '#ffffff'
-    vs_cms.form.toc_page.ckeditor_extraAllowedContent: '*[*]{*}(*)'
     vs_cms.form.toc_page.ckeditor_toolbar: devpage_toolbar
     vs_cms.form.toc_page.ckeditor_extraPlugins:
         - liststyle
@@ -22,6 +22,8 @@ parameters:
         - simplebox-2
         - ckeditor_add_class'
     vs_cms.form.toc_page.ckeditor_removeButtons: ''
+    vs_cms.form.toc_page.ckeditor_allowedContent: true # Disable Advanced Content Filter
+    vs_cms.form.toc_page.ckeditor_extraAllowedContent: '*[*]{*}(*)'
     
 services:
 

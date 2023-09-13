@@ -80,20 +80,7 @@ class PageForm extends AbstractForm
             ->add( 'text', CKEditorType::class, [
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
-                'config'                => [
-                    'uiColor'                           => $options['ckeditor_uiColor'],
-                    'extraAllowedContent'               => $options['ckeditor_extraAllowedContent'],
-                    
-                    'toolbar'                           => $options['ckeditor_toolbar'],
-                    'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
-                    'removeButtons'                     => $options['ckeditor_removeButtons'],
-                    
-                    'filebrowserBrowseRoute'            => 'file_manager',
-                    'filebrowserBrowseRouteParameters'  => ['conf' => 'default'],
-                    'filebrowserBrowseRouteType'        => 0,
-                    'filebrowserUploadRoute'            => 'file_manager_upload',
-                    'filebrowserUploadRouteParameters'  => ['conf' => 'default'],
-                ],
+                'config'                => $this->ckEditorConfig( $options ),
             ])
         ;
     }
@@ -108,11 +95,11 @@ class PageForm extends AbstractForm
                 
                 // CKEditor Options
                 'ckeditor_uiColor'              => '#ffffff',
-                'ckeditor_extraAllowedContent'  => '*[*]{*}(*)',
-                
                 'ckeditor_toolbar'              => 'full',
                 'ckeditor_extraPlugins'         => '',
-                'ckeditor_removeButtons'        => ''
+                'ckeditor_removeButtons'        => '',
+                'ckeditor_allowedContent'       => false,
+                'ckeditor_extraAllowedContent'  => '*[*]{*}(*)',
             ])
             
             ->setDefined([
@@ -120,24 +107,53 @@ class PageForm extends AbstractForm
                 
                 // CKEditor Options
                 'ckeditor_uiColor',
-                'ckeditor_extraAllowedContent',
                 'ckeditor_toolbar',
                 'ckeditor_extraPlugins',
                 'ckeditor_removeButtons',
+                'ckeditor_allowedContent',
+                'ckeditor_extraAllowedContent',
             ])
             
             ->setAllowedTypes( 'page', PageInterface::class )
             ->setAllowedTypes( 'ckeditor_uiColor', 'string' )
-            ->setAllowedTypes( 'ckeditor_extraAllowedContent', 'string' )
             ->setAllowedTypes( 'ckeditor_toolbar', 'string' )
             ->setAllowedTypes( 'ckeditor_extraPlugins', 'string' )
             ->setAllowedTypes( 'ckeditor_removeButtons', 'string' )
+            ->setAllowedTypes( 'ckeditor_allowedContent', ['boolean', 'string'] )
+            ->setAllowedTypes( 'ckeditor_extraAllowedContent', 'string' )
         ;
     }
     
     public function getName()
     {
         return 'vs_cms.page';
+    }
+    
+    protected function ckEditorConfig( array $options ): array
+    {
+        $ckEditorConfig = [
+            'uiColor'                           => $options['ckeditor_uiColor'],
+            'toolbar'                           => $options['ckeditor_toolbar'],
+            'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
+            'removeButtons'                     => $options['ckeditor_removeButtons'],
+            
+            //'filebrowserBrowseRoute'            => 'file_manager',
+            'filebrowserBrowseRoute'            => 'vs_cms_fosckeditor_browse',
+            'filebrowserBrowseRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
+            'filebrowserBrowseRouteType'        => 0,
+            //'filebrowserUploadRoute'            => 'file_manager_upload',
+            'filebrowserUploadRoute'            => 'vs_cms_fosckeditor_upload',
+            'filebrowserUploadRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
+        ];
+        
+        $ckEditorAllowedContent = (bool)$options['ckeditor_allowedContent'];
+        if ( $ckEditorAllowedContent ) {
+            $ckEditorConfig['allowedContent']       = $ckEditorAllowedContent;
+        } else {
+            $ckEditorConfig['extraAllowedContent']  = $options['ckeditor_extraAllowedContent'];
+        }
+        
+        return $ckEditorConfig;
     }
 }
 
