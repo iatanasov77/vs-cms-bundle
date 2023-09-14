@@ -53,14 +53,14 @@ class PagesExtController extends AbstractController
         $this->pagesFactory                 = $pagesFactory;
     }
     
-    public function getPageForm( $pageId, $locale, Request $request ) : Response
+    public function getPageForm( $itemId, $locale, Request $request ): Response
     {
         $em     = $this->doctrine->getManager();
-        $page   = $this->pagesRepository->find( $pageId );
+        $item   = $this->pagesRepository->find( $itemId );
         
         if ( $locale != $request->getLocale() ) {
-            $page->setTranslatableLocale( $locale );
-            $em->refresh( $page );
+            $item->setTranslatableLocale( $locale );
+            $em->refresh( $item );
         }
         
         $taxonomy   = $this->taxonomyRepository->findByCode(
@@ -70,12 +70,12 @@ class PagesExtController extends AbstractController
         return $this->render( '@VSCms/Pages/Pages/partial/page_form.html.twig', [
             'categories'    => $this->pagesCategoriesRepository->findAll(),
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
-            'item'          => $page,
-            'form'          => $this->createForm( PageForm::class, $page )->createView(),
+            'item'          => $item,
+            'form'          => $this->createForm( PageForm::class, $item )->createView(),
         ]);
     }
     
-    public function clonePage( $pageId, Request $request ) : Response
+    public function clonePage( $pageId, Request $request ): Response
     {
         $parentPage = $this->pagesRepository>find( $pageId );
         $formClone  = $this->createForm( ClonePageForm::class );
@@ -105,7 +105,7 @@ class PagesExtController extends AbstractController
         return new Response( 'The form is not hanled properly !!!', Response::HTTP_BAD_REQUEST );
     }
     
-    public function previewPage( $pageId, $locale, $version, Request $request ) : Response
+    public function previewPage( $pageId, $locale, $version, Request $request ): Response
     {
         $em     = $this->doctrine->getManager();
         $page   = $this->pagesRepository->find( $pageId );

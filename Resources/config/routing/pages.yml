@@ -49,7 +49,7 @@ vs_cms_pages_preview:
     controller: Vankosoft\CmsBundle\Controller\PagesExtController::previewPage
     defaults:   { version: null }
 vs_cms_pages_form_in_locale:
-    path: /page-actions/get-form/{locale}/{pageId}
+    path: /page-actions/get-form/{locale}/{itemId}
     controller: Vankosoft\CmsBundle\Controller\PagesExtController::getPageForm
 
 # Page Categories Callbacks

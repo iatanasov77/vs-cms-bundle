@@ -10,7 +10,7 @@
             value="{{ item.enabled }}"
             {% if item.enabled %}checked="checked"{% endif %}
         />
-        <span class="custom-control-label">Published</span>
+        <span class="custom-control-label">{{ 'vs_cms.form.page.published' | trans( {},'VSCmsBundle' ) }}</span>
     </label>
     
     <div class="form-group">

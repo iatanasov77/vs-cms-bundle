@@ -51,7 +51,7 @@
 		                    <strong>{{ 'vs_application.form.errors_title' | trans( {},'VSApplicationBundle' ) }}</strong> {{ form_errors(form) }}
 		                </div>
 		            {% endif %}
-		            <div id="pageFormContainer" data-pageId="{{ item.id }}">
+		            <div id="FormContainer" data-itemId="{{ item.id }}">
                         {% include '@VSCms/Pages/Pages/partial/page_form.html.twig' %}
                     </div>
         		</div>
