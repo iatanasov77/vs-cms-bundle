@@ -34,8 +34,9 @@ class PagesController extends AbstractCrudController
         $categories = new ArrayCollection();
         $pcr        = $this->get( 'vs_cms.repository.page_categories' );
         
-        $formLocale = $request->request->get( 'locale' );
         $formPost   = $request->request->all( 'page_form' );
+        //$formLocale = $request->request->get( 'locale' );
+        $formLocale = $formPost['locale'];
         
         if ( $formLocale ) {
             $entity->setTranslatableLocale( $formLocale );
