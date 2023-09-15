@@ -55,8 +55,9 @@ class MultiPageTocPageController extends AbstractController
         ]);
     }
     
-    public function editTocPage( $documentId, $tocPageId, Request $request ): Response
+    public function editTocPage( $documentId, $tocPageId, $locale, Request $request ): Response
     {
+        var_dump( $locale ); die;
         $locale         = $request->getLocale();
         $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
         
