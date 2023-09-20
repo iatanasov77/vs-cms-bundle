@@ -9,7 +9,7 @@ use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
  */
 class PageCategory implements PageCategoryInterface
 {
-    /** @var mixed */
+    /** @var integer */
     protected $id;
     
     /** @var PageCategoryInterface */
