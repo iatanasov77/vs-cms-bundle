@@ -68,15 +68,17 @@ class PageForm extends AbstractForm
             ->add( 'description', TextType::class, [
                 'label'                 => 'vs_cms.form.description',
                 'translation_domain'    => 'VSCmsBundle',
+                'required'              => false,
             ])
             ->add( 'title', TextType::class, [
                 'label'                 => 'vs_cms.form.title',
                 'translation_domain'    => 'VSCmsBundle',
             ])
-            ->add( 'tagsInputWhitelist', HiddenType::class, ['mapped' => false] )
+            ->add( 'tagsInputWhitelist', HiddenType::class, ['mapped' => false, 'required' => false] )
             ->add( 'tags', TextType::class, [
                 'label'                 => 'vs_application.form.tags',
                 'translation_domain'    => 'VSApplicationBundle',
+                'required'              => false,
             ])
             ->add( 'slug', TextType::class, [
                 'label'                 => 'vs_cms.form.page.slug',
