@@ -75,8 +75,8 @@ class PageForm extends AbstractForm
             ])
             ->add( 'tagsInputWhitelist', HiddenType::class, ['mapped' => false] )
             ->add( 'tags', TextType::class, [
-                'label'                 => 'vs_vvp.form.video.tags',
-                'translation_domain'    => 'VanzVideoPlayer',
+                'label'                 => 'vs_application.form.tags',
+                'translation_domain'    => 'VSApplicationBundle',
             ])
             ->add( 'slug', TextType::class, [
                 'label'                 => 'vs_cms.form.page.slug',
