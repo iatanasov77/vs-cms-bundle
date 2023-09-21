@@ -34,6 +34,9 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     
     /** @var string */
     protected $description;
+    
+    /** @var string */
+    protected $tags   = '';
 
     /** @var string */
     protected $text;
@@ -133,6 +136,18 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
+    }
+    
+    public function getTags(): ?string
+    {
+        return $this->tags;
+    }
+    
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+        
         return $this;
     }
     
