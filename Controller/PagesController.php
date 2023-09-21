@@ -14,9 +14,11 @@ class PagesController extends AbstractCrudController
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
         $versions       = $this->classInfo['action'] == 'indexAction' ? $this->getVersions( $translations ) : [];
         
-        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
+        $taxonomy       = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
                                     $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
                                 );
+        
+        $tagsContext    = $this->get( 'vs_application.repository.tags_whitelist_context' )->findByTaxonCode( 'static-pages' );
         
         return [
             'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
@@ -26,6 +28,8 @@ class PagesController extends AbstractCrudController
             
             'formClone'     => $this->createForm( ClonePageForm::class )->createView(),
             'formPreview'   => $this->createForm( PreviewPageForm::class )->createView(),
+            
+            'pageTags'      => $tagsContext->getTags(),
         ];
     }
     

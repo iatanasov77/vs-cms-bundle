@@ -3,6 +3,9 @@
 
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
 {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
+
+    {{ form_widget( form.tagsInputWhitelist, { 'value' : pageTags | join(',') } ) }}
+
     <label class="custom-control custom-checkbox">  
         <input type="checkbox" id="page_form_enabled"
             class="custom-control-input form-check-input"
@@ -70,4 +73,5 @@
     </div>
     
     {{ vs_form.buttons( form ) }}
+    
 {{ form_end(form, {'render_rest': false}) }}
