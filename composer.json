@@ -22,9 +22,8 @@
 		"liip/imagine-bundle" : "^2.9",
 		"artgris/filemanager-bundle" : "^2.6",
 		"knplabs/knp-gaufrette-bundle" : "^0.8",
-		"spe/filesize-extension-bundle" : "^2.0",
-		"oneup/uploader-bundle": "^4.0",
-		"oneup/flysystem-bundle": "^4.6"
+		"oneup/uploader-bundle" : "^4.0",
+		"oneup/flysystem-bundle" : "^4.6"
 	},
 	"conflict" : {
 		"doctrine/doctrine-bundle" : "<1.3",
