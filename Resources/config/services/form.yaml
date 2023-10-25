@@ -12,15 +12,7 @@ parameters:
     ##########################################################
     vs_cms.form.toc_page.ckeditor_uiColor: '#ffffff'
     vs_cms.form.toc_page.ckeditor_toolbar: devpage_toolbar
-    vs_cms.form.toc_page.ckeditor_extraPlugins:
-        - liststyle
-        - font
-        - justify
-        - codesnippet
-        - lightbox
-        - simplebox
-        - simplebox-2
-        - ckeditor_add_class'
+    vs_cms.form.toc_page.ckeditor_extraPlugins: 'liststyle, font, justify, codesnippet, lightbox, simplebox, simplebox-2, ckeditor_add_class'
     vs_cms.form.toc_page.ckeditor_removeButtons: ''
     vs_cms.form.toc_page.ckeditor_allowedContent: true # Disable Advanced Content Filter
     vs_cms.form.toc_page.ckeditor_extraAllowedContent: '*[*]{*}(*)'
