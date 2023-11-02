@@ -1,9 +1,9 @@
 <?php namespace Vankosoft\CmsBundle\Form;
 
 use Vankosoft\ApplicationBundle\Form\AbstractForm;
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,7 +21,7 @@ class PageCategoryForm extends AbstractForm
         string $dataClass,
         RepositoryInterface $localesRepository,
         RequestStack $requestStack,
-        EntityRepository $repository
+        RepositoryInterface $repository
     ) {
         parent::__construct( $dataClass );
         
@@ -60,7 +60,7 @@ class PageCategoryForm extends AbstractForm
                 'label'                 => 'vs_cms.form.category.parent_category',
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->categoryClass,
-                'query_builder'         => function ( EntityRepository $er ) use ( $category )
+                'query_builder'         => function ( RepositoryInterface $er ) use ( $category )
                 {
                     $qb = $er->createQueryBuilder( 'pc' );
                     if  ( $category && $category->getId() ) {
