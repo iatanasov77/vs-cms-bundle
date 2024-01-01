@@ -1,3 +1,5 @@
+{% import "@VSApplication/Macros/translations.html.twig" as vs_translations %}
+
 <tr>
     <td>{{ loop.index }}</td>
     <td>{{ item.title }}</td>
@@ -10,22 +12,8 @@
             <i class="fas fa-times" style="color: #ff1e1e;"></i>
         {% endif %}
     </td>
-    <td>
-        {% if translations[item.id] is defined %}
-            {% for locale in translations[item.id] %}
-                <i class="flag flag-{{ locale | split( '_' )[1] | lower }}"></i>
-                {% if not loop.last %}&nbsp;{% endif %}
-            {% endfor %}
-        {% endif %}
-    </td>
-    <td>
-        {% if versions[item.id] is defined %}
-            {% for locale, version in versions[item.id] %}
-                <i class="flag flag-{{ locale | split( '_' )[1] | lower }}"></i>
-                ({{ version }}){% if not loop.last %}&nbsp;{% endif %}
-            {% endfor %}
-        {% endif %}
-    </td>
+    <td>{% if translations[item.id] is defined %}{{ vs_translations.flags( translations[item.id] ) }}{% endif %}</td>
+    <td>{% if versions[item.id] is defined %}{{ vs_translations.versionFlags( versions[item.id] ) }}{% endif %}</td>
     <td>
         <div class="btn-group">
             <a class="btn btn-outline-primary pagePreview"
