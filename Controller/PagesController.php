@@ -29,7 +29,7 @@ class PagesController extends AbstractCrudController
             'formClone'     => $this->createForm( ClonePageForm::class )->createView(),
             'formPreview'   => $this->createForm( PreviewPageForm::class )->createView(),
             
-            'pageTags'      => $tagsContext->getTags(),
+            'pageTags'      => $tagsContext->getTagsArray(),
         ];
     }
     
