@@ -16,6 +16,7 @@ class DocumentCategoryController extends AbstractCrudController
         
         return [
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+            'items'         => $this->getRepository()->findAll(),
         ];
     }
     

@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for item in items %}
+                    {% for item in resources %}
                         <tr>
                         	<td>{{ loop.index }}</td>
                         	<td>
@@ -78,6 +78,10 @@
                     </tbody>
                 </table>
             </div>
+            
+            {% if resources.haveToPaginate() %}
+                {{ pagerfanta( resources, null, { 'proximity': 10 } ) }}
+            {% endif %}
         </div>
     </div>
     

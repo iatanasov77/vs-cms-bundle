@@ -21,6 +21,7 @@ class PagesController extends AbstractCrudController
         $tagsContext    = $this->get( 'vs_application.repository.tags_whitelist_context' )->findByTaxonCode( 'static-pages' );
         
         return [
+            'items'         => $this->getRepository()->findAll(),
             'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
             'translations'  => $translations,
