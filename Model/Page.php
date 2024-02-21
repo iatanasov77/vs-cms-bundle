@@ -4,7 +4,7 @@ use Sylius\Component\Resource\Model\TranslationInterface;
 
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
-use Sylius\Component\Resource\Model\TranslatableTrait;
+use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -173,13 +173,5 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     public function isPublished()
     {
         return $this->isEnabled();
-    }
-    
-    /*
-     * @NOTE: Decalared abstract in TranslatableTrait
-     */
-    protected function createTranslation(): TranslationInterface
-    {
-        
     }
 }
