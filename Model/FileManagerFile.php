@@ -1,5 +1,8 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
+use Vankosoft\CmsBundle\Model\Interfaces\FileManagerFileInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\FileManagerInterface;
+
 class FileManagerFile extends File implements FileManagerFileInterface
 {
     /** @var FileManagerInterface */

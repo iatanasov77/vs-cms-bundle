@@ -1,4 +1,4 @@
-<?php namespace Vankosoft\CmsBundle\Model;
+<?php namespace Vankosoft\CmsBundle\Model\Interfaces;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\SlugAwareInterface;

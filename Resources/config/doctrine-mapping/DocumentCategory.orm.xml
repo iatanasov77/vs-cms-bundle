@@ -14,7 +14,7 @@
             </cascade>
         </one-to-one>
         
-        <one-to-many field="documents" target-entity="Vankosoft\CmsBundle\Model\DocumentInterface" mapped-by="category" orphan-removal="true">
+        <one-to-many field="documents" target-entity="Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface" mapped-by="category" orphan-removal="true">
             <cascade>
                 <cascade-all/>
             </cascade>

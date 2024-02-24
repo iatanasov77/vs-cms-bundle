@@ -5,6 +5,7 @@ use Doctrine\Common\Collections\Collection;
 
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 use Vankosoft\ApplicationBundle\Model\Taxon;
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentCategoryInterface;
 
 /**
  * Page Category Model

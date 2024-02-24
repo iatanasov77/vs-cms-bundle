@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonLeafInterface;
 use Vankosoft\ApplicationBundle\Model\Traits\TaxonLeafTrait;
 use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
 class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
 {

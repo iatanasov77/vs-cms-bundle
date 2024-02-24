@@ -15,18 +15,18 @@
             </cascade>
         </one-to-one>
         
-      	<many-to-one field="parent" name="parent_id" target-entity="Vankosoft\CmsBundle\Model\PageCategoryInterface" inversed-by="children">
+      	<many-to-one field="parent" name="parent_id" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface" inversed-by="children">
         	<cascade>
                 <cascade-all/>
             </cascade>
         </many-to-one>
         
-        <one-to-many field="children" target-entity="Vankosoft\CmsBundle\Model\PageCategoryInterface" mapped-by="parent">
+        <one-to-many field="children" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface" mapped-by="parent">
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-many>
         
-        <many-to-many field="pages" target-entity="Vankosoft\CmsBundle\Model\PageInterface" mapped-by="categories" />
+        <many-to-many field="pages" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageInterface" mapped-by="categories" />
     </mapped-superclass>
 </doctrine-mapping>

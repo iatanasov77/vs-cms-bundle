@@ -1,5 +1,7 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface;
+
 class Document implements DocumentInterface
 {
     /** @var integer */

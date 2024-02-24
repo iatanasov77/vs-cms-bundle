@@ -5,6 +5,8 @@ use Doctrine\Common\Collections\Collection;
 
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 use Vankosoft\ApplicationBundle\Model\Taxon;
+use Vankosoft\CmsBundle\Model\Interfaces\FileManagerInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
 class FileManager implements FileManagerInterface
 {

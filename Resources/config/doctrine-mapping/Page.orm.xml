@@ -41,7 +41,7 @@
         ======================
         	https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/inheritance-mapping.html#mapped-superclasses
         -->
-        <many-to-many field="categories" target-entity="Vankosoft\CmsBundle\Model\PageCategoryInterface" inversed-by="pages">
+        <many-to-many field="categories" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface" inversed-by="pages">
         	<cascade>
                 <cascade-persist/>
                 <cascade-merge/>

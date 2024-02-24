@@ -4,6 +4,7 @@ use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\TocPageInterface;
 
 class TocPage implements TocPageInterface, LoggableObjectInterface
 {
