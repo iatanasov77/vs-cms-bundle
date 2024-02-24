@@ -3,21 +3,21 @@
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
+use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
 
 use Vankosoft\CmsBundle\Form\ClonePageForm;
 use Vankosoft\CmsBundle\Form\PreviewPageForm;
 
 class PagesController extends AbstractCrudController
 {
+    use TaxonomyHelperTrait;
+    
     protected function customData( Request $request, $entity = null ): array
     {
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
         $versions       = $this->classInfo['action'] == 'indexAction' ? $this->getVersions( $translations ) : [];
         
-        $taxonomy       = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-                                    $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
-                                );
-        
+        $taxonomy       = $this->getTaxonomy( 'vs_application.page_categories.taxonomy_code' );
         $tagsContext    = $this->get( 'vs_application.repository.tags_whitelist_context' )->findByTaxonCode( 'static-pages' );
         
         return [
