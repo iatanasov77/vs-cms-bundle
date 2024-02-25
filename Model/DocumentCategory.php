@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 use Vankosoft\ApplicationBundle\Model\Taxon;
 use Vankosoft\CmsBundle\Model\Interfaces\DocumentCategoryInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface;
 
 /**
  * Page Category Model
@@ -45,7 +46,7 @@ class DocumentCategory implements DocumentCategoryInterface
         return $this->documents;
     }
     
-    public function addDocument( DocumentInterface $document ): DocumentCategoryInterface
+    public function addDocument( DocumentInterface $document ): self
     {
         if ( ! $this->documents->contains( $document ) ) {
             $this->documents[] = $document;
@@ -55,7 +56,7 @@ class DocumentCategory implements DocumentCategoryInterface
         return $this;
     }
     
-    public function removeDocument( DocumentInterface $document ): DocumentCategoryInterface
+    public function removeDocument( DocumentInterface $document ): self
     {
         if ( $this->documents->contains( $document ) ) {
             $this->documents->removeElement( $document );

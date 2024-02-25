@@ -7,7 +7,7 @@ interface DocumentCategoryInterface extends VankosoftCategoryInterface
 {
     public function getDocuments(): Collection;
     
-    public function addDocument( DocumentInterface $document ): DocumentCategoryInterface;
+    public function addDocument( DocumentInterface $document ): self;
     
-    public function removeDocument( DocumentInterface $document ): DocumentCategoryInterface;
+    public function removeDocument( DocumentInterface $document ): self;
 }
