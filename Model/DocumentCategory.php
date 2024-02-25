@@ -2,9 +2,7 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
-use Vankosoft\ApplicationBundle\Model\Taxon;
+use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentTrait;
 use Vankosoft\CmsBundle\Model\Interfaces\DocumentCategoryInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface;
 
@@ -13,14 +11,13 @@ use Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface;
  */
 class DocumentCategory implements DocumentCategoryInterface
 {
+    use TaxonDescendentTrait;
+    
     /** @var mixed */
     protected $id;
     
     /** @var Collection|Document[] */
     protected $documents;
-    
-    /** @var TaxonInterface */
-    protected $taxon;
     
     /** @var DocumentCategoryInterface */
     protected $parent;
@@ -69,22 +66,6 @@ class DocumentCategory implements DocumentCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getTaxon(): ?TaxonInterface
-    {
-        return $this->taxon;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function setTaxon( ?TaxonInterface $taxon ): void
-    {
-        $this->taxon = $taxon;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return $this->parent;
@@ -103,22 +84,6 @@ class DocumentCategory implements DocumentCategoryInterface
     public function getChildren(): Collection
     {
         return $this->children;
-    }
-    
-    public function getName(): string
-    {
-        return $this->taxon ? $this->taxon->getName() : '';
-    }
-    
-    public function setName( string $name ) : self
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setName( $name );
-        
-        return $this;
     }
     
     public function __toString()

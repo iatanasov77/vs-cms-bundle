@@ -3,9 +3,9 @@
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentTrait;
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonDescendentInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\SliderInterface;
 
-class Slider implements TaxonDescendentInterface
+class Slider implements SliderInterface
 {
     use TaxonDescendentTrait;
     
