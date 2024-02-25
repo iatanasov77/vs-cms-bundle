@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Vankosoft\CmsBundle\Model\Page;
-use Vankosoft\CmsBundle\Model\PageInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
 class PageForm extends AbstractForm
 {
