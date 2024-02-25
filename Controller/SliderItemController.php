@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Resource\ResourceActions;
 use Vankosoft\ApplicationBundle\Component\Status;
 
-use App\Entity\Slider;
+use Vankosoft\CmsBundle\Model\Interfaces\SliderItemInterface;
 
 class SliderItemController extends AbstractCrudController
 {
@@ -65,32 +65,35 @@ class SliderItemController extends AbstractCrudController
         }
     }
     
-    private function createPhoto( Slider &$slider, File $file ): void
+    private function createPhoto( SliderItemInterface &$sliderItem, File $file ): void
     {
-        $sliderPhoto = $slider->getPhoto() ?: $this->get( 'vs_vvp.factory.slider_photo' )->createNew();
-        $sliderPhoto->setOriginalName( $file->getClientOriginalName() );
-        $sliderPhoto->setSlider( $slider );
+        $sliderItemPhoto = $slider->getPhoto() ?: $this->get( 'vs_cms.factory.slider_item_photo' )->createNew();
+        $sliderItemPhoto->setOriginalName( $file->getClientOriginalName() );
+        $sliderItemPhoto->setSlider( $sliderItem );
         
         $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
-        $sliderPhoto->setFile( $uploadedFile );
-        $this->get( 'vs_vvp.slider_uploader' )->upload( $sliderPhoto );
-        $sliderPhoto->setFile( null ); // reset File Because: Serialization of 'Symfony\Component\HttpFoundation\File\UploadedFile' is not allowed
+        $sliderItemPhoto->setFile( $uploadedFile );
+        $this->get( 'vs_cms.slider_uploader' )->upload( $sliderItemPhoto );
         
-        if ( ! $slider->getPhoto() ) {
-            $slider->setPhoto( $sliderPhoto );
+        // reset File Because: Serialization of 'Symfony\Component\HttpFoundation\File\UploadedFile' is not allowed
+        $sliderItemPhoto->setFile( null );
+        
+        if ( ! $sliderItem->getPhoto() ) {
+            $sliderItem->setPhoto( $sliderItemPhoto );
         }
     }
     
-    private function removePhotoFile( Slider $slider )
+    private function removePhotoFile( Slider $sliderItem )
     {
-        $em             = $this->get( 'doctrine' )->getManager();
-        $sliderPhoto    = $this->getParameter( 'vs_vvp.slider_directory' ) . '/' . $slider->getPhoto()->getPath();
+        $em                 = $this->get( 'doctrine' )->getManager();
+        $sliderPhotoDir     = $this->getParameter( 'vs_cms.filemanager_shared_media_gaufrette.slider' );
+        $sliderItemPhoto    = $sliderPhotoDir . '/' . $sliderItem->getPhoto()->getPath();
         
-        $em->remove( $slider->getPhoto() );
+        $em->remove( $sliderItem->getPhoto() );
         $em->flush();
         
         $filesystem     = new Filesystem();
-        $filesystem->remove( $sliderPhoto );
+        $filesystem->remove( $sliderItemPhoto );
     }
     
     private function getTranslations()
@@ -98,8 +101,8 @@ class SliderItemController extends AbstractCrudController
         $translations   = [];
         $transRepo      = $this->get( 'vs_application.repository.translation' );
         
-        foreach ( $this->getRepository()->findAll() as $slider ) {
-            $translations[$slider->getId()] = array_keys( $transRepo->findTranslations( $slider ) );
+        foreach ( $this->getRepository()->findAll() as $sliderItem ) {
+            $translations[$slider->getId()] = array_keys( $transRepo->findTranslations( $sliderItem ) );
         }
         //echo "<pre>"; var_dump($translations); die;
         return $translations;

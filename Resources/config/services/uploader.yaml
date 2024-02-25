@@ -1,11 +1,16 @@
 parameters:
     vs_cms.file_manager.taxonomy_code: file-managers
+    
     # Gaufrette File Systems
     vs_cms.gaufrette.profile.filesystem: vs_application_profile
     vs_cms.gaufrette.filemanager.filesystem: vs_application_filemanager
-    # Shared Media Directories
+    
+    # Gaufrette Shared Media Directories
     vs_cms.filemanager_shared_media_gaufrette.profile: "%kernel.project_dir%/public/shared_media/gaufrette/profile"
     vs_cms.filemanager_shared_media_gaufrette.filemanager: "%kernel.project_dir%/public/shared_media/gaufrette/filemanager"
+    vs_cms.filemanager_shared_media_gaufrette.slider: "%kernel.project_dir%/public/shared_media/gaufrette/slider"
+    
+    # Artgris Shared Media Directories
     vs_cms.filemanager_shared_media_artgris: '%kernel.project_dir%/public/shared_media/artgris'
 
 services:
@@ -50,4 +55,15 @@ services:
             - '@doctrine'
         tags:
             - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+            
+    vs_cms.slider_uploader.filesystem:
+        class: Gaufrette\Filesystem
+        arguments: ['%vs_cms.filemanager_shared_media_gaufrette.slider%']
+        factory: ['@knp_gaufrette.filesystem_map', 'get']
+        
+    vs_cms.slider_uploader:
+        class: Vankosoft\CmsBundle\Component\Uploader\SliderPhotoUploader
+        arguments:
+            - '@vs_cms.slider_uploader.filesystem'
+            - '@vs_cms.file_path_generator'
 
