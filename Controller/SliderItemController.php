@@ -17,8 +17,6 @@ use Vankosoft\CmsBundle\Model\Interfaces\SliderItemInterface;
 
 class SliderItemController extends AbstractCrudController
 {
-    use GlobalFormsTrait;
-    
     public function deleteAction( Request $request ): Response
     {
         $configuration = $this->requestConfigurationFactory->create( $this->metadata, $request );
