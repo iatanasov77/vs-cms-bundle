@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+    <mapped-superclass name="Vankosoft\CmsBundle\Model\SliderItem">
+    
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+        
+        <field name="enabled" column="active" type="boolean" />
+        
+        <field name="title" column="title" type="string" length="255" nullable="false">
+            <gedmo:translatable />
+        </field>
+        
+        <field name="description" column="description" type="string" length="255" nullable="false">
+            <gedmo:translatable />
+        </field>
+        
+        <one-to-one field="photo" target-entity="Vankosoft\CmsBundle\Model\Interfaces\SliderItemPhotoInterface" mapped-by="owner">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+        
+    </mapped-superclass>
+</doctrine-mapping>

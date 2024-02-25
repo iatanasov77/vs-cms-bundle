@@ -1,6 +1,6 @@
 <?php namespace Vankosoft\CmsBundle\Component\Generator;
 
-use Vankosoft\CmsBundle\Model\FileInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
 
 interface FilePathGeneratorInterface
 {

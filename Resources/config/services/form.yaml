@@ -96,3 +96,39 @@ services:
         arguments:
             - '%vs_cms.model.file_manager_file.class%'
             
+    vs_cms.resources.helpcenter_question.form:
+        class: Vankosoft\CmsBundle\Form\HelpCenterQuestionForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.helpcenter_question.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
+            
+    vs_cms.resources.quick_link.form:
+        class: App\Form\QuickLinkForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.quick_link.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
+
+    vs_cms.resources.slider.form:
+        class: App\Form\SliderForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.slider.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
+            
+    vs_cms.resources.slider_item.form:
+        class: App\Form\SliderForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.slider_item.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
+            

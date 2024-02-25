@@ -17,21 +17,39 @@ vs_cms:
             categories_placeholder: '-- Категории --'
             slug: 'Слуг'
             page_content: 'Съдържание'
+            
         clone_page:
             new_title: 'Ново Име'
+            
         category:
             parent_category: 'Родителска Категория'
             parent_category_placeholder: '-- Родителска Категория --'
+            
         document:
             document_category: 'Категория на Документ'
             document_category_placeholder: '-- Избери Категория на Документ --'
             document_toc: 'Документ Съдържание'
+            
         toc_page:
             parent_page_placeholder: '-- Избери Родителска Страница --'
+            
         filemanager:
             file_directory_lable: 'Директория'
             file_lable: 'Избери Файл'
             file_info: 'Позволени Типове: jpeg, png'
+            
+        helpcenter_question:
+            question: Въпрос
+            answer: Отговор
+            
+        quick_link:
+            link_text: Линк Текст
+            link_path: 'Линк Път (ИЛИ Абсолютен УРЛ)'
+            
+        slider_item:
+            title: Заглавие
+            description: Описание
+            photo: Снимка
             
     template:
         uncategorized_pages: Некатегоризирани Страници
@@ -84,6 +102,27 @@ vs_cms:
         document_update_toc_pages_title: 'Страници на Съдържанивто'
         document_update_title: 'Редактиране на Документ'
         document_create_title: 'Създаване на Документ'
+        
+        list_questions: Въпроси Листинг
+        page_title_question_create: Създаване на Въпрос
+        page_title_question_update: Редакция на Въпрос
+        page_title_question_details: Въпрос Детайли
+        
+        page_title_quick_link_listing: Списък Бързи Линкове
+        page_title_quick_link_create: Създаване на Бърз Линк
+        page_title_quick_link_update: Редакция на Бърз Линк
+        page_title_quick_link_details: Бърз Линк Детайли
+        
+        list_sliders: Слайдери
+        page_title_slider_create: Създаване Слайдер
+        page_title_slider_update: Редакция Слайдер
+        page_title_slider_details: Слайдер Детайли
+        
+        list_slider_items: Слайдер Елементи
+        page_title_slider_item_create: Създаване Слайдер Елемент
+        page_title_slider_item_update: Редакция Слайдер Елемент
+        page_title_slider_item_details: Слайдер Елемент Детайли
+        
     modal:
         page_clone:
             title: 'Клониране на Страница'

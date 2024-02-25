@@ -42,6 +42,24 @@ use Vankosoft\CmsBundle\Controller\DocumentCategoryController;
 use Vankosoft\CmsBundle\Repository\DocumentCategoryRepository;
 use Vankosoft\CmsBundle\Form\DocumentCategoryForm;
 
+use Vankosoft\CmsBundle\Model\HelpCenterQuestion;
+use Vankosoft\CmsBundle\Controller\HelpCenterQuestionController;
+use Vankosoft\CmsBundle\Form\HelpCenterQuestionForm;
+
+use Vankosoft\CmsBundle\Model\QuickLink;
+use Vankosoft\CmsBundle\Controller\QuickLinkController;
+use Vankosoft\CmsBundle\Form\QuickLinkForm;
+
+use Vankosoft\CmsBundle\Model\Slider;
+use Vankosoft\CmsBundle\Controller\SliderController;
+use Vankosoft\CmsBundle\Form\SliderForm;
+
+use Vankosoft\CmsBundle\Model\SliderItem;
+use Vankosoft\CmsBundle\Controller\SliderItemController;
+use Vankosoft\CmsBundle\Form\SliderItemForm;
+
+use Vankosoft\CmsBundle\Model\SliderItemPhoto;
+
 /**
  * This is the class that validates and merges configuration from your app/config files
  *
@@ -188,6 +206,90 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
+                        
+                        ->arrayNode( 'helpcenter_question' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( HelpCenterQuestion::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( HelpCenterQuestionController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( HelpCenterQuestionForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'quick_link' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( QuickLink::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( QuickLinkController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( QuickLinkForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'slider' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( Slider::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( SliderController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( SliderForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'slider_item' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( SliderItem::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( SliderItemController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( SliderItemForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'slider_item_photo' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( SliderItemPhoto::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
                     ->end()
                 ->end()
             ->end()

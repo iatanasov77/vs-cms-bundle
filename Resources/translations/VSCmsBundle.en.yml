@@ -17,21 +17,39 @@ vs_cms:
             categories_placeholder: '-- Categories --'
             slug: 'Slug'
             page_content: 'Page Content'
+            
         clone_page:
             new_title: 'New Title'
+            
         category:
             parent_category: 'Parent Category'
             parent_category_placeholder: '-- Parent Category --'
+            
         document:
             document_category: 'Document Category'
             document_category_placeholder: '-- Select Document Category --'
             document_toc: 'Document TOC'
+            
         toc_page:
             parent_page_placeholder: '-- Select a Parent Page --'
+            
         filemanager:
             file_directory_lable: 'Directory'
             file_lable: 'Upload File'
             file_info: 'Allowed Types: jpeg, png'
+            
+        helpcenter_question:
+            question: Question
+            answer: Answer
+            
+        quick_link:
+            link_text: Link Text
+            link_path: Link Path (OR Absolute Url)
+            
+        slider_item:
+            title: Title
+            description: Description
+            photo: Photo
             
     template:
         uncategorized_pages: Uncategorized Pages
@@ -84,6 +102,27 @@ vs_cms:
         document_update_toc_pages_title: 'TOC Pages'
         document_update_title: 'Edit Document'
         document_create_title: 'Create New Document'
+        
+        list_questions: Questions Listing
+        page_title_question_create: Create Question
+        page_title_question_update: Update Question
+        page_title_question_details: Question Details
+        
+        page_title_quick_link_listing: Quick Links Listing
+        page_title_quick_link_create: Create Quick Link
+        page_title_quick_link_update: Update Quick Link
+        page_title_quick_link_details: Quick Link Details
+        
+        list_sliders: Sliders Listing
+        page_title_slider_create: Create Slider
+        page_title_slide_update: Update Slider
+        page_title_slider_details: Slider Details
+        
+        list_slider_items: Slider Items Listing
+        page_title_slider_item_create: Create Slider Item
+        page_title_slider_item_update: Update Slider Item
+        page_title_slider_item_details: Slider Item Details
+        
     modal:
         page_clone:
             title: 'Clone Page'
