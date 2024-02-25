@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 use Vankosoft\ApplicationBundle\Model\Taxon;
 use Vankosoft\CmsBundle\Model\Interfaces\FileManagerInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\FileManagerFileInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
 class FileManager implements FileManagerInterface
@@ -85,7 +86,7 @@ class FileManager implements FileManagerInterface
         return $this->files;
     }
     
-    public function addFile( FileManagerFile $file ) : FileManagerInterface
+    public function addFile( FileManagerFileInterface $file ): self
     {
         if ( ! $this->files->contains( $file ) ) {
             $this->files[] = $file;
@@ -95,7 +96,7 @@ class FileManager implements FileManagerInterface
         return $this;
     }
     
-    public function removeFile( FileManagerFile $file ) : FileManagerInterface
+    public function removeFile( FileManagerFileInterface $file ): self
     {
         if ( ! $this->files->contains( $file ) ) {
             $this->files->removeElement( $file );

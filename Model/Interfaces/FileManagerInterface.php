@@ -5,9 +5,9 @@ use Doctrine\Common\Collections\Collection;
 
 interface FileManagerInterface extends ResourceInterface
 {
-    public function getFiles();
+    public function getFiles(): Collection;
     
-    public function addFile( FileManagerFile $file ) : FileManagerInterface;
+    public function addFile( FileManagerFileInterface $file ): self;
     
-    public function removeFile( FileManagerFile $file ) : FileManagerInterface;
+    public function removeFile( FileManagerFileInterface $file ): self;
 }
