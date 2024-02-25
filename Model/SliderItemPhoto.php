@@ -5,10 +5,7 @@ use Vankosoft\CmsBundle\Model\Interfaces\SliderItemInterface;
 
 class SliderItemPhoto extends File implements SliderItemPhotoInterface
 {
-    /**
-     * @ORM\OneToOne(targetEntity=SliderItem::class, inversedBy="photo", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
-     */
+    /** @var SliderItemInterface */
     protected $owner;
     
     public function getSliderItem(): SliderItemInterface
