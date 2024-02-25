@@ -1,4 +1,13 @@
 parameters:
+    # Description Field Form Options
+    ##########################################################
+    vs_cms.form.decription_field.ckeditor_uiColor: '#ffffff'
+    vs_cms.form.decription_field.ckeditor_extraAllowedContent: '*[*]{*}(*)'
+    vs_cms.form.decription_field.ckeditor_toolbar: description_toolbar
+    vs_cms.form.decription_field.ckeditor_extraPlugins: 'font, justify'
+    vs_cms.form.decription_field.ckeditor_removeButtons: ''
+    vs_cms.form.decription_field.ckeditor_allowedContent: true
+    
     # Pages Form Options
     ##########################################################
     vs_cms.form.pages.ckeditor_uiColor: '#ffffff'
