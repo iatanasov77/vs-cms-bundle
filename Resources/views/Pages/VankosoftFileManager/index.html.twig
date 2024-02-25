@@ -36,7 +36,7 @@
                         <tr>
                         	<th width="50">N</th>
                         	<th>{{ 'vs_application.template.items_index_row_code' | trans( {},'VSApplicationBundle' ) }}</th>
-                            <th>{{ 'vs_application.template.items_index_row_title' | trans( {},'VSApplicationBundle' ) }}</th>
+                            <th>{{ 'vs_application.template.items_index_row_name' | trans( {},'VSApplicationBundle' ) }}</th>
                             <th width="150">{{ 'vs_application.template.items_index_row_action' | trans( {},'VSApplicationBundle' ) }}</th>
                         </tr>
                     </thead>
@@ -44,16 +44,8 @@
                     {% for item in resources %}
                         <tr>
                         	<td>{{ loop.index }}</td>
-                        	<td>
-                                <a href="{{ path('vs_cms_file_manager_update', {'id': item.id}) }}">
-                                    {{ item.code }}
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ path('vs_cms_file_manager_update', {'id': item.id}) }}">
-                                    {{ item.title }}
-                                </a>
-                            </td>
+                        	<td>{{ item.code }}</td>
+                            <td>{{ item.name }}</td>
                             <td>
                                 <div class="btn-group">
                                     <div class="btn-group">
