@@ -2,7 +2,7 @@
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\SlugAwareInterface;
-use Sylius\Component\Resource\Model\TranslatableInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TranslatableInterface;
 use Doctrine\Common\Collections\Collection;
 
 interface TocPageInterface extends ResourceInterface, SlugAwareInterface, TranslatableInterface
@@ -13,5 +13,4 @@ interface TocPageInterface extends ResourceInterface, SlugAwareInterface, Transl
     public function getChildren(): Collection;
     
     public function getSlug(): ?string;
-    public function setTranslatableLocale( $locale ): TocPageInterface;
 }

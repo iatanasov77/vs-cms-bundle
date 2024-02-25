@@ -4,8 +4,7 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\SlugAwareInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\ToggleableInterface;
-use Sylius\Component\Resource\Model\TranslatableInterface;
-use Sylius\Component\Resource\Model\TranslationInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TranslatableInterface;
 use Doctrine\Common\Collections\Collection;
 
 interface PageInterface extends
@@ -19,9 +18,9 @@ interface PageInterface extends
     
     public function getCategories(): Collection;
     
-    public function addCategory( PageCategory $category ): PageInterface;
+    public function addCategory( PageCategoryInterface $category ): self;
     
-    public function removeCategory( PageCategory $category ): PageInterface;
+    public function removeCategory( PageCategoryInterface $category ): self;
     
     public function getSlug(): ?string;
     
