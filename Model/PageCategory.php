@@ -4,6 +4,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
 /**
  * Page Category Model
@@ -70,7 +71,7 @@ class PageCategory implements PageCategoryInterface
         return $this->pages;
     }
     
-    public function addPage( Page $page ): PageCategoryInterface
+    public function addPage( PageInterface $page ): self
     {
         if ( ! $this->pages->contains( $page ) ) {
             $this->pages[] = $page;
@@ -80,7 +81,7 @@ class PageCategory implements PageCategoryInterface
         return $this;
     }
     
-    public function removePage( Page $page ): PageCategoryInterface
+    public function removePage( PageInterface $page ): self
     {
         if ( $this->pages->contains( $page ) ) {
             $this->pages->removeElement( $page );

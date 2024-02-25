@@ -7,7 +7,7 @@ interface PageCategoryInterface extends VankosoftCategoryInterface
 {
     public function getPages(): Collection;
     
-    public function addPage( Page $page ): PageCategoryInterface;
+    public function addPage( PageInterface $page ): self;
     
-    public function removePage( Page $page ): PageCategoryInterface;
+    public function removePage( PageInterface $page ): self;
 }
