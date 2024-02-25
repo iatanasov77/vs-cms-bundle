@@ -2,7 +2,7 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentTrait;
 use Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
@@ -11,6 +11,8 @@ use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
  */
 class PageCategory implements PageCategoryInterface
 {
+    use TaxonDescendentTrait;
+    
     /** @var integer */
     protected $id;
     
@@ -22,9 +24,6 @@ class PageCategory implements PageCategoryInterface
     
     /** @var Collection|Page[] */
     protected $pages;
-    
-    /** @var TaxonInterface */
-    protected $taxon;
     
     public function __construct()
     {
@@ -87,38 +86,6 @@ class PageCategory implements PageCategoryInterface
             $this->pages->removeElement( $page );
             $page->removeCategory( $this );
         }
-        
-        return $this;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getTaxon(): ?TaxonInterface
-    {
-        return $this->taxon;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function setTaxon(?TaxonInterface $taxon): void
-    {
-        $this->taxon = $taxon;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->taxon ? $this->taxon->getName() : '';
-    }
-    
-    public function setName( string $name ) : self
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setName( $name );
         
         return $this;
     }

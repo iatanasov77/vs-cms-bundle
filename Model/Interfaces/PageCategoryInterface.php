@@ -1,9 +1,10 @@
 <?php namespace Vankosoft\CmsBundle\Model\Interfaces;
 
 use Vankosoft\ApplicationBundle\Model\Interfaces\VankosoftCategoryInterface;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonDescendentInterface;
 use Doctrine\Common\Collections\Collection;
 
-interface PageCategoryInterface extends VankosoftCategoryInterface
+interface PageCategoryInterface extends VankosoftCategoryInterface, TaxonDescendentInterface
 {
     public function getPages(): Collection;
     

@@ -2,20 +2,17 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
-use Vankosoft\ApplicationBundle\Model\Taxon;
+use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentTrait;
 use Vankosoft\CmsBundle\Model\Interfaces\FileManagerInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\FileManagerFileInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
 class FileManager implements FileManagerInterface
 {
+    use TaxonDescendentTrait;
+    
     /** @var integer */
     protected $id;
-    
-    /** @var TaxonInterface */
-    protected $taxon;
     
     /** @var PageInterface */
     protected $files;
@@ -28,54 +25,6 @@ class FileManager implements FileManagerInterface
     public function getId()
     {
         return $this->id;
-    }
-    
-    public function getCode()
-    {
-        return $this->taxon ? $this->taxon->getCode() : '';
-    }
-    
-    public function setCode( $code )
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setCode( $code );
-        
-        return $this;
-    }
-    
-    public function getTitle(): string
-    {
-        return $this->taxon ? $this->taxon->getName() : '';
-    }
-    
-    public function setTitle( $title )
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setName( $title );
-        
-        return $this;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getTaxon(): ?TaxonInterface
-    {
-        return $this->taxon;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function setTaxon( ?TaxonInterface $taxon ): void
-    {
-        $this->taxon = $taxon;
     }
     
     /**
