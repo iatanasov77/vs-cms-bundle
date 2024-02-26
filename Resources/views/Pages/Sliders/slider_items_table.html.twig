@@ -21,7 +21,10 @@
             <table class="table table-striped table-advance table-hover" id="tblSliderItems">
                 <tbody id="sliderItemsTableBody">
                     {% for sliderItem in item.items %}
-                        <tr data-position="{{ sliderItem.position }}" id="sliderItem-{{ sliderItem.id }}">
+                        <tr data-node-id="{{ sliderItem.id }}"
+                            data-position="{{ sliderItem.position }}"
+                            id="sliderItem-{{ sliderItem.id }}"
+                        >
                             <td>
                                 <i class="fas fa-arrows-alt"
                                     title="{{ 'vs_application.form.drag_and_drop_title' | trans( {},'VSApplicationBundle' ) }}"

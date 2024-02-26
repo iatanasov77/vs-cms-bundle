@@ -3,7 +3,7 @@
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
-{{ form_start(form, { 'attr': {'class': 'form-horizontal ', 'id': 'FormSlider'}, 'method': method }) }}
+{{ form_start(form, { 'attr': {'class': 'form-horizontal ', 'id': 'FormSliderItem'}, 'method': method }) }}
     
     <label class="custom-control custom-checkbox">  
         <input type="checkbox" id="slider_item_form_enabled"
