@@ -73,10 +73,6 @@
     
     {% if metadata is defined %}
         {{ vs_form.buttons( form, metadata ) }}
-    {% else %}
-        {% do form.btnSave.setRendered() %}
-        {% do form.btnApply.setRendered(false) %}
-        {% do form.btnCancel.setRendered() %}
     {% endif %}
     
 {{ form_end(form, {'render_rest': false}) }}
