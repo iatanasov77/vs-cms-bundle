@@ -4,6 +4,7 @@ parameters:
     # Gaufrette File Systems
     vs_cms.gaufrette.profile.filesystem: vs_application_profile
     vs_cms.gaufrette.filemanager.filesystem: vs_application_filemanager
+    vs_cms.gaufrette.slider.filesystem: vs_application_slider
     
     # Gaufrette Shared Media Directories
     vs_cms.filemanager_shared_media_gaufrette.profile: "%kernel.project_dir%/public/shared_media/gaufrette/profile"
