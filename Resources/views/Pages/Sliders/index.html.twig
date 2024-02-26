@@ -17,7 +17,6 @@
                     <thead class="table-light">
                         <tr>
                             <th></th>
-                            <th></th>
                             <th data-sortable="true" data-field="title">{{ 'vs_application.template.items_index_row_title' | trans( {},'VSApplicationBundle' ) }}</th>
                             <th>{{ 'vs_application.template.items_index_row_published' | trans( {},'VSApplicationBundle' ) }}</th>
                             <th>{{ 'vs_application.template.items_index_row_translations' | trans( {},'VSApplicationBundle' ) }}</th>
@@ -28,17 +27,8 @@
                         {% for item in resources %}
                             <tr id="{{ item.id }}" data-id="{{ item.id }}">
                                 <td>{{ loop.index }}</td>
+                                <td>{{ item.name }}</td>
                                 
-                                <td><img src="{{ item.photo.path | imagine_filter( 'index_page_thumbnail' ) }}" /></td>
-                                <td>{{ item.title }}</td>
-                                
-                                <td style="text-align: center;">
-                                    {% if item.isPublished() %}
-                                    	<i class="fas fa-check" style="color: #82c91e;">
-                                   	{% else %}
-                                    	<i class="fas fa-times" style="color: #ff1e1e;"></i>
-                                    {% endif %}
-                                </td>
                                 <td>{{ vs_translations.flags( translations[item.id] ) }}</td>
                                 <td>
                                     <div class="btn-group">
