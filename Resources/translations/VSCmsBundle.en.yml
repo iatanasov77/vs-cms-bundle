@@ -8,6 +8,7 @@ vs_cms:
         save: 'Save'
         cancel: 'Cancel'
         page_label: 'Page'
+        published: 'Published'
         
         page:
             published: 'Published'

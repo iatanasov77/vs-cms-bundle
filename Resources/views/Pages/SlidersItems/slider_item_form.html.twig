@@ -6,13 +6,13 @@
 {{ form_start(form, { 'attr': {'class': 'form-horizontal ', 'id': 'FormSlider'}, 'method': method }) }}
     
     <label class="custom-control custom-checkbox">  
-        <input type="checkbox" id="slider_form_enabled"
+        <input type="checkbox" id="slider_item_form_enabled"
             class="custom-control-input"
-            name="slider_form[enabled]"
+            name="sslider_item_form[enabled]"
             value="{{ item.enabled }}"
             {% if item.enabled %}checked="checked"{% endif %}
         />
-        <span class="custom-control-label">{{ 'vs_vvp.form.published'|trans({}, 'VanzVideoPlayer') }}</span>
+        <span class="custom-control-label">{{ 'vs_cms.form.published'|trans({}, 'VSCmsBundle') }}</span>
     </label>
     
     <div class="form-group">

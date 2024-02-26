@@ -8,6 +8,7 @@ vs_cms:
         save: 'Запази'
         cancel: 'Отказ'
         page_label: 'Страница'
+        published: 'Публикуван'
         
         page:
             published: 'Публикувана'
