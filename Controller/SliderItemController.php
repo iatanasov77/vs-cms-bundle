@@ -65,7 +65,7 @@ class SliderItemController extends AbstractCrudController
     
     private function createPhoto( SliderItemInterface &$sliderItem, File $file ): void
     {
-        $sliderItemPhoto = $slider->getPhoto() ?: $this->get( 'vs_cms.factory.slider_item_photo' )->createNew();
+        $sliderItemPhoto = $sliderItem->getPhoto() ?: $this->get( 'vs_cms.factory.slider_item_photo' )->createNew();
         $sliderItemPhoto->setOriginalName( $file->getClientOriginalName() );
         $sliderItemPhoto->setSlider( $sliderItem );
         
