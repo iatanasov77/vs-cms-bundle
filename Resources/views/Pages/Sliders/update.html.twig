@@ -1,7 +1,7 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
 {% if( item.id ) %}
-    {% set pageTitle = ( 'vs_cms.template.page_title_slider_update' | trans( {},'VSCmsBundle' ) ) ~ ': ' ~ item.title %}
+    {% set pageTitle = ( 'vs_cms.template.page_title_slider_update' | trans( {},'VSCmsBundle' ) ) ~ ': ' ~ item.name %}
 {% else %}
     {% set pageTitle = 'vs_cms.template.page_title_slider_create' | trans( {},'VSCmsBundle' ) %}
 {% endif %}
