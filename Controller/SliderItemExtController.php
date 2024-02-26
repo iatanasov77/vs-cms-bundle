@@ -69,7 +69,7 @@ class SliderItemExtController extends AbstractController
         $sliderItem     = $itemId ? $this->sliderItemRepository->find( $itemId ) : $this->sliderItemFactory->createNew();
         $formAction     = $itemId ? 
                             $this->generateUrl( 'vs_cms_slider_item_update', ['sliderId' => $sliderId, 'id' => $itemId] ) :
-                            $this->generateUrl( 'vs_cms_slider_item_update', ['sliderId' => $sliderId] );
+                            $this->generateUrl( 'vs_cms_slider_item_create', ['sliderId' => $sliderId] );
         $formMethod     = $itemId ? 'PUT' : 'POST';
         
         if ( $locale != $request->getLocale() ) {
