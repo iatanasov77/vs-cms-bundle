@@ -13,9 +13,9 @@ class SliderItemPhoto extends File implements SliderItemPhotoInterface
         return $this->owner;
     }
     
-    public function setSlider( Slider $slider ): self
+    public function setSliderItem( SliderItemInterface $sliderItem ): self
     {
-        $this->setOwner( $slider );
+        $this->setOwner( $sliderItem );
         
         return $this;
     }

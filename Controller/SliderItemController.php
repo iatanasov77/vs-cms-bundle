@@ -67,7 +67,7 @@ class SliderItemController extends AbstractCrudController
     {
         $sliderItemPhoto = $sliderItem->getPhoto() ?: $this->get( 'vs_cms.factory.slider_item_photo' )->createNew();
         $sliderItemPhoto->setOriginalName( $file->getClientOriginalName() );
-        $sliderItemPhoto->setSlider( $sliderItem );
+        $sliderItemPhoto->setSliderItem( $sliderItem );
         
         $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
         $sliderItemPhoto->setFile( $uploadedFile );
@@ -81,7 +81,7 @@ class SliderItemController extends AbstractCrudController
         }
     }
     
-    private function removePhotoFile( Slider $sliderItem )
+    private function removePhotoFile( SliderItemInterface $sliderItem )
     {
         $em                 = $this->get( 'doctrine' )->getManager();
         $sliderPhotoDir     = $this->getParameter( 'vs_cms.filemanager_shared_media_gaufrette.slider' );
@@ -100,7 +100,7 @@ class SliderItemController extends AbstractCrudController
         $transRepo      = $this->get( 'vs_application.repository.translation' );
         
         foreach ( $this->getRepository()->findAll() as $sliderItem ) {
-            $translations[$slider->getId()] = array_keys( $transRepo->findTranslations( $sliderItem ) );
+            $translations[$sliderItem->getId()] = array_keys( $transRepo->findTranslations( $sliderItem ) );
         }
         //echo "<pre>"; var_dump($translations); die;
         return $translations;
