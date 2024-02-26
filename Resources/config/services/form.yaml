@@ -115,7 +115,7 @@ services:
             - '@request_stack'
             
     vs_cms.resources.quick_link.form:
-        class: App\Form\QuickLinkForm
+        class: Vankosoft\CmsBundle\Form\QuickLinkForm
         tags:
             - { name: form.type }
         arguments:
@@ -124,7 +124,7 @@ services:
             - '@request_stack'
 
     vs_cms.resources.slider.form:
-        class: App\Form\SliderForm
+        class: Vankosoft\CmsBundle\Form\SliderForm
         tags:
             - { name: form.type }
         arguments:
@@ -133,7 +133,7 @@ services:
             - '@request_stack'
             
     vs_cms.resources.slider_item.form:
-        class: App\Form\SliderForm
+        class: Vankosoft\CmsBundle\Form\SliderForm
         tags:
             - { name: form.type }
         arguments:
