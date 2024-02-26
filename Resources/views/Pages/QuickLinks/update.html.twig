@@ -1,9 +1,9 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
 {% if( item.id ) %}
-    {% set pageTitle = ( 'vs_vvp.template.page_title_quick_link_update' | trans( {},'VanzVideoPlayer' ) ) ~ ': ' ~ item.linkText %}
+    {% set pageTitle = ( 'vs_cms.template.page_title_quick_link_update' | trans( {},'VSCmsBundle' ) ) ~ ': ' ~ item.linkText %}
 {% else %}
-    {% set pageTitle = 'vs_vvp.template.page_title_quick_link_create' | trans( {},'VanzVideoPlayer' ) %}
+    {% set pageTitle = 'vs_cms.template.page_title_quick_link_create' | trans( {},'VSCmsBundle' ) %}
 {% endif %}
 
 {% block title %}{{ parent() }} :: {{ pageTitle }}{% endblock %}
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-            	<h5 class="card-header">{{ 'vs_vvp.template.page_title_quick_link_details'  | trans( {},'VanzVideoPlayer' ) }}</h5>
+            	<h5 class="card-header">{{ 'vs_cms.template.page_title_quick_link_details'  | trans( {},'VSCmsBundle' ) }}</h5>
             	<div class="card-body">
                     
                     {% if form_errors(form) is not empty %}
