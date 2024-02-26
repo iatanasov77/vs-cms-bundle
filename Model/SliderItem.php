@@ -2,6 +2,7 @@
 
 use Vankosoft\CmsBundle\Model\Interfaces\SliderItemInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\SliderItemPhotoInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\SliderInterface;
 use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
 
@@ -24,6 +25,12 @@ class SliderItem implements SliderItemInterface
     
     /** @var bool */
     protected $enabled = true;
+    
+    /** @var SliderInterface */
+    protected $slider;
+    
+    /** @var integer */
+    protected $position;
     
     public function getId()
     {
@@ -74,5 +81,29 @@ class SliderItem implements SliderItemInterface
     public function isPublished(): bool
     {
         return $this->enabled;
+    }
+    
+    public function getSlider(): ?SliderInterface
+    {
+        return $this->slider;
+    }
+    
+    public function setSlider( SliderInterface $slider ): self
+    {
+        $this->slider   = $slider;
+        
+        return $this;
+    }
+    
+    public function getPosition()
+    {
+        return $this->position;
+    }
+    
+    public function setPosition( $position ): self
+    {
+        $this->position = $position;
+        
+        return $this;
     }
 }

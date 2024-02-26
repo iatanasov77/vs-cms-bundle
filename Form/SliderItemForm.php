@@ -6,6 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -14,8 +15,12 @@ use Symfony\Component\Validator\Constraints\File;
 
 class SliderItemForm extends AbstractForm
 {
+    /** @var string */
+    protected $sliderClass;
+    
     public function __construct(
         string $dataClass,
+        string $sliderClass,
         RepositoryInterface $localesRepository,
         RequestStack $requestStack
     ) {
@@ -23,6 +28,8 @@ class SliderItemForm extends AbstractForm
         
         $this->localesRepository    = $localesRepository;
         $this->requestStack         = $requestStack;
+        
+        $this->sliderClass          = $sliderClass;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options ): void
@@ -39,6 +46,15 @@ class SliderItemForm extends AbstractForm
                 'choices'               => \array_flip( $this->fillLocaleChoices() ),
                 'data'                  => $currentLocale,
                 'mapped'                => false,
+            ])
+            
+            ->add( 'slider', EntityType::class, [
+                'required'              => false,
+                'label'                 => 'vs_cms.form.slider_item.slider',
+                'translation_domain'    => 'VSCmsBundle',
+                'class'                 => $this->sliderClass,
+                'choice_label'          => 'name',
+                'placeholder'           => 'vs_cms.form.slider_item.slider_placeholder',
             ])
             
             ->add( 'title', TextType::class, [

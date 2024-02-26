@@ -47,6 +47,8 @@ vs_cms:
             link_path: 'Линк Път (ИЛИ Абсолютен УРЛ)'
             
         slider_item:
+            slider: Слайдер
+            slider_placeholder: '-- Избери Слайдер --'
             title: Заглавие
             description: Описание
             photo: Снимка
@@ -117,6 +119,8 @@ vs_cms:
         page_title_slider_create: Създаване Слайдер
         page_title_slider_update: Редакция Слайдер
         page_title_slider_details: Слайдер Детайли
+        slider_items: Слайдер Елементи
+        button_slider_item_create: Създаване Слайдер Елемент
         
         list_slider_items: Слайдер Елементи
         page_title_slider_item_create: Създаване Слайдер Елемент
@@ -132,3 +136,5 @@ vs_cms:
             button_preview: 'Прегледай Страница'
         multipage_toc_page:
             title: 'Нова Страница за Съдържание'
+        slider_item:
+            title: 'Добави Слайдер Елемент'

@@ -47,6 +47,8 @@ vs_cms:
             link_path: Link Path (OR Absolute Url)
             
         slider_item:
+            slider: Slider
+            slider_placeholder: '-- Choose a Slider --'
             title: Title
             description: Description
             photo: Photo
@@ -117,6 +119,8 @@ vs_cms:
         page_title_slider_create: Create Slider
         page_title_slide_update: Update Slider
         page_title_slider_details: Slider Details
+        slider_items: Slider Items
+        button_slider_item_create: Create Slider Item
         
         list_slider_items: Slider Items Listing
         page_title_slider_item_create: Create Slider Item
@@ -132,3 +136,5 @@ vs_cms:
             button_preview: 'Preview Page'
         multipage_toc_page:
             title: 'Create TOC Page'
+        slider_item:
+            title: 'Create Slider Item'

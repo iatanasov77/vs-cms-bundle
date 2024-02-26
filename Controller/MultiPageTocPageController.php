@@ -15,7 +15,7 @@ use Vankosoft\ApplicationBundle\Component\Status;
 class MultiPageTocPageController extends AbstractController
 {
     /** @var ManagerRegistry */
-    private ManagerRegistry $doctrine;
+    private $doctrine;
     
     /** @var DocumentsRepository */
     private $documentRepository;

@@ -57,12 +57,30 @@ vs_cms_slider:
     type: sylius.resource
     options:
         expose: true
-        
+
+vs_cms_slider_item_index:
+    path: /sliders-items/{sliderId}/
+    methods: [GET]
+    defaults:
+        _controller: vs_cms.controller.slider_item::indexAction
+        _sylius:
+            paginate: 10
+            sortable: true
+            sorting:
+                updatedAt: desc
+                score: desc
+            filterable: true
+            criteria:
+                slider: $sliderId
+            template: "@VSCms/Pages/SlidersItems/index.html.twig"
+    options:
+        expose: true
+
 vs_cms_slider_item:
     resource: |
         alias: vs_cms.slider_item
         except: ['show']
-        path: /sliders-items
+        path: /sliders-items/{sliderId}
         templates: "@VSCms/Pages/SlidersItems"
         form:
             options:
@@ -75,19 +93,23 @@ vs_cms_slider_item:
     type: sylius.resource
     options:
         expose: true
+        
+vs_cms_slider_item_ext_sort_action:
+    path: /slider-item-sort/{id}/{insertAfterId}
+    controller: Vankosoft\CmsBundle\Controller\SliderItemExtController::sortAction
+    options:
+        expose: true
 
-vs_cms_slider_item_index:
-    path: /sliders-items/
-    methods: [GET]
-    defaults:
-        _controller: vs_cms.controller.slider_item::indexAction
-        _sylius:
-            paginate: 10
-            sortable: true
-            sorting:
-                updatedAt: desc
-            filterable: true
-            template: "@VSCms/Pages/SlidersItems/index.html.twig"
+vs_cms_slider_item_ext_edit:
+    path: /slider-item-edit/{sliderId}/{itemId}/{locale}
+    controller: Vankosoft\CmsBundle\Controller\SliderItemExtController::editSliderItem
+    defaults: { locale: '%locale%' }
+    options:
+        expose: true
+    
+vs_cms_slider_item_ext_delete:
+    path: /slider-item-delete/{sliderId}/{itemId}
+    controller: Vankosoft\CmsBundle\Controller\SliderItemExtController::deleteSliderItem
     options:
         expose: true
 

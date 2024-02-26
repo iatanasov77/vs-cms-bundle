@@ -55,6 +55,7 @@ use Vankosoft\CmsBundle\Controller\SliderController;
 use Vankosoft\CmsBundle\Form\SliderForm;
 
 use Vankosoft\CmsBundle\Model\SliderItem;
+use Vankosoft\CmsBundle\Repository\SliderItemRepository;
 use Vankosoft\CmsBundle\Controller\SliderItemController;
 use Vankosoft\CmsBundle\Form\SliderItemForm;
 
@@ -266,7 +267,7 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( SliderItem::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( SliderItemRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( SliderItemController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( SliderItemForm::class )->cannotBeEmpty()->end()

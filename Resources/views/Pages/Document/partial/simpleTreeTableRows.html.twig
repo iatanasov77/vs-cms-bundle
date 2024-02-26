@@ -1,5 +1,10 @@
 <tr data-node-id="{{ tocPage.id }}" {% if parentId %}data-node-pid="{{ tocPage.parent.id }}"{% endif %} data-position="{{ tocPage.position }}" id="tocPage-{{ tocPage.id }}">
-    <td><i class="fas fa-arrows-alt" title="Drag and Drop to Change Order" style="cursor: pointer;"></i></td>
+    <td>
+        <i class="fas fa-arrows-alt"
+            title="{{ 'vs_application.form.drag_and_drop_title' | trans( {},'VSApplicationBundle' ) }}"
+            style="cursor: pointer;"
+        ></i>
+    </td>
     <td>{{ tocPage.title }}</td>
     <td>
         {% for locale in tocPagesTranslations[tocPage.id] %}

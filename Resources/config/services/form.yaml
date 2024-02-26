@@ -133,11 +133,12 @@ services:
             - '@request_stack'
             
     vs_cms.resources.slider_item.form:
-        class: Vankosoft\CmsBundle\Form\SliderForm
+        class: Vankosoft\CmsBundle\Form\SliderItemForm
         tags:
             - { name: form.type }
         arguments:
             - '%vs_cms.model.slider_item.class%'
+            - '%vs_cms.model.slider.class%'
             - '@vs_application.repository.locale'
             - '@request_stack'
             

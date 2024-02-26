@@ -30,7 +30,7 @@ class SliderForm extends AbstractForm
         parent::buildForm( $builder, $options );
         
         $entity         = $builder->getData();
-        $currentLocale  = $entity->getTranslatableLocale() ?: $this->requestStack->getCurrentRequest()->getLocale();
+        $currentLocale  = $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
             ->add( 'currentLocale', ChoiceType::class, [

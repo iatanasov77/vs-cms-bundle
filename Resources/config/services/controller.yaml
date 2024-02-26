@@ -47,3 +47,13 @@ services:
             - '@vs_cms.repository.file_manager_file'
             - '@vs_cms.factory.file_manager_file'
             - '@vs_cms.file_manager'
+            
+    Vankosoft\CmsBundle\Controller\SliderItemExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@doctrine'
+            - '@vs_cms.repository.slider'
+            - '@vs_cms.repository.slider_item'
+            - '@vs_cms.factory.slider_item'
+            - '@vs_cms.file_manager'

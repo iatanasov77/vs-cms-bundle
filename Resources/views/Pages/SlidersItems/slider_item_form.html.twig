@@ -25,6 +25,15 @@
     </div>
     
     <div class="form-group">
+        {{ form_label(form.slider, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        
+        {{ form_widget(form.slider, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    
+    <div class="form-group">
         {{ form_label(form.title, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
