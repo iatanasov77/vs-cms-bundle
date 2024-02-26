@@ -9,6 +9,6 @@ interface SliderItemInterface extends
 {
     public function getTitle(): ?string;
     public function getDescription(): ?string;
-    public function getPhoto(): SliderItemPhotoInterface;
+    public function getPhoto(): ?SliderItemPhotoInterface;
     public function isPublished(): bool;
 }

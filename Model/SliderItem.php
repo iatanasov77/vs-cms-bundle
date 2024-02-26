@@ -61,7 +61,7 @@ class SliderItem implements SliderItemInterface
         return $this;
     }
     
-    public function getPhoto(): SliderItemPhotoInterface
+    public function getPhoto(): ?SliderItemPhotoInterface
     {
         return $this->photo;
     }
