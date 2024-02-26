@@ -55,6 +55,7 @@ class SliderItemForm extends AbstractForm
                 'class'                 => $this->sliderClass,
                 'choice_label'          => 'name',
                 'placeholder'           => 'vs_cms.form.slider_item.slider_placeholder',
+                'data'                  => $options['slider'],
             ])
             
             ->add( 'title', TextType::class, [
@@ -98,7 +99,8 @@ class SliderItemForm extends AbstractForm
         
         $resolver
             ->setDefaults([
-                'csrf_protection'   => false,
+                'csrf_protection'               => false,
+                'slider'                        => null,
                 
                 // CKEditor Options
                 'ckeditor_uiColor'              => '#ffffff',
