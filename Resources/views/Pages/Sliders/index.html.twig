@@ -3,7 +3,6 @@
 {# Import Macros #}
 {% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
 {% import "@VSApplication/Macros/translations.html.twig" as vs_translations %}
-{% from "@VSApplication/Macros/pagination.html.twig" import pagination %}
 
 {# Override Blocs #}
 {% block title %}{{ parent() }} :: {{ 'vs_cms.template.list_sliders' | trans( {},'VSCmsBundle' ) }}{% endblock %}

@@ -1,3 +1,7 @@
+{# Import Macros #}
+{% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
+{% import "@VSApplication/Macros/translations.html.twig" as vs_translations %}
+
 <div class="card" id="containerSliderItems">
     <div class="card-header">
         <div class="float-start" style="height:30px; padding-top:10px;">{{ 'vs_cms.template.slider_items' | trans( {},'VSCmsBundle' ) }}</div>
@@ -24,13 +28,10 @@
                                     style="cursor: pointer;"
                                 ></i>
                             </td>
+                            
                             <td>{{ sliderItem.title }}</td>
-                            <td>
-                                {% for locale in sliderItemsTranslations[sliderItem.id] %}
-                                    <i class="flag flag-{{ locale | split( '_' )[1] | lower }}"></i>
-                                    {% if not loop.last %}&nbsp;{% endif %}
-                                {% endfor %}
-                            </td>
+                            <td>{{ vs_translations.flags( sliderItemsTranslations[sliderItem.id] ) }}</td>
+                            
                             <td>
                                 <a href="javascript:void(0);"
                                    class="btn btn-primary btnSliderItem"
