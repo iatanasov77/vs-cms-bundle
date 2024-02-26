@@ -50,7 +50,7 @@ class SliderItemController extends AbstractCrudController
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
-        $formPost   = $request->request->all( 'slider_form' );
+        $formPost   = $request->request->all( 'slider_item_form' );
         $formLocale = $formPost['locale'];
         
         if ( $formLocale ) {
