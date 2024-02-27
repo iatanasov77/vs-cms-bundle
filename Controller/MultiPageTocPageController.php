@@ -40,7 +40,7 @@ class MultiPageTocPageController extends AbstractController
     
     public function sortAction( $id, $insertAfterId, Request $request ): Response
     {
-        $em             = $this->getDoctrine()->getManager();
+        $em             = $this->doctrine->getManager();
         $item           = $this->tocPageRepository->find( $id );
         $insertAfter    = $this->tocPageRepository->find( $insertAfterId );
         $this->tocPageRepository->insertAfter( $item, $insertAfterId );
