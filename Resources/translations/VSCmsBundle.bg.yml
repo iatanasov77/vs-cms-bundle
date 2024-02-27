@@ -136,7 +136,8 @@ vs_cms:
             title: 'Преглед на Страница'
             button_preview: 'Прегледай Страница'
         multipage_toc_page:
-            title: 'Нова Страница за Съдържание'
+            create_title: 'Нова Страница за Съдържание'
+            update_title: 'Редакция Страница за Съдържание'
         slider_item:
             create_title: 'Добави Слайдер Елемент'
             update_title: 'Редакция Слайдер Елемент'

@@ -136,7 +136,8 @@ vs_cms:
             title: 'Preview Page'
             button_preview: 'Preview Page'
         multipage_toc_page:
-            title: 'Create TOC Page'
+            create_title: 'Create TOC Page'
+            update_title: 'Edit TOC Page'
         slider_item:
             create_title: 'Create Slider Item'
             update_title: 'Edit Slider Item'
