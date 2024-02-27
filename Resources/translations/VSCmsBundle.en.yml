@@ -118,7 +118,7 @@ vs_cms:
         
         list_sliders: Sliders Listing
         page_title_slider_create: Create Slider
-        page_title_slide_update: Update Slider
+        page_title_slider_update: Update Slider
         page_title_slider_details: Slider Details
         slider_items: Slider Items
         button_slider_item_create: Create Slider Item
