@@ -29,6 +29,11 @@ services:
         class: Gaufrette\Filesystem
         arguments: ['%vs_cms.gaufrette.filemanager.filesystem%']
         factory: ['@knp_gaufrette.filesystem_map', 'get']
+        
+    vs_cms.slider_uploader.filesystem:
+        class: Gaufrette\Filesystem
+        arguments: ['%vs_cms.gaufrette.slider.filesystem%']
+        factory: ['@knp_gaufrette.filesystem_map', 'get']
 
     vs_cms.file_path_generator:
         class: Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator
@@ -44,6 +49,12 @@ services:
         arguments:
             - '@vs_cms.filemanager_uploader.filesystem'
             - '@vs_cms.file_path_generator'
+            
+    vs_cms.slider_uploader:
+        class: Vankosoft\CmsBundle\Component\Uploader\SliderPhotoUploader
+        arguments:
+            - '@vs_cms.slider_uploader.filesystem'
+            - '@vs_cms.file_path_generator'
     
     vs_cms.file_manager:
         class: Vankosoft\CmsBundle\Component\FileManager
@@ -56,15 +67,5 @@ services:
             - '@doctrine'
         tags:
             - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
-            
-    vs_cms.slider_uploader.filesystem:
-        class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.filemanager_shared_media_gaufrette.slider%']
-        factory: ['@knp_gaufrette.filesystem_map', 'get']
-        
-    vs_cms.slider_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\SliderPhotoUploader
-        arguments:
-            - '@vs_cms.slider_uploader.filesystem'
-            - '@vs_cms.file_path_generator'
+
 
