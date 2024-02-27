@@ -40,13 +40,13 @@ class DocumentController extends AbstractCrudController
         $entity->setTocRootPage( $rootTocPage );
     }
     
-    private function getTocPagesTranslations()
+    private function getTocPagesTranslations(): array
     {
         $translations   = [];
         $transRepo      = $this->get( 'vs_application.repository.translation' );
-        $tocPagesRepo   = $this->get( 'vs_cms.repository.toc_page' );
+        $tocPages       = $this->get( 'vs_cms.repository.toc_page' )->findAll();
         
-        foreach ( $tocPagesRepo->findAll() as $page ) {
+        foreach ( $tocPages as $page ) {
             $translations[$page->getId()] = array_keys( $transRepo->findTranslations( $page ) );
         }
         

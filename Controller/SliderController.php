@@ -17,10 +17,13 @@ class SliderController extends AbstractCrudController
             $entity->getTaxon()->setCurrentLocale( $request->getLocale() );
         }
         
+        $sliderItemsTranslations    = $this->classInfo['action'] == 'updateAction' ? $this->getSliderItemsTranslations() : [];
+        
         return [
-            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
-            'translations'  => $translations,
-            'items'         => $this->getRepository()->findAll(),
+            'taxonomyId'                => $taxonomy ? $taxonomy->getId() : 0,
+            'translations'              => $translations,
+            'sliderItemsTranslations'   => $sliderItemsTranslations,
+            'items'                     => $this->getRepository()->findAll(),
         ];
     }
     
@@ -61,5 +64,18 @@ class SliderController extends AbstractCrudController
             
             $entity->setTaxon( $newTaxon );
         }
+    }
+    
+    private function getSliderItemsTranslations(): array
+    {
+        $translations   = [];
+        $transRepo      = $this->get( 'vs_application.repository.translation' );
+        $sliderItems    = $this->get( 'vs_cms.repository.slider_item' )->findAll();
+        
+        foreach ( $sliderItems as $item ) {
+            $translations[$item->getId()] = array_keys( $transRepo->findTranslations( $item ) );
+        }
+        
+        return $translations;
     }
 }
