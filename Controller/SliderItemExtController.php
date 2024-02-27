@@ -45,7 +45,7 @@ class SliderItemExtController extends AbstractController
     
     public function sortAction( $id, $insertAfterId, Request $request ): Response
     {
-        $em             = $this->getDoctrine()->getManager();
+        $em             = $this->doctrine->getManager();
         $item           = $this->sliderItemRepository->find( $id );
         $insertAfter    = $this->sliderItemRepository->find( $insertAfterId );
         $this->sliderItemRepository->insertAfter( $item, $insertAfterId );
