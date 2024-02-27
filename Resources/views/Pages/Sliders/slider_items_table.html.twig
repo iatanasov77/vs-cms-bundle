@@ -45,7 +45,7 @@
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a class="btn btn-danger btnSliderItemDelete btnDeleteResource"
-                                    href="{{ path('vs_cms_slider_item_delete', {'sliderId': item.id, 'itemId': sliderItem.id}) }}"
+                                    href="{{ path('vs_cms_slider_item_delete', {'sliderId': item.id, 'id': sliderItem.id}) }}"
                                     data-csrfToken="{{ csrf_token( sliderItem.id ) }}" 
                                     data-redirectUrl="{{ path( 'vs_cms_slider_update', {'id': item.id} ) }}"
                                     title="{{ 'vs_application.template.items_index_row_action_delete' | trans( {},'VSApplicationBundle' ) }}"
