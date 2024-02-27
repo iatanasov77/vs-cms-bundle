@@ -138,4 +138,5 @@ vs_cms:
         multipage_toc_page:
             title: 'Нова Страница за Съдържание'
         slider_item:
-            title: 'Добави Слайдер Елемент'
+            create_title: 'Добави Слайдер Елемент'
+            update_title: 'Редакция Слайдер Елемент'

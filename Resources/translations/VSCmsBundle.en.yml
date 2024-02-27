@@ -138,4 +138,5 @@ vs_cms:
         multipage_toc_page:
             title: 'Create TOC Page'
         slider_item:
-            title: 'Create Slider Item'
+            create_title: 'Create Slider Item'
+            update_title: 'Edit Slider Item'
