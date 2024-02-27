@@ -33,10 +33,6 @@
         </many-to-one>
         
         <field name="position" column="position" type="integer" nullable="true">
-            <options>
-                <option name="default">999999</option>
-            </options>
-            
             <gedmo:sortable-position />
         </field>
         

@@ -1,16 +1,14 @@
 <?php namespace Vankosoft\CmsBundle\Repository;
 
-use Pagerfanta\Adapter\ArrayAdapter;
-use Pagerfanta\Pagerfanta;
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Gedmo\Sortable\Entity\Repository\SortableRepository;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\ResourceRepositoryTrait;
 
-use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
-
-//class TocPagesRepository extends NestedTreeRepository implements RepositoryInterface
-class TocPagesRepository extends EntityRepository
+class TocPagesRepository extends SortableRepository implements RepositoryInterface
 {
+    use ResourceRepositoryTrait;
+    
     public function insertAfter( ResourceInterface $resource, int $insertAfterId ): bool
     {
         $entityClass    = $this->getEntityName();
