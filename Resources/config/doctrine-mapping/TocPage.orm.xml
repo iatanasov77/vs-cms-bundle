@@ -78,5 +78,6 @@
         <gedmo:tree type="nested" />
         
         <gedmo:translation entity="Vankosoft\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
+        <gedmo:loggable log-entry-class="Vankosoft\ApplicationBundle\Model\Interfaces\LogEntryInterface"/>
     </mapped-superclass>
 </doctrine-mapping>
