@@ -14,7 +14,6 @@
         <field name="enabled" column="published" type="boolean" />
         
         <field name="slug" column="slug" type="string" length="255" nullable="false" unique="true">
-            <!-- <gedmo:translatable /> -->
             <gedmo:slug unique="true" style="lower" updatable="true" separator="-" fields="title" />
         </field>
         
