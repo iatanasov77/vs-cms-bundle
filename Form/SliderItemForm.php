@@ -13,8 +13,12 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 
+use Vankosoft\CmsBundle\Form\Traits\FosCKEditor4Config;
+
 class SliderItemForm extends AbstractForm
 {
+    use FosCKEditor4Config;
+    
     /** @var string */
     protected $sliderClass;
     
@@ -101,56 +105,14 @@ class SliderItemForm extends AbstractForm
             ->setDefaults([
                 'csrf_protection'               => false,
                 'slider'                        => null,
-                
-                // CKEditor Options
-                'ckeditor_uiColor'              => '#ffffff',
-                'ckeditor_toolbar'              => 'full',
-                'ckeditor_extraPlugins'         => '',
-                'ckeditor_removeButtons'        => '',
-                'ckeditor_allowedContent'       => false,
-                'ckeditor_extraAllowedContent'  => '*[*]{*}(*)',
             ])
-            
-            ->setDefined([
-                // CKEditor Options
-                'ckeditor_uiColor',
-                'ckeditor_toolbar',
-                'ckeditor_extraPlugins',
-                'ckeditor_removeButtons',
-                'ckeditor_allowedContent',
-                'ckeditor_extraAllowedContent',
-            ])
-            
-            ->setAllowedTypes( 'ckeditor_uiColor', 'string' )
-            ->setAllowedTypes( 'ckeditor_toolbar', 'string' )
-            ->setAllowedTypes( 'ckeditor_extraPlugins', 'string' )
-            ->setAllowedTypes( 'ckeditor_removeButtons', 'string' )
-            ->setAllowedTypes( 'ckeditor_allowedContent', ['boolean', 'string'] )
-            ->setAllowedTypes( 'ckeditor_extraAllowedContent', 'string' )
         ;
+            
+        $this->onfigureCkEditorOptions( $resolver );
     }
     
     public function getName()
     {
         return 'vs_cms.slider';
-    }
-    
-    protected function ckEditorConfig( array $options ): array
-    {
-        $ckEditorConfig = [
-            'uiColor'                           => $options['ckeditor_uiColor'],
-            'toolbar'                           => $options['ckeditor_toolbar'],
-            'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
-            'removeButtons'                     => $options['ckeditor_removeButtons'],
-        ];
-        
-        $ckEditorAllowedContent = (bool)$options['ckeditor_allowedContent'];
-        if ( $ckEditorAllowedContent ) {
-            $ckEditorConfig['allowedContent']       = $ckEditorAllowedContent;
-        } else {
-            $ckEditorConfig['extraAllowedContent']  = $options['ckeditor_extraAllowedContent'];
-        }
-        
-        return $ckEditorConfig;
     }
 }

@@ -8,9 +8,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Validator\Constraints\File;
 
 class SliderForm extends AbstractForm
 {

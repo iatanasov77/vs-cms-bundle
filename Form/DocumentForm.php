@@ -14,11 +14,16 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Doctrine\ORM\EntityRepository;
 use Vankosoft\CmsBundle\Model\TocPage;
 use Vankosoft\CmsBundle\Model\TocPageInterface;
+use Vankosoft\CmsBundle\Form\Traits\FosCKEditor4Config;
 
 class DocumentForm extends AbstractForm
 {
+    use FosCKEditor4Config;
+    
+    /** @var string */
     protected $tocPageClass;
     
+    /** @var string */
     protected $pagesClass;
     
     public function __construct(
@@ -85,12 +90,7 @@ class DocumentForm extends AbstractForm
             ->add( 'text', CKEditorType::class, [
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
-                'config'                => [
-                    'toolbar'           => 'full',
-                    // Create a toolbar in config for example a 'document_toolbar' and use it
-                    //'toolbar'   => 'document_toolbar',
-                    'uiColor'   => '#ffffff',
-                ],
+                'config'                => $this->ckEditorConfig( $options ),
                 'required'              => false,
                 'mapped'                => false,
             ])
@@ -110,6 +110,8 @@ class DocumentForm extends AbstractForm
             ])
             ->setAllowedTypes( 'tocRootPage', TocPageInterface::class )
         ;
+            
+        $this->onfigureCkEditorOptions( $resolver );
     }
     
     public function getName()
