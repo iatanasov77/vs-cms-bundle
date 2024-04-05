@@ -45,12 +45,12 @@ trait FosCKEditor4Config
             
             //'filebrowserBrowseRoute'            => 'file_manager',
             'filebrowserBrowseRoute'            => 'vs_cms_fosckeditor_browse',
-            'filebrowserBrowseRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
+            'filebrowserBrowseRouteParameters'  => ['conf' => 'default', 'directory' => '1', 'module' => 'ckeditor'],
             'filebrowserBrowseRouteType'        => UrlGeneratorInterface::ABSOLUTE_URL,
             
             //'filebrowserUploadRoute'            => 'file_manager_upload',
             'filebrowserUploadRoute'            => 'vs_cms_fosckeditor_upload',
-            'filebrowserUploadRouteParameters'  => ['conf' => 'default', 'directory' => '1'],
+            'filebrowserUploadRouteParameters'  => ['conf' => 'default', 'directory' => '1', 'module' => 'ckeditor'],
         ];
         
         $ckEditorAllowedContent = (bool)$options['ckeditor_allowedContent'];
