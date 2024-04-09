@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class UploadFileForm extends AbstractType
 {    
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         $builder
             ->add( 'directory', TextType::class, [
