@@ -76,7 +76,10 @@
     
     {% do form.btnSave.setRendered() %}
     {% do form.btnApply.setRendered(false) %}
-    {% do form.btnCancel.setRendered() %}
+    {# Missing field in Vankosoft\CmsBundle\Form\TocPageForm
+        {% do form.btnCancel.setRendered() %}
+    #}
+    
 {{ form_end(form, {'render_rest': false}) }}
 
 <script type="text/javascript" src="{{ asset( '/build/default/ckeditor/plugins/image/dialogs/image.js' ) }}"></script>
