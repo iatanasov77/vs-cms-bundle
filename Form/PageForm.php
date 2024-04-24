@@ -55,9 +55,9 @@ class PageForm extends AbstractForm
             ])
             
             ->add( 'enabled', CheckboxType::class, [
-                'label' => 'vs_cms.form.page.published',
+                'label'                 => 'vs_cms.form.page.published',
                 'translation_domain'    => 'VSCmsBundle',
-            ])  
+            ])
             
             ->add( 'category_taxon', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.page.categories',
