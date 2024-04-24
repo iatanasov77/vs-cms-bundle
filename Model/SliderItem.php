@@ -5,10 +5,12 @@ use Vankosoft\CmsBundle\Model\Interfaces\SliderItemPhotoInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\SliderInterface;
 use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
+use Sylius\Component\Resource\Model\TimestampableTrait;
 
 class SliderItem implements SliderItemInterface
 {
     use ToggleableTrait;    // About enabled field - $enabled (public)
+    use TimestampableTrait;
     use TranslatableTrait;
     
     /** @var integer */
