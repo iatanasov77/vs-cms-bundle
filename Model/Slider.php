@@ -26,6 +26,14 @@ class Slider implements SliderInterface
         return $this->id;
     }
     
+    public function getPublicItems(): Collection
+    {
+        return $this->getItems()->filter( function( SliderItem $item )
+        {
+            return $item->isPublic();
+        });
+    }
+    
     public function getItems(): Collection
     {
         return $this->items;
