@@ -13,7 +13,7 @@
             <gedmo:translatable />
         </field>
         
-        <field name="description" column="description" type="string" length="255" nullable="false">
+        <field name="description" column="description" type="text" nullable="false">
             <gedmo:translatable />
         </field>
         
@@ -35,6 +35,8 @@
         <field name="position" column="position" type="integer" nullable="true">
             <gedmo:sortable-position />
         </field>
+        
+        <gedmo:translation entity="Vankosoft\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
         
     </mapped-superclass>
 </doctrine-mapping>

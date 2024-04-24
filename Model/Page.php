@@ -46,9 +46,6 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     /** @var Collection|PageCategory[] */
     protected $categories;
     
-    /** @var string */
-    protected $locale;
-    
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -81,18 +78,6 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         if ( $this->categories->contains( $category ) ) {
             $this->categories->removeElement( $category );
         }
-        
-        return $this;
-    }
-    
-    public function getTranslatableLocale(): ?string
-    {
-        return $this->locale;
-    }
-    
-    public function setTranslatableLocale($locale): PageInterface
-    {
-        $this->locale = $locale;
         
         return $this;
     }

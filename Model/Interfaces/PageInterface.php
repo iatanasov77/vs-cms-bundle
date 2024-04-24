@@ -14,8 +14,6 @@ interface PageInterface extends
     ToggleableInterface,
     TranslatableInterface
 {
-    public function setTranslatableLocale( $locale ): PageInterface;
-    
     public function getCategories(): Collection;
     
     public function addCategory( PageCategoryInterface $category ): self;
