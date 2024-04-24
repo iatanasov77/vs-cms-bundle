@@ -9,7 +9,7 @@
             <gedmo:translatable />
         </field>
         
-        <field name="answer" column="answer" type="string" length="255" nullable="false">
+        <field name="answer" column="answer" type="text" nullable="false">
             <gedmo:translatable />
         </field>
         
