@@ -33,6 +33,15 @@
                             </td>
                             
                             <td>{{ sliderItem.title }}</td>
+                            <td>
+                                {% if sliderItem.public %}
+                                    <i class="fas fa-check" style="color: #82c91e;">
+                                {% else %}
+                                    <i class="fas fa-times" style="color: #ff1e1e;"></i>
+                                {% endif %}
+                            </td>
+                            <td>{{ sliderItem.createdAt | date( "d.m.Y H:i:s" ) }}</td>
+                            <td>{{ sliderItem.updatedAt | date( "d.m.Y H:i:s" ) }}</td>
                             <td>{{ vs_translations.flags( sliderItemsTranslations[sliderItem.id] ) }}</td>
                             
                             <td>
