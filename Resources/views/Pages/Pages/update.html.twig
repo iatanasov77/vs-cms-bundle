@@ -40,24 +40,17 @@
         </div>
     </div>
     
-	<div class="row">
+    <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-            	<h5 class="card-header">{{ 'vs_cms.template.pages_title' | trans( {},'VSCmsBundle' ) }}</h5>
-            	<div class="card-body">
-            	
-                    {% if not form.vars.valid %}
-                        {% for error in form.vars.errors %}
-                            {{ alerts.error( error.message ) }}
-                        {% endfor %}
-                    {% endif %}
-		            
-		            <div id="FormContainer" data-itemId="{{ item.id }}">
+                <h5 class="card-header">{{ 'vs_cms.template.pages_title' | trans( {},'VSCmsBundle' ) }}</h5>
+                <div class="card-body">
+                   <div id="FormContainer" data-itemId="{{ item.id }}">
                         {% include '@VSCms/Pages/Pages/partial/page_form.html.twig' %}
                     </div>
-        		</div>
-			</div>
-		</div>
+                </div>
+    		</div>
+    	</div>
     </div>
 {% endblock content %}
 
