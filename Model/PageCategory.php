@@ -90,6 +90,11 @@ class PageCategory implements PageCategoryInterface
         return $this;
     }
     
+    public function getNameTranslated( string $locale )
+    {
+        return $this->taxon ? $this->taxon->getTranslation( $locale )->getName() : '';
+    }
+    
     public function __toString()
     {
         return $this->taxon ? $this->taxon->getName() : '';
