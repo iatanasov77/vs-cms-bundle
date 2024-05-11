@@ -77,6 +77,17 @@ class PageCategoryForm extends AbstractForm
         ;
     }
     
+    public function configureOptions( OptionsResolver $resolver ): void
+    {
+        parent::configureOptions( $resolver );
+        
+        $resolver
+            ->setDefaults([
+                'csrf_protection' => false,
+            ])
+        ;
+    }
+    
     public function getName()
     {
         return 'vs_cms.page_category';
