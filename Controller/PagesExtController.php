@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Factory\Factory;
+use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
 use Vankosoft\ApplicationBundle\Repository\LogEntryRepository;
 use Vankosoft\ApplicationBundle\Repository\TaxonomyRepository;
@@ -35,6 +36,9 @@ class PagesExtController extends AbstractController
     /** @var Factory */
     protected Factory $pagesFactory;
     
+    /** @var EntityRepository */
+    protected $vsTagsWhitelistContextRepository;
+    
     public function __construct(
         ManagerRegistry $doctrine,
         TaxonomyRepository $taxonomyRepository,
@@ -42,15 +46,17 @@ class PagesExtController extends AbstractController
         PagesRepository $pagesRepository,
         PageCategoryRepository $pagesCategoriesRepository,
         LogEntryRepository $logentryRepository,
-        Factory $pagesFactory
+        Factory $pagesFactory,
+        EntityRepository $vsTagsWhitelistContextRepository,
     ) {
-        $this->doctrine                     = $doctrine;
-        $this->taxonomyRepository           = $taxonomyRepository;
-        $this->taxonRepository              = $taxonRepository;
-        $this->pagesRepository              = $pagesRepository;
-        $this->pagesCategoriesRepository    = $pagesCategoriesRepository;
-        $this->logentryRepository           = $logentryRepository;
-        $this->pagesFactory                 = $pagesFactory;
+        $this->doctrine                         = $doctrine;
+        $this->taxonomyRepository               = $taxonomyRepository;
+        $this->taxonRepository                  = $taxonRepository;
+        $this->pagesRepository                  = $pagesRepository;
+        $this->pagesCategoriesRepository        = $pagesCategoriesRepository;
+        $this->logentryRepository               = $logentryRepository;
+        $this->pagesFactory                     = $pagesFactory;
+        $this->vsTagsWhitelistContextRepository = $vsTagsWhitelistContextRepository;
     }
     
     public function getPageForm( $itemId, $locale, Request $request ): Response
@@ -63,15 +69,18 @@ class PagesExtController extends AbstractController
             $em->refresh( $item );
         }
         
-        $taxonomy   = $this->taxonomyRepository->findByCode(
+        $taxonomy       = $this->taxonomyRepository->findByCode(
                                                     $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
                                                 );
+        $tagsContext    = $this->vsTagsWhitelistContextRepository->findByTaxonCode( 'static-pages' );
         
         return $this->render( '@VSCms/Pages/Pages/partial/page_form.html.twig', [
             'categories'    => $this->pagesCategoriesRepository->findAll(),
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
             'item'          => $item,
             'form'          => $this->createForm( PageForm::class, $item )->createView(),
+            
+            'pageTags'      => $tagsContext->getTagsArray(),
         ]);
     }
     

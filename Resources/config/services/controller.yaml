@@ -22,6 +22,7 @@ services:
             - '@vs_cms.repository.page_categories'
             - '@vs_application.repository.logentry'
             - '@vs_cms.factory.pages'
+            - '@vs_application.repository.tags_whitelist_context'
             
     Vankosoft\CmsBundle\Controller\MultiPageTocPageController:
         tags: ['controller.service_arguments']
