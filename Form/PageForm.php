@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Vankosoft\CmsBundle\Model\Page;
 use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface;
 use Vankosoft\CmsBundle\Form\Traits\FosCKEditor4Config;
 
 class PageForm extends AbstractForm
@@ -59,13 +60,24 @@ class PageForm extends AbstractForm
                 'translation_domain'    => 'VSCmsBundle',
             ])
             
-            ->add( 'category_taxon', ChoiceType::class, [
+            ->add( 'category_taxon', EntityType::class, [
                 'label'                 => 'vs_cms.form.page.categories',
                 'translation_domain'    => 'VSCmsBundle',
                 'multiple'              => true,
                 'required'              => false,
                 'mapped'                => false,
                 'placeholder'           => 'vs_cms.form.page.categories_placeholder',
+                
+                'class'                 => $this->categoryClass,
+                'data'                  => $entity->getCategories(),
+                
+                'choice_label'          => function ( PageCategoryInterface $category ) use ( $currentLocale ) {
+                    return $category->getNameTranslated( $currentLocale );
+                },
+                'choice_value'          => function ( PageCategoryInterface $category ) {
+                    //return $category ? $category->getTaxon()->getId() : 0;
+                    return $category ? $category->getId() : 0;
+                },
             ])
             
             ->add( 'description', TextType::class, [
