@@ -82,6 +82,7 @@
         {{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
     </div>
     
+    {% if metadata is not defined %}{% set metadata = null %}{% endif %}
     {{ vs_form.buttons( form, metadata ) }}
     
 {{ form_end(form, {'render_rest': false}) }}
