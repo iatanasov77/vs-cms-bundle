@@ -20,13 +20,6 @@
             <div class="card">
                 <h5 class="card-header">{{ 'vs_cms.template.page_categories_title' | trans( {},'VSCmsBundle' ) }}</h5>
                 <div class="card-body">
-                
-                    {% if not form.vars.valid %}
-                        {% for error in form.vars.errors %}
-                            {{ alerts.error( error.message ) }}
-                        {% endfor %}
-                    {% endif %}
-		            
                     <div id="pageCategoryFormContainer" data-pageId="{{ item.id }}">
                         {% include '@VSCms/Pages/Page_Categories/partial/category_form.html.twig' %}
                     </div>

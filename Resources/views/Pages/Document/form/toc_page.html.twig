@@ -1,10 +1,8 @@
 {% import "@VSApplication/Macros/tree.html.twig" as vs_tree %}
-{% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
+{% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
-{% if not form.vars.valid %}
-    {% for error in form.vars.errors %}
-        {{ alerts.error( error.message ) }}
-    {%endfor%}
+{% if formErrors is defined %}
+    {{ vs_form.errors( formErrors ) }}     
 {% endif %}
 
 {{ form_start(form, { 'attr': {'id': 'form_toc_page'}} ) }}

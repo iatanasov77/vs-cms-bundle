@@ -3,7 +3,6 @@
 {# Import Macros #}
 {% from '@SyliusResource/Macros/actions.html.twig' import create %}
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
-{% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
 
 {% block title %}{{ parent() }} :: Edit TOC Page{% endblock %}
 {% block pageTitle %}<i class="icon_genius"></i> {% if(item.id) %}Edit TOC Page:    {{ item.tocTitle }}{% else %}Create New TOC Page{% endif %}{% endblock %}
@@ -20,10 +19,8 @@
             		{% if useFormMethod is defined %}{% set formMethod = useFormMethod %}{% else %}{% set formMethod = 'PUT' %}{% endif %}
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'id': 'form-post'}, 'method': formMethod }) }}
                         
-                        {% if not form.vars.valid %}
-                            {% for error in form.vars.errors %}
-                                {{ alerts.error( error.message ) }}
-                            {% endfor %}
+                        {% if formErrors is defined %}
+                            {{ vs_form.errors( formErrors ) }}     
                         {% endif %}
                         
                         <div class="form-group">

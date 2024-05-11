@@ -1,5 +1,9 @@
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
+{% if formErrors is defined %}
+    {{ vs_form.errors( formErrors ) }}     
+{% endif %}
+                    
 {% set method = "POST" %}
 {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
     <div class="form-group">

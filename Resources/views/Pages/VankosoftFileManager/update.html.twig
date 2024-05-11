@@ -1,7 +1,6 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
-{% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
 
 {% if( item.id ) %}
 	{% set pageTitle = 'vs_cms.template.filemanager_update_title' | trans( {},'VSCmsBundle' ) %}
@@ -22,10 +21,8 @@
             	<h5 class="card-header">{{ 'vs_cms.template.filemanager_update_details_title' | trans( {},'VSCmsBundle' ) }}</h5>
             	<div class="card-body">
             	
-                    {% if not form.vars.valid %}
-                        {% for error in form.vars.errors %}
-                            {{ alerts.error( error.message ) }}
-                        {% endfor %}
+                    {% if formErrors is defined %}
+                        {{ vs_form.errors( formErrors ) }}     
                     {% endif %}
                     
 		            <div id="pageFormContainer" data-itemId="{{ item.id }}">
