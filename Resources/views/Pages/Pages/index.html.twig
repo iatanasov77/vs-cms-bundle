@@ -7,6 +7,18 @@
 
 {% block content %}
     <div class="row">
+        <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+            {{ form_label( filterForm.filterByCategory, null, {'label_attr': {'class': 'col-form-label'}}) }}
+            {{ form_widget( filterForm.filterByCategory, {
+                'attr': {
+                    'class': 'form-control',
+                    'data-value': filterCategory
+                }
+            }) }}
+        </div>
+    </div>
+    
+    <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             
             {% if resources|length > 0 %}

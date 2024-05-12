@@ -4,6 +4,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
 use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyHelperTrait;
+use Vankosoft\ApplicationBundle\Controller\Traits\FilterFormTrait;
 
 use Vankosoft\CmsBundle\Form\ClonePageForm;
 use Vankosoft\CmsBundle\Form\PreviewPageForm;
@@ -11,6 +12,7 @@ use Vankosoft\CmsBundle\Form\PreviewPageForm;
 class PagesController extends AbstractCrudController
 {
     use TaxonomyHelperTrait;
+    use FilterFormTrait;
     
     protected function customData( Request $request, $entity = null ): array
     {
@@ -20,17 +22,23 @@ class PagesController extends AbstractCrudController
         $taxonomy       = $this->getTaxonomy( 'vs_application.page_categories.taxonomy_code' );
         $tagsContext    = $this->get( 'vs_application.repository.tags_whitelist_context' )->findByTaxonCode( 'static-pages' );
         
+        $categoryClass  = $this->getParameter( 'vs_cms.model.page_categories.class' );
+        $filterCategory = $request->attributes->get( 'filterCategory' );
+        $filterForm     = $this->getFilterForm( $categoryClass, $filterCategory, $request );
+        
         return [
-            'items'         => $this->getRepository()->findAll(),
-            'categories'    => $this->get( 'vs_cms.repository.page_categories' )->findAll(),
-            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
-            'translations'  => $translations,
-            'versions'      => $versions,
+            'items'             => $this->getRepository()->findAll(),
+            'taxonomyId'        => $taxonomy ? $taxonomy->getId() : 0,
+            'translations'      => $translations,
+            'versions'          => $versions,
             
-            'formClone'     => $this->createForm( ClonePageForm::class )->createView(),
-            'formPreview'   => $this->createForm( PreviewPageForm::class )->createView(),
+            'formClone'         => $this->createForm( ClonePageForm::class )->createView(),
+            'formPreview'       => $this->createForm( PreviewPageForm::class )->createView(),
             
-            'pageTags'      => $tagsContext->getTagsArray(),
+            'pageTags'          => $tagsContext->getTagsArray(),
+            
+            'filterForm'        => $filterForm->createView(),
+            'filterCategory'    => $filterCategory,
         ];
     }
     
@@ -48,6 +56,11 @@ class PagesController extends AbstractCrudController
         
         $selectedCategories = \json_decode( $request->request->get( 'selectedCategories' ), true );
         $this->buildCategories( $entity, $selectedCategories );
+    }
+    
+    protected function getFilterRepository()
+    {
+        return $this->get( 'vs_cms.repository.page_categories' );
     }
     
     private function getTranslations()
