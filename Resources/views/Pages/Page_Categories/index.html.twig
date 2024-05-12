@@ -9,7 +9,6 @@
 {% block content %}
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            
             {% if items|length > 0 %}
             	{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTable.html.twig' %}
             {% else %}
@@ -17,6 +16,14 @@
             {% endif %}
         </div>
     </div>
+    
+    {% include '@VSApplication/Partial/resource-delete.html.twig' %}
+{% endblock %}
+
+{% block head_styles %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/pages-categories' ) }}
 {% endblock %}
 
 {% block body_scripts %}

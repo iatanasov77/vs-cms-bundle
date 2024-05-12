@@ -9,7 +9,7 @@
 	<tbody>
         {% for item in items %}
         	{% if not item.parent %}
-        		{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'category': item, 'parentId': 0} %}
+        		{% include '@VSCms/Pages/Page_Categories/partial/simpleTreeTableRows.html.twig' with {'item': item, 'parentId': 0} %}
         	{% endif %}
         {% endfor %}
     </tbody>
