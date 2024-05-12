@@ -2,6 +2,9 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Pagerfanta\Adapter\DoctrineCollectionAdapter;
+use Pagerfanta\Pagerfanta;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
 use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyHelperTrait;
 use Vankosoft\ApplicationBundle\Controller\Traits\FilterFormTrait;
@@ -42,14 +45,8 @@ class PagesController extends AbstractCrudController
         ];
         
         if ( $filterCategory ) {
-            $category   = $this->get( 'vs_cms.repository.page_categories' )->find( $filterCategory );
-            $pages      = $this->get( 'knp_paginator' )->paginate(
-                $category->getPages(),
-                $request->query->getInt( 'page', 1 ) /*page number*/,
-                10
-            );
-            
-            $params['resources']    = $pages;
+            $category               = $this->get( 'vs_cms.repository.page_categories' )->find( $filterCategory );
+            $params['resources']    = $this->getFilteredResources( $category->getPages() );
         }
         
         return $params;
@@ -114,5 +111,15 @@ class PagesController extends AbstractCrudController
         foreach ( $categories as $c ) {
             $entity->addCategory( $repo->find( $c['id'] ) );
         }
+    }
+    
+    private function getFilteredResources( Collection $items )
+    {
+        $adapter    = new DoctrineCollectionAdapter( $items );
+        $pagerfanta = new Pagerfanta( $adapter );
+        
+        $pagerfanta->setMaxPerPage( 10 );
+        
+        return $pagerfanta;
     }
 }
