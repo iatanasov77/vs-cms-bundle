@@ -163,7 +163,7 @@ class PagesExtController extends AbstractController
         $topCategories      = new ArrayCollection( $this->pagesCategoriesRepository->findBy( ['parent' => null] ) );
         
         $categoriesTree     = [];
-        $this->getRolesTree( $topCategories, $categoriesTree );
+        $this->getItemsTree( $topCategories, $categoriesTree );
         $this->buildEasyuiCombotreeDataFromCollection( $categoriesTree, $data, $selectedCategories );
         
         return new JsonResponse( $data );
