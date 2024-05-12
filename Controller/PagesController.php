@@ -3,7 +3,7 @@
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
-use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
+use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyHelperTrait;
 
 use Vankosoft\CmsBundle\Form\ClonePageForm;
 use Vankosoft\CmsBundle\Form\PreviewPageForm;

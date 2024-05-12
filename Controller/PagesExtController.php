@@ -11,7 +11,7 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Vankosoft\ApplicationBundle\Repository\LogEntryRepository;
 use Vankosoft\ApplicationBundle\Repository\TaxonomyRepository;
 use Vankosoft\ApplicationBundle\Repository\TaxonRepository;
-use Vankosoft\ApplicationBundle\Controller\TaxonomyTreeDataTrait;
+use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyTreeDataTrait;
 use Vankosoft\CmsBundle\Repository\PagesRepository;
 use Vankosoft\CmsBundle\Form\ClonePageForm;
 use Vankosoft\CmsBundle\Form\PageForm;
