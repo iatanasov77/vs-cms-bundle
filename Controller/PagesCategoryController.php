@@ -28,7 +28,7 @@ class PagesCategoryController extends AbstractCrudController
         }
         
         return [
-            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+            'taxonomy'      => $taxonomy,
             'translations'  => $translations,
             'items'         => $this->getRepository()->findAll(),
         ];
