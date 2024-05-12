@@ -117,7 +117,7 @@ class PagesController extends AbstractCrudController
     private function getFilteredResources( Collection $items )
     {
         //$adapter    = new DoctrineCollectionAdapter( $items );
-        $adapter    = new ArrayAdapter( $items->toArray() )
+        $adapter    = new ArrayAdapter( $items->toArray() );
         $pagerfanta = new Pagerfanta( $adapter );
         
         $pagerfanta->setMaxPerPage( 10 );
