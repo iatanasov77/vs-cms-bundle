@@ -12,6 +12,25 @@ vs_cms_pages:
                 ckeditor_allowedContent: '%vs_cms.form.pages.ckeditor_allowedContent%'
                 ckeditor_extraAllowedContent: '%vs_cms.form.pages.ckeditor_extraAllowedContent%'
     type: sylius.resource
+    options:
+        expose: true
+
+vs_cms_pages_index_filtered:
+    path: /pages/{filterCategory}/
+    methods: [GET]
+    defaults:
+        _controller: vs_cms.controller.pages::indexAction
+        _sylius:
+            paginate: 10
+            sortable: true
+            sorting:
+                position: asc
+            filterable: true
+            criteria:
+                category: $filterCategory
+            template: "@VSCms/Pages/Pages/index.html.twig"
+    options:
+        expose: true
 
 vs_cms_pages_show_by_id:
     path: /pages/{id}
