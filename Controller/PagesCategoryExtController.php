@@ -41,7 +41,7 @@ class PagesCategoryExtController extends AbstractController
         $categoriesTree  = [];
         
         $this->getItemsTree( new ArrayCollection( $topCategories ), $categoriesTree );
-        $this->buildEasyuiCombotreeData( $categoriesTree, $data[0]['children'], [$selectedParent] );
+        $this->buildEasyuiCombotreeDataFromCollection( $categoriesTree, $data[0]['children'], [$selectedParent] );
         
         return new JsonResponse( $data );
     }
