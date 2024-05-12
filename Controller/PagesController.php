@@ -3,7 +3,8 @@
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Pagerfanta\Adapter\DoctrineCollectionAdapter;
+//use Pagerfanta\Adapter\DoctrineCollectionAdapter;
+use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
 use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyHelperTrait;
@@ -115,7 +116,8 @@ class PagesController extends AbstractCrudController
     
     private function getFilteredResources( Collection $items )
     {
-        $adapter    = new DoctrineCollectionAdapter( $items );
+        //$adapter    = new DoctrineCollectionAdapter( $items );
+        $adapter    = new ArrayAdapter( $items->toArray() )
         $pagerfanta = new Pagerfanta( $adapter );
         
         $pagerfanta->setMaxPerPage( 10 );
