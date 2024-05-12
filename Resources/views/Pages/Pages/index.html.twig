@@ -1,5 +1,7 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
+{% import "@VSApplication/Macros/translations.html.twig" as vs_translations %}
+
 {% block title %}{{ parent() }} :: {{ 'vs_cms.template.pages_index_title' | trans( {},'VSCmsBundle' ) }}{% endblock %}
 {% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_cms.template.pages_index_title' | trans( {},'VSCmsBundle' ) }}{% endblock %}
 
