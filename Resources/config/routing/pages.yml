@@ -68,6 +68,10 @@ vs_cms_pages_tree_combo_with_leafs:
 vs_cms_pages_tree_table:
     path: /json/pages-categories-{taxonomyId}/gtreetable
     controller: Vankosoft\CmsBundle\Controller\PagesExtController::gtreeTableSource
+    
+vs_cms_pages_category_tree:
+    path: /json/pages-categories/easyui-combotree-{categoryId}
+    controller: Vankosoft\CmsBundle\Controller\PagesCategoryExtController::easyuiComboTreeWithSelectedSource
 
 # Custom Routes
 vs_cms_pages_categories_update_by_taxon:

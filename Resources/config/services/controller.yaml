@@ -11,6 +11,13 @@ services:
             - "@liip_imagine.binary.loader.default"
             - "@liip_imagine.filter.manager"
 
+    Vankosoft\CmsBundle\Controller\PagesCategoryExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@translator'
+            - '@vs_cms.repository.page_categories'
+    
     Vankosoft\CmsBundle\Controller\PagesExtController:
         tags: ['controller.service_arguments']
         autowire: true
