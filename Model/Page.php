@@ -64,6 +64,13 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this->categories;
     }
     
+    public function setCategories( Collection $categories ): self
+    {
+        $this->categories   = $categories;
+        
+        return $this;
+    }
+    
     public function addCategory( PageCategoryInterface $category ): self
     {
         if ( ! $this->categories->contains( $category ) ) {

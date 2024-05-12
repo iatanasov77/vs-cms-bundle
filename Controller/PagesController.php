@@ -46,21 +46,8 @@ class PagesController extends AbstractCrudController
             $entity->setTranslatableLocale( $formLocale );
         }
         
-        if ( isset( $formPost['category_taxon'] ) ) {
-            foreach ( $formPost['category_taxon'] as $taxonId ) {
-                $category       = $pcr->findOneBy( ['taxon' => $taxonId] );
-                if ( $category ) {
-                    $categories[]   = $category;
-                    $entity->addCategory( $category );
-                }
-            }
-            
-            foreach ( $entity->getCategories() as $cat ) {
-                if ( ! $categories->contains( $cat ) ) {
-                    $entity->removeCategory( $cat );
-                }
-            }
-        }
+        $selectedCategories = \json_decode( $request->request->get( 'selectedCategories' ), true );
+        $this->buildCategories( $entity, $selectedCategories );
     }
     
     private function getTranslations()
@@ -91,5 +78,15 @@ class PagesController extends AbstractCrudController
         }
         
         return $versions;
+    }
+    
+    private function buildCategories( &$entity, array $categories )
+    {
+        $repo   = $this->get( 'vs_cms.repository.page_categories' );
+        
+        $entity->setCategories( new ArrayCollection() );
+        foreach ( $categories as $c ) {
+            $entity->addCategory( $repo->find( $c['id'] ) );
+        }
     }
 }
