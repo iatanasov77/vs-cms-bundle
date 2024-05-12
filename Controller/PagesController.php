@@ -26,16 +26,7 @@ class PagesController extends AbstractCrudController
         $filterCategory = $request->attributes->get( 'filterCategory' );
         $filterForm     = $this->getFilterForm( $categoryClass, $filterCategory, $request );
         
-        if ( $filterCategory ) {
-            var_dump( $filterCategory ); die;
-            $movies         = $paginator->paginate(
-                $paginatorItems,
-                $request->query->getInt( 'page', 1 ) /*page number*/,
-                $this->moviesPerPage /*limit per page*/
-            );
-        }
-        
-        return [
+        $params = [
             'items'             => $this->getRepository()->findAll(),
             'taxonomyId'        => $taxonomy ? $taxonomy->getId() : 0,
             'translations'      => $translations,
@@ -49,6 +40,19 @@ class PagesController extends AbstractCrudController
             'filterForm'        => $filterForm->createView(),
             'filterCategory'    => $filterCategory,
         ];
+        
+        if ( $filterCategory ) {
+            $category   = $this->get( 'vs_cms.repository.page_categories' )->find( $filterCategory );
+            $pages      = $this->get( 'knp_paginator' )->paginate(
+                $category->getPages(),
+                $request->query->getInt( 'page', 1 ) /*page number*/,
+                10
+            );
+            
+            $params['resources']    = $pages;
+        }
+        
+        return $params;
     }
     
     protected function prepareEntity( &$entity, &$form, Request $request )
