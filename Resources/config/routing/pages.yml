@@ -16,7 +16,7 @@ vs_cms_pages:
         expose: true
 
 vs_cms_pages_index_filtered:
-    path: /pages/{filterCategory}/
+    path: /pages/filter/{filterCategory}/
     methods: [GET]
     defaults:
         _controller: vs_cms.controller.pages::indexAction
