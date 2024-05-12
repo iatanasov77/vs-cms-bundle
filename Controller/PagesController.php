@@ -26,6 +26,15 @@ class PagesController extends AbstractCrudController
         $filterCategory = $request->attributes->get( 'filterCategory' );
         $filterForm     = $this->getFilterForm( $categoryClass, $filterCategory, $request );
         
+        if ( $filterCategory ) {
+            var_dump( $filterCategory ); die;
+            $movies         = $paginator->paginate(
+                $paginatorItems,
+                $request->query->getInt( 'page', 1 ) /*page number*/,
+                $this->moviesPerPage /*limit per page*/
+            );
+        }
+        
         return [
             'items'             => $this->getRepository()->findAll(),
             'taxonomyId'        => $taxonomy ? $taxonomy->getId() : 0,
