@@ -9,6 +9,16 @@
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
 {{ form_start(form, { 'attr': {'class': 'form-horizontal ', 'id': 'FormQuickLink'}, 'method': method }) }}
     
+    <label class="custom-control custom-checkbox">  
+        <input type="checkbox" id="page_form_enabled"
+            class="custom-control-input form-check-input"
+            name="page_form[enabled]"
+            value="{{ item.enabled }}"
+            {% if item.enabled %}checked="checked"{% endif %}
+        />
+        <span class="custom-control-label">{{ 'vs_cms.form.page.published' | trans( {},'VSCmsBundle' ) }}</span>
+    </label>
+    
     <div class="form-group">
         {{ form_label(form.locale, null, {
             'label_attr': {'class': 'col-form-label'}

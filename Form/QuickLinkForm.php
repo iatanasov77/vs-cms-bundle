@@ -6,6 +6,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -36,6 +37,11 @@ class QuickLinkForm extends AbstractForm
                 'choices'               => \array_flip( $this->fillLocaleChoices() ),
                 'data'                  => $currentLocale,
                 'mapped'                => false,
+            ])
+            
+            ->add( 'enabled', CheckboxType::class, [
+                'label'                 => 'vs_cms.form.page.published',
+                'translation_domain'    => 'VSCmsBundle',
             ])
             
             ->add( 'linkText', TextType::class, [
