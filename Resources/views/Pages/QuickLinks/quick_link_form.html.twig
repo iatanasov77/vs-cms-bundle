@@ -10,9 +10,9 @@
 {{ form_start(form, { 'attr': {'class': 'form-horizontal ', 'id': 'FormQuickLink'}, 'method': method }) }}
     
     <label class="custom-control custom-checkbox">  
-        <input type="checkbox" id="page_form_enabled"
+        <input type="checkbox" id="quick_link_form_enabled"
             class="custom-control-input form-check-input"
-            name="page_form[enabled]"
+            name="quick_link_form[enabled]"
             value="{{ item.enabled }}"
             {% if item.enabled %}checked="checked"{% endif %}
         />
