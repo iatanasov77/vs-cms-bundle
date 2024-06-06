@@ -1,10 +1,12 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
+use Sylius\Component\Resource\Model\ToggleableTrait;
 use Vankosoft\CmsBundle\Model\Interfaces\QuickLinkInterface;
 use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
 
 class QuickLink implements QuickLinkInterface
 {
+    use ToggleableTrait;
     use TranslatableTrait;
     
     /** @var integer */
@@ -43,5 +45,10 @@ class QuickLink implements QuickLinkInterface
         $this->linkPath  = $linkPath;
         
         return $this;
+    }
+    
+    public function isPublished(): ?bool
+    {
+        return $this->enabled;
     }
 }

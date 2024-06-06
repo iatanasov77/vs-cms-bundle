@@ -5,6 +5,8 @@
             <generator strategy="AUTO" />
         </id>
         
+        <field name="enabled" column="published" type="boolean" />
+        
         <field name="linkText" column="link_text" type="string" length="255" nullable="false">
             <gedmo:translatable />
         </field>
