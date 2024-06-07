@@ -18,6 +18,7 @@
                         <tr>
                             <th></th>
                             <th data-sortable="true" data-field="title">{{ 'vs_application.template.items_index_row_title' | trans( {},'VSApplicationBundle' ) }}</th>
+                            <th>{{ 'vs_cms.template.pages_index_row_published' | trans( {},'VSCmsBundle' ) }}</th>
                             <th>{{ 'vs_application.template.items_index_row_translations' | trans( {},'VSApplicationBundle' ) }}</th>
                             <th width="150">{{ 'vs_application.template.items_index_row_action' | trans( {},'VSApplicationBundle' ) }}</th>
                         </tr>
@@ -27,6 +28,13 @@
                             <tr id="{{ item.id }}" data-id="{{ item.id }}">
                                 <td>{{ loop.index }}</td>
                                 <td>{{ item.linkText }}</td>
+                                <td style="text-align: center;">
+                                    {% if item.isPublished() %}
+                                        <i class="fas fa-check" style="color: #82c91e;">
+                                    {% else %}
+                                        <i class="fas fa-times" style="color: #ff1e1e;"></i>
+                                    {% endif %}
+                                </td>
                                 <td>{{ vs_translations.flags( translations[item.id] ) }}</td>
                                 <td>
                                     <div class="btn-group">
