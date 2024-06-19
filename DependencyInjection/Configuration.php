@@ -104,7 +104,6 @@ class Configuration implements ConfigurationInterface
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( Page::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( PagesController::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'repository' )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( PagesRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( PageForm::class )->cannotBeEmpty()->end()
