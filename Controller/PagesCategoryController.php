@@ -63,9 +63,8 @@ class PagesCategoryController extends AbstractCrudController
             /*
              * @WORKAROUND Create Taxon If not exists
              */
-            $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-                                        $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
-                                    );
+            $taxonomy   = $this->getTaxonomy( 'vs_application.page_categories.taxonomy_code' );
+            
             $newTaxon   = $this->createTaxon(
                 $categoryName,
                 $translatableLocale,
