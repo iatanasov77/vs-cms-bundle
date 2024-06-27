@@ -17,6 +17,8 @@
             <gedmo:translatable />
         </field>
         
+        <field name="url" column="url" type="string" length="255" nullable="true" />
+        
         <one-to-one field="photo" target-entity="Vankosoft\CmsBundle\Model\Interfaces\SliderItemPhotoInterface" mapped-by="owner">
             <cascade>
                 <cascade-all/>

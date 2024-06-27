@@ -79,6 +79,13 @@ class SliderItemForm extends AbstractForm
                 'config'                => $this->ckEditorConfig( $options ),
             ])
             
+            ->add( 'url', TextType::class, [
+                'required'              => false,
+                'label'                 => 'vs_cms.form.url',
+                'translation_domain'    => 'VSCmsBundle',
+                
+            ])
+            
             ->add( 'photo', FileType::class, [
                 'mapped'                => false,
                 //'required'              => is_null( $entity->getId() ),

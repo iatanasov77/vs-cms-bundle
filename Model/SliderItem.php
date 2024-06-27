@@ -22,6 +22,9 @@ class SliderItem implements SliderItemInterface
     /** @var string */
     protected $description;
     
+    /** @var string */
+    protected $url;
+    
     /** @var SliderItemPhotoInterface */
     protected $photo;
     
@@ -59,6 +62,18 @@ class SliderItem implements SliderItemInterface
     public function setDescription($description): self
     {
         $this->description  = $description;
+        
+        return $this;
+    }
+    
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    
+    public function setUrl( ?string $url ): self
+    {
+        $this->url = $url;
         
         return $this;
     }

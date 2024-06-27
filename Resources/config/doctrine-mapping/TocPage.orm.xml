@@ -62,8 +62,6 @@
             <gedmo:versioned />
         </field>
         
-        <field name="url" column="url" type="string" length="255" nullable="true" />
-        
         <field name="position" column="position" type="integer" nullable="true">
             <gedmo:sortable-position />
         </field>

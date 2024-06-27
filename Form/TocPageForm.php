@@ -81,13 +81,6 @@ class TocPageForm extends AbstractForm
                 'config'                => $this->ckEditorConfig( $options ),
                 'required'              => false,
             ])
-            
-            ->add( 'url', TextType::class, [
-                'required'              => false,
-                'label'                 => 'vs_cms.form.url',
-                'translation_domain'    => 'VSCmsBundle',
-                
-            ])
         ;
     }
 
