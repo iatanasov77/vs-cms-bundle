@@ -47,6 +47,7 @@ class TocPageForm extends AbstractForm
         
             ->add( 'parent', EntityType::class, [
                 'required'              => false,
+                'mapped'                => false,
                 'label'                 => 'vs_cms.form.parent',
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->dataClass,
@@ -89,6 +90,7 @@ class TocPageForm extends AbstractForm
         
         $resolver
             ->setDefaults([
+                'validation_groups' => false,
                 'csrf_protection'   => false,
                 'tocRootPage'       => null,
             ])
