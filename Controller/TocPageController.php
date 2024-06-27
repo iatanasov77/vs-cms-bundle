@@ -7,6 +7,7 @@ class TocPageController extends AbstractCrudController
 {
     protected function customData( Request $request, $entity = null ): array
     {
+        $documentRepository = $this->get( 'vs_cms.repository.document' );
         $document           = $documentRepository->find( $request->attributes->get( 'documentId' ) );
         $rootTocPageText    = $document && $document->getTocRootPage() ? $document->getTocRootPage()->getText() : null;
         
