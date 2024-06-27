@@ -5,6 +5,17 @@ use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
 
 class TocPageController extends AbstractCrudController
 {
+    protected function customData( Request $request, $entity = null ): array
+    {
+        $document           = $documentRepository->find( $request->attributes->get( 'documentId' ) );
+        $rootTocPageText    = $document && $document->getTocRootPage() ? $document->getTocRootPage()->getText() : null;
+        
+        return [
+            'rootTocPageText'   => $rootTocPageText,
+            'documentId'        => $document ? $document->getId() : 0,
+        ];
+    }
+    
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
         $documentRepository = $this->get( 'vs_cms.repository.document' );
