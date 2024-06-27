@@ -47,7 +47,7 @@ class TocPageForm extends AbstractForm
         
             ->add( 'parent', EntityType::class, [
                 'required'              => false,
-                'mapped'                => false,
+                //'mapped'                => false,
                 'label'                 => 'vs_cms.form.parent',
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->dataClass,
