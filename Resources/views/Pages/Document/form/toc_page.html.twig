@@ -2,7 +2,7 @@
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
 {% if formErrors is defined %}
-    {{ vs_form.errors( formErrors ) }}     
+    {{ vs_form.errors( formErrors ) }}
 {% endif %}
 
 {{ form_start(form, { 'attr': {'id': 'form_toc_page'}} ) }}
