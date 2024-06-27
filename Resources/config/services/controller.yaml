@@ -65,3 +65,4 @@ services:
             - '@vs_cms.repository.slider_item'
             - '@vs_cms.factory.slider_item'
             - '@vs_cms.file_manager'
+            - '%vs_application_slider_photo_description%'

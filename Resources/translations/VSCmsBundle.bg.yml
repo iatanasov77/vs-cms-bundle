@@ -53,6 +53,7 @@ vs_cms:
             title: Заглавие
             description: Описание
             photo: Снимка
+            photo_description: Prefered Photo Demensions
             
     template:
         uncategorized_pages: Некатегоризирани Страници

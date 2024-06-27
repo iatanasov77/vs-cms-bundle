@@ -81,7 +81,8 @@ class SliderItemForm extends AbstractForm
             
             ->add( 'photo', FileType::class, [
                 'mapped'                => false,
-                'required'              => is_null( $entity->getId() ),
+                //'required'              => is_null( $entity->getId() ),
+                'required'              => false,
                 
                 'label'                 => 'vs_cms.form.slider_item.photo',
                 'translation_domain'    => 'VSCmsBundle',

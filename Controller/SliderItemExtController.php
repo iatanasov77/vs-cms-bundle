@@ -29,18 +29,23 @@ class SliderItemExtController extends AbstractController
     /** @var FileManager */
     private $fileManager;
     
+    /** @var string */
+    private $sliderPhotoDescription;
+    
     public function __construct(
         ManagerRegistry $doctrine,
         RepositoryInterface $sliderRepository,
         SliderItemRepository $sliderItemRepository,
         FactoryInterface $sliderItemFactory,
-        FileManager $fileManager
+        FileManager $fileManager,
+        string $sliderPhotoDescription
     ) {
-        $this->doctrine             = $doctrine;
-        $this->sliderRepository     = $sliderRepository;
-        $this->sliderItemRepository = $sliderItemRepository;
-        $this->sliderItemFactory    = $sliderItemFactory;
-        $this->fileManager          = $fileManager;
+        $this->doctrine                 = $doctrine;
+        $this->sliderRepository         = $sliderRepository;
+        $this->sliderItemRepository     = $sliderItemRepository;
+        $this->sliderItemFactory        = $sliderItemFactory;
+        $this->fileManager              = $fileManager;
+        $this->sliderPhotoDescription   = $sliderPhotoDescription;
     }
     
     public function sortAction( $id, $insertAfterId, Request $request ): Response
@@ -92,9 +97,10 @@ class SliderItemExtController extends AbstractController
         ]);
         
         return $this->render( '@VSCms/Pages/SlidersItems/slider_item_form.html.twig', [
-            'form'      => $form->createView(),
-            'sliderId'  => $sliderId,
-            'item'      => $sliderItem,
+            'form'                      => $form->createView(),
+            'sliderId'                  => $sliderId,
+            'item'                      => $sliderItem,
+            'sliderPhotoDescription'    => $this->sliderPhotoDescription,
         ]);
     }
     

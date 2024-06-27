@@ -53,6 +53,7 @@ vs_cms:
             title: Title
             description: Description
             photo: Photo
+            photo_description: Prefered Photo Demensions
             
     template:
         uncategorized_pages: Uncategorized Pages
