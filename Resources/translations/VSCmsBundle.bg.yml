@@ -9,6 +9,7 @@ vs_cms:
         cancel: 'Отказ'
         page_label: 'Страница'
         published: 'Публикуван'
+        url: УРЛ
         
         page:
             published: 'Публикувана'

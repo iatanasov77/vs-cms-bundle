@@ -9,6 +9,7 @@ vs_cms:
         cancel: 'Cancel'
         page_label: 'Page'
         published: 'Published'
+        url: URL
         
         page:
             published: 'Published'

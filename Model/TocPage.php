@@ -40,6 +40,9 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     protected $text;
     
     /** @var string */
+    protected $url;
+    
+    /** @var string */
     protected $locale;
     
     /** @var integer */
@@ -185,6 +188,18 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     public function setText( ?string $text ): self
     {
         $this->text = $text;
+        
+        return $this;
+    }
+    
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    
+    public function setUrl( ?string $url ): self
+    {
+        $this->url = $url;
         
         return $this;
     }
