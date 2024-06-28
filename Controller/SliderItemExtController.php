@@ -15,22 +15,22 @@ use Vankosoft\ApplicationBundle\Component\Status;
 class SliderItemExtController extends AbstractController
 {
     /** @var ManagerRegistry */
-    private $doctrine;
+    protected $doctrine;
     
     /** @var RepositoryInterface */
-    private $sliderRepository;
+    protected $sliderRepository;
     
     /** @var SliderItemRepository */
-    private $sliderItemRepository;
+    protected $sliderItemRepository;
     
     /** @var FactoryInterface */
-    private $sliderItemFactory;
+    protected $sliderItemFactory;
     
     /** @var FileManager */
-    private $fileManager;
+    protected $fileManager;
     
     /** @var string */
-    private $sliderPhotoDescription;
+    protected $sliderPhotoDescription;
     
     public function __construct(
         ManagerRegistry $doctrine,
