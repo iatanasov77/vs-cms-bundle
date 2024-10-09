@@ -10,6 +10,8 @@ services:
         arguments:
             - "@liip_imagine.binary.loader.default"
             - "@liip_imagine.filter.manager"
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
 
     Vankosoft\CmsBundle\Controller\PagesCategoryExtController:
         tags: ['controller.service_arguments']
@@ -17,6 +19,8 @@ services:
         arguments:
             - '@translator'
             - '@vs_cms.repository.page_categories'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
     
     Vankosoft\CmsBundle\Controller\PagesExtController:
         tags: ['controller.service_arguments']
@@ -39,12 +43,16 @@ services:
             - '@vs_cms.repository.document'
             - '@vs_cms.repository.toc_page'
             - '@vs_cms.factory.toc_page'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
 
     Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - '@vs_cms.file_manager'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
     
     Vankosoft\CmsBundle\Controller\VankosoftFileManagerExtController:
         tags: ['controller.service_arguments']
@@ -55,6 +63,8 @@ services:
             - '@vs_cms.repository.file_manager_file'
             - '@vs_cms.factory.file_manager_file'
             - '@vs_cms.file_manager'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
             
     Vankosoft\CmsBundle\Controller\SliderItemExtController:
         tags: ['controller.service_arguments']
@@ -66,3 +76,5 @@ services:
             - '@vs_cms.factory.slider_item'
             - '@vs_cms.file_manager'
             - '%vs_application_slider_photo_description%'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
