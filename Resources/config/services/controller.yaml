@@ -5,7 +5,7 @@ services:
         public: true
 
     Vankosoft\CmsBundle\Controller\GetImageController:
-        tags: ['controller.service_arguments']
+        tags: ['container.service_subscriber', 'controller.service_arguments']
         autowire: true
         arguments:
             - "@liip_imagine.binary.loader.default"
@@ -14,7 +14,7 @@ services:
             - [ setContainer, [ '@service_container' ] ]
 
     Vankosoft\CmsBundle\Controller\PagesCategoryExtController:
-        tags: ['controller.service_arguments']
+        tags: ['container.service_subscriber', 'controller.service_arguments']
         autowire: true
         arguments:
             - '@translator'
@@ -23,7 +23,7 @@ services:
             - [ setContainer, [ '@service_container' ] ]
     
     Vankosoft\CmsBundle\Controller\PagesExtController:
-        tags: ['controller.service_arguments']
+        tags: ['container.service_subscriber', 'controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'
@@ -36,7 +36,7 @@ services:
             - '@vs_application.repository.tags_whitelist_context'
             
     Vankosoft\CmsBundle\Controller\MultiPageTocPageController:
-        tags: ['controller.service_arguments']
+        tags: ['container.service_subscriber', 'controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'
@@ -47,7 +47,7 @@ services:
             - [ setContainer, [ '@service_container' ] ]
 
     Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController:
-        tags: ['controller.service_arguments']
+        tags: ['container.service_subscriber', 'controller.service_arguments']
         autowire: true
         arguments:
             - '@vs_cms.file_manager'
@@ -55,7 +55,7 @@ services:
             - [ setContainer, [ '@service_container' ] ]
     
     Vankosoft\CmsBundle\Controller\VankosoftFileManagerExtController:
-        tags: ['controller.service_arguments']
+        tags: ['container.service_subscriber', 'controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'
@@ -67,7 +67,7 @@ services:
             - [ setContainer, [ '@service_container' ] ]
             
     Vankosoft\CmsBundle\Controller\SliderItemExtController:
-        tags: ['controller.service_arguments']
+        tags: ['container.service_subscriber', 'controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'

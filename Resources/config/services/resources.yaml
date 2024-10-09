@@ -5,5 +5,5 @@ services:
         public: true
 
 #     Vankosoft\CmsBundle\Repository\PageCategoryRepository:
-#         tags: ['controller.service_arguments']
+#         tags: ['container.service_subscriber', 'controller.service_arguments']
 #         autowire: true
