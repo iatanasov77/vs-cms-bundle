@@ -37,6 +37,11 @@ class SliderItem implements SliderItemInterface
     /** @var integer */
     protected $position;
     
+    public function __construct()
+    {
+        $this->fallbackLocale   = 'en_US';
+    }
+    
     public function getId()
     {
         return $this->id;

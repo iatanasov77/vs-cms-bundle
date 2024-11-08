@@ -48,6 +48,7 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     
     public function __construct()
     {
+        $this->fallbackLocale   = 'en_US';
         $this->categories = new ArrayCollection();
     }
     

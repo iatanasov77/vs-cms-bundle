@@ -56,6 +56,7 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     
     public function __construct()
     {
+        $this->fallbackLocale   = 'en_US';
         $this->children = new ArrayCollection();
     }
     

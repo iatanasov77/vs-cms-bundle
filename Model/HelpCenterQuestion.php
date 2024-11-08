@@ -16,6 +16,11 @@ class HelpCenterQuestion implements HelpCenterQuestionInterface
     /** @var string */
     protected $answer;
     
+    public function __construct()
+    {
+        $this->fallbackLocale   = 'en_US';
+    }
+    
     public function getId()
     {
         return $this->id;

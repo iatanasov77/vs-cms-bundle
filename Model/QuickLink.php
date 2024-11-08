@@ -18,6 +18,11 @@ class QuickLink implements QuickLinkInterface
     /** @var string */
     protected $linkPath;
     
+    public function __construct()
+    {
+        $this->fallbackLocale   = 'en_US';
+    }
+    
     public function getId()
     {
         return $this->id;
