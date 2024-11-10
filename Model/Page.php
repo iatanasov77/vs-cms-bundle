@@ -4,7 +4,7 @@ use Sylius\Component\Resource\Model\TranslationInterface;
 
 use Sylius\Component\Resource\Model\TimestampableTrait;
 use Sylius\Component\Resource\Model\ToggleableTrait;
-use Sylius\Component\Resource\Model\TranslatableTrait;
+use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonLeafInterface;
 use Vankosoft\ApplicationBundle\Model\Traits\TaxonLeafTrait;
 use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface;
 
 class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
 {
@@ -34,6 +36,9 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     
     /** @var string */
     protected $description;
+    
+    /** @var string */
+    protected $tags   = '';
 
     /** @var string */
     protected $text;
@@ -41,11 +46,9 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     /** @var Collection|PageCategory[] */
     protected $categories;
     
-    /** @var string */
-    protected $locale;
-    
     public function __construct()
     {
+        $this->fallbackLocale   = 'en_US';
         $this->categories = new ArrayCollection();
     }
     
@@ -57,12 +60,19 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     /**
      * @return Collection|PageCategory[]
      */
-    public function getCategories()
+    public function getCategories(): Collection
     {
         return $this->categories;
     }
     
-    public function addCategory( PageCategory $category ): PageInterface
+    public function setCategories( Collection $categories ): self
+    {
+        $this->categories   = $categories;
+        
+        return $this;
+    }
+    
+    public function addCategory( PageCategoryInterface $category ): self
     {
         if ( ! $this->categories->contains( $category ) ) {
             $this->categories[] = $category;
@@ -71,23 +81,11 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this;
     }
     
-    public function removeCategory( PageCategory $category ): PageInterface
+    public function removeCategory( PageCategoryInterface $category ): self
     {
         if ( $this->categories->contains( $category ) ) {
             $this->categories->removeElement( $category );
         }
-        
-        return $this;
-    }
-    
-    public function getTranslatableLocale(): ?string
-    {
-        return $this->locale;
-    }
-    
-    public function setTranslatableLocale($locale): PageInterface
-    {
-        $this->locale = $locale;
         
         return $this;
     }
@@ -136,6 +134,18 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
         return $this;
     }
     
+    public function getTags(): ?string
+    {
+        return $this->tags;
+    }
+    
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+        
+        return $this;
+    }
+    
     public function getPublished(): ?bool
     {
         return $this->enabled;
@@ -158,13 +168,5 @@ class Page implements PageInterface, TaxonLeafInterface, LoggableObjectInterface
     public function isPublished()
     {
         return $this->isEnabled();
-    }
-    
-    /*
-     * @NOTE: Decalared abstract in TranslatableTrait
-     */
-    protected function createTranslation(): TranslationInterface
-    {
-        
     }
 }

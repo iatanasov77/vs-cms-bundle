@@ -5,7 +5,7 @@
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
 {% block title %}{{ parent() }} :: Edit TOC Page{% endblock %}
-{% block pageTitle %}<i class="icon_genius"></i> {% if(item.id) %}Edit TOC Page:    {{ item.tocTitle }}{% else %}Create New TOC Page{% endif %}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {% if(item.id) %}Edit TOC Page:    {{ item.title }}{% else %}Create New TOC Page{% endif %}{% endblock %}
 
 {% block content %} 
     <div class="row">
@@ -18,13 +18,9 @@
             	
             		{% if useFormMethod is defined %}{% set formMethod = useFormMethod %}{% else %}{% set formMethod = 'PUT' %}{% endif %}
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'id': 'form-post'}, 'method': formMethod }) }}
-                        {% if form_errors(form) is not empty %}
-                            <div class="alert alert-block alert-danger fade in">
-                                <button type="button" class="close close-sm" data-dismiss="alert">
-                                    <i class="icon-remove"></i>
-                                </button>
-                                <strong>Error!</strong> {{ form_errors(form) }}
-                            </div>
+                        
+                        {% if formErrors is defined %}
+                            {{ vs_form.errors( formErrors ) }}     
                         {% endif %}
                         
                         <div class="form-group">
@@ -35,71 +31,63 @@
                             {{ form_widget(form.locale, {'attr': {'class': 'form-control' }}) }}
                         </div>
                         
+                        {% set comboDataSourceUrl  = path( 'vs_cms_multipage_toc_page_easyui_combotree', {'documentId': documentId} ) %}
+                        {% set comboTreePlaceholder = 'vs_cms.form.toc_page.parent_page_placeholder' | trans( {},'VSCmsBundle' ) %}
                         <div class="form-group">
-                            {{ form_label(form.tocTitle, null, {
+                            {{ form_label( form.parent, null, {
                                 'label_attr': {'class': 'col-form-label'}
                                 }) 
                             }}
                             
-                            {{ form_widget(form.tocTitle, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget( form.parent, {'attr': {
+                                'class': 'form-control',
+                                'data-options': 'url: "' ~ comboDataSourceUrl ~ '", required: false, prompt: "' ~ comboTreePlaceholder ~ '"'
+                            }}) }}
+                        </div>
+        
+                        <div class="form-group">
+                            {{ form_label(form.title, null, {
+                                'label_attr': {'class': 'col-form-label'}
+                                }) 
+                            }}
+                            
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
                         </div>
                         
                         <div class="form-group">
-                            {{ form_label(form.mainPage, null, {
+                            {{ form_label( form.description, null, {
                                 'label_attr': {'class': 'col-form-label'}
                                 }) 
                             }}
-                            
-                            {{ form_widget(form.mainPage, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget( form.description, {'attr': {'class': 'form-control'}}) }}
                         </div>
                         
-                        {# NOT NEED THIS-ONE
                         <div class="form-group">
-                            {{ form_label(form.tocRootPage, null, {
+                            {{ form_label(form.text, null, {
                                 'label_attr': {'class': 'col-form-label'}
                                 }) 
                             }}
                             
-                            {{ form_widget(form.tocRootPage, {'attr': {'class': 'form-control'}}) }}
+                            {# File Browser Route is Configured in artgris_file_manager.yaml #}
+                            {{ form_widget(form.text, {
+                                'attr': {'class': 'form-control'}
+                            } ) }}
                         </div>
+                        
+                        {% do form.btnSave.setRendered() %}
+                        {% do form.btnApply.setRendered(false) %}
+                        {# Missing field in Vankosoft\CmsBundle\Form\TocPageForm
+                            {% do form.btnCancel.setRendered() %}
                         #}
-                        
-                    	{{ vs_form.buttons( form ) }}
+                        {#  
+                    	{{ vs_form.buttons( form, metadata ) }}
+                    	#}
                     {{ form_end(form, {'render_rest': false}) }}
                 </div>
             </div>
-            
-            {% if( item.id ) %}
-				<div class="card">
-	                <div class="card-header">
-                        <div class="float-left" style="height:30px; padding-top:10px;">TOC Pages</div>
-                        <div class="btn-group float-right">
-                            <a class="btn btn-primary btnTocPage" id="btnTocPage" 
-                            	title="{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}" 
-                            	href="javascript:void(0);" 
-                            	data-url="{{ path('vs_cms_multipage_toc_page_edit', {'tocId': item.id}) }}"
-                            >
-                            	{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}
-                            </a>&nbsp;
-                        </div>
-                    </div>
-                    <div class="card-body" style="padding: 0;">
-                        <!--  http://gtreetable.gilek.net/ -->
-                        <table class="table gtreetable"
-                               id="tableTocPages"
-                               data-sourceUrl="{{ url('vs_cms_multipage_toc_page_gtreetable', {'tocId': item.id}) }}"
-                        >
-                        </table>
-                    </div>
-				</div>
-			{% endif %}
          
         </div>
     </div>
-{% endblock %}
-
-{% block modals %}
-    {% include '@VSCms/Modals/toc_page_edit.html.twig' %}
 {% endblock %}
 
 {% block head_styles %}

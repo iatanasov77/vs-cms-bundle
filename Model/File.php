@@ -1,5 +1,7 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
+use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
+
 abstract class File implements FileInterface
 {
     /** @var mixed */

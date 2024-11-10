@@ -2,24 +2,32 @@
 
 use Vankosoft\ApplicationBundle\Form\AbstractForm;
 use Symfony\Component\Form\FormBuilderInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-use Vankosoft\ApplicationBundle\Component\I18N;
-
 class DocumentCategoryForm extends AbstractForm
 {
-    public function __construct( string $dataClass )
-    {
+    public function __construct(
+        string $dataClass,
+        RepositoryInterface $localesRepository,
+        RequestStack $requestStack
+    ) {
         parent::__construct( $dataClass );
+        
+        $this->localesRepository    = $localesRepository;
+        $this->requestStack         = $requestStack;
     }
     
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         parent::buildForm( $builder, $options );
         
         $category   = $options['data'];
+        
+        $currentLocale  = $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
             ->setMethod( $category && $category->getId() ? 'PUT' : 'POST' )
@@ -27,7 +35,8 @@ class DocumentCategoryForm extends AbstractForm
             ->add( 'currentLocale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( I18N::LanguagesAvailable() ),
+                'choices'               => \array_flip( $this->fillLocaleChoices() ),
+                'data'                  => $currentLocale,
                 'mapped'                => false,
             ])
         

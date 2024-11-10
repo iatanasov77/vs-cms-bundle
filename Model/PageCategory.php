@@ -2,14 +2,18 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
+use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentTrait;
+use Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 
 /**
  * Page Category Model
  */
 class PageCategory implements PageCategoryInterface
 {
-    /** @var mixed */
+    use TaxonDescendentTrait;
+    
+    /** @var integer */
     protected $id;
     
     /** @var PageCategoryInterface */
@@ -20,9 +24,6 @@ class PageCategory implements PageCategoryInterface
     
     /** @var Collection|Page[] */
     protected $pages;
-    
-    /** @var TaxonInterface */
-    protected $taxon;
     
     public function __construct()
     {
@@ -41,7 +42,7 @@ class PageCategory implements PageCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getParent(): ?PageCategoryInterface
+    public function getParent()
     {
         return $this->parent;
     }
@@ -69,7 +70,7 @@ class PageCategory implements PageCategoryInterface
         return $this->pages;
     }
     
-    public function addPage( Page $page ): PageCategoryInterface
+    public function addPage( PageInterface $page ): self
     {
         if ( ! $this->pages->contains( $page ) ) {
             $this->pages[] = $page;
@@ -79,7 +80,7 @@ class PageCategory implements PageCategoryInterface
         return $this;
     }
     
-    public function removePage( Page $page ): PageCategoryInterface
+    public function removePage( PageInterface $page ): self
     {
         if ( $this->pages->contains( $page ) ) {
             $this->pages->removeElement( $page );
@@ -89,36 +90,9 @@ class PageCategory implements PageCategoryInterface
         return $this;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function getTaxon(): ?TaxonInterface
+    public function getNameTranslated( string $locale )
     {
-        return $this->taxon;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function setTaxon(?TaxonInterface $taxon): void
-    {
-        $this->taxon = $taxon;
-    }
-
-    public function getName()
-    {
-        return $this->taxon ? $this->taxon->getName() : '';
-    }
-    
-    public function setName( string $name ) : self
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setName( $name );
-        
-        return $this;
+        return $this->taxon ? $this->taxon->getTranslation( $locale )->getName() : '';
     }
     
     public function __toString()

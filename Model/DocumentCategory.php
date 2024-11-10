@@ -2,23 +2,28 @@
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
-use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface;
-use Vankosoft\ApplicationBundle\Model\Taxon;
+use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentTrait;
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentCategoryInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface;
 
 /**
  * Page Category Model
  */
 class DocumentCategory implements DocumentCategoryInterface
 {
+    use TaxonDescendentTrait;
+    
     /** @var mixed */
     protected $id;
     
     /** @var Collection|Document[] */
     protected $documents;
     
-    /** @var TaxonInterface */
-    protected $taxon;
+    /** @var DocumentCategoryInterface */
+    protected $parent;
+    
+    /** @var Collection|DocumentCategory[] */
+    protected $children;
     
     public function __construct()
     {
@@ -38,7 +43,7 @@ class DocumentCategory implements DocumentCategoryInterface
         return $this->documents;
     }
     
-    public function addDocument( DocumentInterface $document ): DocumentCategoryInterface
+    public function addDocument( DocumentInterface $document ): self
     {
         if ( ! $this->documents->contains( $document ) ) {
             $this->documents[] = $document;
@@ -48,7 +53,7 @@ class DocumentCategory implements DocumentCategoryInterface
         return $this;
     }
     
-    public function removeDocument( DocumentInterface $document ): DocumentCategoryInterface
+    public function removeDocument( DocumentInterface $document ): self
     {
         if ( $this->documents->contains( $document ) ) {
             $this->documents->removeElement( $document );
@@ -61,33 +66,24 @@ class DocumentCategory implements DocumentCategoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getTaxon(): ?TaxonInterface
+    public function getParent()
     {
-        return $this->taxon;
+        return $this->parent;
     }
     
     /**
      * {@inheritdoc}
      */
-    public function setTaxon( ?TaxonInterface $taxon ): void
+    public function setParent(?DocumentInterface $parent): DocumentInterface
     {
-        $this->taxon = $taxon;
-    }
-    
-    public function getName()
-    {
-        return $this->taxon ? $this->taxon->getName() : '';
-    }
-    
-    public function setName( string $name ) : self
-    {
-        if ( ! $this->taxon ) {
-            // Create new taxon into the controller and set the properties passed from form
-            return $this;
-        }
-        $this->taxon->setName( $name );
+        $this->parent = $parent;
         
         return $this;
+    }
+    
+    public function getChildren(): Collection
+    {
+        return $this->children;
     }
     
     public function __toString()

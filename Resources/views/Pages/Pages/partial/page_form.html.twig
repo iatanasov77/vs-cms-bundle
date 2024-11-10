@@ -1,8 +1,16 @@
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 {% import "@VSApplication/Macros/tree.html.twig" as vs_tree %}
 
+    
+{% if formErrors is defined %}
+    {{ vs_form.errors( formErrors ) }}     
+{% endif %}
+    
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
 {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
+
+    {{ form_widget( form.tagsInputWhitelist, { 'value' : pageTags | join(',') } ) }}
+
     <label class="custom-control custom-checkbox">  
         <input type="checkbox" id="page_form_enabled"
             class="custom-control-input form-check-input"
@@ -10,7 +18,7 @@
             value="{{ item.enabled }}"
             {% if item.enabled %}checked="checked"{% endif %}
         />
-        <span class="custom-control-label">Published</span>
+        <span class="custom-control-label">{{ 'vs_cms.form.page.published' | trans( {},'VSCmsBundle' ) }}</span>
     </label>
     
     <div class="form-group">
@@ -38,6 +46,7 @@
                 'required': 'true',
                 'multiple': 'true',
                 'checkbox': 'true',
+                'cascadeCheck': 'false',
                 'placeholder': comboTreePlaceholder
             }
         ) }}
@@ -62,6 +71,15 @@
     </div>
     
     <div class="form-group">
+        {{ form_label(form.tags, null, {
+            'label_attr': {'class': 'col-form-label'}
+            }) 
+        }}
+        
+        {{ form_widget(form.tags, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    
+    <div class="form-group">
         {{ form_label(form.text, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
@@ -69,5 +87,7 @@
         {{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
     </div>
     
-    {{ vs_form.buttons( form ) }}
+    {% if metadata is not defined %}{% set metadata = null %}{% endif %}
+    {{ vs_form.buttons( form, metadata ) }}
+    
 {{ form_end(form, {'render_rest': false}) }}

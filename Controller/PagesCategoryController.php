@@ -1,8 +1,8 @@
-<?php  namespace Vankosoft\CmsBundle\Controller;
+<?php namespace Vankosoft\CmsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
-use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
+use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyHelperTrait;
 
 /**
  * Documentation
@@ -20,49 +20,42 @@ class PagesCategoryController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
-        $taxonomy       = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-            $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
-        );
+        $taxonomy       = $this->getTaxonomy( 'vs_application.page_categories.taxonomy_code' );
         
-        $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
+        $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations( false ) : [];
         if ( $entity && $entity->getTaxon() ) {
             $entity->getTaxon()->setCurrentLocale( $request->getLocale() );
         }
         
         return [
-            'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+            'taxonomy'      => $taxonomy,
             'translations'  => $translations,
+            'items'         => $this->getRepository()->findAll(),
         ];
     }
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
         $translatableLocale     = $form['currentLocale']->getData();
-        $this->get( 'vs_application.slug_generator' )->setLocaleCode( $translatableLocale );
-        
         $categoryName           = $form['name']->getData();
-        $parentCategory         = $this->get( 'vs_cms.repository.page_categories' )
-                                        ->findByTaxonId( $_POST['page_category_form']['parent'] );
+        $parentCategory         = null;
+        
+        // Try This to Get Post Values
+        //echo "<pre>"; var_dump( $request->request->all() ); die;
+        if ( isset( $_POST['page_category_form']['parent'] ) ) {
+            $repo           = $this->get( 'vs_cms.repository.page_categories' );
+            $parentCategory = $repo->find( $_POST['page_category_form']['parent'] );
+        }
         
         if ( $entity->getTaxon() ) {
-            $entityTaxon    = $entity->getTaxon();
-            
-            $entityTaxon->getTranslation( $translatableLocale );
-            $entityTaxon->setCurrentLocale( $translatableLocale );
-            $request->setLocale( $translatableLocale );
-            if ( ! in_array( $translatableLocale, $entityTaxon->getExistingTranslations() ) ) {
-                $taxonTranslation   = $this->createTranslation( $entityTaxon, $translatableLocale, $categoryName );
-                
-                $entityTaxon->addTranslation( $taxonTranslation );
-            } else {
-                $taxonTranslation   = $entityTaxon->getTranslation( $translatableLocale );
-
-                $taxonTranslation->setName( $categoryName );
-                $taxonTranslation->setSlug( $this->get( 'vs_application.slug_generator' )->generate( $categoryName ) );
+            $entity->getTaxon()->setCurrentLocale( $translatableLocale );
+            $entity->getTaxon()->setName( $categoryName );
+            if ( $parentCategory ) {
+                $entity->getTaxon()->setParent( $parentCategory->getTaxon() );
             }
             
-            if ( $parentCategory ) {
-                $entityTaxon->setParent( $parentCategory->getTaxon() );
+            if ( ! $entity->getTaxon()->getTranslation()->getSlug() ) {
+                $entity->getTaxon()->getTranslation()->setSlug( $entity->getTaxon()->getCode() );
             }
             
             $entity->setParent( $parentCategory );
@@ -70,9 +63,8 @@ class PagesCategoryController extends AbstractCrudController
             /*
              * @WORKAROUND Create Taxon If not exists
              */
-            $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-                                        $this->getParameter( 'vs_application.page_categories.taxonomy_code' )
-                                    );
+            $taxonomy   = $this->getTaxonomy( 'vs_application.page_categories.taxonomy_code' );
+            
             $newTaxon   = $this->createTaxon(
                 $categoryName,
                 $translatableLocale,

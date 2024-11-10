@@ -10,6 +10,14 @@ vs_cms_document:
         alias: vs_cms.document
         path: /documents
         templates: "@VSCms/Pages/Document"
+        form:
+            options:
+                ckeditor_uiColor: '%vs_cms.form.toc_page.ckeditor_uiColor%'
+                ckeditor_toolbar: '%vs_cms.form.toc_page.ckeditor_toolbar%'
+                ckeditor_extraPlugins: '%vs_cms.form.toc_page.ckeditor_extraPlugins%'
+                ckeditor_removeButtons: '%vs_cms.form.toc_page.ckeditor_removeButtons%'
+                ckeditor_allowedContent: '%vs_cms.form.toc_page.ckeditor_allowedContent%'
+                ckeditor_extraAllowedContent: '%vs_cms.form.toc_page.ckeditor_extraAllowedContent%'
     type: sylius.resource
     options:
         expose: true
@@ -38,10 +46,11 @@ vs_cms_toc_page:
         form:
             options:
                 ckeditor_uiColor: '%vs_cms.form.toc_page.ckeditor_uiColor%'
-                ckeditor_extraAllowedContent: '%vs_cms.form.toc_page.ckeditor_extraAllowedContent%'
                 ckeditor_toolbar: '%vs_cms.form.toc_page.ckeditor_toolbar%'
                 ckeditor_extraPlugins: '%vs_cms.form.toc_page.ckeditor_extraPlugins%'
                 ckeditor_removeButtons: '%vs_cms.form.toc_page.ckeditor_removeButtons%'
+                ckeditor_allowedContent: '%vs_cms.form.toc_page.ckeditor_allowedContent%'
+                ckeditor_extraAllowedContent: '%vs_cms.form.toc_page.ckeditor_extraAllowedContent%'
     type: sylius.resource
     options:
         expose: true
@@ -61,8 +70,9 @@ vs_cms_multipage_toc_page_sort_action:
         expose: true
 
 vs_cms_multipage_toc_page_edit:
-    path: /multipage-toc-edit/{documentId}/{tocPageId}
+    path: /multipage-toc-edit/{documentId}/{tocPageId}/{locale}
     controller: Vankosoft\CmsBundle\Controller\MultiPageTocPageController::editTocPage
+    defaults: { locale: '%locale%' }
     
 vs_cms_multipage_toc_page_delete:
     path: /multipage-toc-delete/{documentId}/{tocPageId}

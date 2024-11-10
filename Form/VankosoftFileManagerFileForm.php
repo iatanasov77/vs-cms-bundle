@@ -14,7 +14,7 @@ use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
 
 class VankosoftFileManagerFileForm extends AbstractForm
 {
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         parent::buildForm( $builder, $options );
         

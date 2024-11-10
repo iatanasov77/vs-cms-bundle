@@ -8,6 +8,8 @@ vs_cms:
         save: 'Запази'
         cancel: 'Отказ'
         page_label: 'Страница'
+        published: 'Публикуван'
+        url: УРЛ
         
         page:
             published: 'Публикувана'
@@ -17,21 +19,42 @@ vs_cms:
             categories_placeholder: '-- Категории --'
             slug: 'Слуг'
             page_content: 'Съдържание'
+            
         clone_page:
             new_title: 'Ново Име'
+            
         category:
             parent_category: 'Родителска Категория'
             parent_category_placeholder: '-- Родителска Категория --'
+            
         document:
             document_category: 'Категория на Документ'
             document_category_placeholder: '-- Избери Категория на Документ --'
             document_toc: 'Документ Съдържание'
+            
         toc_page:
             parent_page_placeholder: '-- Избери Родителска Страница --'
+            
         filemanager:
             file_directory_lable: 'Директория'
             file_lable: 'Избери Файл'
             file_info: 'Позволени Типове: jpeg, png'
+            
+        helpcenter_question:
+            question: Въпрос
+            answer: Отговор
+            
+        quick_link:
+            link_text: Линк Текст
+            link_path: 'Линк Път (ИЛИ Абсолютен УРЛ)'
+            
+        slider_item:
+            slider: Слайдер
+            slider_placeholder: '-- Избери Слайдер --'
+            title: Заглавие
+            description: Описание
+            photo: Снимка
+            photo_description: Prefered Photo Demensions
             
     template:
         uncategorized_pages: Некатегоризирани Страници
@@ -41,6 +64,7 @@ vs_cms:
         page_categories_index_button_edit: 'Редактирай'
         page_categories_update_title: 'Редактиране Категория на Страници'
         page_categories_create_title: 'Създаване Нова Категория на Страници'
+        page_categories_title: 'Категория на Страници'
         pages_index_title: 'Листинг Страници'
         pages_index_row_slug: 'Слуг'
         pages_index_row_published: 'Публикувана'
@@ -50,6 +74,7 @@ vs_cms:
         pages_index_row_action: 'Действие'
         pages_update_title: 'Редактиране на Страница'
         pages_create_title: 'Създаване Нова Страница'
+        pages_title: Страница детайли
         button_clone: 'Клонирай Страница'
         button_preview: 'Прегледай Страница'
         title_actions: 'Действия'
@@ -66,6 +91,7 @@ vs_cms:
         filemanager_update_upload_file: Ъплоад Файл
         filemanager_update_button_upload: Ъплоад
         filemanager_update_files_table_name: 'Име'
+        filemanager_update_files_table_mime: 'МИМЕ Тип'
         filemanager_update_files_table_date: 'Дата'
         filemanager_update_files_table_size: 'Размер'
         filemanager_update_files_table_dimension: 'Снимка Размер'
@@ -81,6 +107,29 @@ vs_cms:
         document_update_toc_pages_title: 'Страници на Съдържанивто'
         document_update_title: 'Редактиране на Документ'
         document_create_title: 'Създаване на Документ'
+        
+        list_questions: Въпроси Листинг
+        page_title_question_create: Създаване на Въпрос
+        page_title_question_update: Редакция на Въпрос
+        page_title_question_details: Въпрос Детайли
+        
+        page_title_quick_link_listing: Списък Бързи Линкове
+        page_title_quick_link_create: Създаване на Бърз Линк
+        page_title_quick_link_update: Редакция на Бърз Линк
+        page_title_quick_link_details: Бърз Линк Детайли
+        
+        list_sliders: Слайдери
+        page_title_slider_create: Създаване Слайдер
+        page_title_slider_update: Редакция Слайдер
+        page_title_slider_details: Слайдер Детайли
+        slider_items: Слайдер Елементи
+        button_slider_item_create: Създаване Слайдер Елемент
+        
+        list_slider_items: Слайдер Елементи
+        page_title_slider_item_create: Създаване Слайдер Елемент
+        page_title_slider_item_update: Редакция Слайдер Елемент
+        page_title_slider_item_details: Слайдер Елемент Детайли
+        
     modal:
         page_clone:
             title: 'Клониране на Страница'
@@ -89,4 +138,8 @@ vs_cms:
             title: 'Преглед на Страница'
             button_preview: 'Прегледай Страница'
         multipage_toc_page:
-            title: 'Нова Страница за Съдържание'
+            create_title: 'Нова Страница за Съдържание'
+            update_title: 'Редакция Страница за Съдържание'
+        slider_item:
+            create_title: 'Добави Слайдер Елемент'
+            update_title: 'Редакция Слайдер Елемент'

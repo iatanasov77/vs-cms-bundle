@@ -25,6 +25,12 @@
             <gedmo:translatable />
         </field>
         
+        <field name="tags" column="tags" type="string" length="255" nullable="true">
+            <options>
+                <option name="default"></option>
+            </options>
+        </field>
+        
         <field name="text" column="text" type="text" nullable="false">
             <gedmo:translatable />
             <gedmo:versioned />
@@ -34,7 +40,7 @@
         ======================
         	https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/inheritance-mapping.html#mapped-superclasses
         -->
-        <many-to-many field="categories" target-entity="Vankosoft\CmsBundle\Model\PageCategoryInterface" inversed-by="pages">
+        <many-to-many field="categories" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface" inversed-by="pages">
         	<cascade>
                 <cascade-persist/>
                 <cascade-merge/>
@@ -56,6 +62,8 @@
 	       and it is not necessary because globally locale can be set in listener
         -->
         <gedmo:translation entity="Vankosoft\ApplicationBundle\Model\Interfaces\TranslationInterface" locale="locale"/>
+        
+        <gedmo:loggable log-entry-class="Vankosoft\ApplicationBundle\Model\Interfaces\LogEntryInterface"/>
     </mapped-superclass>
 
 </doctrine-mapping>

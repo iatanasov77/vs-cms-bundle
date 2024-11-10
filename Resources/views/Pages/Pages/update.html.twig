@@ -1,5 +1,7 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
+{% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
+
 {% if( item.id ) %}
 	{% set pageTitle = 'vs_cms.template.pages_update_title' | trans( {},'VSCmsBundle' ) %}
 {% else %}
@@ -38,25 +40,17 @@
         </div>
     </div>
     
-	<div class="row">
+    <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-            	<h5 class="card-header">Page details</h5>
-            	<div class="card-body">
-					{% if form_errors(form) is not empty %}
-		                <div class="alert alert-block alert-danger fade in">
-		                    <button type="button" class="close close-sm" data-dismiss="alert">
-		                        <i class="icon-remove"></i>
-		                    </button>
-		                    <strong>{{ 'vs_application.form.errors_title' | trans( {},'VSApplicationBundle' ) }}</strong> {{ form_errors(form) }}
-		                </div>
-		            {% endif %}
-		            <div id="pageFormContainer" data-pageId="{{ item.id }}">
+                <h5 class="card-header">{{ 'vs_cms.template.pages_title' | trans( {},'VSCmsBundle' ) }}</h5>
+                <div class="card-body">
+                   <div id="FormContainer" data-itemId="{{ item.id }}">
                         {% include '@VSCms/Pages/Pages/partial/page_form.html.twig' %}
                     </div>
-        		</div>
-			</div>
-		</div>
+                </div>
+    		</div>
+    	</div>
     </div>
 {% endblock content %}
 

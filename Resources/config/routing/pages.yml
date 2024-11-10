@@ -1,17 +1,36 @@
 vs_cms_pages:
     resource: |
         alias: vs_cms.pages
-        except: ['show']
         path: /pages
         templates: "@VSCms/Pages/Pages"
         form:
             options:
                 ckeditor_uiColor: '%vs_cms.form.pages.ckeditor_uiColor%'
-                ckeditor_extraAllowedContent: '%vs_cms.form.pages.ckeditor_extraAllowedContent%'
                 ckeditor_toolbar: '%vs_cms.form.pages.ckeditor_toolbar%'
                 ckeditor_extraPlugins: '%vs_cms.form.pages.ckeditor_extraPlugins%'
                 ckeditor_removeButtons: '%vs_cms.form.pages.ckeditor_removeButtons%'
+                ckeditor_allowedContent: '%vs_cms.form.pages.ckeditor_allowedContent%'
+                ckeditor_extraAllowedContent: '%vs_cms.form.pages.ckeditor_extraAllowedContent%'
     type: sylius.resource
+    options:
+        expose: true
+
+vs_cms_pages_index_filtered:
+    path: /pages/filter/{filterCategory}/
+    methods: [GET]
+    defaults:
+        _controller: vs_cms.controller.pages::indexAction
+        _sylius:
+            paginate: 10
+            sortable: true
+            sorting:
+                position: asc
+            filterable: true
+            criteria:
+                category: $filterCategory
+            template: "@VSCms/Pages/Pages/index.html.twig"
+    options:
+        expose: true
 
 vs_cms_pages_show_by_id:
     path: /pages/{id}
@@ -49,7 +68,7 @@ vs_cms_pages_preview:
     controller: Vankosoft\CmsBundle\Controller\PagesExtController::previewPage
     defaults:   { version: null }
 vs_cms_pages_form_in_locale:
-    path: /page-actions/get-form/{locale}/{pageId}
+    path: /page-actions/get-form/{locale}/{itemId}
     controller: Vankosoft\CmsBundle\Controller\PagesExtController::getPageForm
 
 # Page Categories Callbacks
@@ -68,6 +87,10 @@ vs_cms_pages_tree_combo_with_leafs:
 vs_cms_pages_tree_table:
     path: /json/pages-categories-{taxonomyId}/gtreetable
     controller: Vankosoft\CmsBundle\Controller\PagesExtController::gtreeTableSource
+    
+vs_cms_pages_category_tree:
+    path: /json/pages-categories/easyui-combotree-{categoryId}
+    controller: Vankosoft\CmsBundle\Controller\PagesCategoryExtController::easyuiComboTreeWithSelectedSource
 
 # Custom Routes
 vs_cms_pages_categories_update_by_taxon:

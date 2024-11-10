@@ -4,6 +4,7 @@ use Vankosoft\ApplicationBundle\Form\AbstractForm;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,29 +14,35 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Doctrine\ORM\EntityRepository;
 use Vankosoft\CmsBundle\Model\TocPage;
 use Vankosoft\CmsBundle\Model\TocPageInterface;
+use Vankosoft\CmsBundle\Form\Traits\FosCKEditor4Config;
 
 class DocumentForm extends AbstractForm
 {
-    protected $requestStack;
+    use FosCKEditor4Config;
     
+    /** @var string */
     protected $tocPageClass;
     
+    /** @var string */
     protected $pagesClass;
     
     public function __construct(
-        RequestStack $requestStack,
         string $dataClass,
+        RepositoryInterface $localesRepository,
+        RequestStack $requestStack,
         string $documentCategoryClass,
         string $tocPageClass
     ) {
         parent::__construct( $dataClass );
         
+        $this->localesRepository        = $localesRepository;
         $this->requestStack             = $requestStack;
+        
         $this->documentCategoryClass    = $documentCategoryClass;
         $this->tocPageClass             = $tocPageClass;
     }
     
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         parent::buildForm( $builder, $options );
         
@@ -46,7 +53,7 @@ class DocumentForm extends AbstractForm
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( \Vankosoft\ApplicationBundle\Component\I18N::LanguagesAvailable() ),
+                'choices'               => \array_flip( $this->fillLocaleChoices() ),
                 'data'                  => $currentLocale,
                 'mapped'                => false,
             ])
@@ -83,12 +90,7 @@ class DocumentForm extends AbstractForm
             ->add( 'text', CKEditorType::class, [
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
-                'config'                => [
-                    'toolbar'           => 'full',
-                    // Create a toolbar in config for example a 'document_toolbar' and use it
-                    //'toolbar'   => 'document_toolbar',
-                    'uiColor'   => '#ffffff',
-                ],
+                'config'                => $this->ckEditorConfig( $options ),
                 'required'              => false,
                 'mapped'                => false,
             ])
@@ -108,6 +110,8 @@ class DocumentForm extends AbstractForm
             ])
             ->setAllowedTypes( 'tocRootPage', TocPageInterface::class )
         ;
+            
+        $this->onfigureCkEditorOptions( $resolver );
     }
     
     public function getName()

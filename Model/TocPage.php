@@ -1,11 +1,15 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
+use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\TocPageInterface;
 
 class TocPage implements TocPageInterface, LoggableObjectInterface
 {
+    use TranslatableTrait;
+    
     /** @var integer */
     protected $id;
     
@@ -22,6 +26,9 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     
     /** @var DocumentInterface */
     protected $document;
+    
+    /** @var string */
+    protected $slug;
     
     /** @var string */
     protected $title;
@@ -49,6 +56,7 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
     
     public function __construct()
     {
+        $this->fallbackLocale   = 'en_US';
         $this->children = new ArrayCollection();
     }
     
@@ -224,6 +232,17 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         $this->level = $level;
     }
     
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+    
+    public function setSlug( $slug=null ): void
+    {
+        $this->slug = $slug;
+        //return $this;
+    }
+    
     /**
      * {@inheritDoc}
      * @see \Vankosoft\ApplicationBundle\Model\Interfaces\LoggableObjectInterface::getTranslatableLocale()
@@ -233,7 +252,7 @@ class TocPage implements TocPageInterface, LoggableObjectInterface
         return $this->locale;
     }
     
-    public function setTranslatableLocale($locale): self
+    public function setTranslatableLocale($locale): TocPageInterface
     {
         $this->locale = $locale;
         
