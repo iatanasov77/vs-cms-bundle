@@ -6,7 +6,7 @@ use Webmozart\Assert\Assert;
 
 use Vankosoft\CmsBundle\Component\Generator\FilePathGeneratorInterface;
 use Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator;
-use Vankosoft\CmsBundle\Model\FileInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
 
 class ProfileUploader implements FileUploaderInterface
 {

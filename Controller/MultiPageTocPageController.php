@@ -15,7 +15,7 @@ use Vankosoft\ApplicationBundle\Component\Status;
 class MultiPageTocPageController extends AbstractController
 {
     /** @var ManagerRegistry */
-    private ManagerRegistry $doctrine;
+    private $doctrine;
     
     /** @var DocumentsRepository */
     private $documentRepository;
@@ -40,7 +40,7 @@ class MultiPageTocPageController extends AbstractController
     
     public function sortAction( $id, $insertAfterId, Request $request ): Response
     {
-        $em             = $this->getDoctrine()->getManager();
+        $em             = $this->doctrine->getManager();
         $item           = $this->tocPageRepository->find( $id );
         $insertAfter    = $this->tocPageRepository->find( $insertAfterId );
         $this->tocPageRepository->insertAfter( $item, $insertAfterId );
@@ -55,10 +55,10 @@ class MultiPageTocPageController extends AbstractController
         ]);
     }
     
-    public function editTocPage( $documentId, $tocPageId, Request $request ): Response
+    public function editTocPage( $documentId, $tocPageId, $locale, Request $request ): Response
     {
-        $locale         = $request->getLocale();
         $tocRootPage    = $this->documentRepository->find( $documentId )->getTocRootPage();
+        $em             = $this->doctrine->getManager();
         
         if ( intval( $tocPageId ) ) {
             $oTocPage   = $this->tocPageRepository->find( $tocPageId );
@@ -70,6 +70,11 @@ class MultiPageTocPageController extends AbstractController
             $formMethod = 'POST';
         }
         
+        if ( $locale != $request->getLocale() ) {
+            $oTocPage->setTranslatableLocale( $locale );
+            $em->refresh( $oTocPage );
+        }
+        
         $form           = $this->createForm( TocPageForm::class, $oTocPage, [
             'action'                        => $formAction,
             'method'                        => $formMethod,
@@ -77,10 +82,11 @@ class MultiPageTocPageController extends AbstractController
             'tocRootPage'                   => $tocRootPage,
             
             'ckeditor_uiColor'              => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_uiColor' ),
-            'ckeditor_extraAllowedContent'  => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraAllowedContent' ),
             'ckeditor_toolbar'              => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_toolbar' ),
             'ckeditor_extraPlugins'         => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraPlugins' ),
             'ckeditor_removeButtons'        => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_removeButtons' ),
+            'ckeditor_allowedContent'       => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_allowedContent' ),
+            'ckeditor_extraAllowedContent'  => $this->getParameter( 'vs_cms.form.toc_page.ckeditor_extraAllowedContent' ),
         ]);
         
         return $this->render( '@VSCms/Pages/Document/form/toc_page.html.twig', [

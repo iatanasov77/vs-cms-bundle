@@ -14,11 +14,11 @@
             <gedmo:translatable />
         </field>
         
-        <many-to-one field="category" target-entity="Vankosoft\CmsBundle\Model\DocumentCategoryInterface" inversed-by="documents">
+        <many-to-one field="category" target-entity="Vankosoft\CmsBundle\Model\Interfaces\DocumentCategoryInterface" inversed-by="documents">
             <join-column name="category_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
         </many-to-one>
         
-        <one-to-one field="tocRootPage" target-entity="Vankosoft\CmsBundle\Model\TocPageInterface" inversed-by="document">
+        <one-to-one field="tocRootPage" target-entity="Vankosoft\CmsBundle\Model\Interfaces\TocPageInterface" inversed-by="document">
             <join-column name="toc_root_page_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
             <cascade>
                 <cascade-all/>

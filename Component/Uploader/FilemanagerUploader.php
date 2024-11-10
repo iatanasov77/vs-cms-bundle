@@ -6,7 +6,7 @@ use Webmozart\Assert\Assert;
 
 use Vankosoft\CmsBundle\Component\Generator\FilePathGeneratorInterface;
 use Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator;
-use Vankosoft\CmsBundle\Model\FileInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
 
 class FilemanagerUploader implements FileUploaderInterface
 {
@@ -30,6 +30,11 @@ class FilemanagerUploader implements FileUploaderInterface
             }
             
             $this->filePathGenerator = $filePathGenerator ?? new UploadedFilePathGenerator();
+    }
+    
+    public function getFilesystem(): Filesystem
+    {
+        return $this->filesystem;
     }
     
     public function upload( FileInterface $filemanagerFile ): void
@@ -70,6 +75,15 @@ class FilemanagerUploader implements FileUploaderInterface
         }
         
         return false;
+    }
+    
+    public function fileSize( FileInterface $filemanagerFile )
+    {
+        if ( $filemanagerFile->getFile() ) {
+            return $filemanagerFile->getFile()->getSize();
+        } else {
+            return $this->filesystem->size( $filemanagerFile->getPath() );
+        }
     }
     
     protected function has( string $path ): bool

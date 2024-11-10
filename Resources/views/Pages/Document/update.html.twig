@@ -22,13 +22,9 @@
             	<div class="card-body" id="DocumentFormContainer" data-documentId="{{ item.id }}">
             		{% if useFormMethod is defined %}{% set formMethod = useFormMethod %}{% else %}{% set formMethod = 'PUT' %}{% endif %}
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'id': 'form-post'}, 'method': formMethod }) }}
-                        {% if form_errors(form) is not empty %}
-                            <div class="alert alert-block alert-danger fade in">
-                                <button type="button" class="close close-sm" data-dismiss="alert">
-                                    <i class="icon-remove"></i>
-                                </button>
-                                <strong>Error!</strong> {{ form_errors(form) }}
-                            </div>
+                    
+                        {% if formErrors is defined %}
+                            {{ vs_form.errors( formErrors ) }}     
                         {% endif %}
                         
                         <div class="form-group">
@@ -63,24 +59,10 @@
                                 }) 
                             }}
                             
-                            {{ form_widget(form.text, {
-                                'attr': {'class': 'form-control'},
-                                'value' : rootTocPageText,
-                                'config': {
-                                    'toolbar': 'devpage_toolbar',
-                                    'extraPlugins': ['liststyle', 'font', 'justify', 'codesnippet'],
-                                    'removeButtons': '',
-                    
-                                    'filebrowserBrowseRoute': 'vs_cms_fosckeditor_browse',
-                                    'filebrowserBrowseRouteParameters': {'conf': 'default', 'directory': '1'},
-                                    'filebrowserBrowseRouteType': 0,
-                                    'filebrowserUploadRoute': 'vs_cms_fosckeditor_upload',
-                                    'filebrowserUploadRouteParameters': {'conf': 'default', 'directory': '1'},
-                                }
-                            } ) }}
+                            {{ form_widget(form.text, {'attr': {'class': 'form-control'}, 'value' : rootTocPageText}) }}
                         </div>
                         
-                    	{{ vs_form.buttons( form ) }}
+                    	{{ vs_form.buttons( form, metadata ) }}
                     {{ form_end(form, {'render_rest': false}) }}
                 </div>
             </div>
@@ -88,8 +70,8 @@
             {% if( item.id ) %}
 				<div class="card" id="containerTocPages">
 	                <div class="card-header">
-                        <div class="float-left" style="height:30px; padding-top:10px;">{{ 'vs_cms.template.document_update_toc_pages_title' | trans( {},'VSCmsBundle' ) }}</div>
-                        <div class="btn-group float-right">
+                        <div class="float-start" style="height:30px; padding-top:10px;">{{ 'vs_cms.template.document_update_toc_pages_title' | trans( {},'VSCmsBundle' ) }}</div>
+                        <div class="btn-group float-end">
                             <a class="btn btn-primary btnTocPage" id="btnTocPage" 
                             	title="{{ 'vs_cms.template.button_create_toc_page' | trans( {},'VSCmsBundle' ) }}" 
                             	href="javascript:void(0);"
@@ -101,19 +83,10 @@
                         </div>
                     </div>
                     <div class="card-body" style="padding: 0;">
-                        {#
-                        <!--  http://gtreetable.gilek.net/ -->
-                        <table class="table gtreetable"
-                               id="tableTocPages"
-                               data-sourceUrl="{{ url('vs_cms_multipage_toc_page_gtreetable', {'documentId': item.id}) }}"
-                        >
-                        </table>
-                        #}
-                        
                         {% if item.tocRootPage.children|length > 0 %}
                             {% include '@VSCms/Pages/Document/partial/simpleTreeTable.html.twig' %}
                         {% else %}
-                            {{ alerts.info('sylius.ui.there_are_no_mappers_to_display'|trans) }}
+                            {{ alerts.info( 'vs_application.template.there_are_no_items_to_display' | trans( {},'VSApplicationBundle' ) ) }}
                         {% endif %}
                     </div>
 				</div>

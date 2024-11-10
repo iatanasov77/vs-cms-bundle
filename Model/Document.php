@@ -1,5 +1,9 @@
 <?php namespace Vankosoft\CmsBundle\Model;
 
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentCategoryInterface;
+use Vankosoft\CmsBundle\Model\Interfaces\TocPageInterface;
+
 class Document implements DocumentInterface
 {
     /** @var integer */

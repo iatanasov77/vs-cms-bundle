@@ -1,15 +1,14 @@
 <?php namespace Vankosoft\CmsBundle\Form;
 
 use Vankosoft\ApplicationBundle\Form\AbstractForm;
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
-use Vankosoft\ApplicationBundle\Component\I18N;
 
 class PageCategoryForm extends AbstractForm
 {
@@ -19,20 +18,27 @@ class PageCategoryForm extends AbstractForm
     
     protected $requestStack;
     
-    public function __construct( string $dataClass, EntityRepository $repository, RequestStack $requestStack )
-    {
+    public function __construct(
+        string $dataClass,
+        RepositoryInterface $localesRepository,
+        RequestStack $requestStack,
+        RepositoryInterface $repository
+    ) {
         parent::__construct( $dataClass );
         
-        $this->categoryClass    = $dataClass;
-        $this->repository       = $repository;
-        $this->requestStack     = $requestStack;
+        $this->localesRepository    = $localesRepository;
+        $this->requestStack         = $requestStack;
+        
+        $this->categoryClass        = $dataClass;
+        $this->repository           = $repository;
     }
     
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         parent::buildForm( $builder, $options );
         
-        $category   = $options['data'];
+        $category       = $options['data'];
+        $currentLocale  = $this->requestStack->getCurrentRequest()->getLocale();
         
         $builder
             ->setMethod( $category && $category->getId() ? 'PUT' : 'POST' )
@@ -40,8 +46,8 @@ class PageCategoryForm extends AbstractForm
             ->add( 'currentLocale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
                 'translation_domain'    => 'VSCmsBundle',
-                'choices'               => \array_flip( I18N::LanguagesAvailable() ),
-                'data'                  => $this->requestStack->getCurrentRequest()->getLocale(),
+                'choices'               => \array_flip( $this->fillLocaleChoices() ),
+                'data'                  => $currentLocale,
                 'mapped'                => false,
             ])
         
@@ -55,7 +61,7 @@ class PageCategoryForm extends AbstractForm
                 'label'                 => 'vs_cms.form.category.parent_category',
                 'translation_domain'    => 'VSCmsBundle',
                 'class'                 => $this->categoryClass,
-                'query_builder'         => function ( EntityRepository $er ) use ( $category )
+                'query_builder'         => function ( RepositoryInterface $er ) use ( $category )
                 {
                     $qb = $er->createQueryBuilder( 'pc' );
                     if  ( $category && $category->getId() ) {
@@ -68,6 +74,17 @@ class PageCategoryForm extends AbstractForm
                 
                 'required'      => false,
                 'placeholder'   => 'vs_cms.form.category.parent_category_placeholder',
+            ])
+        ;
+    }
+    
+    public function configureOptions( OptionsResolver $resolver ): void
+    {
+        parent::configureOptions( $resolver );
+        
+        $resolver
+            ->setDefaults([
+                'csrf_protection' => false,
             ])
         ;
     }

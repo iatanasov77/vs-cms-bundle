@@ -18,14 +18,6 @@
             <div class="card">
                 <h5 class="card-header">Document Category</h5>
                 <div class="card-body">
-                	{% if form_errors(form) is not empty %}
-		                <div class="alert alert-block alert-danger fade in">
-		                    <button type="button" class="close close-sm" data-dismiss="alert">
-		                        <i class="icon-remove"></i>
-		                    </button>
-		                    <strong>{{ 'vs_application.form.errors_title' | trans( {},'VSApplicationBundle' ) }}</strong> {{ form_errors(form) }}
-		                </div>
-		            {% endif %}
                     <div id="pageCategoryFormContainer" data-pageId="{{ item.id }}">
                         {% include '@VSCms/Pages/Document_Categories/partial/category_form.html.twig' %}
                     </div>

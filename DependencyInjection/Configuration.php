@@ -5,7 +5,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
-use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Factory\Factory;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
@@ -30,21 +29,38 @@ use Vankosoft\CmsBundle\Repository\TocPagesRepository;
 use Vankosoft\CmsBundle\Form\TocPageForm;
 
 use Vankosoft\CmsBundle\Model\FileManager;
-use Vankosoft\CmsBundle\Model\FileManagerInterface;
 use Vankosoft\CmsBundle\Repository\FileManagerRepository;
 use Vankosoft\CmsBundle\Controller\VankosoftFileManagerController;
 use Vankosoft\CmsBundle\Form\VankosoftFileManagerForm;
 
 use Vankosoft\CmsBundle\Model\FileManagerFile;
-use Vankosoft\CmsBundle\Model\FileManagerFileInterface;
 use Vankosoft\CmsBundle\Controller\VankosoftFileManagerFileController;
 use Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm;
 
 use Vankosoft\CmsBundle\Model\DocumentCategory;
-use Vankosoft\CmsBundle\Model\DocumentCategoryInterface;
 use Vankosoft\CmsBundle\Controller\DocumentCategoryController;
 use Vankosoft\CmsBundle\Repository\DocumentCategoryRepository;
 use Vankosoft\CmsBundle\Form\DocumentCategoryForm;
+
+use Vankosoft\CmsBundle\Model\HelpCenterQuestion;
+use Vankosoft\CmsBundle\Controller\HelpCenterQuestionController;
+use Vankosoft\CmsBundle\Form\HelpCenterQuestionForm;
+
+use Vankosoft\CmsBundle\Model\QuickLink;
+use Vankosoft\CmsBundle\Controller\QuickLinkController;
+use Vankosoft\CmsBundle\Form\QuickLinkForm;
+
+use Vankosoft\CmsBundle\Model\Slider;
+use Vankosoft\CmsBundle\Controller\SliderController;
+use Vankosoft\CmsBundle\Repository\SliderRepository;
+use Vankosoft\CmsBundle\Form\SliderForm;
+
+use Vankosoft\CmsBundle\Model\SliderItem;
+use Vankosoft\CmsBundle\Repository\SliderItemRepository;
+use Vankosoft\CmsBundle\Controller\SliderItemController;
+use Vankosoft\CmsBundle\Form\SliderItemForm;
+
+use Vankosoft\CmsBundle\Model\SliderItemPhoto;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -56,7 +72,7 @@ class Configuration implements ConfigurationInterface
     /**
      * {@inheritDoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder    = new TreeBuilder( 'vs_cms' );
         $rootNode       = $treeBuilder->getRootNode();
@@ -87,9 +103,7 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( Page::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( PagesController::class )->cannotBeEmpty()->end()
-                                        //->scalarNode( 'repository' )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( PagesRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'form' )->defaultValue( PageForm::class )->cannotBeEmpty()->end()
@@ -105,7 +119,6 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( PageCategory::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( PagesCategoryController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( PageCategoryRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
@@ -122,7 +135,6 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( DocumentCategory::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( DocumentCategoryInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( DocumentCategoryController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( DocumentCategoryRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
@@ -139,7 +151,6 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( Document::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( DocumentController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( DocumentsRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
@@ -156,7 +167,6 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( TocPage::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( ResourceInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( TocPageController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( TocPagesRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
@@ -173,7 +183,6 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( FileManager::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( FileManagerInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( VankosoftFileManagerController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( FileManagerRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
@@ -190,7 +199,6 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( FileManagerFile::class )->cannotBeEmpty()->end()
-                                        ->scalarNode( 'interface' )->defaultValue( FileManagerFileInterface::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'controller' )->defaultValue( VankosoftFileManagerFileController::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
@@ -199,6 +207,90 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                             ->end()
                         ->end()
+                        
+                        ->arrayNode( 'helpcenter_question' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( HelpCenterQuestion::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( HelpCenterQuestionController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( HelpCenterQuestionForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'quick_link' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( QuickLink::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( QuickLinkController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( QuickLinkForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'slider' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( Slider::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( SliderRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( SliderController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( SliderForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'slider_item' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( SliderItem::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( SliderItemRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( SliderItemController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( SliderItemForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'slider_item_photo' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( SliderItemPhoto::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
                     ->end()
                 ->end()
             ->end()

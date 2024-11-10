@@ -2,7 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
-use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
+use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyHelperTrait;
 
 class DocumentCategoryController extends AbstractCrudController
 {
@@ -10,12 +10,11 @@ class DocumentCategoryController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
-        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-            $this->getParameter( 'vs_application.document_categories.taxonomy_code' )
-        );
+        $taxonomy   = $this->getTaxonomy( 'vs_application.document_categories.taxonomy_code' );
         
         return [
             'taxonomyId'    => $taxonomy ? $taxonomy->getId() : 0,
+            'items'         => $this->getRepository()->findAll(),
         ];
     }
     
@@ -31,9 +30,8 @@ class DocumentCategoryController extends AbstractCrudController
             /*
              * @WORKAROUND Create Taxon If not exists
              */
-            $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-                                        $this->getParameter( 'vs_application.document_categories.taxonomy_code' )
-                                    );
+            $taxonomy   = $this->getTaxonomy( 'vs_application.document_categories.taxonomy_code' );
+            
             $newTaxon   = $this->createTaxon(
                 $categoryName,
                 $translatableLocale,

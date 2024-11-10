@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 class PreviewPageForm extends AbstractType
 {
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         $builder
             ->add( 'pagePreviewUrl', HiddenType::class )

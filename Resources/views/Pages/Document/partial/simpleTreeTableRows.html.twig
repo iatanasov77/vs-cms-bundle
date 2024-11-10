@@ -1,5 +1,10 @@
 <tr data-node-id="{{ tocPage.id }}" {% if parentId %}data-node-pid="{{ tocPage.parent.id }}"{% endif %} data-position="{{ tocPage.position }}" id="tocPage-{{ tocPage.id }}">
-    <td><i class="fas fa-arrows-alt" title="Drag and Drop to Change Order" style="cursor: pointer;"></i></td>
+    <td>
+        <i class="fas fa-arrows-alt"
+            title="{{ 'vs_application.form.drag_and_drop_title' | trans( {},'VSApplicationBundle' ) }}"
+            style="cursor: pointer;"
+        ></i>
+    </td>
     <td>{{ tocPage.title }}</td>
     <td>
         {% for locale in tocPagesTranslations[tocPage.id] %}
@@ -16,9 +21,10 @@
     	>
             <i class="fas fa-edit"></i>
     	</a>
-    	<a class="btn btn-danger btnTocPageDelete btnDelete"
+    	<a class="btn btn-danger btnTocPageDelete btnDeleteResource"
             href="{{ path('vs_cms_multipage_toc_page_delete', {'documentId': item.id, 'tocPageId': tocPage.id}) }}"
             data-csrfToken="{{ csrf_token( tocPage.id ) }}" 
+            data-redirectUrl="{{ path( 'vs_cms_document_update', {'id': item.id} ) }}"
             title="{{ 'vs_application.template.items_index_row_action_delete' | trans( {},'VSApplicationBundle' ) }}"
         >
             <i class="icon_close_alt2"></i>

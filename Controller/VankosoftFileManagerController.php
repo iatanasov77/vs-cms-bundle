@@ -3,7 +3,7 @@
 use Symfony\Component\HttpFoundation\Request;
 
 use Vankosoft\ApplicationBundle\Controller\AbstractCrudController;
-use Vankosoft\ApplicationBundle\Controller\TaxonomyHelperTrait;
+use Vankosoft\ApplicationBundle\Controller\Traits\TaxonomyHelperTrait;
 
 class VankosoftFileManagerController extends AbstractCrudController
 {
@@ -11,9 +11,7 @@ class VankosoftFileManagerController extends AbstractCrudController
     
     protected function customData( Request $request, $entity = null ): array
     {
-        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-            $this->getParameter( 'vs_cms.file_manager.taxonomy_code' )
-        );
+        $taxonomy   = $this->getTaxonomy( 'vs_cms.file_manager.taxonomy_code' );
         
         $fileManagerFiles   = [];
         if ( $entity ) {
@@ -43,9 +41,7 @@ class VankosoftFileManagerController extends AbstractCrudController
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
-        $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
-            $this->getParameter( 'vs_cms.file_manager.taxonomy_code' )
-        );
+        $taxonomy           = $this->getTaxonomy( 'vs_cms.file_manager.taxonomy_code' );
         $translatableLocale = $form['currentLocale']->getData();
         $itemName           = $form['title']->getData();
         

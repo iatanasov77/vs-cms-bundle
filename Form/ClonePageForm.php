@@ -12,7 +12,7 @@ use App\Entity\Cms\PageCategory;
 
 class ClonePageForm extends AbstractType
 {
-    public function buildForm( FormBuilderInterface $builder, array $options )
+    public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         $builder
             ->add( 'category', EntityType::class, [

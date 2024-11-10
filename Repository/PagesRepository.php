@@ -17,7 +17,7 @@ class PagesRepository extends EntityRepository
         return $query->getSingleScalarResult();
     }
     
-    public function find( $id, $lockMode = null, $lockVersion = null )
+    public function find( $id, $lockMode = null, $lockVersion = null ): ?object
     {
         if( ! is_numeric( $id ) ) {
             return $this->findOneBy( [ 'slug' => $id ] );
