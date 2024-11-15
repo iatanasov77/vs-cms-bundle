@@ -65,3 +65,13 @@ services:
             - '@vs_cms.factory.slider_item'
             - '@vs_cms.file_manager'
             - '%vs_application_slider_photo_description%'
+    
+    Vankosoft\CmsBundle\Controller\BannerExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@doctrine'
+            - '@vs_cms.repository.banner_place'
+            - '@vs_cms.repository.banner'
+            - '@vs_cms.factory.banner'
+            - '@vs_cms.file_manager'

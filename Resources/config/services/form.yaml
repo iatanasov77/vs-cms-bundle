@@ -141,4 +141,22 @@ services:
             - '%vs_cms.model.slider.class%'
             - '@vs_application.repository.locale'
             - '@request_stack'
+    
+    vs_cms.resources.banner_place.form:
+        class: Vankosoft\CmsBundle\Form\BannerPlaceForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.banner_place.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
             
+    vs_cms.resources.banner.form:
+        class: Vankosoft\CmsBundle\Form\BannerForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_cms.model.banner.class%'
+            - '%vs_cms.model.banner_place.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
