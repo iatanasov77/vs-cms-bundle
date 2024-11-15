@@ -130,6 +130,16 @@ vs_cms:
         page_title_slider_item_update: Редакция Слайдер Елемент
         page_title_slider_item_details: Слайдер Елемент Детайли
         
+        list_banner_places: Места за банери
+        page_title_banner_place_update: Редакция място за банер
+        page_title_banner_place_create: Създаване място за банер
+        page_title_banner_place_details: Място за банер Детайли
+        
+        list_banners: Банери
+        page_title_banner_update: Редакция банер
+        page_title_banner_create: Създаване банер
+        page_title_banner_details: Банер Детайли
+        
     modal:
         page_clone:
             title: 'Клониране на Страница'

@@ -7,16 +7,16 @@
 {% endif %}
 
 {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
-{{ form_start(form, { 'attr': {'class': 'form-horizontal ', 'id': 'FormSliderItem'}, 'method': method }) }}
+{{ form_start(form, { 'attr': {'class': 'form-horizontal ', 'id': 'FormBanner'}, 'method': method }) }}
     
     <label class="custom-control custom-checkbox">  
-        <input type="checkbox" id="slider_item_form_enabled"
+        <input type="checkbox" id="banner_form_enabled"
             class="custom-control-input"
-            name="slider_item_form[enabled]"
+            name="banner_form[enabled]"
             value="{{ item.enabled }}"
             {% if item.enabled %}checked="checked"{% endif %}
         />
-        <span class="custom-control-label">{{ 'vs_cms.form.published'|trans({}, 'VSCmsBundle') }}</span>
+        <span class="custom-control-label">{{ 'vs_cms.form.published' | trans({}, 'VSCmsBundle') }}</span>
     </label>
     
     <div class="form-group">
@@ -29,12 +29,12 @@
     </div>
     
     <div class="form-group">
-        {{ form_label(form.slider, null, {
+        {{ form_label(form.place, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
         }}
         
-        {{ form_widget(form.slider, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.place, {'attr': {'class': 'form-control'}}) }}
     </div>
     
     <div class="form-group">
@@ -47,15 +47,6 @@
     </div>
     
     <div class="form-group">
-        {{ form_label(form.description, null, {
-            'label_attr': {'class': 'col-form-label'}
-            }) 
-        }}
-        
-        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    
-    <div class="form-group">
         {{ form_label(form.url, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
@@ -65,21 +56,20 @@
     </div>
     
     <div class="form-group">
-        {{ form_label(form.photo, null, {
+        {{ form_label(form.image, null, {
             'label_attr': {'class': 'col-form-label'}
             }) 
         }}
         <div class="input-group form-field-file">
-            {% if item.photo %}{% set originalName = item.photo.originalName %}{% else %}{% set originalName = '' %}{% endif %}
-            {{ form_widget(form.photo, {
+            {% if item.image %}{% set originalName = item.image.originalName %}{% else %}{% set originalName = '' %}{% endif %}
+            {{ form_widget(form.image, {
                 'attr': {
                     'class': 'form-control',
                     'placeholder': originalName
                 }
             }) }}
-            <label class="input-group-text" for="slider_form_photo">{{ originalName }}</label>
+            <label class="input-group-text" for="banner_form_image">{{ originalName }}</label>
         </div>
-        <p class="mt-1 ps-2">{{ 'vs_cms.form.slider_item.photo_description'|trans({}, 'VSCmsBundle') }}: {{ sliderPhotoDescription }}</p>
     </div>
 
     <div class="row">&nbsp;</div>

@@ -1,9 +1,9 @@
 {% extends "@VSApplication/layout.html.twig" %}
 
 {% if( item.id ) %}
-    {% set pageTitle = ( 'vs_cms.template.page_title_slider_item_update' | trans( {},'VSCmsBundle' ) ) ~ ': ' ~ item.title %}
+    {% set pageTitle = ( 'vs_cms.template.page_title_banner_update' | trans( {},'VSCmsBundle' ) ) ~ ': ' ~ item.title %}
 {% else %}
-    {% set pageTitle = 'vs_cms.template.page_title_slider_item_create' | trans( {},'VSCmsBundle' ) %}
+    {% set pageTitle = 'vs_cms.template.page_title_banner_create' | trans( {},'VSCmsBundle' ) %}
 {% endif %}
 
 {% block title %}{{ parent() }} :: {{ pageTitle }}{% endblock %}
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="card">
-            	<h5 class="card-header">{{ 'vs_cms.template.page_title_slider_item_details'  | trans( {},'VSCmsBundle' ) }}</h5>
+            	<h5 class="card-header">{{ 'vs_cms.template.page_title_banner_details'  | trans( {},'VSCmsBundle' ) }}</h5>
             	<div class="card-body">
             	
                     <div id="FormContainer" data-itemId="{{ item.id }}">

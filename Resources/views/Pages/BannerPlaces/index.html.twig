@@ -5,8 +5,8 @@
 {% import "@VSApplication/Macros/translations.html.twig" as vs_translations %}
 
 {# Override Blocs #}
-{% block title %}{{ parent() }} :: {{ 'vs_cms.template.list_sliders' | trans( {},'VSCmsBundle' ) }}{% endblock %}
-{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_cms.template.list_sliders' | trans( {},'VSCmsBundle' ) }}{% endblock %}
+{% block title %}{{ parent() }} :: {{ 'vs_cms.template.list_banner_places' | trans( {},'VSCmsBundle' ) }}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_cms.template.list_banner_places' | trans( {},'VSCmsBundle' ) }}{% endblock %}
 {% block content %}
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -37,16 +37,16 @@
                                     <div class="btn-group">
                                         
                                     	<a class="btn btn-primary"
-                                    	   href="{{ path('vs_cms_slider_update', {'id': item.id}) }}"
+                                    	   href="{{ path('vs_cms_banner_place_update', {'id': item.id}) }}"
                                     	   title="{{ 'vs_application.template.items_index_row_action_edit' | trans( {},'VSApplicationBundle' ) }}"   
                                         >
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         
                                         <a class="btn btn-danger btnDeleteResource"
-                                        	href="{{ path('vs_cms_slider_delete', {'id': item.id}) }}"
+                                        	href="{{ path('vs_cms_banner_place_delete', {'id': item.id}) }}"
                                         	data-csrfToken="{{ csrf_token( item.id ) }}"
-                                        	data-redirectUrl="{{ path( 'vs_cms_slider_index' ) }}"
+                                        	data-redirectUrl="{{ path( 'vs_cms_banner_place_index' ) }}"
                                         	title="{{ 'vs_application.template.items_index_row_action_delete' | trans( {},'VSApplicationBundle' ) }}"
                                         >
                                             <i class="icon_close_alt2"></i>

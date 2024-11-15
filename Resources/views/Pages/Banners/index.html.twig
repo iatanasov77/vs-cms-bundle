@@ -6,8 +6,8 @@
 {% from "@VSApplication/Macros/pagination.html.twig" import pagination %}
 
 {# Override Blocs #}
-{% block title %}{{ parent() }} :: {{ 'vs_cms.template.list_slider_items' | trans( {},'VSCmsBundle' ) }}{% endblock %}
-{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_cms.template.list_slider_items' | trans( {},'VSCmsBundle' ) }}{% endblock %}
+{% block title %}{{ parent() }} :: {{ 'vs_cms.template.list_banners' | trans( {},'VSCmsBundle' ) }}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_cms.template.list_banners' | trans( {},'VSCmsBundle' ) }}{% endblock %}
 {% block content %}
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -29,11 +29,11 @@
                             <tr id="{{ item.id }}" data-id="{{ item.id }}">
                                 <td>{{ loop.index }}</td>
                                 
-                                <td><img src="{{ item.photo.path | imagine_filter( 'index_page_thumbnail' ) }}" /></td>
+                                <td><img src="{{ item.image.path | imagine_filter( 'index_page_thumbnail' ) }}" /></td>
                                 <td>{{ item.title }}</td>
                                 
                                 <td style="text-align: center;">
-                                    {% if item.isPublished() %}
+                                    {% if item.published %}
                                     	<i class="fas fa-check" style="color: #82c91e;">
                                    	{% else %}
                                     	<i class="fas fa-times" style="color: #ff1e1e;"></i>
@@ -44,16 +44,16 @@
                                     <div class="btn-group">
                                         
                                     	<a class="btn btn-primary"
-                                    	   href="{{ path('vs_cms_slider_item_update', {'id': item.id}) }}"
+                                    	   href="{{ path('vs_cms_banner_update', {'id': item.id}) }}"
                                     	   title="{{ 'vs_application.template.items_index_row_action_edit' | trans( {},'VSApplicationBundle' ) }}"   
                                         >
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         
                                         <a class="btn btn-danger btnDeleteResource"
-                                        	href="{{ path('vs_cms_slider_item_delete', {'id': item.id}) }}"
+                                        	href="{{ path('vs_cms_banner_delete', {'id': item.id}) }}"
                                         	data-csrfToken="{{ csrf_token( item.id ) }}"
-                                        	data-redirectUrl="{{ path( 'vs_cms_slider_index' ) }}"
+                                        	data-redirectUrl="{{ path( 'vs_cms_banner_index' ) }}"
                                         	title="{{ 'vs_application.template.items_index_row_action_delete' | trans( {},'VSApplicationBundle' ) }}"
                                         >
                                             <i class="icon_close_alt2"></i>
