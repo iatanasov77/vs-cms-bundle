@@ -61,6 +61,8 @@ vs_cms:
             place_placeholder: 'Choose a Banner Place --'
             title: Title
             image: Image
+            imagine_filter: Imagine Filter
+            imagine_filter_placeholder: '-- Choose an Imagine Filter --'
             
     template:
         uncategorized_pages: Некатегоризирани Страници

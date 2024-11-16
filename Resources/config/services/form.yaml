@@ -150,6 +150,7 @@ services:
             - '%vs_cms.model.banner_place.class%'
             - '@vs_application.repository.locale'
             - '@request_stack'
+            - '@liip_imagine.filter.manager'
             
     vs_cms.resources.banner.form:
         class: Vankosoft\CmsBundle\Form\BannerForm
