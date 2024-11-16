@@ -162,3 +162,6 @@ vs_cms:
         slider_item:
             create_title: 'Добави Слайдер Елемент'
             update_title: 'Редакция Слайдер Елемент'
+        banner:
+            create_title: 'Добави Банер'
+            update_title: 'Редакция Банер'

@@ -113,28 +113,6 @@ vs_cms_slider_item_ext_delete:
     options:
         expose: true
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 vs_cms_banner_place:
     resource: |
         alias: vs_cms.banner_place

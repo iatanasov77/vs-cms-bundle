@@ -162,3 +162,6 @@ vs_cms:
         slider_item:
             create_title: 'Create Slider Item'
             update_title: 'Edit Slider Item'
+        banner:
+            create_title: 'Create Banner'
+            update_title: 'Edit Banner'
