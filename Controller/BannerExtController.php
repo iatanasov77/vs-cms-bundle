@@ -78,10 +78,10 @@ class BannerExtController extends AbstractController
         }
         
         $form   = $this->createForm( BannerForm::class, $banner, [
-            'action'                        => $formAction,
-            'method'                        => $formMethod,
-            'data'                          => $banner,
-            'place'                         => $place,
+            'action'        => $formAction,
+            'method'        => $formMethod,
+            'data'          => $banner,
+            'bannerPlace'   => $place,
         ]);
         
         return $this->render( '@VSCms/Pages/Banners/banner_form.html.twig', [
