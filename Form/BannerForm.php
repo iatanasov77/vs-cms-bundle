@@ -70,7 +70,7 @@ class BannerForm extends AbstractForm
             ])
             
             ->add( 'url', TextType::class, [
-                'required'              => false,
+                'required'              => true,
                 'label'                 => 'vs_cms.form.url',
                 'translation_domain'    => 'VSCmsBundle',
                 
@@ -78,8 +78,7 @@ class BannerForm extends AbstractForm
             
             ->add( 'image', FileType::class, [
                 'mapped'                => false,
-                //'required'              => is_null( $entity->getId() ),
-                'required'              => false,
+                'required'              => is_null( $entity->getId() ),
                 
                 'label'                 => 'vs_cms.form.banner.image',
                 'translation_domain'    => 'VSCmsBundle',

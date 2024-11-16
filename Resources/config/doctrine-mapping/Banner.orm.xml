@@ -7,11 +7,11 @@
             <generator strategy="AUTO" />
         </id>
         
-        <field name="title" column="title" type="string" length="255" nullable="false">
+        <field name="title" column="title" type="string" length="255">
             <gedmo:translatable />
         </field>
         
-        <field name="url" column="url" type="string" length="255" nullable="true" />
+        <field name="url" column="url" type="string" length="255" />
         
         <one-to-one field="image" target-entity="Vankosoft\CmsBundle\Model\Interfaces\BannerImageInterface" mapped-by="owner">
             <cascade>
