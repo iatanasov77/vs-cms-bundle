@@ -5,6 +5,8 @@
             <generator strategy="AUTO" />
         </id>
         
+        <field name="imagineFilter" column="imagine_filter" type="string" />
+        
         <one-to-one field="taxon" name="taxon_id" target-entity="Vankosoft\ApplicationBundle\Model\Interfaces\TaxonInterface" orphan-removal="true">
             <cascade>
                 <cascade-all/>

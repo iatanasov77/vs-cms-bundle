@@ -13,6 +13,9 @@ class BannerPlace implements BannerPlaceInterface
     /** @var integer */
     protected $id;
     
+    /** @var string */
+    protected $imagineFilter;
+    
     /** @var Collection|Banner[] */
     protected $banners;
     
@@ -26,11 +29,23 @@ class BannerPlace implements BannerPlaceInterface
         return $this->id;
     }
     
-    public function getPublicItems(): Collection
+    public function getImagineFilter(): string
     {
-        return $this->getItems()->filter( function( SliderItem $item )
+        return $this->imagineFilter;
+    }
+    
+    public function setImagineFilter( string $imagineFilter ): self
+    {
+        $this->imagineFilter    = $imagineFilter;
+        
+        return $this;
+    }
+    
+    public function getPublishedBanners(): Collection
+    {
+        return $this->getBanners()->filter( function( BannerInterface $banner )
         {
-            return $item->isPublic();
+            return $banner->isPublished();
         });
     }
     

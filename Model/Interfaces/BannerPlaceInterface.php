@@ -6,9 +6,9 @@ use Doctrine\Common\Collections\Collection;
 
 interface BannerPlaceInterface extends ResourceInterface, TaxonDescendentInterface
 {
+    public function getImagineFilter(): string;
+    public function getPublishedBanners(): Collection;
     public function getBanners(): Collection;
-    
     public function addBanner( BannerInterface $banner ): self;
-    
     public function removeBanner( BannerInterface $banner ): self;
 }
