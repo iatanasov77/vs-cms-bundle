@@ -53,7 +53,7 @@ class BannerForm extends AbstractForm
                 'translation_domain'    => 'VSCmsBundle',
             ])
             
-            ->add( 'place', EntityType::class, [
+            ->add( 'places', EntityType::class, [
                 'required'              => true,
                 'multiple'              => true,
                 'label'                 => 'vs_cms.form.banner.place',
