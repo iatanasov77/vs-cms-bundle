@@ -111,8 +111,6 @@ class BannerForm extends AbstractForm
                 'slider'                        => null,
             ])
         ;
-            
-        $this->onfigureCkEditorOptions( $resolver );
     }
     
     public function getName()

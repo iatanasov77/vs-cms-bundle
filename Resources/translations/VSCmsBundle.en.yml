@@ -55,6 +55,12 @@ vs_cms:
             description: Description
             photo: Photo
             photo_description: Prefered Photo Demensions
+        
+        banner:
+            place: Banner Place
+            place_placeholder: 'Choose a Banner Place --'
+            title: Title
+            image: Image
             
     template:
         uncategorized_pages: Uncategorized Pages
@@ -139,6 +145,9 @@ vs_cms:
         page_title_banner_update: Update Banner
         page_title_banner_create: Create Banner
         page_title_banner_details: Banner Details
+        
+        banners: Banners
+        button_banner_create: Create Banner
         
     modal:
         page_clone:

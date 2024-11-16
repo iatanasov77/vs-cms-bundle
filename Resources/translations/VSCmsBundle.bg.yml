@@ -55,6 +55,12 @@ vs_cms:
             description: Описание
             photo: Снимка
             photo_description: Prefered Photo Demensions
+        
+        banner:
+            place: Banner Place
+            place_placeholder: 'Choose a Banner Place --'
+            title: Title
+            image: Image
             
     template:
         uncategorized_pages: Некатегоризирани Страници
@@ -139,6 +145,9 @@ vs_cms:
         page_title_banner_update: Редакция банер
         page_title_banner_create: Създаване банер
         page_title_banner_details: Банер Детайли
+        
+        banners: Банери
+        button_banner_create: Добави банер
         
     modal:
         page_clone:
