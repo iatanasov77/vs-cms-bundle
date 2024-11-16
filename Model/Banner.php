@@ -37,6 +37,7 @@ class Banner implements BannerInterface
     public function __construct()
     {
         $this->fallbackLocale   = 'en_US';
+        $this->places           = new ArrayCollection();
     }
     
     public function getId()

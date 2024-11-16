@@ -18,7 +18,7 @@ class BannerPlace implements BannerPlaceInterface
     
     public function __construct()
     {
-        $this->items    = new ArrayCollection();
+        $this->banners  = new ArrayCollection();
     }
     
     public function getId()
