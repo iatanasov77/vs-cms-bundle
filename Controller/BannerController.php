@@ -50,7 +50,7 @@ class BannerController extends AbstractCrudController
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
-        $formPost   = $request->request->all( 'slider_item_form' );
+        $formPost   = $request->request->all( 'banner_form' );
         $formLocale = $formPost['locale'];
         
         if ( $formLocale ) {
@@ -85,13 +85,13 @@ class BannerController extends AbstractCrudController
     {
         $em                 = $this->get( 'doctrine' )->getManager();
         $sliderPhotoDir     = $this->getParameter( 'vs_cms.filemanager_shared_media_gaufrette.slider' );
-        $sliderItemPhoto    = $sliderPhotoDir . '/' . $sliderItem->getPhoto()->getPath();
+        $bannerImage        = $sliderPhotoDir . '/' . $banner->getImage()->getPath();
         
-        $em->remove( $sliderItem->getPhoto() );
+        $em->remove( $banner->getImage() );
         $em->flush();
         
         $filesystem     = new Filesystem();
-        $filesystem->remove( $sliderItemPhoto );
+        $filesystem->remove( $bannerImage );
     }
     
     private function getTranslations()
