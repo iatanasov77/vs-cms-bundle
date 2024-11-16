@@ -58,7 +58,7 @@ class BannerController extends AbstractCrudController
         }
         
         $imageFile    = $form['image']->getData();
-        if ( $photoFile ) {
+        if ( $imageFile ) {
             $this->createImage( $entity, $imageFile );
         }
     }
