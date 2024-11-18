@@ -28,6 +28,7 @@
         {{ form_widget(form.locale, {'attr': {'class': 'form-control'}}) }}
     </div>
     
+    {{ form_widget( form.selectedPlaces ) }}
     <div class="form-group">
         {{ form_label(form.places, null, {
             'label_attr': {'class': 'col-form-label'}
