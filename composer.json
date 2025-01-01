@@ -19,6 +19,7 @@
 		"php" : "^8.1",
 		"vankosoft/application-bundle" : "^1.10",
 		"friendsofsymfony/ckeditor-bundle" : "^2.5",
+        "daddl3/symfony-ckeditor-5-webpack": "^1.2",
 		"liip/imagine-bundle" : "^2.12",
 		"artgris/filemanager-bundle" : "^2.10",
 		"knplabs/knp-gaufrette-bundle" : "^0.9",

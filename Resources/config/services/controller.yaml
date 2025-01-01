@@ -2,28 +2,23 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: true
 
     Vankosoft\CmsBundle\Controller\GetImageController:
-        tags: ['container.service_subscriber', 'controller.service_arguments']
+        tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - "@liip_imagine.binary.loader.default"
             - "@liip_imagine.filter.manager"
-        calls:
-            - [ setContainer, [ '@service_container' ] ]
 
     Vankosoft\CmsBundle\Controller\PagesCategoryExtController:
-        tags: ['container.service_subscriber', 'controller.service_arguments']
+        tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - '@translator'
             - '@vs_cms.repository.page_categories'
-        calls:
-            - [ setContainer, [ '@service_container' ] ]
     
     Vankosoft\CmsBundle\Controller\PagesExtController:
-        tags: ['container.service_subscriber', 'controller.service_arguments']
+        tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'
@@ -36,26 +31,22 @@ services:
             - '@vs_application.repository.tags_whitelist_context'
             
     Vankosoft\CmsBundle\Controller\MultiPageTocPageController:
-        tags: ['container.service_subscriber', 'controller.service_arguments']
+        tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'
             - '@vs_cms.repository.document'
             - '@vs_cms.repository.toc_page'
             - '@vs_cms.factory.toc_page'
-        calls:
-            - [ setContainer, [ '@service_container' ] ]
 
     Vankosoft\CmsBundle\Controller\ArtgrisFileManagerController:
-        tags: ['container.service_subscriber', 'controller.service_arguments']
+        tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - '@vs_cms.file_manager'
-        calls:
-            - [ setContainer, [ '@service_container' ] ]
     
     Vankosoft\CmsBundle\Controller\VankosoftFileManagerExtController:
-        tags: ['container.service_subscriber', 'controller.service_arguments']
+        tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'
@@ -63,11 +54,9 @@ services:
             - '@vs_cms.repository.file_manager_file'
             - '@vs_cms.factory.file_manager_file'
             - '@vs_cms.file_manager'
-        calls:
-            - [ setContainer, [ '@service_container' ] ]
             
     Vankosoft\CmsBundle\Controller\SliderItemExtController:
-        tags: ['container.service_subscriber', 'controller.service_arguments']
+        tags: ['controller.service_arguments']
         autowire: true
         arguments:
             - '@doctrine'
@@ -76,5 +65,13 @@ services:
             - '@vs_cms.factory.slider_item'
             - '@vs_cms.file_manager'
             - '%vs_application_slider_photo_description%'
-        calls:
-            - [ setContainer, [ '@service_container' ] ]
+    
+    Vankosoft\CmsBundle\Controller\BannerExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@doctrine'
+            - '@vs_cms.repository.banner_place'
+            - '@vs_cms.repository.banner'
+            - '@vs_cms.factory.banner'
+            - '@vs_cms.file_manager'

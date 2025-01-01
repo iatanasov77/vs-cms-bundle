@@ -113,4 +113,55 @@ vs_cms_slider_item_ext_delete:
     options:
         expose: true
 
+vs_cms_banner_place:
+    resource: |
+        alias: vs_cms.banner_place
+        except: ['show']
+        path: /banner-places
+        templates: "@VSCms/Pages/BannerPlaces"
+    type: sylius.resource
+    options:
+        expose: true
 
+vs_cms_banner_index:
+    path: /banners/{placeId}/
+    methods: [GET]
+    defaults:
+        _controller: vs_cms.controller.banner::indexAction
+        _sylius:
+            paginate: 10
+            filterable: true
+            criteria:
+                slider: $placeId
+            template: "@VSCms/Pages/Banners/index.html.twig"
+    options:
+        expose: true
+
+vs_cms_banner:
+    resource: |
+        alias: vs_cms.banner
+        except: ['show']
+        path: /banners/{placeId}
+        templates: "@VSCms/Pages/Banners"
+    type: sylius.resource
+    options:
+        expose: true
+        
+vs_cms_banner_ext_sort_action:
+    path: /banner-sort/{id}/{insertAfterId}
+    controller: Vankosoft\CmsBundle\Controller\BannerExtController::sortAction
+    options:
+        expose: true
+
+vs_cms_banner_ext_edit:
+    path: /banner-edit/{placeId}/{itemId}/{locale}
+    controller: Vankosoft\CmsBundle\Controller\BannerExtController::editBanner
+    defaults: { locale: '%locale%' }
+    options:
+        expose: true
+    
+vs_cms_banner_ext_delete:
+    path: /banner-delete/{placeId}/{itemId}
+    controller: Vankosoft\CmsBundle\Controller\BannerExtController::deleteBanner
+    options:
+        expose: true

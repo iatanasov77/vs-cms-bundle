@@ -62,6 +62,18 @@ use Vankosoft\CmsBundle\Form\SliderItemForm;
 
 use Vankosoft\CmsBundle\Model\SliderItemPhoto;
 
+use Vankosoft\CmsBundle\Model\BannerPlace;
+use Vankosoft\CmsBundle\Controller\BannerPlaceController;
+use Vankosoft\CmsBundle\Repository\BannerPlaceRepository;
+use Vankosoft\CmsBundle\Form\BannerPlaceForm;
+
+use Vankosoft\CmsBundle\Model\Banner;
+use Vankosoft\CmsBundle\Controller\BannerController;
+use Vankosoft\CmsBundle\Repository\BannerRepository;
+use Vankosoft\CmsBundle\Form\BannerForm;
+
+use Vankosoft\CmsBundle\Model\BannerImage;
+
 /**
  * This is the class that validates and merges configuration from your app/config files
  *
@@ -284,6 +296,55 @@ class Configuration implements ConfigurationInterface
                                     ->addDefaultsIfNotSet()
                                     ->children()
                                         ->scalarNode( 'model' )->defaultValue( SliderItemPhoto::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'banner_place' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( BannerPlace::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( BannerPlaceRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( BannerPlaceController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( BannerPlaceForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'banner' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( Banner::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'repository' )->defaultValue( BannerRepository::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'controller' )->defaultValue( BannerController::class )->cannotBeEmpty()->end()
+                                        ->scalarNode( 'form' )->defaultValue( BannerForm::class )->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        
+                        ->arrayNode( 'banner_image' )
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode( 'options' )->end()
+                                ->arrayNode( 'classes' )
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode( 'model' )->defaultValue( BannerImage::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'repository' )->defaultValue( EntityRepository::class )->cannotBeEmpty()->end()
                                         ->scalarNode( 'factory' )->defaultValue( Factory::class )->cannotBeEmpty()->end()
                                     ->end()

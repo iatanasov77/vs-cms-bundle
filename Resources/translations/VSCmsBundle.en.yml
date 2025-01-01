@@ -55,6 +55,14 @@ vs_cms:
             description: Description
             photo: Photo
             photo_description: Prefered Photo Demensions
+        
+        banner:
+            place: Banner Place
+            place_placeholder: '-- Choose a Banner Place --'
+            title: Title
+            image: Image
+            imagine_filter: Imagine Filter
+            imagine_filter_placeholder: '-- Choose an Imagine Filter --'
             
     template:
         uncategorized_pages: Uncategorized Pages
@@ -130,6 +138,19 @@ vs_cms:
         page_title_slider_item_update: Update Slider Item
         page_title_slider_item_details: Slider Item Details
         
+        list_banner_places: Banner Places
+        page_title_banner_place_update: Update Banner Place
+        page_title_banner_place_create: Create Banner Place
+        page_title_banner_place_details: Banner Place Details
+        
+        list_banners: Banners
+        page_title_banner_update: Update Banner
+        page_title_banner_create: Create Banner
+        page_title_banner_details: Banner Details
+        
+        banners: Banners
+        button_banner_create: Create Banner
+        
     modal:
         page_clone:
             title: 'Clone Page'
@@ -143,3 +164,6 @@ vs_cms:
         slider_item:
             create_title: 'Create Slider Item'
             update_title: 'Edit Slider Item'
+        banner:
+            create_title: 'Create Banner'
+            update_title: 'Edit Banner'
