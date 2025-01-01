@@ -1,0 +1,10 @@
+{# Please send layout when render this template #}
+{% extends siteLayout %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block pageTitle %}<i class="icon_genius"></i> {{ page.title }}{% endblock %}
+
+{% block content %}
+    {{ page.text|raw }}
+{% endblock %}
