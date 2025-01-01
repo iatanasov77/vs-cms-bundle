@@ -45,7 +45,7 @@
         </one-to-one>
         
         <field name="slug" column="slug" type="string" length="255" nullable="false" unique="true">
-            <gedmo:translatable />
+            <!-- <gedmo:translatable /> -->
             <gedmo:slug unique="true" style="lower" updatable="true" separator="-" fields="title" />
         </field>
         

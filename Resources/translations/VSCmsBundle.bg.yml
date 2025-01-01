@@ -55,6 +55,14 @@ vs_cms:
             description: Описание
             photo: Снимка
             photo_description: Prefered Photo Demensions
+        
+        banner:
+            place: Banner Place
+            place_placeholder: 'Choose a Banner Place --'
+            title: Title
+            image: Image
+            imagine_filter: Imagine Filter
+            imagine_filter_placeholder: '-- Choose an Imagine Filter --'
             
     template:
         uncategorized_pages: Некатегоризирани Страници
@@ -130,6 +138,19 @@ vs_cms:
         page_title_slider_item_update: Редакция Слайдер Елемент
         page_title_slider_item_details: Слайдер Елемент Детайли
         
+        list_banner_places: Места за банери
+        page_title_banner_place_update: Редакция място за банер
+        page_title_banner_place_create: Създаване място за банер
+        page_title_banner_place_details: Място за банер Детайли
+        
+        list_banners: Банери
+        page_title_banner_update: Редакция банер
+        page_title_banner_create: Създаване банер
+        page_title_banner_details: Банер Детайли
+        
+        banners: Банери
+        button_banner_create: Добави банер
+        
     modal:
         page_clone:
             title: 'Клониране на Страница'
@@ -143,3 +164,6 @@ vs_cms:
         slider_item:
             create_title: 'Добави Слайдер Елемент'
             update_title: 'Редакция Слайдер Елемент'
+        banner:
+            create_title: 'Добави Банер'
+            update_title: 'Редакция Банер'
