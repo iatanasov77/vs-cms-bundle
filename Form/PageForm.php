@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use daddl3\SymfonyCKEditor5WebpackViteBundle\Form\Ckeditor5TextareaType;
+
 use Vankosoft\CmsBundle\Model\Page;
 use Vankosoft\CmsBundle\Model\Interfaces\PageInterface;
 use Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface;
@@ -25,11 +27,26 @@ class PageForm extends AbstractForm
     /** @var string */
     protected $categoryClass;
     
+    /**
+     * Which CkEditor Version to Use
+     * ------------------------
+     * CkEditor 4 provided by FOSCKEditorBundle OR
+     * CkEditor 5 provided by
+     *
+     * @var string
+     */
+    protected $useCkEditor;
+    
+    /** @var string */
+    protected $ckeditor5Editor;
+    
     public function __construct(
         string $dataClass,
         RepositoryInterface $localesRepository,
         RequestStack $requestStack,
-        string $categoryClass
+        string $categoryClass,
+        string $useCkEditor,
+        string $ckeditor5Editor
     ) {
         parent::__construct( $dataClass );
         
@@ -37,6 +54,9 @@ class PageForm extends AbstractForm
         $this->requestStack         = $requestStack;
         
         $this->categoryClass        = $categoryClass;
+        
+        $this->useCkEditor          = $useCkEditor;
+        $this->ckeditor5Editor      = $ckeditor5Editor;
     }
 
     public function buildForm( FormBuilderInterface $builder, array $options ): void
@@ -99,13 +119,24 @@ class PageForm extends AbstractForm
                 'label'                 => 'vs_cms.form.page.slug',
                 'translation_domain'    => 'VSCmsBundle',
             ])
+        ;
             
-            ->add( 'text', CKEditorType::class, [
+        if ( $this->useCkEditor == '5' ) {
+            $builder->add( 'text', Ckeditor5TextareaType::class, [
+                'label'                 => 'vs_cms.form.page.page_content',
+                'translation_domain'    => 'VSCmsBundle',
+                
+                'attr' => [
+                    'data-ckeditor5-config' => $this->ckeditor5Editor
+                ],
+            ]);
+        } else {
+            $builder->add( 'text', CKEditorType::class, [
                 'label'                 => 'vs_cms.form.page.page_content',
                 'translation_domain'    => 'VSCmsBundle',
                 'config'                => $this->ckEditorConfig( $options ),
-            ])
-        ;
+            ]);
+        }
     }
 
     public function configureOptions( OptionsResolver $resolver ): void

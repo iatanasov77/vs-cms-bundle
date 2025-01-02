@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use daddl3\SymfonyCKEditor5WebpackViteBundle\Form\Ckeditor5TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 
@@ -23,11 +24,26 @@ class SliderItemForm extends AbstractForm
     /** @var string */
     protected $sliderClass;
     
+    /**
+     * Which CkEditor Version to Use
+     * ------------------------
+     * CkEditor 4 provided by FOSCKEditorBundle OR
+     * CkEditor 5 provided by
+     *
+     * @var string
+     */
+    protected $useCkEditor;
+    
+    /** @var string */
+    protected $ckeditor5Editor;
+    
     public function __construct(
         string $dataClass,
         string $sliderClass,
         RepositoryInterface $localesRepository,
-        RequestStack $requestStack
+        RequestStack $requestStack,
+        string $useCkEditor,
+        string $ckeditor5Editor
     ) {
         parent::__construct( $dataClass );
         
@@ -35,6 +51,9 @@ class SliderItemForm extends AbstractForm
         $this->requestStack         = $requestStack;
         
         $this->sliderClass          = $sliderClass;
+        
+        $this->useCkEditor          = $useCkEditor;
+        $this->ckeditor5Editor      = $ckeditor5Editor;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options ): void
@@ -73,12 +92,6 @@ class SliderItemForm extends AbstractForm
                 'translation_domain'    => 'VSCmsBundle',
             ])
             
-            ->add( 'description', CKEditorType::class, [
-                'label'                 => 'vs_cms.form.slider_item.description',
-                'translation_domain'    => 'VSCmsBundle',
-                'config'                => $this->ckEditorConfig( $options ),
-            ])
-            
             ->add( 'url', TextType::class, [
                 'required'              => false,
                 'label'                 => 'vs_cms.form.url',
@@ -109,6 +122,22 @@ class SliderItemForm extends AbstractForm
             ])
         ;
         
+        if ( $this->useCkEditor == '5' ) {
+            $builder->add( 'description', Ckeditor5TextareaType::class, [
+                'label'                 => 'vs_cms.form.slider_item.description',
+                'translation_domain'    => 'VSCmsBundle',
+                
+                'attr' => [
+                    'data-ckeditor5-config' => $this->ckeditor5Editor
+                ],
+            ]);
+        } else {
+            $builder->add( 'description', CKEditorType::class, [
+                'label'                 => 'vs_cms.form.slider_item.description',
+                'translation_domain'    => 'VSCmsBundle',
+                'config'                => $this->ckEditorConfig( $options ),
+            ]);
+        }
     }
     
     public function configureOptions( OptionsResolver $resolver ): void

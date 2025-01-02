@@ -51,7 +51,7 @@ services:
         arguments:
             - '%vs_cms.model.page_categories.class%'
             - '@vs_application.repository.locale'
-            - "@request_stack"
+            - '@request_stack'
             - '@vs_cms.repository.page_categories'
             
     vs_cms.resources.pages.form:
@@ -61,8 +61,10 @@ services:
         arguments:  # '%vs_cms.pages.form.type.validation_groups%'
             - '%vs_cms.model.pages.class%'
             - '@vs_application.repository.locale'
-            - "@request_stack"
+            - '@request_stack'
             - '%vs_cms.model.page_categories.class%'
+            - '%vs_cms.form.use_ckeditor%'
+            - '%vs_cms.form.decription_field.ckeditor5_editor%'
             
     vs_cms.resources.document_categories.form:
         class: Vankosoft\CmsBundle\Form\DocumentCategoryForm
@@ -71,7 +73,7 @@ services:
         arguments:
             - '%vs_cms.model.document_categories.class%'
             - '@vs_application.repository.locale'
-            - "@request_stack"
+            - '@request_stack'
     
     vs_cms.resources.document.form:
         class: Vankosoft\CmsBundle\Form\DocumentForm
@@ -80,9 +82,11 @@ services:
         arguments:
             - '%vs_cms.model.document.class%'
             - '@vs_application.repository.locale'
-            - "@request_stack"
+            - '@request_stack'
             - '%vs_cms.model.document_categories.class%'
             - '%vs_cms.model.toc_page.class%'
+            - '%vs_cms.form.use_ckeditor%'
+            - '%vs_cms.form.decription_field.ckeditor5_editor%'
     
     Vankosoft\CmsBundle\Form\TocPageForm:
         tags:
@@ -90,7 +94,9 @@ services:
         arguments:
             - '%vs_cms.model.toc_page.class%'
             - '@vs_application.repository.locale'
-            - "@request_stack"
+            - '@request_stack'
+            - '%vs_cms.form.use_ckeditor%'
+            - '%vs_cms.form.decription_field.ckeditor5_editor%'
 
     Vankosoft\CmsBundle\Form\FileManager\UploadFileForm:
         tags:
@@ -103,7 +109,7 @@ services:
         arguments:
             - '%vs_cms.model.file_manager.class%'
             - '@vs_application.repository.locale'
-            - "@request_stack"
+            - '@request_stack'
     
     vs_cms.resources.file_manager_file.form:
         class: Vankosoft\CmsBundle\Form\VankosoftFileManagerFileForm
@@ -148,6 +154,8 @@ services:
             - '%vs_cms.model.slider.class%'
             - '@vs_application.repository.locale'
             - '@request_stack'
+            - '%vs_cms.form.use_ckeditor%'
+            - '%vs_cms.form.decription_field.ckeditor5_editor%'
     
     vs_cms.resources.banner_place.form:
         class: Vankosoft\CmsBundle\Form\BannerPlaceForm
