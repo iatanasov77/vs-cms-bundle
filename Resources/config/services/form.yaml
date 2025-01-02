@@ -1,4 +1,6 @@
 parameters:
+    vs_cms.form.use_ckeditor: '%env(resolve:USE_CKEDITOR)%'
+    
     # Description Field Form Options
     ##########################################################
     vs_cms.form.decription_field.ckeditor_uiColor: '#ffffff'
