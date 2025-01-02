@@ -1,6 +1,11 @@
 parameters:
     vs_cms.form.use_ckeditor: '%env(resolve:USE_CKEDITOR)%'
     
+    # 'devpage'
+    vs_cms.form.decription_field.ckeditor5_editor: 'default'
+    vs_cms.form.pages_field.ckeditor5_editor: 'default'
+    vs_cms.form.toc_page_field.ckeditor5_editor: 'default'
+    
     # Description Field Form Options
     ##########################################################
     vs_cms.form.decription_field.ckeditor_uiColor: '#ffffff'
