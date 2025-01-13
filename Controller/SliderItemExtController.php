@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 use Vankosoft\CmsBundle\Repository\SliderItemRepository;
 use Vankosoft\CmsBundle\Form\SliderItemForm;
 use Vankosoft\CmsBundle\Component\FileManager;
