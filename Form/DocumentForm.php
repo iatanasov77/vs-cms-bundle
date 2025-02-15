@@ -144,7 +144,7 @@ class DocumentForm extends AbstractForm
             ->setAllowedTypes( 'tocRootPage', TocPageInterface::class )
         ;
             
-        $this->onfigureCkEditorOptions( $resolver );
+        $this->configureCkEditorOptions( $resolver );
     }
     
     public function getName()

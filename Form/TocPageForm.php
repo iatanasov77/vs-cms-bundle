@@ -131,7 +131,7 @@ class TocPageForm extends AbstractForm
             ])
         ;
             
-        $this->onfigureCkEditorOptions( $resolver );
+        $this->configureCkEditorOptions( $resolver );
     }
     
     public function getName()

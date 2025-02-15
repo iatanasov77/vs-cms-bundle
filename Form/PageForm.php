@@ -155,7 +155,7 @@ class PageForm extends AbstractForm
             ->setAllowedTypes( 'page', PageInterface::class )
         ;
             
-        $this->onfigureCkEditorOptions( $resolver );
+        $this->configureCkEditorOptions( $resolver );
     }
     
     public function getName()
