@@ -20,11 +20,11 @@
 		"vankosoft/application-bundle" : "^1.10",
 		"friendsofsymfony/ckeditor-bundle" : "^2.6",
 		"daddl3/symfony-ckeditor-5-webpack" : "^1.2",
-		"liip/imagine-bundle" : "^2.12",
+		"liip/imagine-bundle" : "^2.13",
 		"artgris/filemanager-bundle" : "^2.10",
 		"knplabs/knp-gaufrette-bundle" : "^0.9",
-		"oneup/uploader-bundle" : "^4.0",
-		"oneup/flysystem-bundle" : "^4.11"
+		"oneup/uploader-bundle" : "^5.0",
+		"oneup/flysystem-bundle" : "^4.12"
 	},
 	"conflict" : {
 		"doctrine/doctrine-bundle" : "<1.3",
