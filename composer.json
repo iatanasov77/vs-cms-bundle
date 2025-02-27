@@ -24,7 +24,8 @@
 		"artgris/filemanager-bundle" : "^2.10",
 		"knplabs/knp-gaufrette-bundle" : "^0.9",
 		"oneup/uploader-bundle" : "^5.0",
-		"oneup/flysystem-bundle" : "^4.12"
+		"oneup/flysystem-bundle" : "^4.12",
+		"m2mtech/flysystem-stream-wrapper" : "^1.4"
 	},
 	"conflict" : {
 		"doctrine/doctrine-bundle" : "<1.3",
