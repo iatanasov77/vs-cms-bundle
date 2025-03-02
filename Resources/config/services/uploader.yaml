@@ -49,10 +49,10 @@ services:
 #             - '@vs_cms.slider_uploader.filesystem'
 #             - '@vs_cms.file_path_generator'
     
-#     vs_cms.file_manager:
-#         class: Vankosoft\CmsBundle\Component\FileManager
-#         arguments:
-#             - '@vs_cms.filemanager_uploader'
+    vs_cms.file_manager:
+        class: Vankosoft\CmsBundle\Component\FileManager
+        arguments:
+            - '@vs_cms.filemanager_uploader'
     
     vs_cms.oneup_uploader.post_persist:
         class: Vankosoft\CmsBundle\Component\OneupUploader\PostPersistListener
