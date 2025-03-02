@@ -6,7 +6,9 @@
 		"CMS",
 		"HTML",
 		"Editor",
-		"Image Manipulation"
+		"Image Manipulation",
+		"File Systems",
+		"Chunk Uploader"
 	],
 	"homepage" : "https://github.com/iatanasov77/vs-cms-bundle",
 	"license" : "MIT",
@@ -22,7 +24,6 @@
 		"daddl3/symfony-ckeditor-5-webpack" : "^1.2",
 		"liip/imagine-bundle" : "^2.13",
 		"artgris/filemanager-bundle" : "^2.10",
-		"knplabs/knp-gaufrette-bundle" : "^0.9",
 		"oneup/uploader-bundle" : "^5.0",
 		"oneup/flysystem-bundle" : "^4.12",
 		"m2mtech/flysystem-stream-wrapper" : "^1.4"

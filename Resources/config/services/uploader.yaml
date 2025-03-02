@@ -27,47 +27,32 @@ services:
         autowire: true
         autoconfigure: true
         public: true
-    
-    vs_cms.profile_uploader.filesystem:
-        class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.gaufrette.profile.filesystem%']
-        factory: ['@knp_gaufrette.filesystem_map', 'get']
-    
-    vs_cms.filemanager_uploader.filesystem:
-        class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.gaufrette.filemanager.filesystem%']
-        factory: ['@knp_gaufrette.filesystem_map', 'get']
-        
-    vs_cms.slider_uploader.filesystem:
-        class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.gaufrette.slider.filesystem%']
-        factory: ['@knp_gaufrette.filesystem_map', 'get']
 
     vs_cms.file_path_generator:
         class: Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator
 
-    vs_cms.profile_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\ProfileUploader
-        arguments:
-            - '@vs_cms.profile_uploader.filesystem'
-            - '@vs_cms.file_path_generator'
-            
-    vs_cms.filemanager_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
-        arguments:
-            - '@vs_cms.filemanager_uploader.filesystem'
-            - '@vs_cms.file_path_generator'
-            
-    vs_cms.slider_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\SliderPhotoUploader
-        arguments:
-            - '@vs_cms.slider_uploader.filesystem'
-            - '@vs_cms.file_path_generator'
+#     vs_cms.profile_uploader:
+#         class: Vankosoft\CmsBundle\Component\Uploader\ProfileUploader
+#         arguments:
+#             - '@vs_cms.profile_uploader.filesystem'
+#             - '@vs_cms.file_path_generator'
+#             
+#     vs_cms.filemanager_uploader:
+#         class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
+#         arguments:
+#             - '@vs_cms.filemanager_uploader.filesystem'
+#             - '@vs_cms.file_path_generator'
+#             
+#     vs_cms.slider_uploader:
+#         class: Vankosoft\CmsBundle\Component\Uploader\SliderPhotoUploader
+#         arguments:
+#             - '@vs_cms.slider_uploader.filesystem'
+#             - '@vs_cms.file_path_generator'
     
-    vs_cms.file_manager:
-        class: Vankosoft\CmsBundle\Component\FileManager
-        arguments:
-            - '@vs_cms.filemanager_uploader'
+#     vs_cms.file_manager:
+#         class: Vankosoft\CmsBundle\Component\FileManager
+#         arguments:
+#             - '@vs_cms.filemanager_uploader'
     
     vs_cms.oneup_uploader.post_persist:
         class: Vankosoft\CmsBundle\Component\OneupUploader\PostPersistListener
