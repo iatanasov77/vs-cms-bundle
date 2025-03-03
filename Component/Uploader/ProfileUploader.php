@@ -1,6 +1,6 @@
 <?php namespace Vankosoft\CmsBundle\Component\Uploader;
 
-use Gaufrette\Filesystem;
+use League\Flysystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use Webmozart\Assert\Assert;
 
