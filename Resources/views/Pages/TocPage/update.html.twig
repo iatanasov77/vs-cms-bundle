@@ -94,10 +94,12 @@
 	{{ parent() }}
 	
 	{{ encore_entry_link_tags( 'js/multipage-toc-update' ) }}
+	{{ encore_entry_link_tags( 'ckeditor5' ) }}
 {% endblock %}
 
 {% block body_scripts %}
     {{ parent() }}
    
     {{ encore_entry_script_tags( 'js/multipage-toc-update' ) }}
+    {{ encore_entry_link_tags( 'ckeditor5' ) }}
 {% endblock %}

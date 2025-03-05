@@ -101,6 +101,7 @@ class SliderItemExtController extends AbstractController
             'sliderId'                  => $sliderId,
             'item'                      => $sliderItem,
             'sliderPhotoDescription'    => $this->sliderPhotoDescription,
+            'isAjaxRequest'             => true,
         ]);
     }
     

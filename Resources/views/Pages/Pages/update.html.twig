@@ -69,11 +69,13 @@
     {{ parent() }}
     
     {{ encore_entry_link_tags( 'js/pages-edit' ) }}
+    {{ encore_entry_link_tags( 'ckeditor5' ) }}
 {% endblock %}
 
 {% block body_scripts %}
     {{ parent() }}
    
     {{ encore_entry_script_tags( 'js/pages-edit' ) }}
+    {{ encore_entry_link_tags( 'ckeditor5' ) }}
 {% endblock %}
 
