@@ -49,7 +49,7 @@ class ProfileUploader implements FileUploaderInterface
 
         do {
             $path = $this->filePathGenerator->generate( $image );
-        } while ( $this->isAdBlockingProne( $path ) || $this->filesystem->has( $path ) );
+        } while ( $this->isAdBlockingProne( $path ) || $this->has( $path ) );
 
         $image->setPath( $path );
 
@@ -57,11 +57,13 @@ class ProfileUploader implements FileUploaderInterface
             $image->getPath(),
             file_get_contents( $image->getFile()->getPathname() )
         );
+        
+        $image->setType( $this->filesystem->mimeType( $sliderPhoto->getPath() ) );
     }
 
     public function remove( string $path ): bool
     {
-        if ( $this->filesystem->has( $path ) ) {
+        if ( $this->has( $path ) ) {
             return $this->filesystem->delete( $path );
         }
 
@@ -70,7 +72,7 @@ class ProfileUploader implements FileUploaderInterface
 
     private function has( string $path ): bool
     {
-        return $this->filesystem->has( $path );
+        return $this->filesystem->fileExists( $path );
     }
 
     /**

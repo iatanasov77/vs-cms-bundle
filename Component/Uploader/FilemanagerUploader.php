@@ -54,7 +54,7 @@ class FilemanagerUploader implements FileUploaderInterface
         
         do {
             $path = $this->filePathGenerator->generate( $filemanagerFile );
-        } while ( $this->isAdBlockingProne( $path ) || $this->filesystem->has( $path ) );
+        } while ( $this->isAdBlockingProne( $path ) || $this->has( $path ) );
         
         $filemanagerFile->setPath( $path );
         
@@ -63,14 +63,12 @@ class FilemanagerUploader implements FileUploaderInterface
             file_get_contents( $filemanagerFile->getFile()->getPathname() )
         );
         
-        if ( method_exists ( $this->filesystem->getAdapter(), 'mimeType' ) ) {
-            $filemanagerFile->setType( $this->filesystem->getAdapter()->mimeType( $filemanagerFile->getPath() ) );
-        }
+        $filemanagerFile->setType( $this->filesystem->mimeType( $sliderPhoto->getPath() ) );
     }
     
     public function remove( string $path ): bool
     {
-        if ( $this->filesystem->has( $path ) ) {
+        if ( $this->has( $path ) ) {
             return $this->filesystem->delete( $path );
         }
         
@@ -88,7 +86,7 @@ class FilemanagerUploader implements FileUploaderInterface
     
     protected function has( string $path ): bool
     {
-        return $this->filesystem->has( $path );
+        return $this->filesystem->fileExists( $path );
     }
     
     /**
