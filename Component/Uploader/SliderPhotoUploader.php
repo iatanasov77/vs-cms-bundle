@@ -49,7 +49,7 @@ class SliderPhotoUploader implements FileUploaderInterface
         
         do {
             $path = $this->filePathGenerator->generate( $sliderPhoto );
-        } while ( $this->isAdBlockingProne( $path ) || $this->filesystem->has( $path ) );
+        } while ( $this->isAdBlockingProne( $path ) || $this->has( $path ) );
         
         $sliderPhoto->setPath( $path );
         
@@ -65,7 +65,7 @@ class SliderPhotoUploader implements FileUploaderInterface
     
     public function remove( string $path ): bool
     {
-        if ( $this->filesystem->has( $path ) ) {
+        if ( $this->has( $path ) ) {
             return $this->filesystem->delete( $path );
         }
         
@@ -74,7 +74,7 @@ class SliderPhotoUploader implements FileUploaderInterface
     
     private function has( string $path ): bool
     {
-        return $this->filesystem->has( $path );
+        return $this->filesystem->fileExists( $path );
     }
     
     /**
