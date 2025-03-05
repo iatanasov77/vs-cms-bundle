@@ -58,9 +58,7 @@ class SliderPhotoUploader implements FileUploaderInterface
             file_get_contents( $sliderPhoto->getFile()->getPathname() )
         );
         
-        if ( method_exists ( $this->filesystem->getAdapter(), 'mimeType' ) ) {
-            $sliderPhoto->setType( $this->filesystem->getAdapter()->mimeType( $sliderPhoto->getPath() ) );
-        }
+        $sliderPhoto->setType( $this->filesystem->mimeType( $sliderPhoto->getPath() ) );
     }
     
     public function remove( string $path ): bool
