@@ -146,9 +146,14 @@ class SliderItemForm extends AbstractForm
         
         $resolver
             ->setDefaults([
-                'csrf_protection'               => false,
-                'slider'                        => null,
+                'csrf_protection'       => false,
+                'slider'                => null,
+                
+                'sliderPhotoMaxSize'    => '1024k',
             ])
+            
+            ->setDefined( ['sliderPhotoMaxSize'] )
+            ->setAllowedTypes( 'sliderPhotoMaxSize', 'string' )
         ;
             
         $this->configureCkEditorOptions( $resolver );

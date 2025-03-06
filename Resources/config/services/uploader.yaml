@@ -21,8 +21,6 @@ parameters:
     
     # Artgris Shared Media Directories
     vs_cms.filemanager_shared_media_artgris: '%kernel.project_dir%/public/shared_media/artgris'
-    
-    vs_application_slider_photo_description: '1920 x 1280'
 
 services:
     _defaults:

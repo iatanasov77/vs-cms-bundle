@@ -90,6 +90,7 @@ vs_cms_slider_item:
                 ckeditor_removeButtons: '%vs_cms.form.decription_field.ckeditor_removeButtons%'
                 ckeditor_allowedContent: '%vs_cms.form.decription_field.ckeditor_allowedContent%'
                 ckeditor_extraAllowedContent: '%vs_cms.form.decription_field.ckeditor_extraAllowedContent%'
+                sliderPhotoMaxSize: '%vs_cms.form.slider_item.photo.max_size%'
     type: sylius.resource
     options:
         expose: true

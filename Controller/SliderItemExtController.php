@@ -94,6 +94,8 @@ class SliderItemExtController extends AbstractController
             'ckeditor_removeButtons'        => $this->getParameter( 'vs_cms.form.decription_field.ckeditor_removeButtons' ),
             'ckeditor_allowedContent'       => $this->getParameter( 'vs_cms.form.decription_field.ckeditor_allowedContent' ),
             'ckeditor_extraAllowedContent'  => $this->getParameter( 'vs_cms.form.decription_field.ckeditor_extraAllowedContent' ),
+            
+            'sliderPhotoMaxSize'            => $this->getParameter( 'vs_cms.form.slider_item.photo.max_size' ),
         ]);
         
         return $this->render( '@VSCms/Pages/SlidersItems/slider_item_form.html.twig', [

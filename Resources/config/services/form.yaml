@@ -33,6 +33,11 @@ parameters:
     vs_cms.form.toc_page.ckeditor_allowedContent: true # Disable Advanced Content Filter
     vs_cms.form.toc_page.ckeditor_extraAllowedContent: '*[*]{*}(*)'
     
+    # SliderItem Form Options
+    ##########################################################
+    vs_cms.form.slider_item.photo.max_size: '1024k'
+    vs_cms.form.slider_item.photo.description: '1920 x 1280'
+    
 services:
 
     ##########################################################
