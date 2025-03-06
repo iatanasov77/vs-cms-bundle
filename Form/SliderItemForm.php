@@ -109,14 +109,14 @@ class SliderItemForm extends AbstractForm
                 
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize'   => $options['sliderPhotoMaxSize'],
                         'mimeTypes' => [
                             'image/gif',
                             'image/jpeg',
                             'image/png',
                             'image/svg+xml',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid Photo',
+                        'mimeTypesMessage'  => 'Please upload a valid Photo',
                     ])
                 ],
             ])

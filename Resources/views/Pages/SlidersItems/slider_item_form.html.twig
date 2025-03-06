@@ -1,5 +1,4 @@
 {# Import Macros #}
-{% from '@SyliusResource/Macros/actions.html.twig' import create %}
 {% import "@VSApplication/Macros/form.html.twig" as vs_form %}
 
 {% if formErrors is defined %}
@@ -84,8 +83,8 @@
 
     <div class="row">&nbsp;</div>
     
-    {% if metadata is defined %}
-        {{ vs_form.buttons( form, metadata ) }}
+    {% if isAjaxRequest is not defined %}
+        {{ vs_form.buttons( form ) }}
     {% endif %}
     
 {{ form_end(form, {'render_rest': false}) }}
