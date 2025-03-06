@@ -80,7 +80,7 @@ class FilemanagerUploader implements FileUploaderInterface
         if ( $filemanagerFile->getFile() ) {
             return $filemanagerFile->getFile()->getSize();
         } else {
-            return $this->filesystem->size( $filemanagerFile->getPath() );
+            return $this->filesystem->fileSize( $filemanagerFile->getPath() );
         }
     }
     
