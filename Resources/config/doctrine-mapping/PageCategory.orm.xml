@@ -16,9 +16,7 @@
         </one-to-one>
         
       	<many-to-one field="parent" name="parent_id" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface" inversed-by="children">
-        	<cascade>
-                <cascade-all/>
-            </cascade>
+        	<join-column name="parent_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
         </many-to-one>
         
         <one-to-many field="children" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface" mapped-by="parent">
