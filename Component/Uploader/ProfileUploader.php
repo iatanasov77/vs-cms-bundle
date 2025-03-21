@@ -58,7 +58,7 @@ class ProfileUploader implements FileUploaderInterface
             file_get_contents( $image->getFile()->getPathname() )
         );
         
-        $image->setType( $this->filesystem->mimeType( $sliderPhoto->getPath() ) );
+        $image->setType( $this->filesystem->mimeType( $image->getPath() ) );
     }
 
     public function remove( string $path ): bool
