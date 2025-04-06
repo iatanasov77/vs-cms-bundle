@@ -32,25 +32,25 @@ services:
         class: Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator
 
     vs_cms.app_pictures_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
         arguments:
             - '@oneup_flysystem.vs_application_app_pictures_filesystem'
             - '@vs_cms.file_path_generator'
     
     vs_cms.profile_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\ProfileUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
         arguments:
             - '@oneup_flysystem.vs_application_profile_filesystem'
             - '@vs_cms.file_path_generator'
             
     vs_cms.filemanager_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
         arguments:
             - '@oneup_flysystem.vs_application_filemanager_filesystem'
             - '@vs_cms.file_path_generator'
             
     vs_cms.slider_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\SliderPhotoUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
         arguments:
             - '@oneup_flysystem.vs_application_slider_filesystem'
             - '@vs_cms.file_path_generator'

@@ -8,7 +8,7 @@ use Vankosoft\CmsBundle\Component\Generator\FilePathGeneratorInterface;
 use Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator;
 use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
 
-class FilemanagerUploader implements FileUploaderInterface
+abstract class AbstractFileUploader implements FileUploaderInterface
 {
     /** @var Filesystem */
     protected $filesystem;
@@ -32,39 +32,7 @@ class FilemanagerUploader implements FileUploaderInterface
             $this->filePathGenerator = $filePathGenerator ?? new UploadedFilePathGenerator();
     }
     
-    public function getFilesystem(): Filesystem
-    {
-        return $this->filesystem;
-    }
-    
-    public function upload( FileInterface $filemanagerFile ): void
-    {
-        if ( ! $filemanagerFile->hasFile() ) {
-            return;
-        }
-        
-        $file = $filemanagerFile->getFile();
-        
-        /** @var File $file */
-        Assert::isInstanceOf( $file, File::class );
-        
-        if ( null !== $filemanagerFile->getPath() && $this->has( $filemanagerFile->getPath() ) ) {
-            $this->remove( $filemanagerFile->getPath() );
-        }
-        
-        do {
-            $path = $this->filePathGenerator->generate( $filemanagerFile );
-        } while ( $this->isAdBlockingProne( $path ) || $this->has( $path ) );
-        
-        $filemanagerFile->setPath( $path );
-        
-        $this->filesystem->write(
-            $filemanagerFile->getPath(),
-            file_get_contents( $filemanagerFile->getFile()->getPathname() )
-        );
-        
-        $filemanagerFile->setType( $this->filesystem->mimeType( $sliderPhoto->getPath() ) );
-    }
+    abstract public function upload( FileInterface $filemanagerFile ): void;
     
     public function remove( string $path ): bool
     {
@@ -73,6 +41,11 @@ class FilemanagerUploader implements FileUploaderInterface
         }
         
         return false;
+    }
+    
+    public function getFilesystem(): Filesystem
+    {
+        return $this->filesystem;
     }
     
     public function fileSize( FileInterface $filemanagerFile )
@@ -86,7 +59,7 @@ class FilemanagerUploader implements FileUploaderInterface
     
     protected function has( string $path ): bool
     {
-        return $this->filesystem->fileExists( $path );
+        return $this->filesystem->has( $path );
     }
     
     /**
