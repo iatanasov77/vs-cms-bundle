@@ -26,7 +26,7 @@ class PostPersistListener
         $response   = $event->getResponse();
         
         $postData   = $request->request->all();
-        if ( ! isset( $request['fileResourceId'] ) ) {
+        if ( ! isset( $postData['fileResourceId'] ) ) {
             $response['DebugRequest']   = $postData;
             
             return $response;
@@ -37,7 +37,7 @@ class PostPersistListener
         $file           = $event->getFile();
         $uploadedFile   = $request()->files->get( 'file' );
         if ( isset( $postData['formName'] ) ) {
-            $formFiles      = $request()->files->get( $request['formName'] );
+            $formFiles      = $request()->files->get( $postData['formName'] );
             if ( ! $formFiles ) {
                 $response['error']  = 'Form Has Not Files !!!';
                 return $response;
