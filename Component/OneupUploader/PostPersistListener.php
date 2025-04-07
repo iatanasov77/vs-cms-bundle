@@ -25,29 +25,29 @@ class PostPersistListener
         /** @var ResponseInterface */
         $response   = $event->getResponse();
         
-        $request    = $request->request->all();
+        $postData   = $request->request->all();
         if ( ! isset( $request['fileResourceId'] ) ) {
-            $response['DebugRequest']   = $request;
+            $response['DebugRequest']   = $postData;
             
             return $response;
         }
-        $entityClass    = $request['fileResourceClass'];
+        $entityClass    = $postData['fileResourceClass'];
         
         /** @var FileInterface|File */
         $file           = $event->getFile();
-        $uploadedFile   = $event->getRequest()->files->get( 'file' );
-        if ( isset( $request['formName'] ) ) {
-            $formFiles      = $event->getRequest()->files->get( $request['formName'] );
+        $uploadedFile   = $request()->files->get( 'file' );
+        if ( isset( $postData['formName'] ) ) {
+            $formFiles      = $request()->files->get( $request['formName'] );
             if ( ! $formFiles ) {
                 $response['error']  = 'Form Has Not Files !!!';
                 return $response;
             }
-            $uploadedFile   = $formFiles[$request['fileInputFieldName']];
+            $uploadedFile   = $formFiles[$postData['fileInputFieldName']];
         }
         
-        if ( intval( $request['fileResourceId'] ) ) {
+        if ( intval( $postData['fileResourceId'] ) ) {
             $response['HasEntity']  = true;
-            $entity = $this->doctrine->getRepository( $entityClass )->find( intval( $request['fileResourceId'] ) );
+            $entity = $this->doctrine->getRepository( $entityClass )->find( intval( $postData['fileResourceId'] ) );
             // @TODO Need Old File To Be Removed
         } else {
             $response['HasEntity']  = false;
@@ -64,7 +64,7 @@ class PostPersistListener
         $this->doctrine->getManager()->flush();
         
         $response['success']        = true;
-        $response['resourceKey']    = $request['fileResourceKey'];
+        $response['resourceKey']    = $postData['fileResourceKey'];
         $response['resourceId']     = $entity->getId();
         
         return $response;
