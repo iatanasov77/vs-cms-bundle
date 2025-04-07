@@ -9,9 +9,7 @@ use Oneup\UploaderBundle\Event\PostPersistEvent;
 
 class PostPersistListener
 {
-    /**
-     * @var ManagerRegistry
-     */
+    /** @var ManagerRegistry */
     private ManagerRegistry $doctrine;
     
     public function __construct( ManagerRegistry $doctrine )
@@ -19,7 +17,7 @@ class PostPersistListener
         $this->doctrine = $doctrine;
     }
     
-    public function onUpload( PostPersistEvent $event )
+    public function onUpload( PostPersistEvent $event ): ResponseInterface
     {
         /** @var Request */
         $request    = $event->getRequest();
