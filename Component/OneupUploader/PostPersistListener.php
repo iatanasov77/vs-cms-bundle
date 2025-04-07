@@ -6,6 +6,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Oneup\UploaderBundle\Uploader\File\FileInterface;
 use Oneup\UploaderBundle\Uploader\Response\ResponseInterface;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
+use Vankosoft\ApplicationBundle\Component\ProjectIssue\ProjectIssue;
 
 class PostPersistListener
 {
