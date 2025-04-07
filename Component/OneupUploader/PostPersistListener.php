@@ -10,11 +10,15 @@ use Oneup\UploaderBundle\Event\PostPersistEvent;
 class PostPersistListener
 {
     /** @var ManagerRegistry */
-    private ManagerRegistry $doctrine;
+    private $doctrine;
     
-    public function __construct( ManagerRegistry $doctrine )
+    /** @var ProjectIssue */
+    private $vsProject;
+    
+    public function __construct( ManagerRegistry $doctrine, ProjectIssue $vsProject )
     {
-        $this->doctrine = $doctrine;
+        $this->doctrine     = $doctrine;
+        $this->vsProject    = $vsProject;
     }
     
     public function onUpload( PostPersistEvent $event ): ResponseInterface
@@ -25,7 +29,26 @@ class PostPersistListener
         /** @var ResponseInterface */
         $response   = $event->getResponse();
         
+        /** @var FileInterface | File */
+        $file       = $event->getFile();
+        
+        /** @var array */
         $postData   = $request->request->all();
+        
+        if ( isset( $postData['requestType'] ) && $postData['requestType'] == 'VankosoftApi_TaskAtachment' ) {
+            return $this->createVankosoftApiResource( $request, $response, $file, $postData );
+        } else {
+            return $this->createLocalResource( $request, $response, $file, $postData );
+        }
+    }
+    
+    private function createLocalResource(
+        Request $request,
+        ResponseInterface $response,
+        FileInterface | File $file,
+        array $postData
+    ): ResponseInterface {
+        
         if ( ! isset( $postData['fileResourceId'] ) ) {
             $response['DebugRequest']   = $postData;
             
@@ -33,8 +56,6 @@ class PostPersistListener
         }
         $entityClass    = $postData['fileResourceClass'];
         
-        /** @var FileInterface|File */
-        $file           = $event->getFile();
         $uploadedFile   = $request->files->get( 'file' );
         if ( isset( $postData['formName'] ) ) {
             $formFiles      = $request->files->get( $postData['formName'] );
@@ -66,6 +87,16 @@ class PostPersistListener
         $response['success']        = true;
         $response['resourceKey']    = $postData['fileResourceKey'];
         $response['resourceId']     = $entity->getId();
+        
+        return $response;
+    }
+    
+    private function createVankosoftApiResource(
+        Request $request,
+        ResponseInterface $response,
+        FileInterface | File $file,
+        array $postData
+    ): ResponseInterface {
         
         return $response;
     }

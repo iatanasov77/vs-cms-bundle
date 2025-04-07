@@ -64,5 +64,6 @@ services:
         class: Vankosoft\CmsBundle\Component\OneupUploader\PostPersistListener
         arguments:
             - '@doctrine'
+            - '@vs_application.project_issues'
         tags:
             - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
