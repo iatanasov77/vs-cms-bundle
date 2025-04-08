@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Oneup\UploaderBundle\Uploader\File\FileInterface;
 use Oneup\UploaderBundle\Uploader\Response\ResponseInterface;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
@@ -33,33 +34,6 @@ class PostPersistListener
         /** @var FileInterface | File */
         $file       = $event->getFile();
         
-        /** @var array */
-        $postData   = $request->request->all();
-        
-        if (
-            isset( $postData['requestType'] ) &&
-            $postData['requestType'] == OneupUploaderRquest::REQUEST_TYPE_VANKOSOFT_API
-        ) {
-            return $this->createVankosoftApiResource( $request, $response, $file, $postData );
-        } else {
-            return $this->createLocalResource( $request, $response, $file, $postData );
-        }
-    }
-    
-    private function createLocalResource(
-        Request $request,
-        ResponseInterface $response,
-        FileInterface | File $file,
-        array $postData
-    ): ResponseInterface {
-        
-        if ( ! isset( $postData['fileResourceId'] ) ) {
-            $response['DebugRequest']   = $postData;
-            
-            return $response;
-        }
-        $entityClass    = $postData['fileResourceClass'];
-        
         $uploadedFile   = $request->files->get( 'file' );
         if ( isset( $postData['formName'] ) ) {
             $formFiles      = $request->files->get( $postData['formName'] );
@@ -69,6 +43,33 @@ class PostPersistListener
             }
             $uploadedFile   = $formFiles[$postData['fileInputFieldName']];
         }
+        
+        /** @var array */
+        $postData   = $request->request->all();
+        
+        if (
+            isset( $postData['requestType'] ) &&
+            $postData['requestType'] == OneupUploaderRquest::REQUEST_TYPE_VANKOSOFT_API
+        ) {
+            return $this->createVankosoftApiResource( $response, $file, $uploadedFile, $postData );
+        } else {
+            return $this->createLocalResource( $response, $file, $uploadedFile, $postData );
+        }
+    }
+    
+    private function createLocalResource(
+        ResponseInterface $response,
+        FileInterface | File $file,
+        UploadedFile $uploadedFile,
+        array $postData
+    ): ResponseInterface {
+        
+        if ( ! isset( $postData['fileResourceId'] ) ) {
+            $response['DebugRequest']   = $postData;
+            
+            return $response;
+        }
+        $entityClass    = $postData['fileResourceClass'];
         
         if ( intval( $postData['fileResourceId'] ) ) {
             $response['HasEntity']  = true;
@@ -96,16 +97,14 @@ class PostPersistListener
     }
     
     private function createVankosoftApiResource(
-        Request $request,
         ResponseInterface $response,
         FileInterface | File $file,
+        UploadedFile $uploadedFile,
         array $postData
     ): ResponseInterface {
         
         switch ( $postData['requestTarget'] ) {
             case OneupUploaderRquest::REQUEST_TARGET_VANKOSOFT_API_TASK_ATTACHMENT:
-                $uploadedFile   = $request->files->get( 'file' );
-                
                 $this->vsProject->createKanbanboardTaskAttachment([
                     'taskId'                    => $postData['fileOwnerId'],
                     'attachmentId'              => $postData['fileResourceId'],
