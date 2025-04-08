@@ -2,10 +2,10 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
-use Doctrine\Persistence\ManagerRegistry;
 use Oneup\UploaderBundle\Uploader\File\FileInterface;
 use Oneup\UploaderBundle\Uploader\Response\ResponseInterface;
 use Oneup\UploaderBundle\Event\PostPersistEvent;
+use Doctrine\Persistence\ManagerRegistry;
 use Vankosoft\ApplicationBundle\Component\ProjectIssue\ProjectIssue;
 
 class PostPersistListener
@@ -36,7 +36,10 @@ class PostPersistListener
         /** @var array */
         $postData   = $request->request->all();
         
-        if ( isset( $postData['requestType'] ) && $postData['requestType'] == 'VankosoftApi_TaskAtachment' ) {
+        if (
+            isset( $postData['requestType'] ) &&
+            $postData['requestType'] == OneupUploaderRquest::REQUEST_TYPE_VANKOSOFT_API
+        ) {
             return $this->createVankosoftApiResource( $request, $response, $file, $postData );
         } else {
             return $this->createLocalResource( $request, $response, $file, $postData );
@@ -98,6 +101,28 @@ class PostPersistListener
         FileInterface | File $file,
         array $postData
     ): ResponseInterface {
+        
+        switch ( $postData['requestTarget'] ) {
+            case OneupUploaderRquest::REQUEST_TARGET_VANKOSOFT_API_TASK_ATTACHMENT:
+                $uploadedFile   = $request->files->get( 'file' );
+                
+                $this->vsProject->createKanbanboardTaskAttachment([
+                    'taskId'                    => $postData['fileOwnerId'],
+                    'attachmentId'              => $postData['fileResourceId'],
+                    'attachmentPath'            => $file->getPathname(),
+                    'attachmentOriginalName'    => $uploadedFile->getClientOriginalName(),
+                    'attachmentFileType'        => \method_exists( $file, 'getFilesystem' ) ?
+                                                    $file->getFilesystem()->mimeType( $file->getPathname() ) :
+                                                    '',
+                ]);
+                
+                break;
+            default:
+                throw new OneupUploaderException( 'Undefined Vankosoft API Request Target !!!' );
+        }
+        
+        $response['success']        = true;
+        $response['resourceKey']    = $postData['fileResourceKey'];
         
         return $response;
     }
