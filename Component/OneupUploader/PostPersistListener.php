@@ -34,6 +34,9 @@ class PostPersistListener
         /** @var FileInterface | File */
         $file       = $event->getFile();
         
+        /** @var array */
+        $postData   = $request->request->all();
+        
         $uploadedFile   = $request->files->get( 'file' );
         if ( isset( $postData['formName'] ) ) {
             $formFiles      = $request->files->get( $postData['formName'] );
@@ -43,9 +46,6 @@ class PostPersistListener
             }
             $uploadedFile   = $formFiles[$postData['fileInputFieldName']];
         }
-        
-        /** @var array */
-        $postData   = $request->request->all();
         
         if (
             isset( $postData['requestType'] ) &&
