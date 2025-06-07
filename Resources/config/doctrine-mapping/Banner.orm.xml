@@ -31,7 +31,6 @@
         <many-to-many field="places" target-entity="Vankosoft\CmsBundle\Model\Interfaces\BannerPlaceInterface" inversed-by="banners">
             <cascade>
                 <cascade-persist/>
-                <cascade-merge/>
                 <cascade-detach/>
             </cascade>
             <join-table name="VSCMS_Banners_Places">

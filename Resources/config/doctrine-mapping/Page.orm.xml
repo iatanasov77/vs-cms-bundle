@@ -43,7 +43,6 @@
         <many-to-many field="categories" target-entity="Vankosoft\CmsBundle\Model\Interfaces\PageCategoryInterface" inversed-by="pages">
         	<cascade>
                 <cascade-persist/>
-                <cascade-merge/>
                 <cascade-detach/>
             </cascade>
             <join-table name="VSCMS_Pages_Categories">

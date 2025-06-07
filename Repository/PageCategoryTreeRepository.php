@@ -2,7 +2,7 @@
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository as ResourceRepository;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Gedmo\Tree\Entity\Repository\AbstractTreeRepository;

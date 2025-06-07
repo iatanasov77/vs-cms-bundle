@@ -2,7 +2,7 @@
 
 use Gedmo\Sortable\Entity\Repository\SortableRepository;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\ResourceRepositoryTrait;
 
 class BannerRepository extends SortableRepository implements RepositoryInterface

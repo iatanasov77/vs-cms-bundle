@@ -7,73 +7,55 @@ parameters:
     # Because Not Found From Here ( I don't know why )
     #############################################################################################
     
-    # Gaufrette File Systems
+    # League Flysystem File Systems
+    vs_cms.gaufrette.app_pictures.filesystem: vs_application_app_pictures
     vs_cms.gaufrette.profile.filesystem: vs_application_profile
     vs_cms.gaufrette.filemanager.filesystem: vs_application_filemanager
     vs_cms.gaufrette.slider.filesystem: vs_application_slider
     
-    # Gaufrette Shared Media Directories
+    # League Flysystem Shared Media Directories
+    vs_cms.filemanager_shared_media_gaufrette.app_pictures: "%kernel.project_dir%/public/shared_media/gaufrette/app_pictures"
     vs_cms.filemanager_shared_media_gaufrette.profile: "%kernel.project_dir%/public/shared_media/gaufrette/profile"
     vs_cms.filemanager_shared_media_gaufrette.filemanager: "%kernel.project_dir%/public/shared_media/gaufrette/filemanager"
     vs_cms.filemanager_shared_media_gaufrette.slider: "%kernel.project_dir%/public/shared_media/gaufrette/slider"
     
     # Artgris Shared Media Directories
     vs_cms.filemanager_shared_media_artgris: '%kernel.project_dir%/public/shared_media/artgris'
-    
-    vs_application_slider_photo_description: '1920 x 1280'
 
 services:
     _defaults:
         autowire: true
         autoconfigure: true
         public: true
-    
-    vs_cms.profile_uploader.filesystem:
-        class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.gaufrette.profile.filesystem%']
-        factory: ['@knp_gaufrette.filesystem_map', 'get']
-    
-    vs_cms.filemanager_uploader.filesystem:
-        class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.gaufrette.filemanager.filesystem%']
-        factory: ['@knp_gaufrette.filesystem_map', 'get']
-        
-    vs_cms.slider_uploader.filesystem:
-        class: Gaufrette\Filesystem
-        arguments: ['%vs_cms.gaufrette.slider.filesystem%']
-        factory: ['@knp_gaufrette.filesystem_map', 'get']
 
     vs_cms.file_path_generator:
         class: Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator
 
-    vs_cms.profile_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\ProfileUploader
+    vs_cms.app_pictures_uploader:
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
         arguments:
-            - '@vs_cms.profile_uploader.filesystem'
+            - '@oneup_flysystem.vs_application_app_pictures_filesystem'
+            - '@vs_cms.file_path_generator'
+    
+    vs_cms.profile_uploader:
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
+        arguments:
+            - '@oneup_flysystem.vs_application_profile_filesystem'
             - '@vs_cms.file_path_generator'
             
     vs_cms.filemanager_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
         arguments:
-            - '@vs_cms.filemanager_uploader.filesystem'
+            - '@oneup_flysystem.vs_application_filemanager_filesystem'
             - '@vs_cms.file_path_generator'
             
     vs_cms.slider_uploader:
-        class: Vankosoft\CmsBundle\Component\Uploader\SliderPhotoUploader
+        class: Vankosoft\CmsBundle\Component\Uploader\FileUploader
         arguments:
-            - '@vs_cms.slider_uploader.filesystem'
+            - '@oneup_flysystem.vs_application_slider_filesystem'
             - '@vs_cms.file_path_generator'
     
     vs_cms.file_manager:
         class: Vankosoft\CmsBundle\Component\FileManager
         arguments:
             - '@vs_cms.filemanager_uploader'
-    
-    vs_cms.oneup_uploader.post_persist:
-        class: Vankosoft\CmsBundle\Component\OneupUploader\PostPersistListener
-        arguments:
-            - '@doctrine'
-        tags:
-            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
-
-

@@ -5,7 +5,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 trait FosCKEditor4Config
 {
-    protected function onfigureCkEditorOptions( OptionsResolver &$resolver ): void
+    protected function configureCkEditorOptions( OptionsResolver &$resolver ): void
     {
         $resolver
             ->setDefaults([

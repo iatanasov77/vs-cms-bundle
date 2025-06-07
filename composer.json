@@ -6,7 +6,9 @@
 		"CMS",
 		"HTML",
 		"Editor",
-		"Image Manipulation"
+		"Image Manipulation",
+		"File Systems",
+		"Chunk Uploader"
 	],
 	"homepage" : "https://github.com/iatanasov77/vs-cms-bundle",
 	"license" : "MIT",
@@ -18,13 +20,15 @@
 	"require" : {
 		"php" : "^8.1",
 		"vankosoft/application-bundle" : "^1.10",
-		"friendsofsymfony/ckeditor-bundle" : "^2.5",
-        "daddl3/symfony-ckeditor-5-webpack": "^1.2",
-		"liip/imagine-bundle" : "^2.12",
+		"friendsofsymfony/ckeditor-bundle" : "^2.6",
+		"daddl3/symfony-ckeditor-5-webpack" : "^1.2",
+		"liip/imagine-bundle" : "^2.13",
 		"artgris/filemanager-bundle" : "^2.10",
-		"knplabs/knp-gaufrette-bundle" : "^0.9",
-		"oneup/uploader-bundle" : "^4.0",
-		"oneup/flysystem-bundle" : "^4.11"
+		"oneup/uploader-bundle" : "^5.0",
+		"oneup/flysystem-bundle" : "^4.12",
+		"league/flysystem-ftp": "^3.29",
+        "league/flysystem-sftp-v3": "^3.29",
+		"m2mtech/flysystem-stream-wrapper" : "^1.4"
 	},
 	"conflict" : {
 		"doctrine/doctrine-bundle" : "<1.3",

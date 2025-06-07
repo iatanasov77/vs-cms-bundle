@@ -44,7 +44,8 @@ class SliderItemController extends AbstractCrudController
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations() : [];
         
         return [
-            'translations'      => $translations,
+            'translations'              => $translations,
+            'sliderPhotoDescription'    => $this->getParameter( 'vs_cms.form.slider_item.photo.description' ),
         ];
     }
     

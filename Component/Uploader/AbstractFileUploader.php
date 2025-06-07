@@ -1,6 +1,6 @@
 <?php namespace Vankosoft\CmsBundle\Component\Uploader;
 
-use Gaufrette\Filesystem;
+use League\Flysystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use Webmozart\Assert\Assert;
 
@@ -8,7 +8,7 @@ use Vankosoft\CmsBundle\Component\Generator\FilePathGeneratorInterface;
 use Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator;
 use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
 
-class FilemanagerUploader implements FileUploaderInterface
+abstract class AbstractFileUploader implements FileUploaderInterface
 {
     /** @var Filesystem */
     protected $filesystem;
@@ -32,49 +32,20 @@ class FilemanagerUploader implements FileUploaderInterface
             $this->filePathGenerator = $filePathGenerator ?? new UploadedFilePathGenerator();
     }
     
-    public function getFilesystem(): Filesystem
-    {
-        return $this->filesystem;
-    }
-    
-    public function upload( FileInterface $filemanagerFile ): void
-    {
-        if ( ! $filemanagerFile->hasFile() ) {
-            return;
-        }
-        
-        $file = $filemanagerFile->getFile();
-        
-        /** @var File $file */
-        Assert::isInstanceOf( $file, File::class );
-        
-        if ( null !== $filemanagerFile->getPath() && $this->has( $filemanagerFile->getPath() ) ) {
-            $this->remove( $filemanagerFile->getPath() );
-        }
-        
-        do {
-            $path = $this->filePathGenerator->generate( $filemanagerFile );
-        } while ( $this->isAdBlockingProne( $path ) || $this->filesystem->has( $path ) );
-        
-        $filemanagerFile->setPath( $path );
-        
-        $this->filesystem->write(
-            $filemanagerFile->getPath(),
-            file_get_contents( $filemanagerFile->getFile()->getPathname() )
-        );
-        
-        if ( method_exists ( $this->filesystem->getAdapter(), 'mimeType' ) ) {
-            $filemanagerFile->setType( $this->filesystem->getAdapter()->mimeType( $filemanagerFile->getPath() ) );
-        }
-    }
+    abstract public function upload( FileInterface $filemanagerFile ): void;
     
     public function remove( string $path ): bool
     {
-        if ( $this->filesystem->has( $path ) ) {
+        if ( $this->has( $path ) ) {
             return $this->filesystem->delete( $path );
         }
         
         return false;
+    }
+    
+    public function getFilesystem(): Filesystem
+    {
+        return $this->filesystem;
     }
     
     public function fileSize( FileInterface $filemanagerFile )
@@ -82,7 +53,7 @@ class FilemanagerUploader implements FileUploaderInterface
         if ( $filemanagerFile->getFile() ) {
             return $filemanagerFile->getFile()->getSize();
         } else {
-            return $this->filesystem->size( $filemanagerFile->getPath() );
+            return $this->filesystem->fileSize( $filemanagerFile->getPath() );
         }
     }
     

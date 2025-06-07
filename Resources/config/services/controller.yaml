@@ -64,7 +64,7 @@ services:
             - '@vs_cms.repository.slider_item'
             - '@vs_cms.factory.slider_item'
             - '@vs_cms.file_manager'
-            - '%vs_application_slider_photo_description%'
+            - '%vs_cms.form.slider_item.photo.description%'
     
     Vankosoft\CmsBundle\Controller\BannerExtController:
         tags: ['controller.service_arguments']

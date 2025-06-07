@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 use Vankosoft\CmsBundle\Repository\SliderItemRepository;
 use Vankosoft\CmsBundle\Form\SliderItemForm;
 use Vankosoft\CmsBundle\Component\FileManager;
@@ -94,6 +94,8 @@ class SliderItemExtController extends AbstractController
             'ckeditor_removeButtons'        => $this->getParameter( 'vs_cms.form.decription_field.ckeditor_removeButtons' ),
             'ckeditor_allowedContent'       => $this->getParameter( 'vs_cms.form.decription_field.ckeditor_allowedContent' ),
             'ckeditor_extraAllowedContent'  => $this->getParameter( 'vs_cms.form.decription_field.ckeditor_extraAllowedContent' ),
+            
+            'sliderPhotoMaxSize'            => $this->getParameter( 'vs_cms.form.slider_item.photo.max_size' ),
         ]);
         
         return $this->render( '@VSCms/Pages/SlidersItems/slider_item_form.html.twig', [
@@ -101,6 +103,7 @@ class SliderItemExtController extends AbstractController
             'sliderId'                  => $sliderId,
             'item'                      => $sliderItem,
             'sliderPhotoDescription'    => $this->sliderPhotoDescription,
+            'isAjaxRequest'             => true,
         ]);
     }
     
