@@ -18,16 +18,16 @@
 		}
 	],
 	"require" : {
-		"php" : "^8.1",
+		"php" : "^8.2",
 		"vankosoft/application-bundle" : "^1.10",
-		"friendsofsymfony/ckeditor-bundle" : "^2.6",
+		"friendsofsymfony/ckeditor-bundle" : "^2.8",
 		"daddl3/symfony-ckeditor-5-webpack" : "^1.2",
-		"liip/imagine-bundle" : "^2.13",
+		"liip/imagine-bundle" : "^2.17",
 		"artgris/filemanager-bundle" : "^2.10",
-		"oneup/uploader-bundle" : "^5.0",
-		"oneup/flysystem-bundle" : "^4.12",
+		"oneup/uploader-bundle" : "^5.1",
+		"oneup/flysystem-bundle" : "^4.14",
 		"league/flysystem-ftp": "^3.29",
-        "league/flysystem-sftp-v3": "^3.29",
+        "league/flysystem-sftp-v3": "^3.30",
 		"m2mtech/flysystem-stream-wrapper" : "^1.4"
 	},
 	"conflict" : {
