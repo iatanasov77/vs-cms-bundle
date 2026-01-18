@@ -93,16 +93,4 @@ class BannerController extends AbstractCrudController
         $filesystem     = new Filesystem();
         $filesystem->remove( $bannerImage );
     }
-    
-    private function getTranslations()
-    {
-        $translations   = [];
-        $transRepo      = $this->get( 'vs_application.repository.translation' );
-        
-        foreach ( $this->getRepository()->findAll() as $banner ) {
-            $translations[$banner->getId()] = array_keys( $transRepo->findTranslations( $banner ) );
-        }
-        //echo "<pre>"; var_dump($translations); die;
-        return $translations;
-    }
 }

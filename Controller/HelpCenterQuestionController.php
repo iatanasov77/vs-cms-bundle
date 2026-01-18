@@ -24,16 +24,4 @@ class HelpCenterQuestionController extends AbstractCrudController
             $entity->setTranslatableLocale( $formLocale );
         }
     }
-    
-    private function getTranslations()
-    {
-        $translations   = [];
-        $transRepo      = $this->get( 'vs_application.repository.translation' );
-        
-        foreach ( $this->getRepository()->findAll() as $question ) {
-            $translations[$question->getId()] = array_keys( $transRepo->findTranslations( $question ) );
-        }
-        
-        return $translations;
-    }
 }

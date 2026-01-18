@@ -74,19 +74,6 @@ class PagesController extends AbstractCrudController
         return $this->get( 'vs_cms.repository.page_categories' );
     }
     
-    private function getTranslations()
-    {
-        $translations   = [];
-        $transRepo      = $this->get( 'vs_application.repository.translation' );
-        
-        foreach ( $this->getRepository()->findAll() as $page ) {
-            //$translations[$page->getId()] = \array_keys( $transRepo->findTranslations( $page ) );
-            $translations[$page->getId()] = \array_reverse( \array_keys( $transRepo->findTranslations( $page ) ) );
-        }
-        
-        return $translations;
-    }
-    
     private function getVersions( $translations )
     {
         $versions   = [];

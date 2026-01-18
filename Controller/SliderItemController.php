@@ -94,16 +94,4 @@ class SliderItemController extends AbstractCrudController
         $filesystem     = new Filesystem();
         $filesystem->remove( $sliderItemPhoto );
     }
-    
-    private function getTranslations()
-    {
-        $translations   = [];
-        $transRepo      = $this->get( 'vs_application.repository.translation' );
-        
-        foreach ( $this->getRepository()->findAll() as $sliderItem ) {
-            $translations[$sliderItem->getId()] = array_keys( $transRepo->findTranslations( $sliderItem ) );
-        }
-        //echo "<pre>"; var_dump($translations); die;
-        return $translations;
-    }
 }
