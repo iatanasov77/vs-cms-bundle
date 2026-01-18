@@ -15,7 +15,7 @@ class HelpCenterQuestionController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $formPost   = $request->request->all( 'help_center_question_form' );
         $formLocale = $formPost['locale'];

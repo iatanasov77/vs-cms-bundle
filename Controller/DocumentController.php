@@ -19,7 +19,7 @@ class DocumentController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $translatableLocale = $form['locale']->getData();
         $rootTocPageName    = $form['title']->getData();

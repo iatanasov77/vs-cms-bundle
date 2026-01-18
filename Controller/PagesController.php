@@ -53,7 +53,7 @@ class PagesController extends AbstractCrudController
         return $params;
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $categories = new ArrayCollection();
         $pcr        = $this->get( 'vs_cms.repository.page_categories' );
@@ -74,7 +74,7 @@ class PagesController extends AbstractCrudController
         return $this->get( 'vs_cms.repository.page_categories' );
     }
     
-    private function getVersions( $translations )
+    private function getVersions( $translations ): array
     {
         $versions   = [];
         $logRepo    = $this->get( 'vs_application.repository.logentry' );
@@ -91,7 +91,7 @@ class PagesController extends AbstractCrudController
         return $versions;
     }
     
-    private function buildCategories( &$entity, array $categories )
+    private function buildCategories( &$entity, array $categories ): void
     {
         $repo   = $this->get( 'vs_cms.repository.page_categories' );
         
@@ -101,7 +101,7 @@ class PagesController extends AbstractCrudController
         }
     }
     
-    private function getFilteredResources( Collection $items )
+    private function getFilteredResources( Collection $items ): Pagerfanta
     {
         //$adapter    = new DoctrineCollectionAdapter( $items );
         $adapter    = new ArrayAdapter( $items->toArray() );

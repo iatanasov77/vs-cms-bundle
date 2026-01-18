@@ -48,7 +48,7 @@ class BannerController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $formPost   = $request->request->all( 'banner_form' );
         $formLocale = $formPost['locale'];
@@ -81,7 +81,7 @@ class BannerController extends AbstractCrudController
         }
     }
     
-    private function removeImageFile( BannerInterface $banner )
+    private function removeImageFile( BannerInterface $banner ): void
     {
         $em                 = $this->get( 'doctrine' )->getManager();
         $sliderPhotoDir     = $this->getParameter( 'vs_cms.filemanager_shared_media_gaufrette.slider' );

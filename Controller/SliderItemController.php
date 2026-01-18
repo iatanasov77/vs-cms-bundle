@@ -49,7 +49,7 @@ class SliderItemController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $formPost   = $request->request->all( 'slider_item_form' );
         $formLocale = $formPost['locale'];
@@ -82,7 +82,7 @@ class SliderItemController extends AbstractCrudController
         }
     }
     
-    private function removePhotoFile( SliderItemInterface $sliderItem )
+    private function removePhotoFile( SliderItemInterface $sliderItem ): void
     {
         $em                 = $this->get( 'doctrine' )->getManager();
         $sliderPhotoDir     = $this->getParameter( 'vs_cms.filemanager_shared_media_gaufrette.slider' );
