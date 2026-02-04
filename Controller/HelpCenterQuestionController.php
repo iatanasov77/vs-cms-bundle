@@ -15,7 +15,7 @@ class HelpCenterQuestionController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $formPost   = $request->request->all( 'help_center_question_form' );
         $formLocale = $formPost['locale'];
@@ -23,17 +23,5 @@ class HelpCenterQuestionController extends AbstractCrudController
         if ( $formLocale ) {
             $entity->setTranslatableLocale( $formLocale );
         }
-    }
-    
-    private function getTranslations()
-    {
-        $translations   = [];
-        $transRepo      = $this->get( 'vs_application.repository.translation' );
-        
-        foreach ( $this->getRepository()->findAll() as $question ) {
-            $translations[$question->getId()] = array_keys( $transRepo->findTranslations( $question ) );
-        }
-        
-        return $translations;
     }
 }

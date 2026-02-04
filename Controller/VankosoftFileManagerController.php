@@ -39,7 +39,7 @@ class VankosoftFileManagerController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $taxonomy           = $this->getTaxonomy( 'vs_cms.file_manager.taxonomy_code' );
         $translatableLocale = $form['currentLocale']->getData();

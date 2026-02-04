@@ -33,7 +33,7 @@ class PagesRepository extends EntityRepository
     
     public function getCurrentVersion( $id, $locale, $logRepo )
     {
-        $log    = $logRepo->findOneBy( ['objectClass' => $this->_entityName, 'objectId' => $id, 'locale' => $locale], ['version' => 'desc'] );
+        $log    = $logRepo->findOneBy( ['objectClass' => $this->getEntityName(), 'objectId' => $id, 'locale' => $locale], ['version' => 'desc'] );
         
         return $log ? $log->getVersion() : null;
     }

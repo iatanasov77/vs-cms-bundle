@@ -37,7 +37,8 @@ abstract class AbstractFileUploader implements FileUploaderInterface
     public function remove( string $path ): bool
     {
         if ( $this->has( $path ) ) {
-            return $this->filesystem->delete( $path );
+            $this->filesystem->delete( $path );
+            return ! $this->has( $path );
         }
         
         return false;

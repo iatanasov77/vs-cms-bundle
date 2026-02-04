@@ -15,7 +15,7 @@ class QuickLinkController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $formPost   = $request->request->all( 'quick_link_form' );
         $formLocale = $formPost['locale'];
@@ -23,17 +23,5 @@ class QuickLinkController extends AbstractCrudController
         if ( $formLocale ) {
             $entity->setTranslatableLocale( $formLocale );
         }
-    }
-    
-    private function getTranslations()
-    {
-        $translations   = [];
-        $transRepo      = $this->get( 'vs_application.repository.translation' );
-        
-        foreach ( $this->getRepository()->findAll() as $quickLink ) {
-            $translations[$quickLink->getId()] = array_keys( $transRepo->findTranslations( $quickLink ) );
-        }
-        
-        return $translations;
     }
 }
